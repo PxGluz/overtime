@@ -228,7 +228,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -24.29, y: 0, z: 0}
---- !u!1 &1004467824
+--- !u!1 &699820733
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -236,8 +236,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1004467825}
-  - component: {fileID: 1004467826}
+  - component: {fileID: 699820734}
+  - component: {fileID: 699820735}
   m_Layer: 0
   m_Name: Trail
   m_TagString: Untagged
@@ -245,29 +245,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1004467825
+--- !u!4 &699820734
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004467824}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 699820733}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.522}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3849931681127935915}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!96 &1004467826
+--- !u!96 &699820735
 TrailRenderer:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004467824}
+  m_GameObject: {fileID: 699820733}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -281,7 +281,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
+  - {fileID: 2100000, guid: 6daa3f2d297117942b0bffcc58f61d27, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -312,12 +312,21 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.99494946
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -2.3089354
+        outSlope: -2.3089354
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.14874142
         outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -355,7 +364,7 @@ TrailRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
@@ -655,11 +664,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3982301615916881982, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: jumpForce
-      value: 6
+      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 3982301615916881982, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: groundDrag
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3982301615916881982, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: sprintSpeed
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3982301615916881982, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: gravityForce
@@ -678,10 +691,11 @@ PrefabInstance:
       value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3982301614911693855, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 157149138785908631, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1004467825}
+      addedObject: {fileID: 699820734}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}

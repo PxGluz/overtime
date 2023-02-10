@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
 
     [Header("Movement")]
+    public Transform orientation;
     public float currentSpeed;
     public float moveSpeed;
     public float sprintSpeed;
@@ -16,22 +17,21 @@ public class PlayerMovement : MonoBehaviour
     public float groundDrag;
 
     [Header("Jumping")]
+    public KeyCode jumpKey = KeyCode.Space;
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
     public float fallMultiplier;
-    public bool readyToJump = true;
-    public KeyCode jumpKey = KeyCode.Space;
+    private bool readyToJump = true;
     public float gravityForce = 10f;
-    public bool isAscending = false;
-    public bool isDescending = false;
+    private bool isAscending = false;
+    private bool isDescending = false;
 
     [Header("Ground Check")]
     public Transform GroundCheckSource;
     public LayerMask groundLayer;
     public bool grounded;
 
-    public Transform orientation;
 
     float horizontalInput;
     float verticalInput;
@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Change between Sprint and walk
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
         {
             currentSpeed = sprintSpeed;
         }
