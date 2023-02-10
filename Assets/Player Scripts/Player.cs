@@ -8,14 +8,18 @@ public class Player : MonoBehaviour
 {
 
     public static Player m;
-
+    public string MoveType = "stop";
+    public LayerMask groundLayer;
 
     [Header("Script References")][Space]
     public PlayerCam playerCam;
+    public CrouchLogic crouchLogic;
 
     void Awake()
     {
         m = this;
+
+        crouchLogic = GetComponent<CrouchLogic>();
     }
 
 }

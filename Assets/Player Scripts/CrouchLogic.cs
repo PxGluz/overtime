@@ -1,0 +1,87 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Dynamic;
+using TMPro;
+using UnityEngine;
+
+public class CrouchLogic : MonoBehaviour
+{
+
+    [Header("Crouching")]
+    [SerializeField] Transform HeadTransform;
+    private Vector3 OriginalHeadLocation;
+    [SerializeField] public Transform CeilingCheck;
+    [SerializeField] public float CeilingCheckRadius;
+    private float initialHeight;
+    public CapsuleCollider playerCapsuleCollider;
+    [SerializeField][Range(0.0f, 2f)] public float CrouchAnimationDuration;
+
+    [HideInInspector] public bool hasSpaceAboveHead;
+    [HideInInspector] public bool hasEnteredCrouch = false;
+
+    void Start()
+    {
+        initialHeight = playerCapsuleCollider.height;
+        OriginalHeadLocation = HeadTransform.localPosition;
+    }
+
+
+
+    private IEnumerator enterCrouchAnim, exitCrouchAnim;
+    public void enterCrouch()
+    {
+        Player.m.MoveType = "crouch";
+        hasEnteredCrouch = true;
+        playerCapsuleCollider.height = 1.1f;
+        playerCapsuleCollider.center = new Vector3(playerCapsuleCollider.center.x, -0.45f, playerCapsuleCollider.center.z);
+        
+        enterCrouchAnim = MoveHeadToPos(new Vector3(0, 0, 0), CrouchAnimationDuration);
+        
+        StartCoroutine(enterCrouchAnim);
+
+        if (exitCrouchAnim!= null) 
+            StopCoroutine(exitCrouchAnim);
+
+    }
+
+    public void exitCrouch()
+    {
+        Player.m.MoveType = "stop";
+        hasEnteredCrouch = false;
+        playerCapsuleCollider.height = initialHeight;
+        playerCapsuleCollider.center = new Vector3(playerCapsuleCollider.center.x, 0, playerCapsuleCollider.center.z);
+
+        exitCrouchAnim = MoveHeadToPos(new Vector3(0, OriginalHeadLocation.y, 0), CrouchAnimationDuration);
+
+        StartCoroutine(exitCrouchAnim);
+
+        if (enterCrouchAnim != null)
+            StopCoroutine(enterCrouchAnim);
+
+    }
+
+    public IEnumerator MoveHeadToPos(Vector3 targetPosition, float duration)
+    {
+        Vector3 previousPosition = HeadTransform.localPosition;
+        float time = 0.0f;
+
+        do
+        {
+            time += Time.deltaTime;
+
+            HeadTransform.localPosition = Vector3.Lerp(previousPosition, targetPosition, time / duration);
+
+            yield return 0;
+
+        } while (time < duration);
+
+        HeadTransform.localPosition = targetPosition;
+
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(CeilingCheck.position, CeilingCheckRadius);
+    }
+}

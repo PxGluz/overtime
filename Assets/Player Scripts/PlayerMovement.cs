@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Dynamic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,8 +13,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     public Transform orientation;
     public float currentSpeed;
-    public float moveSpeed;
+    public float walkSpeed;
     public float sprintSpeed;
+    public float crouchSpeed;
 
     public float groundDrag;
 
@@ -29,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Ground Check")]
     public Transform GroundCheckSource;
-    public LayerMask groundLayer;
     public bool grounded;
 
 
@@ -38,13 +40,16 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 moveDirection;
 
+    //[Header("Crouch")]
+    //public bool hasSpaceToExitCrouch;
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
-        currentSpeed = moveSpeed;
+        currentSpeed = walkSpeed;
     }
 
 
@@ -52,11 +57,13 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, Mathf.Abs(GroundCheckSource.localPosition.y) + 0.2f, groundLayer);
+        grounded = Physics.Raycast(transform.position, Vector3.down, Mathf.Abs(GroundCheckSource.localPosition.y) + 0.2f, Player.m.groundLayer);
         UnityEngine.Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * (Mathf.Abs(GroundCheckSource.localPosition.y) + 0.2f), Color.red);
 
+        
         MyInput();
         SpeedControl();
+        Player.m.crouchLogic.hasSpaceAboveHead = !Physics.CheckSphere(Player.m.crouchLogic.CeilingCheck.position, Player.m.crouchLogic.CeilingCheckRadius, Player.m.groundLayer);
 
         // handle drag
         if (grounded)
@@ -64,17 +71,33 @@ public class PlayerMovement : MonoBehaviour
         else
             rb.drag = 0;
 
+        // handle jump phases
         if ( isAscending && rb.velocity.y < 0)
         {
             isAscending = false;
             isDescending= true;
         }
+
+        // set the current player speed based on their move type
+        currentSpeed = walkSpeed;
+        switch (Player.m.MoveType)
+        {
+            case "walk":
+                currentSpeed = walkSpeed;
+                break;
+            case "run":
+                currentSpeed = sprintSpeed;
+                break;
+            case "crouch":
+                currentSpeed = crouchSpeed;
+                break;
+        }
+        
     }
 
     private void FixedUpdate()
     {
         MovePlayer();
-
         HandleGravity();
     }
 
@@ -82,6 +105,39 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
+
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            //Player.m.MoveType = "crouch";
+
+            if (!Player.m.crouchLogic.hasEnteredCrouch)
+                Player.m.crouchLogic.enterCrouch();
+
+            return;
+
+        }else if (Player.m.crouchLogic.hasEnteredCrouch)
+        {
+            //Player.m.MoveType = "crouch";
+
+            if (Player.m.crouchLogic.hasSpaceAboveHead)
+                Player.m.crouchLogic.exitCrouch();
+            else
+                return;
+        }
+
+        if ((horizontalInput != 0 || verticalInput != 0))
+        {
+            Player.m.MoveType = "walk";
+
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
+            {
+                Player.m.MoveType = "run";
+            }
+        }
+        else
+        {
+            Player.m.MoveType = "stop";
+        }
 
         // when to jump
         if (Input.GetKey(jumpKey) && readyToJump && grounded)
@@ -96,32 +152,7 @@ public class PlayerMovement : MonoBehaviour
             Invoke(nameof(ResetJump), jumpCooldown);
         }
 
-        // Change between Sprint and walk
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
-        {
-            currentSpeed = sprintSpeed;
-        }
-        else
-        {
-            currentSpeed = moveSpeed;
-        }
-    }
-
-    private void HandleGravity()
-    {
-        if (!grounded)
-        {   
-            // Normal gravity when falling 
-            if (!isDescending)
-                rb.AddForce(Vector3.down * gravityForce, ForceMode.Acceleration);
-            // Stronger gravity when finishing jump
-            else
-                rb.AddForce(Vector3.down * gravityForce * fallMultiplier, ForceMode.Acceleration);
-        }
-        else
-        {
-            isDescending = false;
-        }
+       
     }
 
     private void MovePlayer()
@@ -161,5 +192,22 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+
+    private void HandleGravity()
+    {
+        if (!grounded)
+        {
+            // Normal gravity when falling 
+            if (!isDescending)
+                rb.AddForce(Vector3.down * gravityForce, ForceMode.Acceleration);
+            // Stronger gravity when finishing jump
+            else
+                rb.AddForce(Vector3.down * gravityForce * fallMultiplier, ForceMode.Acceleration);
+        }
+        else
+        {
+            isDescending = false;
+        }
     }
 }
