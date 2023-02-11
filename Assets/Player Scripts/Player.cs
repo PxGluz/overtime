@@ -11,9 +11,12 @@ public class Player : MonoBehaviour
     public string MoveType = "stop";
     public LayerMask groundLayer;
 
-    [Header("Script References")][Space]
+    [Header("Script References:")][Space]
     public PlayerCam playerCam;
     public CrouchLogic crouchLogic;
+
+    [Header("Other References:")]
+    public Camera MainCamera;
 
     void Awake()
     {
