@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class CrouchLogic : MonoBehaviour
 {
+    //Possible fix needed: should only be able to crouch while in "stop" or "walk"/"run" to fix looking wonky while crouch jumping
 
     [Header("Crouching")]
     [SerializeField] Transform HeadTransform;
