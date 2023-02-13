@@ -18,7 +18,7 @@ public class CrouchLogic : MonoBehaviour
     [SerializeField][Range(0.0f, 2f)] public float CrouchAnimationDuration;
 
     [HideInInspector] public bool hasSpaceAboveHead;
-    [HideInInspector] public bool hasEnteredCrouch = false;
+    public bool hasEnteredCrouch = false;
 
     void Start()
     {

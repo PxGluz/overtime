@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Dynamic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -33,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Ground Check")]
     public Transform GroundCheckSource;
     public float GroundCheckRadius = 0.2f;
-    public bool grounded;
+    public bool isGrounded;
 
 
     float horizontalInput;
@@ -41,7 +42,13 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 moveDirection;
 
-    //[Header("Crouch")]
+    [Header("Slide")]
+    public float SlideDuration = .5f;
+    public float SlideSpeed = 18;
+    public float slideCooldwon = 2;
+    public bool CanSlide = true;
+    private IEnumerator SlideCoroutine;
+
     //public bool hasSpaceToExitCrouch;
 
 
@@ -60,16 +67,16 @@ public class PlayerMovement : MonoBehaviour
         // ground check: Raycast approach
         //grounded = Physics.Raycast(transform.position, Vector3.down, Mathf.Abs(GroundCheckSource.localPosition.y) + 0.2f, Player.m.groundLayer);
         //UnityEngine.Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * (Mathf.Abs(GroundCheckSource.localPosition.y) + 0.2f), Color.red);
-        
-        // ground check: Sphere check approach
-        grounded = Physics.CheckSphere(GroundCheckSource.position, GroundCheckRadius, Player.m.groundLayer);
 
-        MyInput();
+        // ground check: Sphere check approach
+        isGrounded = Physics.CheckSphere(GroundCheckSource.position, GroundCheckRadius, Player.m.groundLayer);
+
+        MovementInputs();
         SpeedControl();
         Player.m.crouchLogic.hasSpaceAboveHead = !Physics.CheckSphere(Player.m.crouchLogic.CeilingCheck.position, Player.m.crouchLogic.CeilingCheckRadius, Player.m.groundLayer);
 
         // handle drag
-        if (grounded)
+        if (isGrounded || Player.m.MoveType == "slide")
             rb.drag = groundDrag;
         else
             rb.drag = 0;
@@ -104,12 +111,28 @@ public class PlayerMovement : MonoBehaviour
         HandleGravity();
     }
 
-    private void MyInput()
+    private void MovementInputs()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Player.m.MoveType == "slide" )
+        {
+            print("slide");
+            return;
+        }
+
+        //(horizontalInput != 0 || verticalInput != 0) && Input.GetKey(KeyCode.LeftShift)
+        if (CanSlide && Player.m.MoveType == "run" && Input.GetKey(KeyCode.LeftControl))
+        {
+            CanSlide = false;
+            SlideCoroutine = SlideAction(SlideSpeed, SlideDuration);
+            StartCoroutine(SlideCoroutine);
+
+            return;
+        }
+
+        if (Input.GetKey(KeyCode.LeftControl) && isGrounded)
         {
             //Player.m.MoveType = "crouch";
 
@@ -143,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // when to jump
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetKey(jumpKey) && readyToJump && isGrounded)
         {
             isAscending = true; 
             isDescending = false;
@@ -160,15 +183,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
+
+        if (Player.m.MoveType == "slide")
+            return;
+
         //calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
     
         // on ground
-        if (grounded)
+        if (isGrounded)
             rb.AddForce(moveDirection.normalized * currentSpeed * 10f, ForceMode.Force);
         
         // in air
-        else if (!grounded)
+        else if (!isGrounded)
             rb.AddForce(moveDirection.normalized * currentSpeed * 10f * airMultiplier, ForceMode.Force);
     }
 
@@ -192,14 +219,13 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
-    private void ResetJump()
-    {
-        readyToJump = true;
-    }
+    private void ResetJump() { readyToJump = true; }
+
+    private void ResetSlideCoolDown() { CanSlide = true; }
 
     private void HandleGravity()
     {
-        if (!grounded)
+        if (!isGrounded)
         {
             // Normal gravity when falling 
             if (!isDescending)
@@ -210,8 +236,41 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+           
             isDescending = false;
         }
+    }
+
+    private IEnumerator SlideAction(float speed, float duration)
+    {
+        
+        float time = 0.0f;
+
+        Player.m.crouchLogic.enterCrouch();
+
+        Player.m.MoveType = "slide";
+
+        //reset player velocity
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        do
+        {
+            time += Time.deltaTime;
+
+            rb.AddForce(moveDirection.normalized * speed * 10f, ForceMode.Force);
+
+            yield return 0;
+
+        } while (time < duration);
+
+        if (Player.m.crouchLogic.hasSpaceAboveHead)
+            Player.m.crouchLogic.exitCrouch();
+        else 
+            Player.m.MoveType = "crouch";
+
+        Invoke(nameof(ResetSlideCoolDown), slideCooldwon);
     }
 
     void OnDrawGizmosSelected()
