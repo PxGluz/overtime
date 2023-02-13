@@ -47,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
     public float SlideSpeed = 18;
     public float slideCooldwon = 2;
     public bool CanSlide = true;
+    public float SlideFOVIncrease = 20;
+    public float SlideFOVAnimationDuration = 0.2f;
+    private float OriginalFOV;
     private IEnumerator SlideCoroutine;
 
     //public bool hasSpaceToExitCrouch;
@@ -58,16 +61,14 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
 
         currentSpeed = walkSpeed;
+        OriginalFOV = Player.m.MainCamera.fieldOfView;
+
     }
 
 
 
     private void Update()
     {
-        // ground check: Raycast approach
-        //grounded = Physics.Raycast(transform.position, Vector3.down, Mathf.Abs(GroundCheckSource.localPosition.y) + 0.2f, Player.m.groundLayer);
-        //UnityEngine.Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * (Mathf.Abs(GroundCheckSource.localPosition.y) + 0.2f), Color.red);
-
         // ground check: Sphere check approach
         isGrounded = Physics.CheckSphere(GroundCheckSource.position, GroundCheckRadius, Player.m.groundLayer);
 
@@ -118,11 +119,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (Player.m.MoveType == "slide" )
         {
-            print("slide");
             return;
         }
 
-        //(horizontalInput != 0 || verticalInput != 0) && Input.GetKey(KeyCode.LeftShift)
         if (CanSlide && Player.m.MoveType == "run" && Input.GetKey(KeyCode.LeftControl))
         {
             CanSlide = false;
@@ -250,6 +249,12 @@ public class PlayerMovement : MonoBehaviour
 
         Player.m.MoveType = "slide";
 
+        if (ChangeFOVCoroutine != null)
+            StopCoroutine(ChangeFOVCoroutine);
+
+        ChangeFOVCoroutine = ChangeFOVinSlide(OriginalFOV + SlideFOVIncrease, SlideFOVAnimationDuration);
+        StartCoroutine(ChangeFOVCoroutine);
+
         //reset player velocity
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
@@ -270,7 +275,33 @@ public class PlayerMovement : MonoBehaviour
         else 
             Player.m.MoveType = "crouch";
 
+        if (ChangeFOVCoroutine != null)
+            StopCoroutine(ChangeFOVCoroutine);
+
+        ChangeFOVCoroutine = ChangeFOVinSlide(OriginalFOV, SlideFOVAnimationDuration);
+        StartCoroutine(ChangeFOVCoroutine);
+
         Invoke(nameof(ResetSlideCoolDown), slideCooldwon);
+    }
+
+    private IEnumerator ChangeFOVCoroutine;
+    public IEnumerator ChangeFOVinSlide(float targetFOV, float duration)
+    {
+        float startFOV = Player.m.MainCamera.fieldOfView;
+        float time = 0.0f;
+
+        do
+        {
+            time += Time.deltaTime;
+
+            Player.m.MainCamera.fieldOfView = Mathf.Lerp(startFOV, targetFOV, time / duration);
+
+            yield return 0;
+
+        } while (time < duration);
+
+        Player.m.MainCamera.fieldOfView = targetFOV;
+
     }
 
     void OnDrawGizmosSelected()

@@ -829,11 +829,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3982301615698761917, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.684
+      value: -0.631
       objectReference: {fileID: 0}
     - target: {fileID: 3982301615916881982, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: SlideSpeed
-      value: 40
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 3982301615916881982, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: SlideDuration
@@ -841,11 +841,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3982301615916881982, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: slideCooldwon
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3982301615916881982, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: SlideFOVIncrease
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3982301615916881982, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: GroundCheckRadius
-      value: 0.4
+      value: 0.45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
