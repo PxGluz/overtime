@@ -5,104 +5,34 @@ using UnityEngine;
 
 public class VisionCone : MonoBehaviour
 {
-    public bool drawCone = true;
-    public Material visionConeMaterial;
-    public float visionRange;
     public float visionAngle;
-    public LayerMask visionObstructingLayer;//layer with objects that obstruct the enemy view, like walls, for example
-    public int visionConeResolution = 120;//the vision cone will be made up of triangles, the higher this value is the pretier the vision cone will be
-    Mesh visionConeMesh;
-    MeshFilter meshFilter;
-    //Create all of these variables, most of them are self explanatory, but for the ones that aren't i've added a comment to clue you in on what they do
-    //for the ones that you dont understand dont worry, just follow along
-
-    // Set containing all objects that are in the fov (vision cone).
-    public HashSet<GameObject> inFieldOfView = new HashSet<GameObject>();
+    public float visionDistance;
     void Start()
     {
-        transform.AddComponent<MeshRenderer>().material = visionConeMaterial;
-        meshFilter = transform.AddComponent<MeshFilter>();
-        visionConeMesh = new Mesh();
-        visionAngle *= Mathf.Deg2Rad;
+        visionAngle /= 2;
     }
 
     void Update()
     {
-        inFieldOfView.Clear();
-
-        if (drawCone)
-            DrawVisionCone();
-        else
-            SimulateVisionCone();
-
-        //string output = "In fov: ";
-        //foreach (GameObject gameObject in inFieldOfView)
-        //{
-        //    output += gameObject.name + " ";
-        //}
-
-        //Debug.Log(output);
+        Debug.DrawRay(gameObject.transform.position, gameObject.transform.forward * visionDistance, new Color(0, 1, 0));
     }
 
-    void SimulateVisionCone()
+    public bool isInView(GameObject obj)
     {
-        float currentAngle = -visionAngle / 2;
-        float angleIcrement = visionAngle / (visionConeResolution - 1);
-        float sine;
-        float cosine;
-
-        for (int i = 0; i < visionConeResolution; i++)
+        Vector3 dir = obj.transform.position - gameObject.transform.position;
+        if (Physics.Raycast(gameObject.transform.position, Vector3.Normalize(dir), out RaycastHit hitInfo, visionDistance))
         {
-            sine = Mathf.Sin(currentAngle);
-            cosine = Mathf.Cos(currentAngle);
-            Vector3 raycastDirection = (transform.forward * cosine) + (transform.right * sine);
-            if (Physics.Raycast(transform.position, raycastDirection, out RaycastHit hit, visionRange, visionObstructingLayer))
+            if (hitInfo.collider.gameObject.Equals(obj))
             {
-                inFieldOfView.Add(hit.collider.gameObject);
+                if (Mathf.Abs(Vector3.Angle(gameObject.transform.forward, Vector3.Normalize(dir))) <= visionAngle)
+                {
+                    Debug.DrawRay(gameObject.transform.position, dir, new Color(0, 0, 1));
+                    return true;
+                }
+                return false;
             }
-
-            currentAngle += angleIcrement;
+            return false;
         }
-    }
-
-    void DrawVisionCone()//this method creates the vision cone mesh
-    {
-        int[] triangles = new int[(visionConeResolution - 1) * 3];
-        Vector3[] vertices = new Vector3[visionConeResolution + 1];
-        vertices[0] = Vector3.zero;
-        float currentAngle = -visionAngle / 2;
-        float angleIcrement = visionAngle / (visionConeResolution - 1);
-        float sine;
-        float cosine;
-
-        for (int i = 0; i < visionConeResolution; i++)
-        {
-            sine = Mathf.Sin(currentAngle);
-            cosine = Mathf.Cos(currentAngle);
-            Vector3 raycastDirection = (transform.forward * cosine) + (transform.right * sine);
-            Vector3 vertForward = (Vector3.forward * cosine) + (Vector3.right * sine);
-            if (Physics.Raycast(transform.position, raycastDirection, out RaycastHit hit, visionRange, visionObstructingLayer))
-            {
-                inFieldOfView.Add(hit.collider.gameObject);
-                vertices[i + 1] = vertForward * hit.distance;
-            }
-            else
-            {
-                vertices[i + 1] = vertForward * visionRange;
-            }
-
-
-            currentAngle += angleIcrement;
-        }
-        for (int i = 0, j = 0; i < triangles.Length; i += 3, j++)
-        {
-            triangles[i] = 0;
-            triangles[i + 1] = j + 1;
-            triangles[i + 2] = j + 2;
-        }
-        visionConeMesh.Clear();
-        visionConeMesh.vertices = vertices;
-        visionConeMesh.triangles = triangles;
-        meshFilter.mesh = visionConeMesh;
+        return false;
     }
 }

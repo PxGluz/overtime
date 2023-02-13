@@ -26,7 +26,7 @@ public class EnemyPathfinding : MonoBehaviour
         {
             foreach (GameObject target in targets)
             {
-                if (visionCone.inFieldOfView.Contains(target))
+                if (visionCone.isInView(target))
                 {
                     currentTarget = target;
                     break;
@@ -35,7 +35,7 @@ public class EnemyPathfinding : MonoBehaviour
         }
         else
         {
-            if (visionCone.inFieldOfView.Contains(currentTarget))
+            if (visionCone.isInView(currentTarget))
             {
                 currentResetTimer = resetTargetTimer;
                 agent.SetDestination(currentTarget.transform.position);
