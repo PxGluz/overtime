@@ -9,15 +9,15 @@ public class EnemyPathfinding : MonoBehaviour
     public VisionCone visionCone;
 
     [Header("Reacts to:")]
-    public GameObject[] targets;
+    public GameObject[] targets = new GameObject[1];
     private GameObject currentTarget = null;
     [Space]
     [Tooltip("Change target every X seconds")]
     public float resetTargetTimer;
     private float currentResetTimer;
-    void Awake()
+    void Start()
     {
-
+        targets[0] = Player.m.gameObject.GetComponentInChildren<CapsuleCollider>().gameObject;
     }
 
     void Update()
@@ -26,7 +26,7 @@ public class EnemyPathfinding : MonoBehaviour
         {
             foreach (GameObject target in targets)
             {
-                if (visionCone.isInView(target))
+                if (visionCone.IsInView(target))
                 {
                     currentTarget = target;
                     break;
@@ -35,7 +35,7 @@ public class EnemyPathfinding : MonoBehaviour
         }
         else
         {
-            if (visionCone.isInView(currentTarget))
+            if (visionCone.IsInView(currentTarget))
             {
                 currentResetTimer = resetTargetTimer;
                 agent.SetDestination(currentTarget.transform.position);
