@@ -18,6 +18,10 @@ public class Player : MonoBehaviour
     [Header("Other References:")]
     public Camera MainCamera;
 
+    public int currentWeapon = 0;
+    public string[] Weapons = new string[15];
+    public int[] WeaponsDurability = new int[15];
+
     void Awake()
     {
         m = this;
