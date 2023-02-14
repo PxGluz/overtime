@@ -79,12 +79,12 @@ public class PlayerMelee : MonoBehaviour
             switch (LayerMask.LayerToName(obj.gameObject.layer))
             {
                 case "Enemy":
-                    Enemy enemy = obj.gameObject.GetComponent<Enemy>();
+                    EnemyStats enemy = obj.gameObject.GetComponent<EnemyStats>();
                     if (enemy != null)
                         if (CurrentMeleeIndex != enemy.lastMeleeIndex)
                         {
                             enemy.lastMeleeIndex = CurrentMeleeIndex;
-                            enemy.TakeDamage(MeleeDamage);
+                            enemy.ReceiveHit(MeleeDamage);
                         }
                     break;
 
