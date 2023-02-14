@@ -52,8 +52,6 @@ public class PlayerMovement : MonoBehaviour
     private float OriginalFOV;
     private IEnumerator SlideCoroutine;
 
-    //public bool hasSpaceToExitCrouch;
-
 
     private void Start()
     {
@@ -71,10 +69,12 @@ public class PlayerMovement : MonoBehaviour
     {
         // ground check: Sphere check approach
         isGrounded = Physics.CheckSphere(GroundCheckSource.position, GroundCheckRadius, Player.m.groundLayer);
+        
+        // Checks if the player has enough space above it's head to exit crouching
+        Player.m.crouchLogic.hasSpaceAboveHead = !Physics.CheckSphere(Player.m.crouchLogic.CeilingCheck.position, Player.m.crouchLogic.CeilingCheckRadius, Player.m.groundLayer);
 
         MovementInputs();
         SpeedControl();
-        Player.m.crouchLogic.hasSpaceAboveHead = !Physics.CheckSphere(Player.m.crouchLogic.CeilingCheck.position, Player.m.crouchLogic.CeilingCheckRadius, Player.m.groundLayer);
 
         // handle drag
         if (isGrounded || Player.m.MoveType == "slide")

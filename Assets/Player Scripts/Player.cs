@@ -8,19 +8,20 @@ public class Player : MonoBehaviour
 {
 
     public static Player m;
-    public string MoveType = "stop";
-    public LayerMask groundLayer;
 
-    [Header("Script References:")][Space]
+    [Header("Script References:")]
     public PlayerCam playerCam;
     public CrouchLogic crouchLogic;
 
     [Header("Other References:")]
     public Camera MainCamera;
 
-    public int currentWeapon = 0;
-    public string[] Weapons = new string[15];
-    public int[] WeaponsDurability = new int[15];
+    [Header("Important variables:")]
+    public string MoveType = "stop"; // current move types: stop, walk, run, crouch, slide
+    public string AttackType = "none"; // current attack types: none, shoot, melee   | future attack types: throw
+    public LayerMask groundLayer;
+    public LayerMask enemyLayer;
+
 
     void Awake()
     {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
+
     public float shootingCooldown;
     public float shootingDistance = 10f;
     private Transform playerCameraTransform;
@@ -15,6 +16,11 @@ public class PlayerShooting : MonoBehaviour
 
     void Update()
     {
+
+        // stop the shooting script if the player isn't in the shoot attack type
+        if (Player.m.AttackType != "shoot")
+            return;
+
         if (Input.GetMouseButton(0))
         {
             TryShooting();
