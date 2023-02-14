@@ -17,7 +17,7 @@ public class VisionCone : MonoBehaviour
         Debug.DrawRay(gameObject.transform.position, gameObject.transform.forward * visionDistance, new Color(0, 1, 0));
     }
 
-    public bool isInView(GameObject obj)
+    public bool IsInView(GameObject obj)
     {
         Vector3 dir = obj.transform.position - gameObject.transform.position;
         if (Physics.Raycast(gameObject.transform.position, Vector3.Normalize(dir), out RaycastHit hitInfo, visionDistance))
