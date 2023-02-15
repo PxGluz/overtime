@@ -60,6 +60,7 @@ public class PlayerMelee : MonoBehaviour
         {
             foreach (DamagePoint point in DamagePoints)
             {
+                //print("muie 2");
                 DealDamageFromDamagePoint(point);
             }
         }
@@ -79,13 +80,17 @@ public class PlayerMelee : MonoBehaviour
             switch (LayerMask.LayerToName(obj.gameObject.layer))
             {
                 case "Enemy":
-                    EnemyStats enemy = obj.gameObject.GetComponent<EnemyStats>();
+
+                    EnemyStats enemy = obj.gameObject.GetComponentInParent<EnemyStats>();
                     if (enemy != null)
+                    {
+
                         if (CurrentMeleeIndex != enemy.lastMeleeIndex)
                         {
                             enemy.lastMeleeIndex = CurrentMeleeIndex;
                             enemy.ReceiveHit(MeleeDamage);
                         }
+                    }
                     break;
 
             }

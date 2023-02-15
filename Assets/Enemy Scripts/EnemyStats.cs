@@ -21,7 +21,7 @@ public class EnemyStats : MonoBehaviour
 
     //Other necessary variables to make other scripts work
     [HideInInspector]
-    public int lastMeleeIndex;
+    public int lastMeleeIndex = -1;
 
     void Start()
     {
@@ -35,6 +35,8 @@ public class EnemyStats : MonoBehaviour
 
     public void ReceiveHit(float damage)
     {
+
+        print("muie lovita");
 
         if (currentHealth <= 0) return;
 
