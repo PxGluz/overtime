@@ -5,6 +5,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public string itemName;
+    public bool isWeaponPickUp = false;
     public bool canBePickedUp = false;
     public bool JustDestoy = false;
     public bool TriggerFunction = false;

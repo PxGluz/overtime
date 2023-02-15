@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class Interact : MonoBehaviour
 {
@@ -75,6 +76,13 @@ public class Interact : MonoBehaviour
         // Aici sunt functiile care se executa odata ce pickup-ul s-a terminat
 
         itemBeingPickedUp.TriggerFunction = true;
+
+        if (itemBeingPickedUp.isWeaponPickUp)
+        {
+            Player.m.weaponManager.ChangeWeapon(itemBeingPickedUp.itemName);
+
+            return;
+        }
 
         if (itemBeingPickedUp.canBePickedUp)
             MoveItemToInventory();

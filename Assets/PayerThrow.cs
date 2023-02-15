@@ -42,8 +42,20 @@ public class PayerThrow : MonoBehaviour
         // get rigidbody component
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
 
+        // calculate direction
+        Vector3 forceDirection = Player.m.MainCamera.transform.forward;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(Player.m.MainCamera.transform.position, Player.m.MainCamera.transform.forward, out hit, 500f))
+        {
+            forceDirection = (hit.point - attackPoint.position).normalized;
+        }
+        Debug.DrawRay(Player.m.MainCamera.transform.position, Player.m.MainCamera.transform.forward);
+
         // add force
-        Vector3 forceToAdd = Player.m.MainCamera.transform.forward * throwForce + transform.up * throwUpwardForce;
+        //Vector3 forceToAdd = Player.m.MainCamera.transform.forward * throwForce + transform.up * throwUpwardForce;
+        Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwUpwardForce;
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
 
@@ -55,7 +67,7 @@ public class PayerThrow : MonoBehaviour
 
     private void ResetThrow()
     {
-        
+        readyToThrow = true;
     }
 
 
