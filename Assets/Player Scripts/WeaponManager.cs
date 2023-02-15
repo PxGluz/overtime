@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static WeaponManager;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -22,17 +23,30 @@ public class WeaponManager : MonoBehaviour
         public float throwUpwardForce;
     }
 
+    public Weapon currentWeapon;
     public Weapon[] WeaponsList;
+
+
+    private void Start()
+    {
+        ChangeWeapon("Fists");
+    }
 
 
 
     public void ChangeWeapon(string name)
     {
+
+        if (currentWeapon.name != "Fists" && currentWeapon.name != "" && name != "Fists")
+            Player.m.playerThrow.DropWeapon();
+
         foreach (Weapon weapon in WeaponsList)
         {
             if (name.ToLower() == weapon.name.ToLower())
             {
                 DeactivateNonSelectedWeapons(weapon.name);
+
+                currentWeapon = weapon;
 
                 Player.m.AttackType = weapon.type;
 
@@ -43,12 +57,16 @@ public class WeaponManager : MonoBehaviour
 
     private void DeactivateNonSelectedWeapons(string selectedWeapon)
     {
+        GameObject selectedWeaponModelOnPlayer = null;
         foreach (Weapon weapon in WeaponsList)
         {
-            if (selectedWeapon == weapon.name)
-                weapon.WeaponModelOnPlayer.SetActive(true);
+            if (selectedWeapon.ToLower() == weapon.name.ToLower())
+                selectedWeaponModelOnPlayer = weapon.WeaponModelOnPlayer;
             else
                 weapon.WeaponModelOnPlayer.SetActive(false);
         }
+
+        if (selectedWeaponModelOnPlayer != null)
+            selectedWeaponModelOnPlayer.SetActive(true);
     }
 }

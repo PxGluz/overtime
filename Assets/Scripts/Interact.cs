@@ -80,6 +80,8 @@ public class Interact : MonoBehaviour
         if (itemBeingPickedUp.isWeaponPickUp)
         {
             Player.m.weaponManager.ChangeWeapon(itemBeingPickedUp.itemName);
+            
+            Destroy(itemBeingPickedUp.gameObject);
 
             return;
         }

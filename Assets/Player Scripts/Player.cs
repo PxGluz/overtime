@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public PlayerCam playerCam;
     public CrouchLogic crouchLogic;
     public WeaponManager weaponManager;
+    public PlayerThrow playerThrow;
 
     [Header("Other References:")]
     public Camera MainCamera;
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
 
         crouchLogic = GetComponent<CrouchLogic>();
         weaponManager = GetComponent<WeaponManager>();
+        playerThrow = GetComponent<PlayerThrow>();
     }
 
 }

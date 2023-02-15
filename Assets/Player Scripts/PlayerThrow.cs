@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PayerThrow : MonoBehaviour
+public class PlayerThrow : MonoBehaviour
 {
     [Header("References")]
-
     public Transform attackPoint;
+    public Transform dropPoint;
     public GameObject objectToThrow;
 
     [Header("Settings")]
@@ -20,6 +21,10 @@ public class PayerThrow : MonoBehaviour
 
     bool readyToThrow;
 
+    [Header("Drop:")]
+    public KeyCode dropKey = KeyCode.Q;
+    public float dropForce;
+
     private void Start()
     {
         readyToThrow = true;
@@ -29,6 +34,11 @@ public class PayerThrow : MonoBehaviour
     {
         if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrows > 0){
             Throw();
+        }
+
+        if (Input.GetKeyDown(dropKey) && Player.m.weaponManager.currentWeapon.name.ToLower() != "fists")
+        {
+            DropWeapon();
         }
     }
 
@@ -65,10 +75,29 @@ public class PayerThrow : MonoBehaviour
         Invoke(nameof(ResetThrow), ThrowCooldown);
     }
 
+    public void DropWeapon()
+    {
+        
+        // instantiate object to throw
+        GameObject projectile = Instantiate(Player.m.weaponManager.currentWeapon.WeaponPickupPrefab, dropPoint.position, Player.m.MainCamera.transform.rotation);
+
+        // get rigidbody component
+        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+
+        // add force
+        Vector3 forceToAdd = Player.m.MainCamera.transform.forward * dropForce + transform.up ;
+
+        projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
+
+        Player.m.weaponManager.ChangeWeapon("Fists");
+        
+    }
+
     private void ResetThrow()
     {
         readyToThrow = true;
     }
+
 
 
 }
