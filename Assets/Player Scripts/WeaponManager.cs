@@ -21,6 +21,10 @@ public class WeaponManager : MonoBehaviour
         [Header("Throwing: ")]
         public float throwForce;
         public float throwUpwardForce;
+
+        [Header("Melee: ")]
+        public Transform DamageSphereOrigin;
+        public float DamageSphereRadius;
     }
 
     public Weapon currentWeapon;

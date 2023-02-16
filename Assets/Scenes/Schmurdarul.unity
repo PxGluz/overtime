@@ -228,6 +228,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20986579}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &86895302 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2910393371615107290, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+  m_PrefabInstance: {fileID: 3982301615916881980}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &105564201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4747,6 +4752,37 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &1193615108
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1193615109}
+  m_Layer: 3
+  m_Name: Knife DamagePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1193615109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193615108}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 86895302}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1199384355
 GameObject:
   m_ObjectHideFlags: 0
@@ -5708,6 +5744,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512356177}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1581415554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1581415555}
+  m_Layer: 3
+  m_Name: Fists DamagePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1581415555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581415554}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.73}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3982301615916881981}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1588953568
 GameObject:
   m_ObjectHideFlags: 0
@@ -8597,6 +8664,74 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 548252536, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: currentWeapon.DamageSphereOrigin
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 548252536, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: WeaponsList.Array.data[0].DamageSphereOrigin
+      value: 
+      objectReference: {fileID: 1581415555}
+    - target: {fileID: 548252536, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: WeaponsList.Array.data[0].DamageSphereRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 548252536, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: WeaponsList.Array.data[2].DamageSphereOrigin
+      value: 
+      objectReference: {fileID: 1193615109}
+    - target: {fileID: 548252536, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: WeaponsList.Array.data[2].DamageSphereRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 548252536, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: currentWeapon.damagePoint.DamageSphereOrigin
+      value: 
+      objectReference: {fileID: 1581415555}
+    - target: {fileID: 548252536, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: currentWeapon.damagePoint.DamageSphereRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 548252536, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: WeaponsList.Array.data[0].damagePoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 548252536, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: WeaponsList.Array.data[2].damagePoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 548252536, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: WeaponsList.Array.data[0].damagePoint.DamageSphereOrigin
+      value: 
+      objectReference: {fileID: 1581415555}
+    - target: {fileID: 548252536, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: WeaponsList.Array.data[2].damagePoint.DamageSphereOrigin
+      value: 
+      objectReference: {fileID: 1193615109}
+    - target: {fileID: 548252536, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: WeaponsList.Array.data[0].damagePoints.Array.data[0].DamageSphereOrigin
+      value: 
+      objectReference: {fileID: 1581415555}
+    - target: {fileID: 548252536, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: WeaponsList.Array.data[0].damagePoints.Array.data[0].DamageSphereRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 548252536, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: WeaponsList.Array.data[0].damagePoints.Array.data[1].DamageSphereOrigin
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 548252536, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: WeaponsList.Array.data[0].damagePoints.Array.data[1].DamageSphereRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 548252536, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: WeaponsList.Array.data[2].damagePoints.Array.data[0].DamageSphereOrigin
+      value: 
+      objectReference: {fileID: 1193615109}
+    - target: {fileID: 548252536, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: WeaponsList.Array.data[2].damagePoints.Array.data[0].DamageSphereRadius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3982301615608917476, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -8650,10 +8785,22 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 252398052, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 394470292, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1581415555}
+    - targetCorrespondingSourceObject: {fileID: 2910393371615107290, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1193615109}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+--- !u!4 &3982301615916881981 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 394470292, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+  m_PrefabInstance: {fileID: 3982301615916881980}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4025932868183527797
 GameObject:
   m_ObjectHideFlags: 0
