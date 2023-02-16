@@ -8,16 +8,9 @@ public class PlayerMelee : MonoBehaviour
     // The script is made with melee animations in mind
     // the variables that should be controlled during animations are: DamagePoint and isMeleeAttacking
 
-    [System.Serializable]
-    public class DamagePoint
-    {
-        public Transform DamageSphereOrigin;
-        public float DamageSphereRadius;
-    }
-
     [Header("Important variables: ")]
     public KeyCode meleeKey = KeyCode.Mouse0;
-    public DamagePoint[] DamagePoints;
+    //public DamagePoint[] DamagePoints;
     public bool isMeleeAttacking = false;
     public bool canAttack = true;
 
@@ -58,21 +51,19 @@ public class PlayerMelee : MonoBehaviour
         // check for enemies in melee range
         if (isMeleeAttacking)
         {
-            foreach (DamagePoint point in DamagePoints)
-            {
-                //print("muie 2");
-                DealDamageFromDamagePoint(point);
-            }
+            
+            DealDamageFromDamagePoint(Player.m.weaponManager.currentWeapon.DamageSphereOrigin, Player.m.weaponManager.currentWeapon.DamageSphereRadius);
+            
         }
 
     }
 
     
-    public void DealDamageFromDamagePoint(DamagePoint point)
+    public void DealDamageFromDamagePoint(Transform origin, float radius)
     {
 
         //detect enemy
-        Collider[] hitObjects = Physics.OverlapSphere(point.DamageSphereOrigin.position, point.DamageSphereRadius, Player.m.enemyLayer);
+        Collider[] hitObjects = Physics.OverlapSphere(origin.position, radius, Player.m.enemyLayer);
 
 
         foreach (Collider obj in hitObjects)
@@ -106,11 +97,12 @@ public class PlayerMelee : MonoBehaviour
     {
         
         Gizmos.color = Color.yellow;
+
+        if (!Application.isPlaying || Player.m.AttackType != "melee") return;
+
         
-        foreach (DamagePoint point in DamagePoints)
-        {
-            Gizmos.DrawWireSphere(point.DamageSphereOrigin.position, point.DamageSphereRadius);
-        }
+        Gizmos.DrawWireSphere(Player.m.weaponManager.currentWeapon.DamageSphereOrigin.position, Player.m.weaponManager.currentWeapon.DamageSphereRadius);
+        
         
     }
 
