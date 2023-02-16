@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6074192236161699398}
   - component: {fileID: 6074192236161699399}
   m_Layer: 8
-  m_Name: Image
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,7 @@ Transform:
   - {fileID: 6074192238086021860}
   - {fileID: 6074192236934485643}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6074192236540674476
 Rigidbody:

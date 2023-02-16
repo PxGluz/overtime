@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-
+    public KeyCode shootKey = KeyCode.Mouse0;
     public float shootingCooldown;
     public float shootingDistance = 10f;
     private Transform playerCameraTransform;
@@ -22,7 +22,7 @@ public class PlayerShooting : MonoBehaviour
         if (Player.m.AttackType != "shoot")
             return;
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetKey(shootKey))
         {
             TryShooting();
         }
@@ -33,17 +33,22 @@ public class PlayerShooting : MonoBehaviour
     {
         //Debug.DrawRay(playerCameraTransform.position, hitInfo.point - playerCameraTransform.position, new Color(0, 0, 1), 2);
         //Debug.Log(hitInfo.collider.gameObject.name + " " + hitInfo.point);
-
-        if (hitInfo.collider.gameObject.layer == 8) // object hit is in enemy layer
+        switch (LayerMask.LayerToName(hitInfo.collider.gameObject.layer))
         {
-            if (hitInfo.collider.gameObject.name == "Body")
-            {
-                hitInfo.collider.gameObject.GetComponentInParent<EnemyStats>().ReceiveHit(baseDamage);
-            }
-            else if (hitInfo.collider.gameObject.name == "Head")
-            {
-                hitInfo.collider.gameObject.GetComponentInParent<EnemyStats>().ReceiveHit(baseDamage * 2);
-            }
+            case "Enemy":
+                if (hitInfo.collider.gameObject.name == "Body")
+                {
+                    hitInfo.collider.gameObject.GetComponentInParent<EnemyStats>().ReceiveHit(baseDamage);
+                }
+                else if (hitInfo.collider.gameObject.name == "Head")
+                {
+                    hitInfo.collider.gameObject.GetComponentInParent<EnemyStats>().ReceiveHit(baseDamage * 2);
+                }
+                break;
+            case "Explosive":
+                hitInfo.collider.gameObject.GetComponent<ExplosiveBarrel>().ReceiveHit();
+                break;
+
         }
     }
 
