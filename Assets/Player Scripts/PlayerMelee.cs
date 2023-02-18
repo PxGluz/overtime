@@ -10,6 +10,7 @@ public class PlayerMelee : MonoBehaviour
 
     [Header("Important variables: ")]
     public KeyCode meleeKey = KeyCode.Mouse0;
+    public Animator anim;
     //public DamagePoint[] DamagePoints;
     public bool isMeleeAttacking = false;
     public bool canAttack = true;
@@ -26,6 +27,10 @@ public class PlayerMelee : MonoBehaviour
     [HideInInspector]
     public int CurrentMeleeIndex = 0;
 
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
 
     void Update()
@@ -98,10 +103,10 @@ public class PlayerMelee : MonoBehaviour
         
         Gizmos.color = Color.yellow;
 
-        if (!Application.isPlaying || Player.m.AttackType != "melee") return;
+        //if (!Application.isPlaying || Player.m.AttackType != "melee") return;
 
         
-        Gizmos.DrawWireSphere(Player.m.weaponManager.currentWeapon.DamageSphereOrigin.position, Player.m.weaponManager.currentWeapon.DamageSphereRadius);
+       // Gizmos.DrawWireSphere(Player.m.weaponManager.currentWeapon.DamageSphereOrigin.position, Player.m.weaponManager.currentWeapon.DamageSphereRadius);
         
         
     }

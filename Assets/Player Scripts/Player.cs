@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         crouchLogic = GetComponent<CrouchLogic>();
         weaponManager = GetComponent<WeaponManager>();
         playerThrow = GetComponent<PlayerThrow>();
-        playerMelee = GetComponent<PlayerMelee>();
+        //playerMelee = GetComponent<PlayerMelee>();
     }
 
 }

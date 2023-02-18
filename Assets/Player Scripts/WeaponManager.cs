@@ -73,4 +73,17 @@ public class WeaponManager : MonoBehaviour
         if (selectedWeaponModelOnPlayer != null)
             selectedWeaponModelOnPlayer.SetActive(true);
     }
+
+    void OnDrawGizmosSelected()
+    {
+
+        Gizmos.color = Color.yellow;
+
+        //if (!Application.isPlaying || Player.m.AttackType != "melee") return;
+
+
+        Gizmos.DrawWireSphere(currentWeapon.DamageSphereOrigin.position, currentWeapon.DamageSphereRadius);
+
+
+    }
 }
