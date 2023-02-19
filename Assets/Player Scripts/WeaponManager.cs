@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 using static WeaponManager;
 
 public class WeaponManager : MonoBehaviour
@@ -17,6 +18,8 @@ public class WeaponManager : MonoBehaviour
         public string type;
         public float damage;
         public int charges;
+        public float useCooldown;
+        public string animationType;
 
         [Header("Throwing: ")]
         public float throwForce;
@@ -27,22 +30,24 @@ public class WeaponManager : MonoBehaviour
         public float DamageSphereRadius;
     }
 
+    [HideInInspector]
+    public Animator weaponAnimator;
     public Weapon currentWeapon;
     public Weapon[] WeaponsList;
 
 
     private void Start()
     {
+        weaponAnimator = GetComponent<Animator>();
         ChangeWeapon("Fists");
+
     }
-
-
 
     public void ChangeWeapon(string name)
     {
 
         if (currentWeapon.name != "Fists" && currentWeapon.name != "" && name != "Fists")
-            Player.m.playerThrow.DropWeapon();
+            Player.m.playerThrow.DropWeapon(false);
 
         foreach (Weapon weapon in WeaponsList)
         {
@@ -54,6 +59,25 @@ public class WeaponManager : MonoBehaviour
 
                 Player.m.AttackType = weapon.type;
 
+                if (weapon.type == "melee")
+                {
+                    /*
+                    if (weapon.DamageSphereOrigin != null)
+                    {
+                        Player.m.playerMelee.DamageSphereOrigin = weapon.DamageSphereOrigin;
+                        Player.m.playerMelee.DamageSphereRadius = weapon.DamageSphereRadius;
+                    }
+                    */ 
+
+                    if (Player.m.weaponManager.currentWeapon.animationType == "GenericMelee")
+                    {
+                        weaponAnimator.Play("GenericMelee");
+                    }
+                    else
+                    {
+                        weaponAnimator.Play(weapon.name);
+                    }
+                }
                 break;
             }
         }

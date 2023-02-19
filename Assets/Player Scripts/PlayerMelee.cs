@@ -10,14 +10,15 @@ public class PlayerMelee : MonoBehaviour
 
     [Header("Important variables: ")]
     public KeyCode meleeKey = KeyCode.Mouse0;
-    public Animator anim;
-    //public DamagePoint[] DamagePoints;
     public bool isMeleeAttacking = false;
     public bool canAttack = true;
+    
+    //public Transform DamageSphereOrigin;
+    //public float DamageSphereRadius;
 
-    [Header("Statistics: ")]
-    public float MeleeDamage;
-    public float MeleeAttackCooldown = 1;
+    //[Header("Statistics: ")]
+    //public float MeleeDamage;
+    //public float MeleeAttackCooldown = 1;
 
 
     // The AttackIndex system is in place so the same attack can't hit an enemy more than one, each time the player inputs an attack a new attackIndex is generated,
@@ -26,11 +27,6 @@ public class PlayerMelee : MonoBehaviour
     // the CurrentMeleeIndex and lastMeleeIndex in the Enemy Script prevents that 
     [HideInInspector]
     public int CurrentMeleeIndex = 0;
-
-    private void Start()
-    {
-        anim = GetComponent<Animator>();
-    }
 
 
     void Update()
@@ -42,6 +38,9 @@ public class PlayerMelee : MonoBehaviour
         // start attacking
         if (Input.GetKey(meleeKey) && canAttack)
         {
+            
+            Player.m.weaponManager.weaponAnimator.SetTrigger("StartAttack");
+
             canAttack = false;
             
             isMeleeAttacking = true;
@@ -84,7 +83,7 @@ public class PlayerMelee : MonoBehaviour
                         if (CurrentMeleeIndex != enemy.lastMeleeIndex)
                         {
                             enemy.lastMeleeIndex = CurrentMeleeIndex;
-                            enemy.ReceiveHit(MeleeDamage);
+                            enemy.ReceiveHit(Player.m.weaponManager.currentWeapon.damage);
                         }
                     }
                     break;
@@ -95,7 +94,7 @@ public class PlayerMelee : MonoBehaviour
     }
     
 
-    private void stopAttacking(){ isMeleeAttacking = false; Invoke("resetCanAttack", MeleeAttackCooldown); }
+    private void stopAttacking(){ isMeleeAttacking = false; Invoke("resetCanAttack", Player.m.weaponManager.currentWeapon.useCooldown); }
     private void resetCanAttack() { canAttack = true; }
 
     void OnDrawGizmosSelected()

@@ -23,6 +23,9 @@ public class EnemyStats : MonoBehaviour
     [HideInInspector]
     public int lastMeleeIndex = -1;
 
+    [Header("Other: ")]
+    public GameObject blood;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -36,13 +39,13 @@ public class EnemyStats : MonoBehaviour
     public void ReceiveHit(float damage)
     {
 
-        print("muie lovita");
+        Instantiate(blood,transform.position, Quaternion.identity);
 
         if (currentHealth <= 0) return;
 
         if (armored)
             damage /= 2;
-
+ 
         StartCoroutine(HealthBarAnimation(damage));
     }
 

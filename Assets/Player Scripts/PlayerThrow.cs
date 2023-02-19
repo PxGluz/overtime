@@ -38,7 +38,7 @@ public class PlayerThrow : MonoBehaviour
 
         if (Input.GetKeyDown(dropKey) && Player.m.weaponManager.currentWeapon.name.ToLower() != "fists")
         {
-            DropWeapon();
+            DropWeapon(true);
         }
     }
 
@@ -75,7 +75,7 @@ public class PlayerThrow : MonoBehaviour
         Invoke(nameof(ResetThrow), ThrowCooldown);
     }
 
-    public void DropWeapon()
+    public void DropWeapon(bool SwitchToFistsAfterDrop )
     {
         
         // instantiate object to throw
@@ -89,7 +89,8 @@ public class PlayerThrow : MonoBehaviour
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
 
-        Player.m.weaponManager.ChangeWeapon("Fists");
+        if (SwitchToFistsAfterDrop)
+            Player.m.weaponManager.ChangeWeapon("Fists");
         
     }
 
