@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public WeaponManager weaponManager;
     public PlayerThrow playerThrow;
     public PlayerMelee playerMelee;
+    public PlayerMovement playerMovement;
 
     [Header("Other References:")]
     public Camera MainCamera;
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
         crouchLogic = GetComponent<CrouchLogic>();
         //weaponManager = GetComponent<WeaponManager>();
         playerThrow = GetComponent<PlayerThrow>();
+        playerMovement = GetComponent<PlayerMovement>();
         //playerMelee = GetComponent<PlayerMelee>();
     }
 
