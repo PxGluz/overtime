@@ -8760,6 +8760,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2054988533113032772, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: WeaponsList.Array.data[0].useCooldown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2054988533113032772, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: WeaponsList.Array.data[3].useCooldown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2054988533113032772, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: WeaponsList.Array.data[4].useCooldown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2054988533113032772, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: WeaponsList.Array.data[1].animationType
       value: GenericRanged
       objectReference: {fileID: 0}

@@ -38,7 +38,8 @@ public class PlayerThrow : MonoBehaviour
 
         if (Input.GetKeyDown(dropKey) && Player.m.weaponManager.currentWeapon.name.ToLower() != "fists")
         {
-            DropWeapon(true);
+            DropWeapon();
+            Player.m.weaponManager.ChangeWeapon("Fists");
         }
     }
 
@@ -53,6 +54,7 @@ public class PlayerThrow : MonoBehaviour
         else
         {
             projectile = Instantiate(Player.m.weaponManager.currentWeapon.ThrowablePrefab, Player.m.weaponManager.currentWeapon.WeaponModelOnPlayer.transform.position, attackPoint.rotation);
+            attackPoint = Player.m.weaponManager.currentWeapon.WeaponModelOnPlayer.transform;
         }
         //projectile.transform.SetPositionAndRotation(attackPoint.position, Player.m.MainCamera.transform.rotation);
 
@@ -67,6 +69,7 @@ public class PlayerThrow : MonoBehaviour
         if (Physics.Raycast(Player.m.MainCamera.transform.position, Player.m.MainCamera.transform.forward, out hit, 500f))
         {
             forceDirection = (hit.point - attackPoint.position).normalized;
+            print(hit.transform.gameObject.name);
         }
         Debug.DrawRay(Player.m.MainCamera.transform.position, Player.m.MainCamera.transform.forward);
 
@@ -75,6 +78,7 @@ public class PlayerThrow : MonoBehaviour
         Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwUpwardForce;
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
+        //projectileRb.velocity += Player.m.playerMovement.rb.velocity ;
 
         totalThrows--;
 
@@ -82,7 +86,7 @@ public class PlayerThrow : MonoBehaviour
         Invoke(nameof(ResetThrow), ThrowCooldown);
     }
 
-    public void DropWeapon(bool SwitchToFistsAfterDrop )
+    public void DropWeapon()
     {
         
         // instantiate object to throw
@@ -96,8 +100,8 @@ public class PlayerThrow : MonoBehaviour
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
 
-        if (SwitchToFistsAfterDrop)
-            Player.m.weaponManager.ChangeWeapon("Fists");
+
+            //Player.m.weaponManager.ChangeWeapon("Fists");
         
     }
 

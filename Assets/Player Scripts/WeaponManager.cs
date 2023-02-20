@@ -48,7 +48,7 @@ public class WeaponManager : MonoBehaviour
     {
 
         if (currentWeapon.name != "Fists" && currentWeapon.name != "" && name != "Fists")
-            Player.m.playerThrow.DropWeapon(false);
+            Player.m.playerThrow.DropWeapon();
 
         foreach (Weapon weapon in WeaponsList)
         {
@@ -107,7 +107,7 @@ public class WeaponManager : MonoBehaviour
         //if (!Application.isPlaying || Player.m.AttackType != "melee") return;
 
 
-        Gizmos.DrawWireSphere(currentWeapon.DamageSphereOrigin.position, currentWeapon.DamageSphereRadius);
+        //Gizmos.DrawWireSphere(currentWeapon.DamageSphereOrigin.position, currentWeapon.DamageSphereRadius);
 
 
     }
