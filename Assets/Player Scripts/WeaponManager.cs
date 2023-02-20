@@ -22,6 +22,7 @@ public class WeaponManager : MonoBehaviour
         public string animationType;
 
         [Header("Throwing: ")]
+        public GameObject ThrowablePrefab;
         public float throwForce;
         public float throwUpwardForce;
 

@@ -47,7 +47,14 @@ public class PlayerThrow : MonoBehaviour
         readyToThrow= false;
 
         // instantiate object to throw
-        GameObject projectile = Instantiate(objectToThrow, attackPoint.position, Player.m.MainCamera.transform.rotation);
+        GameObject projectile;
+        if (Player.m.weaponManager.currentWeapon.ThrowablePrefab == null)
+            projectile = Instantiate(objectToThrow, attackPoint.position, Player.m.MainCamera.transform.rotation);
+        else
+        {
+            projectile = Instantiate(Player.m.weaponManager.currentWeapon.ThrowablePrefab, Player.m.weaponManager.currentWeapon.WeaponModelOnPlayer.transform.position, attackPoint.rotation);
+        }
+        //projectile.transform.SetPositionAndRotation(attackPoint.position, Player.m.MainCamera.transform.rotation);
 
         // get rigidbody component
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();

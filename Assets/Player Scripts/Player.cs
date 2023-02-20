@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public string AttackType = "none"; // current attack types: none, shoot, melee   | future attack types: throw
     public LayerMask groundLayer;
     public LayerMask enemyLayer;
+    public LayerMask objectsAffectedByExplosions;
 
 
     void Awake()
