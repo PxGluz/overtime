@@ -5,6 +5,8 @@ using UnityEngine;
 public class ExplosionManager : MonoBehaviour
 {
     public static ExplosionManager instance = null;
+    public LayerMask objectsAffectedByExplosions;
+
     void Awake()
     {
         // Singleton: A single explosion manager can exist.
@@ -14,9 +16,9 @@ public class ExplosionManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void Explode(Vector3 position, float radius, float damage, float pushForce, LayerMask isAffected)
+    public void Explode(Vector3 position, float radius, float damage, float pushForce)
     {
-        Collider[] hits = Physics.OverlapSphere(position, radius, isAffected);
+        Collider[] hits = Physics.OverlapSphere(position, radius, objectsAffectedByExplosions);
 
         foreach (Collider hit in hits)
         {

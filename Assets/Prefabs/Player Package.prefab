@@ -206,11 +206,13 @@ MonoBehaviour:
     damage: 0
     charges: 0
     useCooldown: 0
+    animationType: 
+    ThrowablePrefab: {fileID: 0}
+    throwDamage: 10
     throwForce: 0
     throwUpwardForce: 0
     DamageSphereOrigin: {fileID: 1581415555}
     DamageSphereRadius: 0.5
-    GenericKnifeAnimation: 0
   WeaponsList:
   - WeaponModelOnPlayer: {fileID: 394470291}
     WeaponPickupPrefab: {fileID: 0}
@@ -218,12 +220,14 @@ MonoBehaviour:
     type: melee
     damage: 10
     charges: 0
-    useCooldown: 0.2
+    useCooldown: 0
+    animationType: 
+    ThrowablePrefab: {fileID: 0}
+    throwDamage: 10
     throwForce: 0
     throwUpwardForce: 0
     DamageSphereOrigin: {fileID: 1581415555}
     DamageSphereRadius: 0.5
-    GenericKnifeAnimation: 0
   - WeaponModelOnPlayer: {fileID: 2508867731813479231}
     WeaponPickupPrefab: {fileID: 5691043841830547689, guid: 3d3f9183ecbc0b945a151560deb60ca4, type: 3}
     name: Beretta
@@ -231,11 +235,13 @@ MonoBehaviour:
     damage: 10
     charges: 0
     useCooldown: 0.2
-    throwForce: 0
-    throwUpwardForce: 0
+    animationType: GenericRanged
+    ThrowablePrefab: {fileID: 5519147890152247330, guid: 1554e1bb0c532654887b12b713256228, type: 3}
+    throwDamage: 10
+    throwForce: 10
+    throwUpwardForce: 1
     DamageSphereOrigin: {fileID: 0}
     DamageSphereRadius: 0
-    GenericKnifeAnimation: 0
   - WeaponModelOnPlayer: {fileID: 1714318190}
     WeaponPickupPrefab: {fileID: 8170927413397712787, guid: b7c50ffc2f9474e4eabc0c8f3f9a8ea8, type: 3}
     name: Grenade
@@ -243,35 +249,41 @@ MonoBehaviour:
     damage: 10
     charges: 0
     useCooldown: 0.2
-    throwForce: 0
-    throwUpwardForce: 0
+    animationType: 
+    ThrowablePrefab: {fileID: 666319567537432123, guid: ae271177bc90f244db151e3d28d7ba4e, type: 3}
+    throwDamage: 10
+    throwForce: 5
+    throwUpwardForce: 5
     DamageSphereOrigin: {fileID: 0}
     DamageSphereRadius: 0
-    GenericKnifeAnimation: 0
   - WeaponModelOnPlayer: {fileID: 2533305531179024992}
     WeaponPickupPrefab: {fileID: 1098750752237032792, guid: 9144c6693b1ccd6428c5021c00f2096b, type: 3}
     name: Knife
     type: melee
     damage: 10
     charges: 0
-    useCooldown: 0.2
-    throwForce: 0
-    throwUpwardForce: 0
+    useCooldown: 0
+    animationType: GenericMelee
+    ThrowablePrefab: {fileID: 8771578389213191937, guid: 5532830a172478348a1969c9d7cf302d, type: 3}
+    throwDamage: 10
+    throwForce: 10
+    throwUpwardForce: 1
     DamageSphereOrigin: {fileID: 1193615109}
     DamageSphereRadius: 0.4
-    GenericKnifeAnimation: 1
   - WeaponModelOnPlayer: {fileID: 1153755962031841816}
-    WeaponPickupPrefab: {fileID: 7413592420272639403, guid: 7f2f58aba50641944bbbd6eaddff9801, type: 3}
+    WeaponPickupPrefab: {fileID: 6628535389122629734, guid: af31e25adcc3b594592100c3ea224428, type: 3}
     name: KitchenKnife
     type: melee
     damage: 10
     charges: 0
-    useCooldown: 0.2
-    throwForce: 0
+    useCooldown: 0
+    animationType: GenericMelee
+    ThrowablePrefab: {fileID: 6628535389122629734, guid: af31e25adcc3b594592100c3ea224428, type: 3}
+    throwDamage: 10
+    throwForce: 15
     throwUpwardForce: 0
     DamageSphereOrigin: {fileID: 1193615109}
     DamageSphereRadius: 0.4
-    GenericKnifeAnimation: 1
 --- !u!1 &645808368
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,14 +414,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692253784}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.58, y: 0, z: 0.962}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0.663, y: 0.037, z: 0.746}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1469121288}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 180}
 --- !u!1 &1193615108
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,6 +853,7 @@ MonoBehaviour:
   weaponManager: {fileID: 2054988533113032772}
   playerThrow: {fileID: 0}
   playerMelee: {fileID: 1297950405}
+  playerMovement: {fileID: 0}
   MainCamera: {fileID: 3982301615087226214}
   MoveType: stop
   AttackType: melee
@@ -934,7 +947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootKey: 323
   shootingCooldown: 2
-  shootingDistance: 10
+  shootingDistance: 50
   baseDamage: 50
 --- !u!114 &3884872536870258053
 MonoBehaviour:
@@ -954,10 +967,8 @@ MonoBehaviour:
   totalThrows: 2147483647
   ThrowCooldown: 0.1
   throwKey: 324
-  throwForce: 60
-  throwUpwardForce: 5
   dropKey: 113
-  dropForce: 6
+  dropForce: 3
 --- !u!1 &157149139719264051
 GameObject:
   m_ObjectHideFlags: 0
@@ -2556,6 +2567,7 @@ Transform:
   - {fileID: 157149138785908631}
   - {fileID: 3982301615087226215}
   - {fileID: 1649287561}
+  - {fileID: 3114260299712832990}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3993,6 +4005,53 @@ Transform:
   m_Father: {fileID: 7440963632802993288}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8350131747216620355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3114260299712832990}
+  - component: {fileID: 4581519826268382893}
+  m_Layer: 3
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3114260299712832990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8350131747216620355}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3982301615608917476}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4581519826268382893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8350131747216620355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1174aa21959d9034f8ad69c74d1db10d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsAffectedByExplosions:
+    serializedVersion: 2
+    m_Bits: 1800
 --- !u!1 &8441296587609127583
 GameObject:
   m_ObjectHideFlags: 0

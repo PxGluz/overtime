@@ -12,19 +12,20 @@ public class WeaponManager : MonoBehaviour
     {
         [Header("Properties: ")]
         public GameObject WeaponModelOnPlayer;
-        public GameObject WeaponPickupPrefab;
+        public GameObject WeaponPrefab;
         public string name;
         [Tooltip("melee,shoot,throw")]
         public string type;
-        public float damage;
+        public float damage = 10;
         public int charges;
-        public float useCooldown;
+        public float useCooldown = 0.5f;
+        [Tooltip("GenericMelee, GenericRanged")]
         public string animationType;
 
         [Header("Throwing: ")]
-        public GameObject ThrowablePrefab;
-        public float throwForce;
-        public float throwUpwardForce;
+        public float throwDamage = 10;
+        public float throwForce = 20;
+        public float throwUpwardForce = 1;
 
         [Header("Melee: ")]
         public Transform DamageSphereOrigin;

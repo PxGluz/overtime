@@ -6,7 +6,6 @@ public class ExplosiveBarrel : MonoBehaviour
 {
     public float damage;
     public float radius;
-    public LayerMask isAffected;
     public float pushForce;
 
     // This activates the explosion.
@@ -14,7 +13,7 @@ public class ExplosiveBarrel : MonoBehaviour
     {
         // Collider is disabled so that no explosion (this or another) can pick the collider up.
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
-        ExplosionManager.instance.Explode(gameObject.transform.position, radius, damage, pushForce, isAffected);
+        ExplosionManager.instance.Explode(gameObject.transform.position, radius, damage, pushForce);
         // After the explosion is completed the barrel is destroyed.
         Destroy(gameObject);
     }

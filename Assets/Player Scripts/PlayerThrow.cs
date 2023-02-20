@@ -16,8 +16,8 @@ public class PlayerThrow : MonoBehaviour
 
     [Header("Throwing")]
     public KeyCode throwKey = KeyCode.Mouse0;
-    public float throwForce;
-    public float throwUpwardForce;
+    //public float throwForce;
+    //public float throwUpwardForce;
 
     bool readyToThrow;
 
@@ -32,11 +32,15 @@ public class PlayerThrow : MonoBehaviour
 
     private void Update()
     {
+        if (Player.m.weaponManager.currentWeapon.name.ToLower() == "fists")
+            return;
+
         if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrows > 0){
             Throw();
+            Player.m.weaponManager.ChangeWeapon("Fists");
         }
 
-        if (Input.GetKeyDown(dropKey) && Player.m.weaponManager.currentWeapon.name.ToLower() != "fists")
+        if (Input.GetKeyDown(dropKey))
         {
             DropWeapon();
             Player.m.weaponManager.ChangeWeapon("Fists");
@@ -47,40 +51,46 @@ public class PlayerThrow : MonoBehaviour
     {
         readyToThrow= false;
 
+        // calculate direction
+        Vector3 forceDirection = Player.m.MainCamera.transform.forward;
+        RaycastHit hit;
+        if (Physics.Raycast(Player.m.MainCamera.transform.position, Player.m.MainCamera.transform.forward, out hit, 500f))
+        {
+            forceDirection = (hit.point - attackPoint.position).normalized;
+        }
+        Debug.DrawRay(Player.m.MainCamera.transform.position, Player.m.MainCamera.transform.forward);
+
         // instantiate object to throw
         GameObject projectile;
-        if (Player.m.weaponManager.currentWeapon.ThrowablePrefab == null)
+        if (Player.m.weaponManager.currentWeapon.WeaponPrefab == null)
             projectile = Instantiate(objectToThrow, attackPoint.position, Player.m.MainCamera.transform.rotation);
         else
         {
-            projectile = Instantiate(Player.m.weaponManager.currentWeapon.ThrowablePrefab, Player.m.weaponManager.currentWeapon.WeaponModelOnPlayer.transform.position, attackPoint.rotation);
-            attackPoint = Player.m.weaponManager.currentWeapon.WeaponModelOnPlayer.transform;
+            //projectile = Instantiate(Player.m.weaponManager.currentWeapon.ThrowablePrefab, Player.m.weaponManager.currentWeapon.WeaponModelOnPlayer.transform.position, attackPoint.rotation);
+            projectile = Instantiate(Player.m.weaponManager.currentWeapon.WeaponPrefab, attackPoint.position, attackPoint.rotation);
+            //attackPoint = Player.m.weaponManager.currentWeapon.WeaponModelOnPlayer.transform;
         }
-        //projectile.transform.SetPositionAndRotation(attackPoint.position, Player.m.MainCamera.transform.rotation);
 
         // get rigidbody component
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
 
-        // calculate direction
-        Vector3 forceDirection = Player.m.MainCamera.transform.forward;
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(Player.m.MainCamera.transform.position, Player.m.MainCamera.transform.forward, out hit, 500f))
-        {
-            forceDirection = (hit.point - attackPoint.position).normalized;
-            print(hit.transform.gameObject.name);
-        }
-        Debug.DrawRay(Player.m.MainCamera.transform.position, Player.m.MainCamera.transform.forward);
-
         // add force
-        //Vector3 forceToAdd = Player.m.MainCamera.transform.forward * throwForce + transform.up * throwUpwardForce;
-        Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwUpwardForce;
+        Vector3 forceToAdd = forceDirection * Player.m.weaponManager.currentWeapon.throwForce + transform.up * Player.m.weaponManager.currentWeapon.throwUpwardForce;
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
         //projectileRb.velocity += Player.m.playerMovement.rb.velocity ;
 
         totalThrows--;
+
+        // Set damage and pickup
+        ThrownProjectile thrownProjectile = projectile.GetComponent<ThrownProjectile>();
+        if (thrownProjectile != null)
+        {
+            thrownProjectile.damage = Player.m.weaponManager.currentWeapon.throwDamage;
+            thrownProjectile.myPickUp = Player.m.weaponManager.currentWeapon.WeaponPrefab;
+            thrownProjectile.PickUpSetActive(false);
+        }
+        
 
         // implement throwCooldown
         Invoke(nameof(ResetThrow), ThrowCooldown);
@@ -90,7 +100,7 @@ public class PlayerThrow : MonoBehaviour
     {
         
         // instantiate object to throw
-        GameObject projectile = Instantiate(Player.m.weaponManager.currentWeapon.WeaponPickupPrefab, dropPoint.position, Player.m.MainCamera.transform.rotation);
+        GameObject projectile = Instantiate(Player.m.weaponManager.currentWeapon.WeaponPrefab, dropPoint.position, Player.m.MainCamera.transform.rotation);
 
         // get rigidbody component
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
@@ -100,9 +110,13 @@ public class PlayerThrow : MonoBehaviour
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
 
-
-            //Player.m.weaponManager.ChangeWeapon("Fists");
+        ThrownProjectile thrownProjectile = projectile.GetComponent<ThrownProjectile>();
+        if (thrownProjectile != null)
+        {
+            thrownProjectile.PickUpSetActive(true);
+        }
         
+
     }
 
     private void ResetThrow()
