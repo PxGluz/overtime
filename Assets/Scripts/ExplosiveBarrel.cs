@@ -8,13 +8,14 @@ public class ExplosiveBarrel : MonoBehaviour
     public float radius;
     public LayerMask isAffected;
     public float pushForce;
-    public GameObject explosionPrefab;
 
     // This activates the explosion.
     public void ReceiveHit()
     {
-        GameObject explosionObject = Instantiate(explosionPrefab, gameObject.transform.position, new Quaternion());
-        explosionObject.GetComponent<Explosion>().ActivateExplosion(gameObject, radius, damage, pushForce, isAffected);
+        // Collider is disabled so that no explosion (this or another) can pick the collider up.
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        ExplosionManager.instance.Explode(gameObject, radius, damage, pushForce, isAffected);
+        // After the explosion is completed the barrel is destroyed.
         Destroy(gameObject);
     }
 
