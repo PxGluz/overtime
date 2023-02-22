@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class DamageOnCollision : MonoBehaviour
 {
 
     ThrownProjectile thrownProjectile;
+    Interactable interact;
 
     void Start()
     {
         thrownProjectile = GetComponent<ThrownProjectile>();
+        interact = GetComponent<Interactable>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -22,6 +25,15 @@ public class DamageOnCollision : MonoBehaviour
         if (enemy != null)
         {
             enemy.ReceiveHit(thrownProjectile.damage);
+        }
+
+
+        //print(Player.m.weaponManager.GetWeaponType(interact.name));
+        if ( Player.m.weaponManager.GetWeaponType(interact.itemName) == "melee")
+        {
+            if (enemy == null)
+                this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+
         }
 
         thrownProjectile.PickUpSetActive(true);

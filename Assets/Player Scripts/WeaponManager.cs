@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using static UnityEditor.Progress;
 using static WeaponManager;
@@ -30,6 +31,12 @@ public class WeaponManager : MonoBehaviour
         [Header("Melee: ")]
         public Transform DamageSphereOrigin;
         public float DamageSphereRadius;
+
+        [Header("Ranged: ")]
+        public float shootForce, upwardForce;
+        public float timeBetweenShooting, spread, reloadTime, timeBetweenShots;
+        public int magazineSize, bulletsPerTap;
+        public bool allowButtonHold;
     }
 
     [HideInInspector]
@@ -103,7 +110,7 @@ public class WeaponManager : MonoBehaviour
     void OnDrawGizmosSelected()
     {
 
-        Gizmos.color = Color.yellow;
+        //Gizmos.color = Color.yellow;
 
         //if (!Application.isPlaying || Player.m.AttackType != "melee") return;
 
@@ -111,5 +118,18 @@ public class WeaponManager : MonoBehaviour
         //Gizmos.DrawWireSphere(currentWeapon.DamageSphereOrigin.position, currentWeapon.DamageSphereRadius);
 
 
+    }
+
+    public string GetWeaponType(string weaponName)
+    {
+        foreach (Weapon weapon in WeaponsList)
+        {
+            if (weapon.name == weaponName)
+            {
+                return weapon.type;
+            }
+        }
+
+        return "null";
     }
 }
