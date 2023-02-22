@@ -33,10 +33,11 @@ public class WeaponManager : MonoBehaviour
         public float DamageSphereRadius;
 
         [Header("Ranged: ")]
-        public float shootForce, upwardForce;
-        public float timeBetweenShooting, spread, reloadTime, timeBetweenShots;
-        public int magazineSize, bulletsPerTap;
-        public bool allowButtonHold;
+        public float gunDamage = 10;
+        public float gunShootForce, gunUpwardForce;
+        public float gunTimeBetweenShooting, gunSpread, gunReloadTime, gunTimeBetweenShots;
+        public int gunMagazineSize, gunBulletsPerTap;
+        public bool gunAllowButtonHold;
     }
 
     [HideInInspector]

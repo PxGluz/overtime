@@ -96,7 +96,7 @@ public class PlayerShooting : MonoBehaviour
         else
             targetPoint = ray.GetPoint(75);
 
-        AttackPointObject.transform.position = targetPoint;
+        //AttackPointObject.transform.position = targetPoint;
 
         // Calculate direction from attackPoint to targetPoint
         Vector3 directionWithoutSpread = (targetPoint - attackPoint.position).normalized;
@@ -124,6 +124,13 @@ public class PlayerShooting : MonoBehaviour
         // Add force to bullet
         currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
         currentBullet.GetComponent<Rigidbody>().AddForce(Player.m.MainCamera.transform.up * upwardForce, ForceMode.Impulse);
+
+        // Set bullet damage
+        BulletCollision bulletCollision = currentBullet.GetComponent<BulletCollision>();
+        if (bulletCollision != null)
+        {
+            bulletCollision.bulletDamage = Player.m.weaponManager.currentWeapon.gunDamage;
+        }
 
         if (muzzleFlash != null)
             Instantiate(muzzleFlash,attackPoint.position, Quaternion.identity);
