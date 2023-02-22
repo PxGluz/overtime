@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -98,7 +99,7 @@ public class PlayerShooting : MonoBehaviour
         AttackPointObject.transform.position = targetPoint;
 
         // Calculate direction from attackPoint to targetPoint
-        Vector3 directionWithoutSpread = targetPoint - attackPoint.position;
+        Vector3 directionWithoutSpread = (targetPoint - attackPoint.position).normalized;
 
 
         //Calculate spread

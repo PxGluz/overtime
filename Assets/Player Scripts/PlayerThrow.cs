@@ -25,6 +25,8 @@ public class PlayerThrow : MonoBehaviour
     public KeyCode dropKey = KeyCode.Q;
     public float dropForce;
 
+    public GameObject DebugBox;
+
     private void Start()
     {
         readyToThrow = true;
@@ -50,7 +52,8 @@ public class PlayerThrow : MonoBehaviour
     private void Throw()
     {
         readyToThrow= false;
-
+        
+        /*
         // calculate direction
         Vector3 forceDirection = Player.m.MainCamera.transform.forward;
         RaycastHit hit;
@@ -59,6 +62,20 @@ public class PlayerThrow : MonoBehaviour
             forceDirection = (hit.point - attackPoint.position).normalized;
         }
         Debug.DrawRay(Player.m.MainCamera.transform.position, Player.m.MainCamera.transform.forward);
+        */
+        // Find the exact hit position using raycast
+        Ray ray = Player.m.MainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); // Just a ray through the middle of your camera
+        RaycastHit hit;
+
+        // check if ray hits something
+        Vector3 forceDirection = Player.m.MainCamera.transform.forward;
+
+        if (Physics.Raycast(ray, out hit))
+            forceDirection = (hit.point - attackPoint.position).normalized;
+        else
+            forceDirection = (ray.GetPoint(75) - attackPoint.position).normalized;
+
+
 
         // instantiate object to throw
         GameObject projectile;
