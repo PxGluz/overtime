@@ -8851,7 +8851,7 @@ PrefabInstance:
       objectReference: {fileID: 8210946092569484363, guid: ad8ca3a9903b8c741acffed9e804db2a, type: 3}
     - target: {fileID: 568684796, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: spread
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 568684796, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: reloadTime
@@ -8867,11 +8867,11 @@ PrefabInstance:
       objectReference: {fileID: 3982301615916881981}
     - target: {fileID: 568684796, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: magazineSize
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 568684796, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: bulletsPerTap
-      value: 5
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 568684796, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: allowButtonHold
@@ -8897,6 +8897,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3884872536870258053, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: DebugBox
+      value: 
+      objectReference: {fileID: 1289552363}
     - target: {fileID: 3982301615608917476, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: m_RootOrder
       value: 2
