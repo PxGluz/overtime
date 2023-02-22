@@ -102,12 +102,18 @@ public class PlayerShooting : MonoBehaviour
         Vector3 directionWithoutSpread = (targetPoint - attackPoint.position).normalized;
 
 
+
+        // The spred system works like shit
+
         //Calculate spread
         float x = Random.Range(-spread, spread);
         float y = Random.Range(-spread, spread);
 
+
+
         // Calculate new direction with spread
-        Vector3 directionWithSpread = ray.GetPoint(75) - attackPoint.position + new Vector3(x,y,0);
+        //Vector3 directionWithSpread = (ray.GetPoint(75) - attackPoint.position).normalized + new Vector3(x,y,0);
+        Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0);
 
         // Instantiate bullet/projectile
         GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity);
