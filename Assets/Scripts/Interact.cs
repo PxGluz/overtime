@@ -81,7 +81,10 @@ public class Interact : MonoBehaviour
         {
             Player.m.weaponManager.ChangeWeapon(itemBeingPickedUp.itemName);
             
-            Destroy(itemBeingPickedUp.gameObject);
+            //if (itemBeingPickedUp.transform.parent != null)
+            //    Destroy(itemBeingPickedUp.transform.parent.gameObject);
+            //else
+                Destroy(itemBeingPickedUp.gameObject);
 
             return;
         }
