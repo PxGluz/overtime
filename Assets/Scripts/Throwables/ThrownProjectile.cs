@@ -18,15 +18,23 @@ public class ThrownProjectile : MonoBehaviour
     public SphereCollider sphereCollider;
     [HideInInspector]
     public bool isInPickUpState;
+    [HideInInspector]
+    public Rigidbody rb;
+
+
+    private Transform[] AllChildren;
 
     private void Awake()
     {
         interactable = GetComponent<Interactable>();
         outline = GetComponent<Outline>();
         sphereCollider = GetComponent<SphereCollider>();
-        
+        rb = GetComponent<Rigidbody>();
+
         if (outline != null) 
             outline.enabled = false;
+
+        AllChildren = GetComponentsInChildren<Transform>();
 
         PickUpSetActive(true);
     }
@@ -45,6 +53,13 @@ public class ThrownProjectile : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("Interactable");
         else
             gameObject.layer = LayerMask.NameToLayer("Default");
+
+        if (value)
+            rb.velocity = Vector3.zero;
+
+        
+        foreach (Transform child in AllChildren)
+            child.gameObject.layer = value ? LayerMask.NameToLayer("Interactable") : LayerMask.NameToLayer("Default");
 
     }
 }

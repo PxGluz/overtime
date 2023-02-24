@@ -8,24 +8,29 @@ public class PlayerShooting : MonoBehaviour
 {
     // Projectile system:
 
+
+
     // bullet
     public GameObject bullet;
 
     // bullet force
-    public float shootForce, upwardForce;
+    //public float shootForce, upwardForce;
 
     // Gun Stats
-    public float timeBetweenShooting, spread, reloadTime, timeBetweenShots;
-    public int magazineSize, bulletsPerTap;
-    public bool allowButtonHold;
+    //public float timeBetweenShooting, spread, reloadTime, timeBetweenShots;
+    //public int magazineSize, bulletsPerTap;
+    //public bool allowButtonHold;
 
-    int bulletsleft, bulletsShot;
+    public int bulletsleft;
+    int bulletsShot;
 
     // bools
     bool shooting, readyToShoot, reloading;
 
     // Reference;
-    public Transform attackPoint;
+    //public Transform attackPoint;
+    [HideInInspector]
+    private WeaponManager weaponM;
 
     // Graphics 
     public GameObject muzzleFlash;
@@ -36,9 +41,10 @@ public class PlayerShooting : MonoBehaviour
     public bool allowInvoke = true;
     public GameObject AttackPointObject;
 
-    private void Awake()
+    private void Start()
     {
-        bulletsleft = magazineSize;
+        weaponM = Player.m.weaponManager;
+        //bulletsleft = weaponM.currentWeapon.gunMagazineSize;
         readyToShoot= true;
     }
 
@@ -52,22 +58,24 @@ public class PlayerShooting : MonoBehaviour
         MyInput();
 
         // Ammo display
-        if (ammunitionDisplay != null)
-            ammunitionDisplay.SetText(bulletsleft / bulletsPerTap + " / " + magazineSize / bulletsPerTap);
+        if (weaponM.currentWeapon.gunBulletsPerTap != 0 && weaponM.currentWeapon.gunBulletsPerTap != 0)
+            if (ammunitionDisplay != null)
+                ammunitionDisplay.SetText(bulletsleft / weaponM.currentWeapon.gunBulletsPerTap + " / " + weaponM.currentWeapon.gunMagazineSize / weaponM.currentWeapon.gunBulletsPerTap);
     }
 
     private void MyInput()
     {
         // Check if allowed to hold down button and take corresponding input
-        if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
+        if (weaponM.currentWeapon.gunAllowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-        // Reloading
-        if (Input.GetKeyDown(KeyCode.R) && bulletsleft < magazineSize && !reloading)
+        /* Reloading
+        if (Input.GetKeyDown(KeyCode.R) && bulletsleft < weaponM.currentWeapon.gunMagazineSize && !reloading)
             Reload();
         // Reload automatically when trying to shoot without ammo
         if (readyToShoot && shooting && !reloading && bulletsleft <= 0)
             Reload();
+        */
 
         // Shooting
         if (readyToShoot && shooting && !reloading && bulletsleft > 0)
@@ -93,53 +101,37 @@ public class PlayerShooting : MonoBehaviour
         Vector3 targetPoint;
         if (Physics.Raycast(ray, out hit))
         {
-            if (Vector3.Distance(attackPoint.position, hit.point) < 2f)
-                targetPoint = ray.GetPoint(75);
-            else
-                targetPoint = hit.point;
+             targetPoint = hit.point;
         }
         else
             targetPoint = ray.GetPoint(75);
 
-        //AttackPointObject.transform.position = targetPoint;
 
         // Calculate direction from attackPoint to targetPoint
-        Vector3 directionWithoutSpread = (targetPoint - attackPoint.position).normalized;
+        Vector3 directionWithoutSpread = (targetPoint - weaponM.currentWeapon.shootPoint.position).normalized;
 
-
-
-        // The spred system works like shit
-
-        //Calculate spread
-        float x = Random.Range(-spread, spread);
-        float y = Random.Range(-spread, spread);
-
-
-
-        // Calculate new direction with spread
-        //Vector3 directionWithSpread = (ray.GetPoint(75) - attackPoint.position).normalized + new Vector3(x,y,0);
-        Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0);
+        Vector3 directionWithSpread = directionWithoutSpread ;
 
         // Instantiate bullet/projectile
-        GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity);
+        GameObject currentBullet = Instantiate(bullet, weaponM.currentWeapon.shootPoint.position, Quaternion.identity);
 
 
         // Rotate bullet to shoot direction
         currentBullet.transform.forward = directionWithSpread.normalized;
 
         // Add force to bullet
-        currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
-        currentBullet.GetComponent<Rigidbody>().AddForce(Player.m.MainCamera.transform.up * upwardForce, ForceMode.Impulse);
+        currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * weaponM.currentWeapon.gunShootForce, ForceMode.Impulse);
+        currentBullet.GetComponent<Rigidbody>().AddForce(Player.m.MainCamera.transform.up * weaponM.currentWeapon.gunUpwardForce, ForceMode.Impulse);
 
         // Set bullet damage
         BulletCollision bulletCollision = currentBullet.GetComponent<BulletCollision>();
         if (bulletCollision != null)
         {
-            bulletCollision.bulletDamage = Player.m.weaponManager.currentWeapon.gunDamage;
+            bulletCollision.bulletDamage = Player.m.weaponManager.currentWeapon.damage;
         }
 
         if (muzzleFlash != null)
-            Instantiate(muzzleFlash,attackPoint.position, Quaternion.identity);
+            Instantiate(muzzleFlash, weaponM.currentWeapon.shootPoint.position, Quaternion.identity);
 
         bulletsleft--;
         bulletsShot++;
@@ -147,13 +139,13 @@ public class PlayerShooting : MonoBehaviour
         // Invoke resetShot function ( if not already invoked )
         if (allowInvoke)
         {
-            Invoke("ResetShot", timeBetweenShooting);
+            Invoke("ResetShot", weaponM.currentWeapon.gunTimeBetweenShooting);
             allowInvoke = false; 
         }
 
         // if more than one bulletsPerTap make sure to repeat shoot function
-        if (bulletsShot < bulletsPerTap && bulletsleft > 0)
-            Invoke("Shoot", timeBetweenShots);
+        if (bulletsShot < weaponM.currentWeapon.gunBulletsPerTap && bulletsleft > 0)
+            Invoke("Shoot", weaponM.currentWeapon.gunTimeBetweenShots);
 
     }
 
@@ -166,12 +158,12 @@ public class PlayerShooting : MonoBehaviour
     private void Reload()
     {
         reloading = true;
-        Invoke("ReloadFinished",reloadTime);
+        Invoke("ReloadFinished", weaponM.currentWeapon.gunReloadTime);
     }
 
     private void ReloadFinished()
     {
-        bulletsleft = magazineSize;
+        bulletsleft = weaponM.currentWeapon.gunMagazineSize;
         reloading = false;
     }
 

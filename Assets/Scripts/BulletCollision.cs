@@ -28,8 +28,12 @@ public class BulletCollision : MonoBehaviour
     public void HandleLayerLogic(RaycastHit hit)
     {
 
+        if (hit.collider.gameObject.GetComponent<BulletCollision>() != null)
+            return;
+
         switch (LayerMask.LayerToName(hit.collider.gameObject.layer))
         {
+
             case "Enemy":
                 EnemyStats enemy = hit.collider.gameObject.GetComponentInParent<EnemyStats>();
                 if (enemy != null)

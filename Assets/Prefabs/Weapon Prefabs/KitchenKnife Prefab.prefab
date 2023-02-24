@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4850096693486747823}
   - component: {fileID: 5600486966309187725}
   - component: {fileID: 301347561807430840}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Object006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5838164881494659992}
   - component: {fileID: 1100059162134246556}
   - component: {fileID: 947000336646240541}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Object002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 711436560239710380}
   - component: {fileID: 1366521691313781373}
   - component: {fileID: 4300088714393129247}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Object004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 3640919156346092227}
   - component: {fileID: 5199807165152440076}
   - component: {fileID: 1488994056302965284}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Object008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,8 +490,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4728665, y: 0.17063418, z: 0.31009838}
-  m_Center: {x: -0.114902854, y: -0.008918153, z: 0.11976324}
+  m_Size: {x: 1.3131529, y: 0.17063418, z: 0.31009838}
+  m_Center: {x: -0.03504604, y: -0.008918153, z: 0.11976324}
 --- !u!114 &6628535389122629728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,6 +546,7 @@ MonoBehaviour:
   outline: {fileID: 0}
   sphereCollider: {fileID: 0}
   isInPickUpState: 0
+  rb: {fileID: 0}
 --- !u!114 &7452786709099342408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,7 +570,7 @@ GameObject:
   - component: {fileID: 5479651470234266554}
   - component: {fileID: 1843547805156308282}
   - component: {fileID: 332016702892596832}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,7 +651,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8872780852792830050}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Kitchen Knife
   m_TagString: Untagged
   m_Icon: {fileID: 0}

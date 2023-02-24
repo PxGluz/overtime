@@ -17,9 +17,8 @@ public class WeaponManager : MonoBehaviour
         public string name;
         [Tooltip("melee,shoot,throw")]
         public string type;
+        [Tooltip("How much damage this weapon does")]
         public float damage = 10;
-        public int charges;
-        public float useCooldown = 0.5f;
         [Tooltip("GenericMelee, GenericRanged")]
         public string animationType;
 
@@ -31,12 +30,26 @@ public class WeaponManager : MonoBehaviour
         [Header("Melee: ")]
         public Transform DamageSphereOrigin;
         public float DamageSphereRadius;
+        public float meleeAttackSpeed;
 
         [Header("Ranged: ")]
-        public float gunDamage = 10;
-        public float gunShootForce, gunUpwardForce;
-        public float gunTimeBetweenShooting, gunSpread, gunReloadTime, gunTimeBetweenShots;
-        public int gunMagazineSize, gunBulletsPerTap;
+        public Transform shootPoint;
+        [Tooltip("Speed of the bullet")]
+        public float gunShootForce;
+        [Tooltip("How much does the bullet go upward")]
+        public float gunUpwardForce;
+        [Tooltip("Shooting cooldown")]
+        public float gunTimeBetweenShooting;
+        public float gunSpread;
+        [Tooltip("How much time does it take to reload")]
+        public float gunReloadTime;
+        [Tooltip("Total number of bullets in reload")]
+        public int gunMagazineSize;
+        [Tooltip("How many bullets are created on click")]
+        public int gunBulletsPerTap = 1;
+        [SerializeField][Range(0.0f, 0.2f)]
+        [Tooltip("This is the time between bullets when shooting more than one bullets per tap")]
+        public float gunTimeBetweenShots = 0.05f;
         public bool gunAllowButtonHold;
     }
 
@@ -88,7 +101,13 @@ public class WeaponManager : MonoBehaviour
                         weaponAnimator.Play(weapon.name);
                     }
                 }
-                break;
+
+                if (weapon.type == "shoot")
+                {
+                    Player.m.playerShooting.bulletsleft = weapon.gunMagazineSize;
+
+                }
+                    break;
             }
         }
     }

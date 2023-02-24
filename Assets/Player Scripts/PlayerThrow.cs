@@ -53,16 +53,6 @@ public class PlayerThrow : MonoBehaviour
     {
         readyToThrow= false;
         
-        /*
-        // calculate direction
-        Vector3 forceDirection = Player.m.MainCamera.transform.forward;
-        RaycastHit hit;
-        if (Physics.Raycast(Player.m.MainCamera.transform.position, Player.m.MainCamera.transform.forward, out hit, 500f))
-        {
-            forceDirection = (hit.point - attackPoint.position).normalized;
-        }
-        Debug.DrawRay(Player.m.MainCamera.transform.position, Player.m.MainCamera.transform.forward);
-        */
         // Find the exact hit position using raycast
         Ray ray = Player.m.MainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); // Just a ray through the middle of your camera
         RaycastHit hit;
@@ -83,9 +73,7 @@ public class PlayerThrow : MonoBehaviour
             projectile = Instantiate(objectToThrow, attackPoint.position, Player.m.MainCamera.transform.rotation);
         else
         {
-            //projectile = Instantiate(Player.m.weaponManager.currentWeapon.ThrowablePrefab, Player.m.weaponManager.currentWeapon.WeaponModelOnPlayer.transform.position, attackPoint.rotation);
             projectile = Instantiate(Player.m.weaponManager.currentWeapon.WeaponPrefab, attackPoint.position, attackPoint.rotation);
-            //attackPoint = Player.m.weaponManager.currentWeapon.WeaponModelOnPlayer.transform;
         }
 
         // get rigidbody component

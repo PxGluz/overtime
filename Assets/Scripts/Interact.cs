@@ -84,7 +84,7 @@ public class Interact : MonoBehaviour
             //if (itemBeingPickedUp.transform.parent != null)
             //    Destroy(itemBeingPickedUp.transform.parent.gameObject);
             //else
-                Destroy(itemBeingPickedUp.gameObject);
+            Destroy(itemBeingPickedUp.gameObject);
 
             return;
         }

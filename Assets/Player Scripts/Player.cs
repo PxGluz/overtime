@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public PlayerThrow playerThrow;
     public PlayerMelee playerMelee;
     public PlayerMovement playerMovement;
+    public PlayerShooting playerShooting;
 
     [Header("Other References:")]
     public Camera MainCamera;
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
         //weaponManager = GetComponent<WeaponManager>();
         playerThrow = GetComponent<PlayerThrow>();
         playerMovement = GetComponent<PlayerMovement>();
+        playerShooting = GetComponent<PlayerShooting>();
         //playerMelee = GetComponent<PlayerMelee>();
     }
 

@@ -94,7 +94,7 @@ public class PlayerMelee : MonoBehaviour
     }
     
 
-    private void stopAttacking(){ isMeleeAttacking = false; Invoke("resetCanAttack", Player.m.weaponManager.currentWeapon.useCooldown); }
+    private void stopAttacking(){ isMeleeAttacking = false; Invoke("resetCanAttack", Player.m.weaponManager.currentWeapon.meleeAttackSpeed); }
     private void resetCanAttack() { canAttack = true; }
 
     void OnDrawGizmosSelected()
