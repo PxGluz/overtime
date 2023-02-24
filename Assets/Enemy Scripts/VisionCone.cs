@@ -25,6 +25,7 @@ public class VisionCone : MonoBehaviour
         Vector3 dir = obj.transform.position - gameObject.transform.position;
         if (Physics.Raycast(gameObject.transform.position, Vector3.Normalize(dir), out RaycastHit hitInfo, visionDistance))
         {
+            Debug.Log(hitInfo.collider.gameObject.name);
             if (hitInfo.collider.gameObject.Equals(obj))
             {
                 if (Mathf.Abs(Vector3.Angle(gameObject.transform.forward, Vector3.Normalize(dir))) <= halfAngle)

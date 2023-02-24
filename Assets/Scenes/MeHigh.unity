@@ -1289,7 +1289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6074192236540674475, guid: 28cf26cca30715b4fa6fefa497eafb9a, type: 3}
       propertyPath: walkPointRange
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6074192236540674475, guid: 28cf26cca30715b4fa6fefa497eafb9a, type: 3}
       propertyPath: enemyLayer.m_Bits

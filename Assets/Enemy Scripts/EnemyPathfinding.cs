@@ -56,7 +56,8 @@ public class EnemyPathfinding : MonoBehaviour
                 Patrol();
             }
         } else {
-            // If the enemy saw the player, announce it to others and start chasing or attacking.
+            // If the enemy saw the player, announce it to others and start chasing or attacking. Also discard previous announcements.
+            gotAnnounced = false;
             Announce();
             if (!canAttackPlayer)
                 Chase(Player.m.gameObject.transform.position, true);
