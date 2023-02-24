@@ -6,10 +6,11 @@ using UnityEngine;
 public class VisionCone : MonoBehaviour
 {
     public float visionAngle;
+    private float halfAngle;
     public float visionDistance;
     void Start()
     {
-        visionAngle /= 2;
+        halfAngle = visionAngle / 2;
     }
 
     void Update()
@@ -17,6 +18,8 @@ public class VisionCone : MonoBehaviour
         Debug.DrawRay(gameObject.transform.position, gameObject.transform.forward * visionDistance, new Color(0, 1, 0));
     }
 
+    // Checks if object is in view by casting a ray towards the object, and checking if: the object is hit by the ray, and,
+    // if that is the case, if the angle between the ray and the forward vector is small enough.
     public bool IsInView(GameObject obj)
     {
         Vector3 dir = obj.transform.position - gameObject.transform.position;
@@ -24,14 +27,12 @@ public class VisionCone : MonoBehaviour
         {
             if (hitInfo.collider.gameObject.Equals(obj))
             {
-                if (Mathf.Abs(Vector3.Angle(gameObject.transform.forward, Vector3.Normalize(dir))) <= visionAngle)
+                if (Mathf.Abs(Vector3.Angle(gameObject.transform.forward, Vector3.Normalize(dir))) <= halfAngle)
                 {
                     Debug.DrawRay(gameObject.transform.position, dir, new Color(0, 0, 1));
                     return true;
                 }
-                return false;
             }
-            return false;
         }
         return false;
     }

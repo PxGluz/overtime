@@ -31,6 +31,11 @@ public class EnemyStats : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    private void Update()
+    {
+        healthBar.transform.parent.LookAt(Player.m.transform);
+    }
+
     public void ReceiveHit(float damage)
     {
 

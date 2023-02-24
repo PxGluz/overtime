@@ -112,7 +112,7 @@ Transform:
   - {fileID: 6074192238086021860}
   - {fileID: 6074192236934485643}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6074192236540674476
 Rigidbody:
@@ -170,16 +170,34 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6074192236540674478}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21091852a00012544b0392d9dfecb928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 6074192236540674474}
   visionCone: {fileID: 6074192237297802686}
-  targets:
-  - {fileID: 0}
-  resetTargetTimer: 3
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  enemyType: 0
+  randomPatrolling: 1
+  walkPointRange: 5
+  walkPoints: []
+  damage: 50
+  attackCooldown: 1.5
+  attackRange: 1
+  announceRange: 10
+  canSeePlayer: 0
+  canAttackPlayer: 0
+  gotAnnounced: 0
+  announcedPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &6074192236540674473
 MonoBehaviour:
   m_ObjectHideFlags: 0
