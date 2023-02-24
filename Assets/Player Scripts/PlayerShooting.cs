@@ -92,7 +92,12 @@ public class PlayerShooting : MonoBehaviour
         // check if ray hits something
         Vector3 targetPoint;
         if (Physics.Raycast(ray, out hit))
-            targetPoint = hit.point;
+        {
+            if (Vector3.Distance(attackPoint.position, hit.point) < 2f)
+                targetPoint = ray.GetPoint(75);
+            else
+                targetPoint = hit.point;
+        }
         else
             targetPoint = ray.GetPoint(75);
 
@@ -117,6 +122,7 @@ public class PlayerShooting : MonoBehaviour
 
         // Instantiate bullet/projectile
         GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity);
+
 
         // Rotate bullet to shoot direction
         currentBullet.transform.forward = directionWithSpread.normalized;

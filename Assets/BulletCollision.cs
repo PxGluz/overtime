@@ -1,57 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEditor.PackageManager;
 using UnityEngine;
-using static UnityEngine.UI.Image;
 
 public class BulletCollision : MonoBehaviour
 {
 
     [HideInInspector]
     public float bulletDamage = 0;
-    public float bulletRadius = 0.1f;
 
-    void Update()
+
+    private void FixedUpdate()
     {
-        //detect enemy
-        Collider[] hitObjects = Physics.OverlapSphere(transform.position, bulletRadius);
+        Debug.DrawRay(transform.position, transform.forward * 2f, Color.yellow);
 
+        RaycastHit hit;
 
-        foreach (Collider obj in hitObjects)
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2f))
         {
-            print(obj.gameObject);
-            switch (LayerMask.LayerToName(obj.gameObject.layer))
-            {
-                case "Enemy":
-                    EnemyStats enemy = obj.gameObject.GetComponentInParent<EnemyStats>();
-                    if (enemy != null)
-                    {
-                        if (obj.gameObject.name == "Body")
-                        {
-                            enemy.ReceiveHit(bulletDamage);
-                        }
-                        else if (obj.gameObject.name == "Head")
-                        {
-                            enemy.ReceiveHit(bulletDamage * 2);
-                        }
-                    }
-                   
-                    break;
-                    
+            Player.m.PointDebug.transform.position =  hit.point;
 
-                case "Explosive":
-                    obj.gameObject.GetComponent<ExplosiveBarrel>().ReceiveHit();
-                    break;
-
-            }
-            Destroy(gameObject);
-            
+            HandleLayerLogic(hit);
         }
     }
 
-    void OnDrawGizmosSelected()
+    public void HandleLayerLogic(RaycastHit hit)
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, bulletRadius);
+
+        switch (LayerMask.LayerToName(hit.collider.gameObject.layer))
+        {
+            case "Enemy":
+                EnemyStats enemy = hit.collider.gameObject.GetComponentInParent<EnemyStats>();
+                if (enemy != null)
+                {
+                    print(hit.collider.gameObject.name);
+                    enemy.ReceiveHit(bulletDamage);
+                    if (hit.collider.gameObject.name == "Body")
+                    {
+                        enemy.ReceiveHit(bulletDamage);
+                    }
+                    else if (hit.collider.gameObject.name == "Head")
+                    {
+                        enemy.ReceiveHit(bulletDamage * 2);
+                    }
+                }
+
+                break;
+
+
+            case "Explosive":
+                hit.collider.gameObject.GetComponent<ExplosiveBarrel>().ReceiveHit();
+                break;
+
+        }
+        if (LayerMask.LayerToName(hit.collider.gameObject.gameObject.layer) != "Player")
+        {
+            Destroy(gameObject);
+            //coll.enabled = false;
+            //rb.isKinematic = true;
+        }
     }
+
 }

@@ -112,7 +112,7 @@ Transform:
   - {fileID: 6074192238086021860}
   - {fileID: 6074192236934485643}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6074192236540674476
 Rigidbody:
@@ -140,7 +140,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!195 &6074192236540674474
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6074192236540674478}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21091852a00012544b0392d9dfecb928, type: 3}
   m_Name: 
@@ -198,6 +198,7 @@ MonoBehaviour:
   healthBar: {fileID: 6074192236161699399}
   healthBarWidth: 1.5
   lastMeleeIndex: 0
+  blood: {fileID: 5241570337705766151, guid: 63f6398283410b9458c680bf21a30003, type: 3}
 --- !u!1 &6074192236934485644
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6074192237297802687}
   - component: {fileID: 6074192237297802686}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VisionCone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

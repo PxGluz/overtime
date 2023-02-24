@@ -49,7 +49,7 @@ public class PlayerMelee : MonoBehaviour
             if (CurrentMeleeIndex >= 1000000)
                 CurrentMeleeIndex = 0;
 
-            Invoke("stopAttacking", 1);
+            Invoke("stopAttacking", 0.5f);
         }
 
         // check for enemies in melee range

@@ -31,11 +31,6 @@ public class EnemyStats : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    void Update()
-    {
-        
-    }
-
     public void ReceiveHit(float damage)
     {
 

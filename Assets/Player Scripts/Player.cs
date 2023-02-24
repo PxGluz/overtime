@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     public LayerMask groundLayer;
     public LayerMask enemyLayer;
     //public LayerMask objectsAffectedByExplosions;
+    public GameObject PointDebug;
+
 
 
     void Awake()
