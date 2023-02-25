@@ -407,7 +407,7 @@ Transform:
   - {fileID: 3215203315616548439}
   - {fileID: 959483797}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2369381963526222801
 MeshFilter:
@@ -584,6 +584,7 @@ MonoBehaviour:
   outline: {fileID: 0}
   sphereCollider: {fileID: 0}
   isInPickUpState: 0
+  rb: {fileID: 0}
 --- !u!114 &7012330504260935919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,7 +599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightSource: {fileID: 959483799}
   isArmed: 0
-  mineRadius: 5
+  mineRadius: 4
   minePushForce: 10
   ArmDelay: 2
 --- !u!1 &2870308974040440045

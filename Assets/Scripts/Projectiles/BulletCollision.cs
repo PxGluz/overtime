@@ -28,12 +28,15 @@ public class BulletCollision : MonoBehaviour
     public void HandleLayerLogic(RaycastHit hit)
     {
 
-        if (hit.collider.gameObject.GetComponent<BulletCollision>() != null)
-            return;
+        //if (hit.collider.gameObject.GetComponent<BulletCollision>() != null)
+        //    return;
+
+        DestroyWhenShot destroyWhenShot = hit.collider.gameObject.GetComponent<DestroyWhenShot>();
+        if (destroyWhenShot != null)
+            destroyWhenShot.ReceiveHit();
 
         switch (LayerMask.LayerToName(hit.collider.gameObject.layer))
         {
-
             case "Enemy":
                 EnemyStats enemy = hit.collider.gameObject.GetComponentInParent<EnemyStats>();
                 if (enemy != null)
@@ -50,14 +53,14 @@ public class BulletCollision : MonoBehaviour
                     }
                 }
 
-                break;
-
+            break;
 
             case "Explosive":
                 hit.collider.gameObject.GetComponent<ExplosiveBarrel>().ReceiveHit();
-                break;
+            break;
 
         }
+
         if (LayerMask.LayerToName(hit.collider.gameObject.gameObject.layer) != "Player")
         {
             Destroy(gameObject);

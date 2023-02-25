@@ -47,11 +47,16 @@ public class PlayerMovement : MonoBehaviour
     public float SlideSpeed = 18;
     public float slideCooldwon = 2;
     public bool CanSlide = true;
+    private IEnumerator SlideCoroutine;
+    
+    [Header("Camera FOV: ")]
     public float SlideFOVIncrease = 20;
     public float SlideFOVAnimationDuration = 0.2f;
+    public float RunFOVIncrease = 10;
     private float OriginalFOV;
-    private IEnumerator SlideCoroutine;
 
+
+    private string actionLastFrame;
 
     private void Start()
     {
@@ -103,7 +108,6 @@ public class PlayerMovement : MonoBehaviour
                 currentSpeed = crouchSpeed;
                 break;
         }
-        
     }
 
     private void FixedUpdate()
@@ -154,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Player.m.MoveType = "walk";
 
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && Player.m.MoveType != "run")
             {
                 Player.m.MoveType = "run";
             }
@@ -177,7 +181,26 @@ public class PlayerMovement : MonoBehaviour
             Invoke(nameof(ResetJump), jumpCooldown);
         }
 
-       
+
+        // This is to change the run Camera FOV
+        if ( actionLastFrame == "run" && Player.m.MoveType != actionLastFrame)
+        {
+            if (ChangeFOVCoroutine != null)
+                StopCoroutine(ChangeFOVCoroutine);
+
+            ChangeFOVCoroutine = ChangeFOVinSlide(OriginalFOV , 0.2f);
+            StartCoroutine(ChangeFOVCoroutine);
+        }
+        if ( actionLastFrame != "run" && Player.m.MoveType == "run")
+        {
+            if (ChangeFOVCoroutine != null)
+                StopCoroutine(ChangeFOVCoroutine);
+
+            ChangeFOVCoroutine = ChangeFOVinSlide(OriginalFOV + RunFOVIncrease, 0.2f);
+            StartCoroutine(ChangeFOVCoroutine);
+        }
+        actionLastFrame = Player.m.MoveType;
+
     }
 
     private void MovePlayer()

@@ -37,6 +37,9 @@ public class PlayerThrow : MonoBehaviour
         if (Player.m.weaponManager.currentWeapon.name.ToLower() == "fists")
             return;
 
+        if (!Player.m.playerShooting.readyToShoot)
+            return;
+
         if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrows > 0){
             Throw();
             Player.m.weaponManager.ChangeWeapon("Fists");

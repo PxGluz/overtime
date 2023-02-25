@@ -29,6 +29,9 @@ public class Player : MonoBehaviour
     //public LayerMask objectsAffectedByExplosions;
     public GameObject PointDebug;
 
+    [Header("Stats:")]
+    public float MaxHealth;
+    public float currentHealth;
 
 
     void Awake()
@@ -41,6 +44,27 @@ public class Player : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerShooting = GetComponent<PlayerShooting>();
         //playerMelee = GetComponent<PlayerMelee>();
+    }
+
+    private void Start()
+    {
+        currentHealth = MaxHealth;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth < 0)
+        {
+            Die();
+        }
+
+    }
+
+    public void Die()
+    {
+        print("The player has died");
     }
 
 }

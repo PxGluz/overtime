@@ -25,7 +25,9 @@ public class PlayerShooting : MonoBehaviour
     int bulletsShot;
 
     // bools
-    bool shooting, readyToShoot, reloading;
+    bool shooting, reloading;
+    [HideInInspector]
+    public bool readyToShoot;
 
     // Reference;
     //public Transform attackPoint;
