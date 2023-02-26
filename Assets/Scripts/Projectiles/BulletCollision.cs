@@ -24,7 +24,8 @@ public class BulletCollision : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.forward, out hit, 2f))
         {
-            Player.m.PointDebug.transform.position =  hit.point;
+            if (Player.m.PointDebug != null)
+                Player.m.PointDebug.transform.position =  hit.point;
 
             HandleLayerLogic(hit);
         }

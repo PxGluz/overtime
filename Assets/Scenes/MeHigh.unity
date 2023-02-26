@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1200,46 +1200,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1724257798}
     m_Modifications:
-    - target: {fileID: 6074192236540674473, guid: 28cf26cca30715b4fa6fefa497eafb9a, type: 3}
-      propertyPath: blood
-      value: 
-      objectReference: {fileID: 5241570337705766151, guid: 63f6398283410b9458c680bf21a30003, type: 3}
-    - target: {fileID: 6074192236540674475, guid: 28cf26cca30715b4fa6fefa497eafb9a, type: 3}
-      propertyPath: damage
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074192236540674475, guid: 28cf26cca30715b4fa6fefa497eafb9a, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074192236540674475, guid: 28cf26cca30715b4fa6fefa497eafb9a, type: 3}
-      propertyPath: attackRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074192236540674475, guid: 28cf26cca30715b4fa6fefa497eafb9a, type: 3}
-      propertyPath: announceRange
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074192236540674475, guid: 28cf26cca30715b4fa6fefa497eafb9a, type: 3}
-      propertyPath: attackCooldown
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074192236540674475, guid: 28cf26cca30715b4fa6fefa497eafb9a, type: 3}
-      propertyPath: walkPointRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074192236540674475, guid: 28cf26cca30715b4fa6fefa497eafb9a, type: 3}
-      propertyPath: enemyLayer.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074192236540674475, guid: 28cf26cca30715b4fa6fefa497eafb9a, type: 3}
-      propertyPath: groundLayer.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074192236540674475, guid: 28cf26cca30715b4fa6fefa497eafb9a, type: 3}
-      propertyPath: playerLayer.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 6074192236540674477, guid: 28cf26cca30715b4fa6fefa497eafb9a, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1287,18 +1247,6 @@ PrefabInstance:
     - target: {fileID: 6074192236540674478, guid: 28cf26cca30715b4fa6fefa497eafb9a, type: 3}
       propertyPath: m_Name
       value: Melee
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074192236540674478, guid: 28cf26cca30715b4fa6fefa497eafb9a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074192237297802686, guid: 28cf26cca30715b4fa6fefa497eafb9a, type: 3}
-      propertyPath: visionAngle
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074192237297802686, guid: 28cf26cca30715b4fa6fefa497eafb9a, type: 3}
-      propertyPath: visionDistance
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
