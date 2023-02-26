@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     public LayerMask enemyLayer;
     //public LayerMask objectsAffectedByExplosions;
     public GameObject PointDebug;
+    public GameObject playerObject;
 
     [Header("Stats:")]
     public float MaxHealth;

@@ -31,13 +31,23 @@ public class ExplosionManager : MonoBehaviour
             {
                 case "Enemy":
                     Rigidbody enemyRB = hit.gameObject.GetComponentInParent<Rigidbody>();
+                    if (enemyRB == null)
+                        break;
+
                     enemyRB.AddExplosionForce(pushForce, position, radius, 0f, ForceMode.Impulse);
+
                     // Damage decreases proportional to the distance squared.
                     float trueDamage = 1f / Mathf.Pow(Vector3.Distance(position, hit.transform.position), 2) * damage;
-                    hit.gameObject.GetComponentInParent<EnemyStats>().ReceiveHit(trueDamage);
+
+                    EnemyStats enemyStats = hit.gameObject.GetComponentInParent<EnemyStats>();
+                    if (enemyStats == null)
+                        break;
+
+                    enemyStats.ReceiveHit(trueDamage);
                     break;
                 case "Player":
-                    Debug.Log("Player hit by explosion. For now nothing happens.");
+                    trueDamage = 1f / Mathf.Pow(Vector3.Distance(position, hit.transform.position), 2) * damage;
+                    Player.m.TakeDamage(trueDamage);
                     break;
                 case "Pushable":
                     Rigidbody pushableRB = hit.gameObject.GetComponent<Rigidbody>();

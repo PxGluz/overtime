@@ -18,6 +18,7 @@ public class EnemyStats : MonoBehaviour
     [Header("References and others")]
     public Image healthBar;
     public float healthBarWidth;
+    public EnemyPathfinding pathfinding;
 
     //Other necessary variables to make other scripts work
     [HideInInspector]
@@ -38,6 +39,8 @@ public class EnemyStats : MonoBehaviour
 
     public void ReceiveHit(float damage)
     {
+        pathfinding.announcedPosition = Player.m.transform.position;
+        pathfinding.gotAnnounced = true;
 
         Instantiate(blood,transform.position, Quaternion.identity);
 

@@ -8,6 +8,8 @@ public class VisionCone : MonoBehaviour
     public float visionAngle;
     private float halfAngle;
     public float visionDistance;
+    [Tooltip("Player layer + what can obstruct the enemy's vision")]
+    public LayerMask hitLayer;
     void Start()
     {
         halfAngle = visionAngle / 2;
@@ -23,7 +25,7 @@ public class VisionCone : MonoBehaviour
     public bool IsInView(GameObject obj)
     {
         Vector3 dir = obj.transform.position - gameObject.transform.position;
-        if (Physics.Raycast(gameObject.transform.position, Vector3.Normalize(dir), out RaycastHit hitInfo, visionDistance))
+        if (Physics.Raycast(gameObject.transform.position, Vector3.Normalize(dir), out RaycastHit hitInfo, visionDistance, hitLayer))
         {
             //Debug.Log(hitInfo.collider.gameObject.name);
             if (hitInfo.collider.gameObject.Equals(obj))
@@ -40,7 +42,7 @@ public class VisionCone : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, visionDistance);
     }
 }

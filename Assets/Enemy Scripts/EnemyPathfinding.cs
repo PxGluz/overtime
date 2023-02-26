@@ -26,9 +26,14 @@ public class EnemyPathfinding : MonoBehaviour
     private bool alreadyAttacked;
 
     [Header("States")]
-    public float attackRange, announceRange;
+    public float attackRange;
+    public float announceRange, proximityRange;
     public bool canSeePlayer, canAttackPlayer, gotAnnounced;
     public Vector3 announcedPosition;
+
+    public bool rememberPlayer = false;
+    public float forgetTimer;
+    private float remainingTime;
 
     private void Awake()
     {
@@ -45,24 +50,35 @@ public class EnemyPathfinding : MonoBehaviour
     private void Update()
     {
         // Check if the enemy can see or attack the player.
-        canSeePlayer = visionCone.IsInView(Player.m.gameObject.GetComponentInChildren<CapsuleCollider>().gameObject);
+        canSeePlayer = visionCone.IsInView(Player.m.playerObject) || Physics.CheckSphere(gameObject.transform.position, proximityRange, playerLayer);
         canAttackPlayer = Physics.CheckSphere(gameObject.transform.position, attackRange, playerLayer);
 
         if (!canSeePlayer) {
-            // If the enemy can't see the player he patrols. If another enemy announced the player to this enemy, start chasing.
+            // If the enemy can't see the player and he forgot the player, he patrols. If another enemy announced the player to this enemy, start chasing.
             if (gotAnnounced) {
                 Chase(announcedPosition, false);
             } else {
-                Patrol();
+                if (rememberPlayer)
+                    Chase(Player.m.gameObject.transform.position, true);
+                else
+                    Patrol();
             }
         } else {
             // If the enemy saw the player, announce it to others and start chasing or attacking. Also discard previous announcements.
             gotAnnounced = false;
+            rememberPlayer = true;
+            remainingTime = forgetTimer;
             Announce();
             if (!canAttackPlayer)
                 Chase(Player.m.gameObject.transform.position, true);
             else
                 Attack();
+        }
+
+        if (remainingTime > 0f) {
+            remainingTime -= Time.deltaTime;
+        } else {
+            rememberPlayer = false;
         }
     }
 
@@ -78,6 +94,9 @@ public class EnemyPathfinding : MonoBehaviour
                 continue;
 
             EnemyPathfinding pathfinding = enemy.transform.parent.GetComponent<EnemyPathfinding>();
+            if (pathfinding == null)
+                continue;
+
             pathfinding.announcedPosition = Player.m.gameObject.transform.position - new Vector3(0, Player.m.gameObject.transform.position.y, 0);
             pathfinding.gotAnnounced = true;
         }
@@ -125,7 +144,10 @@ public class EnemyPathfinding : MonoBehaviour
 
         // If the enemy didn't see the player himself, discards announced information when arriving.
         if (!sawPlayer && Vector3.Distance(gameObject.transform.position, position) < 1f)
+        {
             gotAnnounced = false;
+            rememberPlayer = false;
+        }
     }
 
     private void Attack()
@@ -137,7 +159,8 @@ public class EnemyPathfinding : MonoBehaviour
         if (!alreadyAttacked)
         {
             alreadyAttacked = true;
-            Debug.Log("Player received " + damage + " damage.");
+            // Debug.Log("Player received " + damage + " damage.");
+            Player.m.TakeDamage(damage);
 
             Invoke(nameof(ResetAttack), attackCooldown);
         }
@@ -163,6 +186,8 @@ public class EnemyPathfinding : MonoBehaviour
         Gizmos.DrawWireSphere(gameObject.transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(gameObject.transform.position, announceRange);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(gameObject.transform.position, proximityRange);
         Vector3 fwd = gameObject.transform.forward * visionCone.visionDistance;
         Gizmos.color = Color.white;
         Gizmos.DrawRay(visionCone.gameObject.transform.position, fwd);

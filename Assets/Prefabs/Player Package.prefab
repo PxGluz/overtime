@@ -1125,6 +1125,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   PointDebug: {fileID: 0}
+  playerObject: {fileID: 157149139719264051}
+  MaxHealth: 0
+  currentHealth: 0
 --- !u!114 &3982301615916881982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1159,6 +1162,7 @@ MonoBehaviour:
   CanSlide: 1
   SlideFOVIncrease: 10
   SlideFOVAnimationDuration: 0.2
+  RunFOVIncrease: 10
 --- !u!114 &8107053541348619765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1209,6 +1213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 3463831868275453303, guid: 273afddafe5b63047aaeadb9b9e2ab22, type: 3}
   bulletsleft: 0
+  readyToShoot: 0
   muzzleFlash: {fileID: 0}
   ammunitionDisplay: {fileID: 1430281830}
   allowInvoke: 1
@@ -6263,6 +6268,7 @@ MonoBehaviour:
   objectsAffectedByExplosions:
     serializedVersion: 2
     m_Bits: 1800
+  ExplosionEffect: {fileID: 0}
 --- !u!1 &8441296587609127583
 GameObject:
   m_ObjectHideFlags: 0

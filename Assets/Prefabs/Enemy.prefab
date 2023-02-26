@@ -194,10 +194,12 @@ MonoBehaviour:
   attackCooldown: 1.5
   attackRange: 1
   announceRange: 10
+  proximityRange: 2
   canSeePlayer: 0
   canAttackPlayer: 0
   gotAnnounced: 0
   announcedPosition: {x: 0, y: 0, z: 0}
+  forgetTimer: 3
 --- !u!114 &6074192236540674473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,6 +367,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visionAngle: 120
   visionDistance: 5
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 1609
 --- !u!1 &6074192237473113930
 GameObject:
   m_ObjectHideFlags: 0
