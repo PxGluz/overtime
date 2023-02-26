@@ -6,14 +6,9 @@ public class DestroyWhenShot : MonoBehaviour
 {
     public DamageWhileFalling damageWhileFalling;
 
-    private void Start()
-    {
-        damageWhileFalling.enabled = false;
-    }
-
     public void ReceiveHit()
     {
-        damageWhileFalling.enabled = true;
+        damageWhileFalling.isActivated = true;
         Destroy(gameObject);
     }
 }

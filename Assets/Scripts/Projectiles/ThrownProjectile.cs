@@ -54,8 +54,8 @@ public class ThrownProjectile : MonoBehaviour
         else
             gameObject.layer = LayerMask.NameToLayer("Default");
 
-        if (value)
-            rb.velocity = Vector3.zero;
+        //if (value)
+        //    rb.velocity = Vector3.zero;
 
         
         foreach (Transform child in AllChildren)

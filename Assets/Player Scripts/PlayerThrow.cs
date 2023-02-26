@@ -98,7 +98,8 @@ public class PlayerThrow : MonoBehaviour
             thrownProjectile.myPickUp = Player.m.weaponManager.currentWeapon.WeaponPrefab;
             thrownProjectile.PickUpSetActive(false);
         }
-        
+
+        SetQuantityOfInteractable(projectile);
 
         // implement throwCooldown
         Invoke(nameof(ResetThrow), ThrowCooldown);
@@ -123,13 +124,27 @@ public class PlayerThrow : MonoBehaviour
         {
             thrownProjectile.PickUpSetActive(true);
         }
-        
+
+        SetQuantityOfInteractable(projectile);
 
     }
 
     private void ResetThrow()
     {
         readyToThrow = true;
+    }
+
+
+    private void SetQuantityOfInteractable(GameObject projectile)
+    {
+        if (Player.m.weaponManager.GetWeaponType(Player.m.weaponManager.currentWeapon.name) == "shoot")
+        {
+            Interactable interactable = projectile.GetComponent<Interactable>();
+            if (interactable != null)
+            {
+                interactable.quantity = Player.m.playerShooting.bulletsleft;
+            }
+        }
     }
 
 

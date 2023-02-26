@@ -14,8 +14,6 @@ public class Interact : MonoBehaviour
 
     private Interactable itemBeingPickedUp;
 
-
-
     void Update()
     {
         SelectItemBeingPickedUpFromRay();
@@ -52,7 +50,6 @@ public class Interact : MonoBehaviour
 
                 if (itemBeingPickedUp.myOutline != null)
                     itemBeingPickedUp.myOutline.enabled = true;
-                //itemNameText.text = itemBeingPickedUp.gameObject.name;
             }
         }
         else
@@ -79,39 +76,34 @@ public class Interact : MonoBehaviour
 
         if (itemBeingPickedUp.isWeaponPickUp)
         {
-            Player.m.weaponManager.ChangeWeapon(itemBeingPickedUp.itemName);
+            Player.m.weaponManager.ChangeWeapon(itemBeingPickedUp.itemName,  itemBeingPickedUp.quantity);
             
-            //if (itemBeingPickedUp.transform.parent != null)
-            //    Destroy(itemBeingPickedUp.transform.parent.gameObject);
-            //else
             Destroy(itemBeingPickedUp.gameObject);
 
             return;
         }
 
-        if (itemBeingPickedUp.canBePickedUp)
-            MoveItemToInventory();
-        else if (itemBeingPickedUp.JustDestoy)
-            Destroy(itemBeingPickedUp.gameObject);
+        //if (itemBeingPickedUp.canBePickedUp)
+        //    MoveItemToInventory();
+        //else if (itemBeingPickedUp.JustDestoy)
+        //    Destroy(itemBeingPickedUp.gameObject);
 
     }
 
 
+    /*
     private void MoveItemToInventory()
     {
         Debug.Log(itemBeingPickedUp.itemName);
-
-        /*
         switch (itemBeingPickedUp.itemName)
         {
             case:""
             break;
         }
-        */
-
-        Destroy(itemBeingPickedUp.gameObject);
+    Destroy(itemBeingPickedUp.gameObject);
         itemBeingPickedUp = null;
     }
+    */
 
 
 }

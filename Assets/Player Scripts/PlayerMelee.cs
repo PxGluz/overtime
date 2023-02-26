@@ -49,6 +49,11 @@ public class PlayerMelee : MonoBehaviour
             if (CurrentMeleeIndex >= 1000000)
                 CurrentMeleeIndex = 0;
 
+            //AnimatorClipInfo[] m_CurrentClipInfo = Player.m.weaponManager.weaponAnimator.GetCurrentAnimatorClipInfo(0);
+
+            //print(m_CurrentClipInfo[0].clip.name);
+            //print(m_CurrentClipInfo[0].clip.length);
+
             Invoke("stopAttacking", 0.5f);
         }
 

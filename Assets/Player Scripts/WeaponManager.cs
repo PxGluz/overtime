@@ -32,6 +32,7 @@ public class WeaponManager : MonoBehaviour
         public float DamageSphereRadius;
         public float meleeAttackSpeed;
 
+
         [Header("Ranged: ")]
         public Transform shootPoint;
         [Tooltip("Speed of the bullet")]
@@ -63,10 +64,11 @@ public class WeaponManager : MonoBehaviour
     {
         weaponAnimator = GetComponent<Animator>();
         ChangeWeapon("Fists");
+        LoadAllGuns();
 
     }
 
-    public void ChangeWeapon(string name)
+    public void ChangeWeapon(string name, int quantity = 1)
     {
 
         if (currentWeapon.name != "Fists" && currentWeapon.name != "" && name != "Fists")
@@ -104,7 +106,7 @@ public class WeaponManager : MonoBehaviour
 
                 if (weapon.type == "shoot")
                 {
-                    Player.m.playerShooting.bulletsleft = weapon.gunMagazineSize;
+                    Player.m.playerShooting.bulletsleft = quantity;
 
                 }
                     break;
@@ -149,7 +151,36 @@ public class WeaponManager : MonoBehaviour
                 return weapon.type;
             }
         }
-
         return "null";
+    }
+
+    public Weapon GetWeaponByName(string weaponName)
+    {
+        foreach (Weapon weapon in WeaponsList)
+        {
+            if (weapon.name == weaponName)
+            {
+                return weapon;
+            }
+        }
+        Weapon nullWeapon = new Weapon();
+        nullWeapon.name = "null";
+        return nullWeapon;
+    }
+
+    public void LoadAllGuns()
+    {
+        object[] AllInteractablesInScene = FindObjectsOfType(typeof(Interactable));
+        foreach (Interactable interactable in (Interactable[])AllInteractablesInScene)
+        {
+            //Interactable g = (Interactable)o;
+            LoadGun(interactable);
+            //Debug.Log(interactable.name);
+        }
+    }
+
+    public void LoadGun(Interactable interactable)
+    {
+        interactable.quantity = GetWeaponByName(interactable.itemName).gunMagazineSize;
     }
 }

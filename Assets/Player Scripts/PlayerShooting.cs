@@ -71,9 +71,11 @@ public class PlayerShooting : MonoBehaviour
         if (weaponM.currentWeapon.gunAllowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-        /* Reloading
+        // Reloading
         if (Input.GetKeyDown(KeyCode.R) && bulletsleft < weaponM.currentWeapon.gunMagazineSize && !reloading)
             Reload();
+
+        /*
         // Reload automatically when trying to shoot without ammo
         if (readyToShoot && shooting && !reloading && bulletsleft <= 0)
             Reload();

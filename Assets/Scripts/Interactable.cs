@@ -6,8 +6,9 @@ public class Interactable : MonoBehaviour
 {
     public string itemName;
     public bool isWeaponPickUp = false;
-    public bool canBePickedUp = false;
-    public bool JustDestoy = false;
+    public int quantity;
+    //public bool canBePickedUp = false;
+    //public bool JustDestoy = false;
     public bool TriggerFunction = false;
     
     [HideInInspector]public Outline myOutline;
@@ -18,5 +19,12 @@ public class Interactable : MonoBehaviour
         
         if (myOutline != null)
             myOutline.enabled= false;
+
+        /*
+        if (Player.m.weaponManager.GetWeaponType(itemName) == "shoot")
+        {
+            quantity = Player.m.weaponManager.GetWeaponByName(itemName).gunMagazineSize; 
+        }
+        */
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DamageWhileFalling : MonoBehaviour
 {
+    [HideInInspector]
+    public bool isActivated = false;
 
     public float damage = 100;
 
@@ -12,6 +14,8 @@ public class DamageWhileFalling : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (!isActivated)
+            return;
 
         if (alreadyHitObjects.Contains(collision.gameObject))
             return;
@@ -29,6 +33,14 @@ public class DamageWhileFalling : MonoBehaviour
         {
             Player.m.TakeDamage(damage);
         }
+
+        Invoke(nameof(DeactivateCollisionDetection), 0.8f);
+    }
+
+    private void DeactivateCollisionDetection()
+    {
+        isActivated = false;
     }
 
 }
+

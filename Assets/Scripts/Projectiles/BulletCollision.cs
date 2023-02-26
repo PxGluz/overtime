@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class BulletCollision : MonoBehaviour
 {
-
     [HideInInspector]
     public float bulletDamage = 0;
-
+    private void Start()
+    {
+        Invoke(nameof(Expire), 10f);
+    }
 
     private void FixedUpdate()
     {
@@ -43,13 +48,13 @@ public class BulletCollision : MonoBehaviour
                 {
                     print(hit.collider.gameObject.name);
                     enemy.ReceiveHit(bulletDamage);
-                    if (hit.collider.gameObject.name == "Body")
-                    {
-                        enemy.ReceiveHit(bulletDamage);
-                    }
-                    else if (hit.collider.gameObject.name == "Head")
+                    if (hit.collider.gameObject.name == "Head")
                     {
                         enemy.ReceiveHit(bulletDamage * 2);
+                    }
+                    else 
+                    {
+                        enemy.ReceiveHit(bulletDamage);
                     }
                 }
 
@@ -67,6 +72,11 @@ public class BulletCollision : MonoBehaviour
             //coll.enabled = false;
             //rb.isKinematic = true;
         }
+    }
+
+    private void Expire()
+    {
+        Destroy(gameObject);
     }
 
 }
