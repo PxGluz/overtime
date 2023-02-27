@@ -76,6 +76,9 @@ public class EnemyStats : MonoBehaviour
 
     public void Die()
     {
+        EnemyShooting enemyShooting = gameObject.GetComponent<EnemyShooting>();
+        if (enemyShooting != null)
+            Instantiate(enemyShooting.weaponDrop, gameObject.transform.position, new Quaternion());
         print(this.gameObject.name + " has died");
     }
 }

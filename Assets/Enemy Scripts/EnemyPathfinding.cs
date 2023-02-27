@@ -35,6 +35,8 @@ public class EnemyPathfinding : MonoBehaviour
     public float forgetTimer;
     private float remainingTime;
 
+    private EnemyShooting enemyShooting;
+
     private void Awake()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
@@ -43,8 +45,10 @@ public class EnemyPathfinding : MonoBehaviour
 
     private void Start()
     {
-        if (enemyType == EnemyType.Ranged)
+        if (enemyType == EnemyType.Ranged) {
             attackRange = visionCone.visionDistance;
+            enemyShooting = gameObject.GetComponent<EnemyShooting>();
+        }
     }
 
     private void Update()
@@ -159,8 +163,11 @@ public class EnemyPathfinding : MonoBehaviour
         if (!alreadyAttacked)
         {
             alreadyAttacked = true;
-            // Debug.Log("Player received " + damage + " damage.");
-            Player.m.TakeDamage(damage);
+            if (enemyType == EnemyType.Ranged) {
+                enemyShooting.Shoot(Player.m.transform, damage);
+            } else {
+                Player.m.TakeDamage(damage);
+            }
 
             Invoke(nameof(ResetAttack), attackCooldown);
         }

@@ -1,11 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using Unity.Burst.CompilerServices;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class BulletCollision : MonoBehaviour
 {
@@ -48,7 +43,6 @@ public class BulletCollision : MonoBehaviour
                 if (enemy != null)
                 {
                     print(hit.collider.gameObject.name);
-                    enemy.ReceiveHit(bulletDamage);
                     if (hit.collider.gameObject.name == "Head")
                     {
                         enemy.ReceiveHit(bulletDamage * 2);
