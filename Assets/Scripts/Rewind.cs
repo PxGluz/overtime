@@ -58,15 +58,22 @@ public class Rewind : MonoBehaviour
         Player.m.playerCam.xRotation = PlayerMoments[CurrentMomentInTime - 1].cameraXandY[0];
         Player.m.playerCam.yRotation = PlayerMoments[CurrentMomentInTime - 1].cameraXandY[1];
 
+
+
         /*
         Player.m.weaponManager.currentWeapon.name = "";
         Player.m.weaponManager.ChangeWeapon(PlayerMoments[CurrentMomentInTime - 1].weaponName);
 
+        */
         if (Player.m.weaponManager.GetWeaponType(PlayerMoments[CurrentMomentInTime - 1].weaponName) == "shoot")
         {
-            Player.m.playerShooting.bulletsleft = PlayerMoments[CurrentMomentInTime - 1].bulletsLeft;
+            Player.m.weaponManager.ChangeWeapon(PlayerMoments[CurrentMomentInTime - 1].weaponName, PlayerMoments[CurrentMomentInTime - 1].bulletsLeft, false);
+            //Player.m.playerShooting.bulletsleft = PlayerMoments[CurrentMomentInTime - 1].bulletsLeft;
         }
-        */
+        else
+        {
+            Player.m.weaponManager.ChangeWeapon(PlayerMoments[CurrentMomentInTime - 1].weaponName,1, false);
+        }
 
     }
 
@@ -75,7 +82,7 @@ public class Rewind : MonoBehaviour
     private void Start()
     {
         CreateNewMomentInTime();
-        Invoke (nameof(CreateNewMomentInTime),0.1f);
+        Invoke (nameof(CreateNewMomentInTime),0.2f);
     }
 
     void Update()
@@ -89,12 +96,12 @@ public class Rewind : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            GoToPreviousMomentInTime(CurrentMomentInTime - 1);
+            GoToPreviousMomentInTime(true);
         }
 
         if (Input.GetKeyDown(KeyCode.U))
         {
-            GoToPreviousMomentInTime(CurrentMomentInTime);
+            GoToPreviousMomentInTime(false);
         }
     }
 
@@ -144,7 +151,7 @@ public class Rewind : MonoBehaviour
         CreatePlayerMoment();
     }
     
-    public void GoToPreviousMomentInTime(int MomentToGoTo)
+    public void GoToPreviousMomentInTime(bool GoToPreviousMoment)
     {
         // Delete current moment
 
@@ -172,11 +179,14 @@ public class Rewind : MonoBehaviour
 
         CurrentMomentInTime--;
 
-        if (CurrentMomentInTime > 1 && MomentToGoTo == CurrentMomentInTime - 1 + 1)
+
+
+        if (CurrentMomentInTime > 1 && GoToPreviousMoment)
         {
             // This returns to the previos moment in time
             TimeMoments[CurrentMomentInTime - 1].SetActive(true);
             PlayerMoments.RemoveAt(CurrentMomentInTime);
+            
         }
         else
         {
@@ -188,6 +198,7 @@ public class Rewind : MonoBehaviour
 
             CurrentMomentInTime++;
         }
+        
 
         SetPlayerToMoment();
 

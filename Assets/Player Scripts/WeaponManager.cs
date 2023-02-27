@@ -68,10 +68,10 @@ public class WeaponManager : MonoBehaviour
 
     }
 
-    public void ChangeWeapon(string name, int quantity = 1)
+    public void ChangeWeapon(string name, int quantity = 1, bool dropCurrentWeapon = true)
     {
 
-        if (currentWeapon.name != "Fists" && currentWeapon.name != "" && name != "Fists")
+        if (currentWeapon.name != "Fists" && currentWeapon.name != "" && name != "Fists" && dropCurrentWeapon)
             Player.m.playerThrow.DropWeapon();
 
         foreach (Weapon weapon in WeaponsList)
