@@ -11,7 +11,8 @@ public class PlayerCam : MonoBehaviour
     public Transform orientation;
     public Transform cameraPosition;
 
-    float xRotation, yRotation;
+    [HideInInspector]
+    public float xRotation, yRotation;
 
     void Start()
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Progress;
+
 
 public class Rewind : MonoBehaviour
 {
@@ -11,11 +11,66 @@ public class Rewind : MonoBehaviour
     //Ver 2
 
     [HideInInspector]
-    public List<GameObject> TimeMoments= new List<GameObject>();
+    public List<GameObject> TimeMoments = new List<GameObject>();
     public int CurrentMomentInTime = 0;
 
     [HideInInspector]
     public List<GameObject> rootObjects;
+
+
+    public List<PlayerMoment> PlayerMoments = new List<PlayerMoment>();
+
+    [System.Serializable]
+    public class PlayerMoment{
+        public Vector3 position;
+        public float[] cameraXandY;
+
+        public float health;
+        public string weaponName;
+        public int bulletsLeft;
+    }
+
+    private void CreatePlayerMoment()
+    {
+        PlayerMoment playerMoment = new PlayerMoment();
+
+        playerMoment.position = Player.m.transform.position;
+        playerMoment.cameraXandY = new float[]{ Player.m.playerCam.xRotation, Player.m.playerCam.yRotation };
+
+        playerMoment.health = Player.m.currentHealth;
+        playerMoment.weaponName = Player.m.weaponManager.currentWeapon.name;
+
+        if (Player.m.weaponManager.GetWeaponType(playerMoment.weaponName) == "shoot")
+        {
+            playerMoment.bulletsLeft = Player.m.playerShooting.bulletsleft;
+        }
+
+        PlayerMoments.Add(playerMoment);
+    }
+
+    private void SetPlayerToMoment()
+    {
+        Player.m.SetPlayerHealth(PlayerMoments[CurrentMomentInTime - 1].health);
+
+        Player.m.playerRigidBody.position = PlayerMoments[CurrentMomentInTime - 1].position;
+        //Player.m.transform.Translate(PlayerMoments[CurrentMomentInTime - 1].position - Player.m.transform.position);
+        //Player.m.transform.position = PlayerMoments[CurrentMomentInTime - 1].position;
+        Player.m.playerCam.xRotation = PlayerMoments[CurrentMomentInTime - 1].cameraXandY[0];
+        Player.m.playerCam.yRotation = PlayerMoments[CurrentMomentInTime - 1].cameraXandY[1];
+
+        /*
+        Player.m.weaponManager.currentWeapon.name = "";
+        Player.m.weaponManager.ChangeWeapon(PlayerMoments[CurrentMomentInTime - 1].weaponName);
+
+        if (Player.m.weaponManager.GetWeaponType(PlayerMoments[CurrentMomentInTime - 1].weaponName) == "shoot")
+        {
+            Player.m.playerShooting.bulletsleft = PlayerMoments[CurrentMomentInTime - 1].bulletsLeft;
+        }
+        */
+
+    }
+
+
 
     private void Start()
     {
@@ -34,12 +89,12 @@ public class Rewind : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            GoToPreviousMomentInTime();
+            GoToPreviousMomentInTime(CurrentMomentInTime - 1);
         }
 
         if (Input.GetKeyDown(KeyCode.U))
         {
-            ResetCurrentMomentInTime();
+            GoToPreviousMomentInTime(CurrentMomentInTime);
         }
     }
 
@@ -85,9 +140,11 @@ public class Rewind : MonoBehaviour
             TimeMoments[CurrentMomentInTime - 1].SetActive(false);
 
         CurrentMomentInTime++;
+
+        CreatePlayerMoment();
     }
     
-    public void GoToPreviousMomentInTime()
+    public void GoToPreviousMomentInTime(int MomentToGoTo)
     {
         // Delete current moment
 
@@ -115,10 +172,15 @@ public class Rewind : MonoBehaviour
 
         CurrentMomentInTime--;
 
-        if (CurrentMomentInTime > 1)
+        if (CurrentMomentInTime > 1 && MomentToGoTo == CurrentMomentInTime - 1 + 1)
+        {
+            // This returns to the previos moment in time
             TimeMoments[CurrentMomentInTime - 1].SetActive(true);
+            PlayerMoments.RemoveAt(CurrentMomentInTime);
+        }
         else
         {
+            // This resets the current moment in time
             GameObject newMoment = Instantiate(TimeMoments[CurrentMomentInTime - 1]);
             TimeMoments.Add(newMoment);
             newMoment.SetActive(true);
@@ -127,42 +189,11 @@ public class Rewind : MonoBehaviour
             CurrentMomentInTime++;
         }
 
+        SetPlayerToMoment();
+
     }
 
-    public void ResetCurrentMomentInTime()
-    {
-        Scene scene = SceneManager.GetActiveScene();
-        scene.GetRootGameObjects(rootObjects);
 
-        for (int i = 0; i < rootObjects.Count; i++)
-        {
-            if (LayerMask.LayerToName(rootObjects[i].layer) == "Player")
-                continue;
-
-            if (rootObjects[i] == this)
-                continue;
-
-            if (TimeMoments.Contains(rootObjects[i]))
-                continue;
-
-            Destroy(rootObjects[i]);
-
-        }
-
-        Destroy(TimeMoments[CurrentMomentInTime - 1]);
-        TimeMoments.RemoveAt(CurrentMomentInTime - 1);
-
-        CurrentMomentInTime--;
-
-        
-        GameObject newMoment = Instantiate(TimeMoments[CurrentMomentInTime -1]);
-        TimeMoments.Add(newMoment);
-        newMoment.SetActive(true);
-        newMoment.name = "RewindPoint " + CurrentMomentInTime;
-
-        CurrentMomentInTime++;
-        
-    }
 
 
 

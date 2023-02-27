@@ -9,7 +9,6 @@ public class PlayerShooting : MonoBehaviour
     // Projectile system:
 
 
-
     // bullet
     public GameObject bullet;
 

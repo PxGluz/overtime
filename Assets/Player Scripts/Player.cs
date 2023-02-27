@@ -20,13 +20,13 @@ public class Player : MonoBehaviour
 
     [Header("Other References:")]
     public Camera MainCamera;
+    public Rigidbody playerRigidBody;
 
     [Header("Important variables:")]
     public string MoveType = "stop"; // current move types: stop, walk, run, crouch, slide
     public string AttackType = "none"; // current attack types: none, shoot, melee   | future attack types: throw
     public LayerMask groundLayer;
     public LayerMask enemyLayer;
-    //public LayerMask objectsAffectedByExplosions;
     public GameObject PointDebug;
     public GameObject playerObject;
 
@@ -45,6 +45,8 @@ public class Player : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerShooting = GetComponent<PlayerShooting>();
         //playerMelee = GetComponent<PlayerMelee>();
+
+        playerRigidBody = GetComponent<Rigidbody>();    
     }
 
     private void Start()
@@ -54,13 +56,18 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
+        SetPlayerHealth(currentHealth - damage);
 
         if (currentHealth < 0)
         {
             Die();
         }
 
+    }
+
+    public void SetPlayerHealth(float health)
+    {
+        currentHealth = health;
     }
 
     public void Die()
