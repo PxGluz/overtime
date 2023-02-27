@@ -31,10 +31,15 @@ public class Rewind : MonoBehaviour
             Debug.Log("saved");
             CreateNewMomentInTime();
         }
-        // Rewind: Delete current level, enable the save and renew the save.
+
         if (Input.GetKeyDown(KeyCode.Y))
         {
             GoToPreviousMomentInTime();
+        }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            ResetCurrentMomentInTime();
         }
     }
 
@@ -87,14 +92,11 @@ public class Rewind : MonoBehaviour
         // Delete current moment
 
         // get root objects in scene
-        //rootObjects = new List<GameObject>();
         Scene scene = SceneManager.GetActiveScene();
         scene.GetRootGameObjects(rootObjects);
 
         for (int i = 0; i < rootObjects.Count; i++)
         {
-            //GameObject obj = rootObjects[i];
-
             if (LayerMask.LayerToName(rootObjects[i].layer) == "Player")
                 continue;
 
@@ -105,7 +107,6 @@ public class Rewind : MonoBehaviour
                 continue;
 
             Destroy(rootObjects[i]);
-            //rootObjects.RemoveAt(rootObjects.Count - 1);
             
         }
 
@@ -118,14 +119,49 @@ public class Rewind : MonoBehaviour
             TimeMoments[CurrentMomentInTime - 1].SetActive(true);
         else
         {
-            GameObject newMoment = Instantiate(TimeMoments[0]);
+            GameObject newMoment = Instantiate(TimeMoments[CurrentMomentInTime - 1]);
             TimeMoments.Add(newMoment);
             newMoment.SetActive(true);
-            newMoment.name = "RewindPoint " + CurrentMomentInTime ;
+            newMoment.name = "RewindPoint " + CurrentMomentInTime;
 
             CurrentMomentInTime++;
         }
 
+    }
+
+    public void ResetCurrentMomentInTime()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        scene.GetRootGameObjects(rootObjects);
+
+        for (int i = 0; i < rootObjects.Count; i++)
+        {
+            if (LayerMask.LayerToName(rootObjects[i].layer) == "Player")
+                continue;
+
+            if (rootObjects[i] == this)
+                continue;
+
+            if (TimeMoments.Contains(rootObjects[i]))
+                continue;
+
+            Destroy(rootObjects[i]);
+
+        }
+
+        Destroy(TimeMoments[CurrentMomentInTime - 1]);
+        TimeMoments.RemoveAt(CurrentMomentInTime - 1);
+
+        CurrentMomentInTime--;
+
+        
+        GameObject newMoment = Instantiate(TimeMoments[CurrentMomentInTime -1]);
+        TimeMoments.Add(newMoment);
+        newMoment.SetActive(true);
+        newMoment.name = "RewindPoint " + CurrentMomentInTime;
+
+        CurrentMomentInTime++;
+        
     }
 
 
