@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
-using static UnityEditor.Progress;
+
 
 public class DamageOnCollision : MonoBehaviour
 {

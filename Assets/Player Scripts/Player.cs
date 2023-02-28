@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class Player : MonoBehaviour
