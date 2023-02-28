@@ -73,6 +73,8 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
+        Player.m.gameObject.SetActive(false);
+        menuManager.OpenMenu("LoseMenu");
         print("The player has died");
     }
 

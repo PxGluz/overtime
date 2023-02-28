@@ -366,7 +366,7 @@ Transform:
   m_GameObject: {fileID: 6628535389122629734}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.491413, y: 0.00006020461, z: -2.657251}
-  m_LocalScale: {x: 0.32, y: 0.32, z: 0.32}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8872780852792830050}
@@ -506,8 +506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: KitchenKnife
   isWeaponPickUp: 1
-  canBePickedUp: 0
-  JustDestoy: 0
+  quantity: 0
   TriggerFunction: 0
   myOutline: {fileID: 0}
 --- !u!114 &6628535389122629735
