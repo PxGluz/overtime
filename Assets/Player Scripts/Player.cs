@@ -73,7 +73,17 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        Player.m.gameObject.SetActive(false);
+        gameObject.SetActive(false);
+        playerCam.enabled = false;
+
+
+        Transform[] cameraChildren = playerCam.gameObject.GetComponentsInChildren<Transform>();
+       
+        for (int i = 1; i < cameraChildren.Length; i++) 
+        {
+            cameraChildren[i].gameObject.SetActive(false);
+        }
+
         menuManager.OpenMenu("LoseMenu");
         print("The player has died");
     }
