@@ -51,7 +51,11 @@ public class EnemyStats : MonoBehaviour
     {
         EnemyShooting enemyShooting = gameObject.GetComponent<EnemyShooting>();
         if (enemyShooting != null)
-            Instantiate(enemyShooting.weaponDrop, gameObject.transform.position, new Quaternion());
+        {
+            GameObject drop = Instantiate(enemyShooting.weaponDrop, gameObject.transform.position, new Quaternion());
+            Interactable interactable = drop.GetComponent<Interactable>();
+            interactable.quantity = Player.m.weaponManager.GetWeaponByName(interactable.itemName).gunMagazineSize;
+        }
 
         GameObject spawned = Instantiate(ragdoll, gameObject.transform.position, gameObject.transform.rotation);
 
