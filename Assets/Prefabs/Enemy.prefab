@@ -108,6 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543450651732630869}
   - component: {fileID: 5866666020034807599}
+  - component: {fileID: 4248352314096909034}
   m_Layer: 8
   m_Name: Enemy Idle
   m_TagString: Untagged
@@ -152,6 +153,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &4248352314096909034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147808864239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20f30ec286b5144386338f33de89c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1113542043737671626
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,6 +993,9 @@ MonoBehaviour:
   announcedPosition: {x: 0, y: 0, z: 0}
   rememberPlayer: 0
   forgetTimer: 3
+  animator: {fileID: 5866666020034807599}
+  attack: Enemy Stab
+  stopAnimation: 0
 --- !u!114 &6074192236540674473
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -37,6 +37,15 @@ public class EnemyPathfinding : MonoBehaviour
 
     private EnemyShooting enemyShooting;
 
+    [Header("Animations")]
+    public Animator animator;
+    //public Animation idle;
+    //public Animation run;
+    [Tooltip("Name of attack animation IN ANIMATOR")]
+    public string attack;
+    [HideInInspector]
+    public bool stopAnimation = false;
+
     private void Awake()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
@@ -53,6 +62,10 @@ public class EnemyPathfinding : MonoBehaviour
 
     private void Update()
     {
+        if (agent.velocity.magnitude <= 0.1f)
+            animator.Play("EnemyIdle", 0);
+        else
+            animator.Play("Enemy Run", 0);
         // Check if the enemy can see or attack the player.
         canSeePlayer = visionCone.IsInView(Player.m.playerObject) || Physics.CheckSphere(gameObject.transform.position, proximityRange, playerLayer);
         canAttackPlayer = Physics.CheckSphere(gameObject.transform.position, attackRange, playerLayer);
@@ -83,6 +96,13 @@ public class EnemyPathfinding : MonoBehaviour
             remainingTime -= Time.deltaTime;
         } else {
             rememberPlayer = false;
+        }
+
+        if (stopAnimation)
+        {
+            stopAnimation = false;
+            animator.SetLayerWeight(1, 0);
+            animator.Play("Default", 1);
         }
     }
 
@@ -162,6 +182,8 @@ public class EnemyPathfinding : MonoBehaviour
         // Attack.
         if (!alreadyAttacked)
         {
+            animator.SetLayerWeight(1, 1);
+            animator.Play(attack, 1);
             alreadyAttacked = true;
             if (enemyType == EnemyType.Ranged) {
                 enemyShooting.Shoot(Player.m.transform, damage);

@@ -282,14 +282,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590990767693089803}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0.00066, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8776218090546970859}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 270, y: 0, z: 0}
 --- !u!1 &1983918412524878611
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,6 +493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2438751885955428227}
   - component: {fileID: 8590619861897590265}
+  - component: {fileID: 3034771670107329277}
   m_Layer: 8
   m_Name: Enemy Idle
   m_TagString: Untagged
@@ -537,6 +538,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &3034771670107329277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3068076454985053497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20f30ec286b5144386338f33de89c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3082511234785534299
 GameObject:
   m_ObjectHideFlags: 0
@@ -1544,6 +1557,9 @@ MonoBehaviour:
   announcedPosition: {x: 0, y: 0, z: 0}
   rememberPlayer: 0
   forgetTimer: 3
+  animator: {fileID: 8590619861897590265}
+  attack: Enemy Idle Aim
+  stopAnimation: 0
 --- !u!114 &8221685325553267583
 MonoBehaviour:
   m_ObjectHideFlags: 0
