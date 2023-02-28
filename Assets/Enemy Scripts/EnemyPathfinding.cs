@@ -101,8 +101,8 @@ public class EnemyPathfinding : MonoBehaviour
         if (stopAnimation)
         {
             stopAnimation = false;
-            animator.SetLayerWeight(1, 0);
-            animator.Play("Default", 1);
+            //animator.SetLayerWeight(1, 0);
+           // animator.Play("Default", 1);
         }
     }
 
@@ -182,8 +182,8 @@ public class EnemyPathfinding : MonoBehaviour
         // Attack.
         if (!alreadyAttacked)
         {
-            animator.SetLayerWeight(1, 1);
-            animator.Play(attack, 1);
+            //animator.SetLayerWeight(1, 1);
+            //animator.Play(attack, 1);
             alreadyAttacked = true;
             if (enemyType == EnemyType.Ranged) {
                 enemyShooting.Shoot(Player.m.transform, damage);

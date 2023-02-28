@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
     {
         SetPlayerHealth(currentHealth - damage);
 
-        if (currentHealth < 0)
+        if (currentHealth <= 0)
         {
             Die();
         }
@@ -84,6 +84,23 @@ public class Player : MonoBehaviour
 
         menuManager.OpenMenu("LoseMenu");
         print("The player has died");
+    }
+    
+public void YouWin()
+    {
+        gameObject.SetActive(false);
+        playerCam.enabled = false;
+
+
+        Transform[] cameraChildren = playerCam.gameObject.GetComponentsInChildren<Transform>();
+       
+        for (int i = 1; i < cameraChildren.Length; i++) 
+        {
+            cameraChildren[i].gameObject.SetActive(false);
+        }
+
+        menuManager.OpenMenu("WinMenu");
+        print("Won");
     }
 
 }

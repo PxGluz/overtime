@@ -954,7 +954,7 @@ NavMeshAgent:
   m_Height: 2.3
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
 --- !u!114 &6074192236540674475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -980,9 +980,9 @@ MonoBehaviour:
     m_Bits: 256
   enemyType: 0
   randomPatrolling: 1
-  walkPointRange: 5
+  walkPointRange: 0
   walkPoints: []
-  damage: 50
+  damage: 200
   attackCooldown: 1.5
   attackRange: 1
   announceRange: 10
@@ -1059,7 +1059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d0c4ce8214572488e699a3db1bc1cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionAngle: 120
+  visionAngle: 180
   visionDistance: 10
   hitLayer:
     serializedVersion: 2
@@ -1383,6 +1383,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9213275883944609362}
   - component: {fileID: 8445968655464002206}
+  - component: {fileID: 2198202096924986848}
+  - component: {fileID: 8781946020242656397}
   m_Layer: 8
   m_Name: BASE_Low Poly Man
   m_TagString: Untagged
@@ -1425,7 +1427,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8b5d962f9149b474ea6b1fd8e4a88f7b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1484,6 +1486,37 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0001634683, y: -0.0004926445, z: 0.0015944}
     m_Extent: {x: 0.005970699, y: 0.010390555, z: 0.004450142}
   m_DirtyAABB: 0
+--- !u!114 &2198202096924986848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7053129296432536601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0, b: 0, a: 0}
+  outlineWidth: 7.5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &8781946020242656397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7053129296432536601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fc3161a1b5a4735a034861651ba0b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothTime: 0.5
 --- !u!1 &7242993358770628184
 GameObject:
   m_ObjectHideFlags: 0

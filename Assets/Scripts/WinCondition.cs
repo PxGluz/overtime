@@ -6,8 +6,6 @@ public class WinCondition : MonoBehaviour
 {
     private Transform enemyParent;
 
-    public bool youWin = false;
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +16,6 @@ public class WinCondition : MonoBehaviour
     void Update()
     {
         if (enemyParent.childCount <= 0)
-            youWin = true;
+            Player.m.YouWin();
     }
 }

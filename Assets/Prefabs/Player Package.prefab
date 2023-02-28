@@ -873,7 +873,7 @@ MonoBehaviour:
     type: throw
     damage: 0
     animationType: 
-    throwDamage: 100
+    throwDamage: 1000
     throwForce: 10
     throwUpwardForce: 5
     DamageSphereOrigin: {fileID: 0}
@@ -895,7 +895,7 @@ MonoBehaviour:
     type: throw
     damage: 0
     animationType: 
-    throwDamage: 100
+    throwDamage: 1000
     throwForce: 7
     throwUpwardForce: 5
     DamageSphereOrigin: {fileID: 0}
@@ -929,7 +929,7 @@ MonoBehaviour:
     gunTimeBetweenShooting: 0.2
     gunSpread: 0
     gunReloadTime: 2
-    gunMagazineSize: 15
+    gunMagazineSize: 5
     gunBulletsPerTap: 1
     gunTimeBetweenShots: 0.1
     gunAllowButtonHold: 0
@@ -951,7 +951,7 @@ MonoBehaviour:
     gunTimeBetweenShooting: 0.8
     gunSpread: 0
     gunReloadTime: 2
-    gunMagazineSize: 50
+    gunMagazineSize: 20
     gunBulletsPerTap: 5
     gunTimeBetweenShots: 0.1
     gunAllowButtonHold: 1
@@ -3430,6 +3430,7 @@ MonoBehaviour:
     m_Bits: 448
   interactKey: 101
   pickupRange: 3
+  itemBeingPickedUp: {fileID: 0}
 --- !u!114 &568684796
 MonoBehaviour:
   m_ObjectHideFlags: 0
