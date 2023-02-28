@@ -16,9 +16,12 @@ public class Interactable : MonoBehaviour
     public void Start()
     {
         TryGetComponent<Outline>(out myOutline);
-        
+
         if (myOutline != null)
-            myOutline.enabled= false;
+        {
+            myOutline.OutlineColor = new Color(myOutline.OutlineColor.r, myOutline.OutlineColor.g, myOutline.OutlineColor.b, 0);
+            myOutline.OutlineMode = Outline.Mode.OutlineVisible;
+        }
 
         /*
         if (Player.m.weaponManager.GetWeaponType(itemName) == "shoot")

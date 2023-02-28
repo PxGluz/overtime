@@ -382,6 +382,7 @@ GameObject:
   - component: {fileID: 2369381963526222800}
   - component: {fileID: 503783332716667668}
   - component: {fileID: 2369381963526222803}
+  - component: {fileID: 1245365014}
   - component: {fileID: 2369381963526222804}
   - component: {fileID: 2415390800816970522}
   - component: {fileID: 7012330504260935919}
@@ -544,10 +545,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: ProximityMine
   isWeaponPickUp: 1
-  canBePickedUp: 0
-  JustDestoy: 0
+  quantity: 0
   TriggerFunction: 0
   myOutline: {fileID: 0}
+--- !u!114 &1245365014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369381963526222805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fc3161a1b5a4735a034861651ba0b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothTime: 0.5
 --- !u!114 &2369381963526222804
 MonoBehaviour:
   m_ObjectHideFlags: 0

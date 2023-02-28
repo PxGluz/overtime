@@ -697,6 +697,7 @@ GameObject:
   - component: {fileID: 4028280065528267538}
   - component: {fileID: 4028280065528267567}
   - component: {fileID: 4028280065528267564}
+  - component: {fileID: 1552570052}
   - component: {fileID: 4028280065528267563}
   - component: {fileID: 3928227481988508645}
   - component: {fileID: 786031656986065970}
@@ -721,7 +722,7 @@ Transform:
   m_Children:
   - {fileID: 861180709521122597}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &4028280065528267538
 Rigidbody:
@@ -788,6 +789,19 @@ MonoBehaviour:
   quantity: 0
   TriggerFunction: 0
   myOutline: {fileID: 0}
+--- !u!114 &1552570052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4028280065528267562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fc3161a1b5a4735a034861651ba0b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothTime: 0.5
 --- !u!114 &4028280065528267563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -800,7 +814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 7.38
   precomputeOutline: 0

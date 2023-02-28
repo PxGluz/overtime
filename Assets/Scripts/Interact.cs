@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
+
 
 public class Interact : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class Interact : MonoBehaviour
     public KeyCode interactKey = KeyCode.Mouse0;
     public float pickupRange = 2f;
 
-    private Interactable itemBeingPickedUp;
+    public Interactable itemBeingPickedUp;
 
     void Update()
     {
@@ -49,7 +49,10 @@ public class Interact : MonoBehaviour
                 itemBeingPickedUp = hitItem;
 
                 if (itemBeingPickedUp.myOutline != null)
-                    itemBeingPickedUp.myOutline.enabled = true;
+                {
+                    itemBeingPickedUp.myOutline.OutlineColor = new Color(itemBeingPickedUp.myOutline.OutlineColor.r, itemBeingPickedUp.myOutline.OutlineColor.g, itemBeingPickedUp.myOutline.OutlineColor.b, 1);
+                    itemBeingPickedUp.myOutline.OutlineMode = Outline.Mode.OutlineVisible;
+                }
             }
         }
         else
@@ -63,7 +66,11 @@ public class Interact : MonoBehaviour
             return;
 
         if (itemBeingPickedUp.myOutline != null)
-            itemBeingPickedUp.myOutline.enabled = false;
+        {
+            itemBeingPickedUp.myOutline.OutlineColor = new Color(itemBeingPickedUp.myOutline.OutlineColor.r, itemBeingPickedUp.myOutline.OutlineColor.g, itemBeingPickedUp.myOutline.OutlineColor.b, 0);
+            itemBeingPickedUp.myOutline.OutlineMode = Outline.Mode.OutlineVisible;
+        }
+
 
         itemBeingPickedUp = null;
     }
