@@ -8,8 +8,9 @@ public class MenuManager : MonoBehaviour
     
     public GameObject LoseScreen;
     public GameObject WinScreen;
-    
-    // WinMenu|LoseMenu
+
+
+    /// <summary> Available menus: WinMenu, LoseMenu </summary>
     public void OpenMenu(string name)
     {
         CloseAllMenus();
@@ -39,6 +40,12 @@ public class MenuManager : MonoBehaviour
         WinScreen.SetActive(false);
     }
 
+    public void GoToMainMenu()
+    {
+        //Player.m.gameObject.transform.parent.gameObject.SetActive(false);
+        SceneManager.LoadScene("Main Menu");
+    }
+
     public void RestartScene()
     {
         print("restart game");
@@ -47,10 +54,12 @@ public class MenuManager : MonoBehaviour
 
     public void QuitGame()
     {
+        Player.m.gameObject.SetActive(false);
         print("Quit game");
         Application.Quit();
     }
 
+    
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.N))
@@ -65,6 +74,7 @@ public class MenuManager : MonoBehaviour
             CloseAllMenus();
         }
     }
+    
 
 
 }

@@ -102,6 +102,8 @@ public class PlayerMelee : MonoBehaviour
     private void stopAttacking(){ isMeleeAttacking = false; Invoke("resetCanAttack", Player.m.weaponManager.currentWeapon.meleeAttackSpeed); }
     private void resetCanAttack() { canAttack = true; }
 
+    public Transform TestMeleeSpherePoint;
+    public float TestMeleeSphereRadius;
     void OnDrawGizmosSelected()
     {
         
@@ -110,7 +112,7 @@ public class PlayerMelee : MonoBehaviour
         //if (!Application.isPlaying || Player.m.AttackType != "melee") return;
 
         
-       // Gizmos.DrawWireSphere(Player.m.weaponManager.currentWeapon.DamageSphereOrigin.position, Player.m.weaponManager.currentWeapon.DamageSphereRadius);
+        Gizmos.DrawWireSphere(TestMeleeSpherePoint.position, TestMeleeSphereRadius);
         
         
     }
