@@ -31,8 +31,11 @@ public class ThrownProjectile : MonoBehaviour
         sphereCollider = GetComponent<SphereCollider>();
         rb = GetComponent<Rigidbody>();
 
-        if (outline != null) 
-            outline.enabled = false;
+        if (outline != null)
+        {
+            outline.OutlineColor = new Color(outline.OutlineColor.r, outline.OutlineColor.g, outline.OutlineColor.b, 0);
+            outline.OutlineMode = Outline.Mode.OutlineVisible;
+        }
 
         AllChildren = GetComponentsInChildren<Transform>();
 

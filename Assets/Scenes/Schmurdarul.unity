@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5215,7 +5215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 0, b: 0, a: 1}
   outlineWidth: 5.7
   precomputeOutline: 0
@@ -13689,6 +13689,18 @@ PrefabInstance:
       propertyPath: AttackPointObject
       value: 
       objectReference: {fileID: 1991072799}
+    - target: {fileID: 883355716, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118265211, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 157149138785908631, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 3982301615608917476, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -14049,10 +14061,6 @@ PrefabInstance:
     - target: {fileID: 4261309356740332921, guid: 740721edb18f05f48b24b27f439d60d3, type: 3}
       propertyPath: m_Name
       value: PickUp Base
-      objectReference: {fileID: 0}
-    - target: {fileID: 4261309356740332922, guid: 740721edb18f05f48b24b27f439d60d3, type: 3}
-      propertyPath: JustDestoy
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4261309356740332926, guid: 740721edb18f05f48b24b27f439d60d3, type: 3}
       propertyPath: m_RootOrder
@@ -15067,6 +15075,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1841964636}
     m_Modifications:
+    - target: {fileID: 915151766, guid: 631203c5e746a184ab980adf6c12a189, type: 3}
+      propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473144699, guid: 631203c5e746a184ab980adf6c12a189, type: 3}
+      propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5758949270030769852, guid: 631203c5e746a184ab980adf6c12a189, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -16802,10 +16818,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7012330504260935919, guid: 0832824d4b54e2e48ae196e80f9357e3, type: 3}
-      propertyPath: mineRadius
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17055,6 +17067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9213275884119510509}
   - component: {fileID: 8445968654837692705}
+  - component: {fileID: 9213275884119510510}
   - component: {fileID: 1074270532}
   m_Layer: 0
   m_Name: BASE_Low Poly Man
@@ -18607,3 +18620,16 @@ Transform:
   m_Father: {fileID: 543450653517059818}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9213275884119510510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7053129295521109926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fc3161a1b5a4735a034861651ba0b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothTime: 0.2

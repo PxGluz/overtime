@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6076073362448449269}
   - component: {fileID: 6076073362448449268}
   - component: {fileID: 6076073362448449275}
+  - component: {fileID: 1565873256}
+  - component: {fileID: 1565873255}
   m_Layer: 10
   m_Name: Barrel
   m_TagString: Untagged
@@ -34,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6076073362448449271
 MeshFilter:
@@ -150,8 +152,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 500
   radius: 10
-  isAffected:
-    serializedVersion: 2
-    m_Bits: 1800
   pushForce: 5
-  explosionPrefab: {fileID: 752110948828469609, guid: ee9a8ff50a80e8f47af6df0367320a51, type: 3}
+--- !u!114 &1565873256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6076073362448449274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fc3161a1b5a4735a034861651ba0b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothTime: 0.5
+--- !u!114 &1565873255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6076073362448449274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 7.38
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

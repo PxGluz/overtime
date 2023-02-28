@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 8110043329064097227}
   - component: {fileID: 8110043329064097270}
   - component: {fileID: 8110043329064097269}
+  - component: {fileID: 2050229711}
   - component: {fileID: 8110043329064097266}
   - component: {fileID: 8207849925458263356}
   - component: {fileID: 5585432965822835435}
@@ -142,7 +143,7 @@ Transform:
   m_Children:
   - {fileID: 3241283158895834116}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8110043329064097227
 Rigidbody:
@@ -206,10 +207,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Beretta
   isWeaponPickUp: 1
-  canBePickedUp: 0
-  JustDestoy: 0
+  quantity: 0
   TriggerFunction: 0
   myOutline: {fileID: 0}
+--- !u!114 &2050229711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8110043329064097267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fc3161a1b5a4735a034861651ba0b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothTime: 0.5
 --- !u!114 &8110043329064097266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +259,7 @@ MonoBehaviour:
   outline: {fileID: 0}
   sphereCollider: {fileID: 0}
   isInPickUpState: 0
+  rb: {fileID: 0}
 --- !u!114 &5585432965822835435
 MonoBehaviour:
   m_ObjectHideFlags: 0

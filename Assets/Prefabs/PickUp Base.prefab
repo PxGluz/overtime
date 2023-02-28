@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4261309356740332924}
   - component: {fileID: 4261309356740332923}
   - component: {fileID: 4261309356740332922}
+  - component: {fileID: 7818196152198082407}
   - component: {fileID: 4261309356740332927}
   m_Layer: 7
   m_Name: PickUp Base
@@ -34,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4261309356740332925
 MeshFilter:
@@ -120,10 +121,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: 
-  canBePickedUp: 0
-  JustDestoy: 0
+  isWeaponPickUp: 0
+  quantity: 0
   TriggerFunction: 0
   myOutline: {fileID: 0}
+--- !u!114 &7818196152198082407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4261309356740332921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fc3161a1b5a4735a034861651ba0b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothTime: 0.5
 --- !u!114 &4261309356740332927
 MonoBehaviour:
   m_ObjectHideFlags: 0
