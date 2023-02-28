@@ -16,8 +16,6 @@ public class EnemyStats : MonoBehaviour
     public bool armored = false;
 
     [Header("References and others")]
-    public Image healthBar;
-    public float healthBarWidth;
     public EnemyPathfinding pathfinding;
 
     //Other necessary variables to make other scripts work
@@ -26,15 +24,11 @@ public class EnemyStats : MonoBehaviour
 
     [Header("Other: ")]
     public GameObject blood;
+    public GameObject ragdoll;
 
     void Start()
     {
         currentHealth = maxHealth;
-    }
-
-    private void Update()
-    {
-        healthBar.transform.parent.LookAt(Player.m.transform);
     }
 
     public void ReceiveHit(float damage)
@@ -44,34 +38,13 @@ public class EnemyStats : MonoBehaviour
 
         Instantiate(blood,transform.position, Quaternion.identity);
 
-        if (currentHealth <= 0) return;
-
         if (armored)
             damage /= 2;
- 
-        StartCoroutine(HealthBarAnimation(damage));
-    }
 
+        currentHealth -= damage;
 
-    private void UpdateHealthBar()
-    {
-        float ratio = currentHealth / maxHealth;
-        healthBar.rectTransform.sizeDelta = new Vector2(ratio * healthBarWidth, healthBar.rectTransform.sizeDelta.y);
-    }
-
-    private IEnumerator HealthBarAnimation(float damage)
-    {
-        float step = 0.01f;
-        for (int i = 0; i < 100; i++)
-        {
-            currentHealth -= step * damage;
-
-            UpdateHealthBar();
-
-            yield return new WaitForSeconds(0.01f);
-        }
-
-        if (currentHealth <= 0) Die();
+        if (currentHealth <= 0)
+            Die();
     }
 
     public void Die()
@@ -79,6 +52,9 @@ public class EnemyStats : MonoBehaviour
         EnemyShooting enemyShooting = gameObject.GetComponent<EnemyShooting>();
         if (enemyShooting != null)
             Instantiate(enemyShooting.weaponDrop, gameObject.transform.position, new Quaternion());
-        print(this.gameObject.name + " has died");
+
+        GameObject spawned = Instantiate(ragdoll, gameObject.transform.position, gameObject.transform.rotation);
+
+        Destroy(gameObject);
     }
 }
