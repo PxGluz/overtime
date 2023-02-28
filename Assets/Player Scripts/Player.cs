@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public PlayerMelee playerMelee;
     public PlayerMovement playerMovement;
     public PlayerShooting playerShooting;
+    public MenuManager menuManager;
 
     [Header("Other References:")]
     public Camera MainCamera;

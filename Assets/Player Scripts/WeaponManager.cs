@@ -107,7 +107,12 @@ public class WeaponManager : MonoBehaviour
                 if (weapon.type == "shoot")
                 {
                     Player.m.playerShooting.bulletsleft = quantity;
+                    Player.m.playerShooting.AmmoDisplayParent.SetActive(true);
 
+                }
+                else
+                {
+                    Player.m.playerShooting.AmmoDisplayParent.SetActive(false);
                 }
                     break;
             }

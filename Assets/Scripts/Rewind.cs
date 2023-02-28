@@ -82,7 +82,7 @@ public class Rewind : MonoBehaviour
     private void Start()
     {
         CreateNewMomentInTime();
-        Invoke (nameof(CreateNewMomentInTime),0.2f);
+        Invoke (nameof(CreateNewMomentInTime),1f);
     }
 
     void Update()

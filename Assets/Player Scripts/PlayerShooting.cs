@@ -35,6 +35,7 @@ public class PlayerShooting : MonoBehaviour
 
     // Graphics 
     public GameObject muzzleFlash;
+    public GameObject AmmoDisplayParent;
     public TextMeshProUGUI ammunitionDisplay;
 
 
