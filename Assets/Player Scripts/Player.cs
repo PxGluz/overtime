@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
 
     [Header("Important variables:")]
     public string MoveType = "stop"; // current move types: stop, walk, run, crouch, slide
-    public string AttackType = "none"; // current attack types: none, shoot, melee   | future attack types: throw
+    public string AttackType = "melee"; // current attack types: none, shoot, melee   | future attack types: throw
     public LayerMask groundLayer;
     public LayerMask enemyLayer;
     public GameObject PointDebug;
@@ -55,6 +55,8 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+
+        print("The player took " + damage + " damage");
         SetPlayerHealth(currentHealth - damage);
 
         if (currentHealth <= 0)

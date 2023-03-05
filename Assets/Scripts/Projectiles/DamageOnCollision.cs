@@ -19,6 +19,12 @@ public class DamageOnCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (thrownProjectile == null)
+        {
+            this.enabled = false;
+            return;
+        }
+
         if (thrownProjectile.isInPickUpState || collision.gameObject.layer == LayerMask.NameToLayer("Player"))
             return;
 

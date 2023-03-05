@@ -69,8 +69,6 @@ public class PlayerThrow : MonoBehaviour
         else
             forceDirection = (ray.GetPoint(75) - attackPoint.position).normalized;
 
-
-
         // instantiate object to throw
         GameObject projectile;
         if (Player.m.weaponManager.currentWeapon.WeaponPrefab == null)
@@ -135,7 +133,6 @@ public class PlayerThrow : MonoBehaviour
         readyToThrow = true;
     }
 
-
     private void SetQuantityOfInteractable(GameObject projectile)
     {
         if (Player.m.weaponManager.GetWeaponType(Player.m.weaponManager.currentWeapon.name) == "shoot")
@@ -147,7 +144,5 @@ public class PlayerThrow : MonoBehaviour
             }
         }
     }
-
-
 
 }

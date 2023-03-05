@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -54,7 +53,7 @@ public class PlayerShooting : MonoBehaviour
     {
 
         // stop the shooting script if the player isn't in the shoot attack type
-        if (Player.m.AttackType != "shoot")
+        if (Player.m.AttackType != "ranged")
             return;
 
         MyInput();
@@ -131,7 +130,7 @@ public class PlayerShooting : MonoBehaviour
         BulletCollision bulletCollision = currentBullet.GetComponent<BulletCollision>();
         if (bulletCollision != null)
         {
-            bulletCollision.bulletDamage = Player.m.weaponManager.currentWeapon.damage;
+            bulletCollision.bulletDamage = Player.m.weaponManager.currentWeapon.bulletDamage;
         }
 
         if (muzzleFlash != null)

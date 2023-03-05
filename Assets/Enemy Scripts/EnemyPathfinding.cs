@@ -63,9 +63,9 @@ public class EnemyPathfinding : MonoBehaviour
     private void Update()
     {
         if (agent.velocity.magnitude <= 0.1f)
-            animator.Play("EnemyIdle", 0);
+            animator.Play("Idle", 0);
         else
-            animator.Play("Enemy Run", 0);
+            animator.Play("Run", 0);
         // Check if the enemy can see or attack the player.
         canSeePlayer = visionCone.IsInView(Player.m.playerObject) || Physics.CheckSphere(gameObject.transform.position, proximityRange, playerLayer);
         canAttackPlayer = Physics.CheckSphere(gameObject.transform.position, attackRange, playerLayer);

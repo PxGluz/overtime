@@ -88,7 +88,7 @@ public class PlayerMelee : MonoBehaviour
                         if (CurrentMeleeIndex != enemy.lastMeleeIndex)
                         {
                             enemy.lastMeleeIndex = CurrentMeleeIndex;
-                            enemy.ReceiveHit(Player.m.weaponManager.currentWeapon.damage);
+                            enemy.ReceiveHit(Player.m.weaponManager.currentWeapon.meleeDamage);
                         }
                     }
                     break;

@@ -8,23 +8,19 @@ public class Rewind : MonoBehaviour
 {
 
     // Ver 3
-    //[HideInInspector]
     public List<GameObject> TimeMoments = new List<GameObject>();
+    public List<PlayerMoment> PlayerMoments = new List<PlayerMoment>();
+
     public GameObject currentMomentRoot;
     public int CurrentMomentInTime = 0;
 
-    //[HideInInspector]
     public List<GameObject> rootObjects;
-
-
-    public List<PlayerMoment> PlayerMoments = new List<PlayerMoment>();
 
     [System.Serializable]
     public class PlayerMoment
     {
         public Vector3 position;
         public float[] cameraXandY;
-
         public float health;
         public string weaponName;
         public int bulletsLeft;
@@ -35,7 +31,6 @@ public class Rewind : MonoBehaviour
         currentMomentRoot = new GameObject();
         currentMomentRoot.name = "Current Moment";
 
-        //CreateNewMomentInTime();
         Invoke(nameof(CreateNewMomentInTime), 1f);
     }
 
@@ -64,20 +59,9 @@ public class Rewind : MonoBehaviour
             obj.transform.parent = currentMomentRoot.transform;
         }
 
-        GameObject newMoment = new GameObject();//= Instantiate(new GameObject(), Vector3.zero, Quaternion.identity)
+        GameObject newMoment = new GameObject();
 
         Instantiate(currentMomentRoot, Vector3.zero, Quaternion.identity).transform.parent = newMoment.transform;
-
-        /*
-        GameObject CurrentMomentClone = Instantiate(currentMomentRoot);
-        Transform[] CurrentMomentChildren = CurrentMomentClone.GetComponentsInChildren<Transform>();
-
-        foreach (Transform child in CurrentMomentChildren)
-        {
-            child.transform.parent = newMoment.transform;
-        }
-        Destroy(CurrentMomentClone);
-        */
 
         newMoment.name = "RewindPoint " + CurrentMomentInTime;
         newMoment.SetActive(false);
@@ -133,7 +117,6 @@ public class Rewind : MonoBehaviour
         currentMomentRoot.name = "Current Moment";
         currentMomentRoot.SetActive(true);
 
-
         SetPlayerToMoment();
 
     }
@@ -178,14 +161,12 @@ public class Rewind : MonoBehaviour
 
     void Update()
     {
-        // Save: Instantiate a clone of the level, disable it and save it.
         if (Input.GetKeyDown(KeyCode.T))
         {
             Debug.Log("saved");
             CreateNewMomentInTime();
         }
 
-        
         if (Input.GetKeyDown(KeyCode.Y))
         {
             GoToPreviousMomentInTime(true);

@@ -2,23 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class WeaponManager : MonoBehaviour
 {
 
     [System.Serializable]
     public class Weapon
     {
+        public string name;
         [Header("Properties: ")]
         public GameObject WeaponModelOnPlayer;
         public GameObject WeaponPrefab;
-        public string name;
-        [Tooltip("melee,shoot,throw")]
-        public string type;
-        [Tooltip("How much damage this weapon does")]
-        public float damage = 10;
+        [Tooltip("melee,ranged,throwing")]
+        public AttackType attackType;
         [Tooltip("GenericMelee, GenericRanged")]
-        public string animationType;
+        public AnimationType animationType;
 
         [Header("Throwing: ")]
         public float throwDamage = 10;
@@ -27,12 +24,14 @@ public class WeaponManager : MonoBehaviour
 
         [Header("Melee: ")]
         public Transform DamageSphereOrigin;
+        public float meleeDamage;
         public float DamageSphereRadius;
         public float meleeAttackSpeed;
 
 
         [Header("Ranged: ")]
         public Transform shootPoint;
+        public float bulletDamage;
         [Tooltip("Speed of the bullet")]
         public float gunShootForce;
         [Tooltip("How much does the bullet go upward")]
@@ -63,13 +62,12 @@ public class WeaponManager : MonoBehaviour
         weaponAnimator = GetComponent<Animator>();
         ChangeWeapon("Fists");
         LoadAllGuns();
-
     }
 
     public void ChangeWeapon(string name, int quantity = 1, bool dropCurrentWeapon = true)
     {
 
-        if (currentWeapon.name != "Fists" && currentWeapon.name != "" && name != "Fists" && dropCurrentWeapon)
+        if (currentWeapon.name != "" && currentWeapon.name != "Fists" && name != "Fists" && dropCurrentWeapon)
             Player.m.playerThrow.DropWeapon();
 
         foreach (Weapon weapon in WeaponsList)
@@ -80,39 +78,27 @@ public class WeaponManager : MonoBehaviour
 
                 currentWeapon = weapon;
 
-                Player.m.AttackType = weapon.type;
+                Player.m.AttackType = weapon.attackType.ToString();
 
-                if (weapon.type == "melee")
+                if (weapon.attackType.ToString() == "melee")
                 {
-                    /*
-                    if (weapon.DamageSphereOrigin != null)
-                    {
-                        Player.m.playerMelee.DamageSphereOrigin = weapon.DamageSphereOrigin;
-                        Player.m.playerMelee.DamageSphereRadius = weapon.DamageSphereRadius;
-                    }
-                    */ 
-
-                    if (Player.m.weaponManager.currentWeapon.animationType == "GenericMelee")
-                    {
+                    if (Player.m.weaponManager.currentWeapon.animationType.ToString() == "GenericMelee")
                         weaponAnimator.Play("GenericMelee");
-                    }
                     else
-                    {
                         weaponAnimator.Play(weapon.name);
-                    }
                 }
 
-                if (weapon.type == "shoot")
+                if (weapon.attackType.ToString() == "ranged")
                 {
                     Player.m.playerShooting.bulletsleft = quantity;
                     Player.m.playerShooting.AmmoDisplayParent.SetActive(true);
-
                 }
                 else
                 {
                     Player.m.playerShooting.AmmoDisplayParent.SetActive(false);
                 }
-                    break;
+
+                break;
             }
         }
     }
@@ -132,26 +118,13 @@ public class WeaponManager : MonoBehaviour
             selectedWeaponModelOnPlayer.SetActive(true);
     }
 
-    void OnDrawGizmosSelected()
-    {
-
-        //Gizmos.color = Color.yellow;
-
-        //if (!Application.isPlaying || Player.m.AttackType != "melee") return;
-
-
-        //Gizmos.DrawWireSphere(currentWeapon.DamageSphereOrigin.position, currentWeapon.DamageSphereRadius);
-
-
-    }
-
     public string GetWeaponType(string weaponName)
     {
         foreach (Weapon weapon in WeaponsList)
         {
             if (weapon.name == weaponName)
             {
-                return weapon.type;
+                return weapon.attackType.ToString();
             }
         }
         return "null";
@@ -175,15 +148,17 @@ public class WeaponManager : MonoBehaviour
     {
         object[] AllInteractablesInScene = FindObjectsOfType(typeof(Interactable));
         foreach (Interactable interactable in (Interactable[])AllInteractablesInScene)
-        {
-            //Interactable g = (Interactable)o;
-            LoadGun(interactable);
-            //Debug.Log(interactable.name);
-        }
+            interactable.quantity = GetWeaponByName(interactable.itemName).gunMagazineSize;
     }
 
-    public void LoadGun(Interactable interactable)
+
+    public enum AnimationType
     {
-        interactable.quantity = GetWeaponByName(interactable.itemName).gunMagazineSize;
+        None, GenericRanged, GenericMelee
+    }
+
+    public enum AttackType
+    {
+        melee, ranged, throwing
     }
 }
