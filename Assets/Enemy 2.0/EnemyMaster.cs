@@ -23,6 +23,12 @@ public class EnemyMaster : MonoBehaviour
     public VisionCone visionCone;
 
 
+    [Header("Ragdoll Death Related:")] 
+    [HideInInspector]
+    public GameObject animatedRig;
+    public GameObject ragdollRig;
+    
+    
     //Other necessary variables to make other scripts work
     [HideInInspector]
     public int lastMeleeIndex = -1;
@@ -75,7 +81,25 @@ public class EnemyMaster : MonoBehaviour
         Destroy(gameObject);
         */
         visionCone.enabled = false;
-
+        Queue<Transform> animatedChildList = new Queue<Transform>();
+        Queue<Transform> ragdollChildList = new Queue<Transform>();
+        animatedChildList.Enqueue(animatedRig.transform);
+        ragdollChildList.Enqueue(ragdollRig.transform);
+        while (animatedChildList.Count > 0)
+        {
+            Transform currentAnimatedChild = animatedChildList.Dequeue();
+            Transform currentRagdollChild = ragdollChildList.Dequeue();
+            foreach (Transform child in currentAnimatedChild)
+                if (!child.CompareTag("EnemyWeapon"))
+                    animatedChildList.Enqueue(child);
+            foreach (Transform child in currentRagdollChild)
+                ragdollChildList.Enqueue(child);
+            currentRagdollChild.position = currentAnimatedChild.position;
+            currentRagdollChild.rotation = currentAnimatedChild.rotation;
+            currentRagdollChild.localScale = currentAnimatedChild.localScale;
+        }
+        animatedRig.transform.parent.gameObject.SetActive(false);
+        ragdollRig.transform.parent.gameObject.SetActive(true);
         enemyMovement.StopAllCoroutines();
         enemyMovement.agent.enabled = false;
         enemyMovement.enabled = false;
