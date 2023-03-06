@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,6 +56,9 @@ public class WeaponManager : MonoBehaviour
     public Animator weaponAnimator;
     public Weapon currentWeapon;
     public Weapon[] WeaponsList;
+
+    private Vector3 relativePosition;
+    private Vector3 targetRotation;
 
 
     private void Start()
@@ -160,5 +164,10 @@ public class WeaponManager : MonoBehaviour
     public enum AttackType
     {
         melee, ranged, throwing
+    }
+
+    private void Update()
+    {
+        // TODO: Pickup animation
     }
 }
