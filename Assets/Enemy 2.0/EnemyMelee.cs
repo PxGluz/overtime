@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class EnemyMelee : MonoBehaviour
@@ -45,6 +44,14 @@ public class EnemyMelee : MonoBehaviour
     {
         GameObject weaponInHand = Instantiate (Player.m.weaponManager.GetWeaponByName(enemy.myWeapon).WeaponPrefab,KnifePosition.transform.position, KnifePosition.transform.rotation);
         weaponInHand.transform.parent = KnifePosition.transform;
+
+        foreach (var comp in weaponInHand.GetComponents<Component>())
+        {
+            if (!(comp is Transform))
+            {
+                Destroy(comp);
+            }
+        }
 
         Destroy(weaponInHand.GetComponent<Rigidbody>());
         Destroy(weaponInHand.GetComponent<DamageOnCollision>());

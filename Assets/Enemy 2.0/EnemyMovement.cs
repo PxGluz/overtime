@@ -42,6 +42,9 @@ public class EnemyMovement : MonoBehaviour
             enablePatrol = false;
 
         currentMovementAnimation = "Idle";
+
+        canSeePlayer = false;
+        isChasingPlayer = false;
     }
 
     private void Update()
@@ -63,10 +66,13 @@ public class EnemyMovement : MonoBehaviour
 
             if (Vector3.Distance(transform.position, Player.m.transform.position) >= PreferedDistanceToPlayer)
             {
+                //agent.updateRotation = true;
                 agent.SetDestination(Player.m.transform.position);
             }
             else
             {
+                //agent.updateRotation = false;
+                RotateAtTarget(gameObject.transform, Player.m.playerCam.orientation, 5);
                 if (canSeePlayer)
                     agent.SetDestination(transform.position);
                 else
@@ -107,7 +113,6 @@ public class EnemyMovement : MonoBehaviour
     public IEnumerator ChasePlayer(float duration)
     {
         isChasingPlayer = true;
-       // agent.updateRotation = false;
 
         float time = 0.0f;
         do
@@ -123,8 +128,7 @@ public class EnemyMovement : MonoBehaviour
 
         } while (time < duration);
 
-     //   isChasingPlayer = false;
-        agent.updateRotation = true;
+        isChasingPlayer = false;
 
         print ("stoppedChasingPlayer");
     }
