@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public PlayerShooting playerShooting;
     public MenuManager menuManager;
+    public Rewind rewind;
 
     [Header("Other References:")]
     public Camera MainCamera;
@@ -88,7 +89,7 @@ public class Player : MonoBehaviour
         print("The player has died");
     }
     
-public void YouWin()
+    public void YouWin()
     {
         gameObject.SetActive(false);
         playerCam.enabled = false;

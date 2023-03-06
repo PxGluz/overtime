@@ -6,14 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class Rewind : MonoBehaviour
 {
-
+    
     // Ver 3
+    [Header("Visual part of the script: ")]
+    public GameObject playerGhost;
+
+    [Header("Logic part of the script: ")]
+    [HideInInspector]
     public List<GameObject> TimeMoments = new List<GameObject>();
     public List<PlayerMoment> PlayerMoments = new List<PlayerMoment>();
 
     public GameObject currentMomentRoot;
     public int CurrentMomentInTime = 0;
 
+    [HideInInspector]
     public List<GameObject> rootObjects;
 
     [System.Serializable]
@@ -36,6 +42,7 @@ public class Rewind : MonoBehaviour
 
     private void CreateNewMomentInTime()
     {
+        SpawnPlayerGhost();
 
         // get root objects in scene
         rootObjects = new List<GameObject>();
@@ -72,6 +79,16 @@ public class Rewind : MonoBehaviour
 
         CreatePlayerMoment();
     }
+
+    private void SpawnPlayerGhost()
+    {
+        GameObject ghost = Instantiate(playerGhost, Player.m.playerMovement.orientation.transform.position, Player.m.playerMovement.orientation.transform.rotation);
+    }
+
+    /// <summary>
+    /// if GoToPreviousMoment is 'false', the scene resets to the last moment in time |
+    /// if GoToPreviousMoment is 'true', the scene resets to the moment before the last moment in time 
+    /// </summary>
     public void GoToPreviousMomentInTime(bool GoToPreviousMoment)
     {
         // Delete the current moment in time
@@ -139,6 +156,7 @@ public class Rewind : MonoBehaviour
 
         PlayerMoments.Add(playerMoment);
     }
+
     private void SetPlayerToMoment()
     {
         Player.m.SetPlayerHealth(PlayerMoments[CurrentMomentInTime - 1].health);
@@ -157,7 +175,6 @@ public class Rewind : MonoBehaviour
         }
 
     }
-
 
     void Update()
     {
