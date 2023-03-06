@@ -10,6 +10,7 @@ public class Rewind : MonoBehaviour
     // Ver 3
     [Header("Visual part of the script: ")]
     public GameObject playerGhost;
+    public Color MostRecentGhostColor;
     private Color ghostColor;
 
     [Header("Logic part of the script: ")]
@@ -90,39 +91,7 @@ public class Rewind : MonoBehaviour
         CreatePlayerMoment();
     }
 
-    private void SpawnPlayerGhost()
-    {
-        GameObject newGhost = Instantiate(playerGhost, Player.m.playerMovement.orientation.transform.position, Player.m.playerMovement.orientation.transform.rotation);
-        newGhost.transform.parent = GhostRoot.transform;
-        GhostList.Add(newGhost.GetComponentInChildren<SkinnedMeshRenderer>());
-
-        if (GhostList.Count == 1)
-            ghostColor = newGhost.GetComponentInChildren<SkinnedMeshRenderer>().material.color;
-
-        for (int i = 0; i < GhostList.Count; i++)
-        {
-            GhostList[i].material.color = new Color(ghostColor.r, ghostColor.g, ghostColor.b, (float)i / (float)GhostList.Count );//new Color(materialColor.r, materialColor.g, materialColor.b, i/GhostList.Count)
-            print(i + "/" + GhostList.Count + "=" + (float)i/ (float)GhostList.Count);
-        }
-        
-    }
-
-    private void RemoveLastPlayerGhost()
-    {
-        Destroy(GhostList[GhostList.Count - 1]);
-        GhostList.RemoveAt(GhostList.Count - 1);
-
-        for (int i = 0; i < GhostList.Count; i++)
-        {
-            GhostList[i].material.color = new Color(ghostColor.r, ghostColor.g, ghostColor.b, (float)i / (float)GhostList.Count);//new Color(materialColor.r, materialColor.g, materialColor.b, i/GhostList.Count)
-            print(i + "/" + GhostList.Count + "=" + (float)i / (float)GhostList.Count);
-        }
-    }
-
-    /// <summary>
-    /// if GoToPreviousMoment is 'false', the scene resets to the last moment in time |
-    /// if GoToPreviousMoment is 'true', the scene resets to the moment before the last moment in time 
-    /// </summary>
+    /// <summary> if GoToPreviousMoment is 'false', the scene resets to the last moment in time | if GoToPreviousMoment is 'true', the scene resets to the moment before the last moment in time /// </summary>
     public void GoToPreviousMomentInTime(bool GoToPreviousMoment)
     {
         // Delete the current moment in time
@@ -212,6 +181,32 @@ public class Rewind : MonoBehaviour
             Player.m.weaponManager.ChangeWeapon(PlayerMoments[CurrentMomentInTime - 1].weaponName, 1, false);
         }
 
+    }
+    private void SpawnPlayerGhost()
+    {
+        GameObject newGhost = Instantiate(playerGhost, Player.m.playerMovement.orientation.transform.position, Player.m.playerMovement.orientation.transform.rotation);
+        newGhost.transform.parent = GhostRoot.transform;
+        GhostList.Add(newGhost.GetComponentInChildren<SkinnedMeshRenderer>());
+
+        if (GhostList.Count == 1)
+            ghostColor = newGhost.GetComponentInChildren<SkinnedMeshRenderer>().material.color;
+
+        for (int i = 0; i < GhostList.Count; i++)
+        {
+            GhostList[i].material.color = new Color(ghostColor.r, ghostColor.g, ghostColor.b, (float)i / (float)GhostList.Count);
+        }
+
+    }
+
+    private void RemoveLastPlayerGhost()
+    {
+        Destroy(GhostList[GhostList.Count - 1]);
+        GhostList.RemoveAt(GhostList.Count - 1);
+
+        for (int i = 0; i < GhostList.Count; i++)
+        {
+            GhostList[i].material.color = new Color(ghostColor.r, ghostColor.g, ghostColor.b, (float)i / (float)GhostList.Count);
+        }
     }
 
     void Update()
