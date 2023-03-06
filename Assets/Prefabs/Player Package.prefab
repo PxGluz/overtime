@@ -778,19 +778,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponAnimator: {fileID: 0}
   currentWeapon:
+    name: 
     WeaponModelOnPlayer: {fileID: 0}
     WeaponPrefab: {fileID: 0}
-    name: 
-    type: 
-    damage: 0
-    animationType: 
+    attackType: 0
+    animationType: 0
     throwDamage: 10
     throwForce: 0
     throwUpwardForce: 0
     DamageSphereOrigin: {fileID: 1581415555}
+    meleeDamage: 0
     DamageSphereRadius: 0.5
     meleeAttackSpeed: 0
     shootPoint: {fileID: 0}
+    bulletDamage: 0
     gunShootForce: 0
     gunUpwardForce: 0
     gunTimeBetweenShooting: 0
@@ -801,19 +802,20 @@ MonoBehaviour:
     gunTimeBetweenShots: 0
     gunAllowButtonHold: 0
   WeaponsList:
-  - WeaponModelOnPlayer: {fileID: 394470291}
+  - name: Fists
+    WeaponModelOnPlayer: {fileID: 394470291}
     WeaponPrefab: {fileID: 0}
-    name: Fists
-    type: melee
-    damage: 50
-    animationType: 
+    attackType: 0
+    animationType: 0
     throwDamage: 10
     throwForce: 0
     throwUpwardForce: 0
     DamageSphereOrigin: {fileID: 1581415555}
+    meleeDamage: 50
     DamageSphereRadius: 0.8
     meleeAttackSpeed: 0
     shootPoint: {fileID: 0}
+    bulletDamage: 0
     gunShootForce: 0
     gunUpwardForce: 0
     gunTimeBetweenShooting: 0
@@ -823,19 +825,20 @@ MonoBehaviour:
     gunBulletsPerTap: 0
     gunTimeBetweenShots: 0
     gunAllowButtonHold: 0
-  - WeaponModelOnPlayer: {fileID: 2533305531179024992}
+  - name: Knife
+    WeaponModelOnPlayer: {fileID: 2533305531179024992}
     WeaponPrefab: {fileID: 7373039682345800313, guid: c9312e862b75f9142a37e65962fe892d, type: 3}
-    name: Knife
-    type: melee
-    damage: 100
-    animationType: GenericMelee
+    attackType: 0
+    animationType: 2
     throwDamage: 100
     throwForce: 25
     throwUpwardForce: 2
     DamageSphereOrigin: {fileID: 1193615109}
+    meleeDamage: 100
     DamageSphereRadius: 0.5
     meleeAttackSpeed: 0
     shootPoint: {fileID: 0}
+    bulletDamage: 0
     gunShootForce: 0
     gunUpwardForce: 0
     gunTimeBetweenShooting: 0
@@ -845,19 +848,20 @@ MonoBehaviour:
     gunBulletsPerTap: 0
     gunTimeBetweenShots: 0
     gunAllowButtonHold: 0
-  - WeaponModelOnPlayer: {fileID: 1153755962031841816}
+  - name: KitchenKnife
+    WeaponModelOnPlayer: {fileID: 1153755962031841816}
     WeaponPrefab: {fileID: 6628535389122629734, guid: af31e25adcc3b594592100c3ea224428, type: 3}
-    name: KitchenKnife
-    type: melee
-    damage: 100
-    animationType: GenericMelee
+    attackType: 0
+    animationType: 2
     throwDamage: 100
     throwForce: 25
     throwUpwardForce: 2
     DamageSphereOrigin: {fileID: 1193615109}
+    meleeDamage: 100
     DamageSphereRadius: 0.5
     meleeAttackSpeed: 0
     shootPoint: {fileID: 0}
+    bulletDamage: 0
     gunShootForce: 0
     gunUpwardForce: 0
     gunTimeBetweenShooting: 0
@@ -867,19 +871,20 @@ MonoBehaviour:
     gunBulletsPerTap: 0
     gunTimeBetweenShots: 0
     gunAllowButtonHold: 0
-  - WeaponModelOnPlayer: {fileID: 1714318190}
+  - name: Grenade
+    WeaponModelOnPlayer: {fileID: 1714318190}
     WeaponPrefab: {fileID: 7236612706473255808, guid: e19429fe5e43dc94784f6ebf13a1115d, type: 3}
-    name: Grenade
-    type: throw
-    damage: 0
-    animationType: 
+    attackType: 2
+    animationType: 0
     throwDamage: 1000
     throwForce: 10
     throwUpwardForce: 5
     DamageSphereOrigin: {fileID: 0}
+    meleeDamage: 0
     DamageSphereRadius: 0
     meleeAttackSpeed: 0
     shootPoint: {fileID: 0}
+    bulletDamage: 0
     gunShootForce: 0
     gunUpwardForce: 0
     gunTimeBetweenShooting: 0
@@ -889,19 +894,20 @@ MonoBehaviour:
     gunBulletsPerTap: 0
     gunTimeBetweenShots: 0
     gunAllowButtonHold: 0
-  - WeaponModelOnPlayer: {fileID: 3536888562561838294}
+  - name: ProximityMine
+    WeaponModelOnPlayer: {fileID: 3536888562561838294}
     WeaponPrefab: {fileID: 2369381963526222805, guid: 0832824d4b54e2e48ae196e80f9357e3, type: 3}
-    name: ProximityMine
-    type: throw
-    damage: 0
-    animationType: 
+    attackType: 2
+    animationType: 0
     throwDamage: 1000
     throwForce: 7
     throwUpwardForce: 5
     DamageSphereOrigin: {fileID: 0}
+    meleeDamage: 0
     DamageSphereRadius: 0
     meleeAttackSpeed: 0
     shootPoint: {fileID: 0}
+    bulletDamage: 0
     gunShootForce: 0
     gunUpwardForce: 0
     gunTimeBetweenShooting: 0
@@ -911,41 +917,43 @@ MonoBehaviour:
     gunBulletsPerTap: 0
     gunTimeBetweenShots: 0
     gunAllowButtonHold: 0
-  - WeaponModelOnPlayer: {fileID: 2508867731813479231}
+  - name: Beretta
+    WeaponModelOnPlayer: {fileID: 2508867731813479231}
     WeaponPrefab: {fileID: 8110043329064097267, guid: cf12532ad2f04ca4c88493aa1c89d191, type: 3}
-    name: Beretta
-    type: shoot
-    damage: 100
-    animationType: GenericRanged
+    attackType: 1
+    animationType: 1
     throwDamage: 50
     throwForce: 20
     throwUpwardForce: 1
     DamageSphereOrigin: {fileID: 0}
+    meleeDamage: 0
     DamageSphereRadius: 0
     meleeAttackSpeed: 0
     shootPoint: {fileID: 4455511482312925621}
+    bulletDamage: 100
     gunShootForce: 100
     gunUpwardForce: 0
     gunTimeBetweenShooting: 0.2
     gunSpread: 0
     gunReloadTime: 2
-    gunMagazineSize: 5
+    gunMagazineSize: 10
     gunBulletsPerTap: 1
-    gunTimeBetweenShots: 0.1
+    gunTimeBetweenShots: 0
     gunAllowButtonHold: 0
-  - WeaponModelOnPlayer: {fileID: 3017401777850759349}
+  - name: M16
+    WeaponModelOnPlayer: {fileID: 3017401777850759349}
     WeaponPrefab: {fileID: 4028280065528267562, guid: aa9b173c17a7da140aaa43ff38cd87fc, type: 3}
-    name: M16
-    type: shoot
-    damage: 30
-    animationType: GenericRanged
+    attackType: 1
+    animationType: 1
     throwDamage: 50
     throwForce: 20
     throwUpwardForce: 1
     DamageSphereOrigin: {fileID: 0}
+    meleeDamage: 0
     DamageSphereRadius: 0
     meleeAttackSpeed: 0
     shootPoint: {fileID: 1910153133}
+    bulletDamage: 30
     gunShootForce: 80
     gunUpwardForce: 0
     gunTimeBetweenShooting: 0.8
@@ -953,7 +961,7 @@ MonoBehaviour:
     gunReloadTime: 2
     gunMagazineSize: 20
     gunBulletsPerTap: 5
-    gunTimeBetweenShots: 0.1
+    gunTimeBetweenShots: 0.08
     gunAllowButtonHold: 1
 --- !u!1 &593109983
 GameObject:
@@ -3286,7 +3294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157149138785908624}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.09, y: -2.41, z: 2.49}
+  m_LocalPosition: {x: 10.09, y: 0.15, z: 2.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3345,6 +3353,7 @@ MonoBehaviour:
   playerMovement: {fileID: 3982301615916881982}
   playerShooting: {fileID: 568684796}
   menuManager: {fileID: 1216285252}
+  rewind: {fileID: 593397564}
   MainCamera: {fileID: 3982301615087226214}
   playerRigidBody: {fileID: 0}
   MoveType: stop
@@ -5856,7 +5865,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147483647
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -8903,11 +8912,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b7ec9befd7f924e9166fa0ec68db75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerGhost: {fileID: 4455773001095476496, guid: 9f9145bbac3bca54a9ca9df78362e593, type: 3}
   TimeMoments: []
+  PlayerMoments: []
   currentMomentRoot: {fileID: 0}
   CurrentMomentInTime: 0
   rootObjects: []
-  PlayerMoments: []
 --- !u!114 &1216285252
 MonoBehaviour:
   m_ObjectHideFlags: 0

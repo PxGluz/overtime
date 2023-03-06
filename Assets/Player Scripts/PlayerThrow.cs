@@ -135,7 +135,7 @@ public class PlayerThrow : MonoBehaviour
 
     private void SetQuantityOfInteractable(GameObject projectile)
     {
-        if (Player.m.weaponManager.GetWeaponType(Player.m.weaponManager.currentWeapon.name) == "shoot")
+        if (Player.m.weaponManager.GetWeaponType(Player.m.weaponManager.currentWeapon.name) == "ranged")
         {
             Interactable interactable = projectile.GetComponent<Interactable>();
             if (interactable != null)
