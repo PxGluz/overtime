@@ -21,14 +21,15 @@ public class Player : MonoBehaviour
     [Header("Other References:")]
     public Camera MainCamera;
     public Rigidbody playerRigidBody;
+    public GameObject PointDebug;
+    public GameObject playerObject;
+    public Transform headPosition;
 
     [Header("Important variables:")]
     public string MoveType = "stop"; // current move types: stop, walk, run, crouch, slide
     public string AttackType = "melee"; // current attack types: none, shoot, melee   | future attack types: throw
     public LayerMask groundLayer;
     public LayerMask enemyLayer;
-    public GameObject PointDebug;
-    public GameObject playerObject;
 
     [Header("Stats:")]
     public float MaxHealth;

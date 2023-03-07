@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using static WeaponManager;
 
 public class EnemyMaster : MonoBehaviour
 {
@@ -19,6 +21,8 @@ public class EnemyMaster : MonoBehaviour
     [Header("References:")]
     [HideInInspector]
     public EnemyMovement enemyMovement;
+    public EnemyMelee enemyMelee;
+    public EnemyRanged enemyRanged;
     public Animator animator;
     public VisionCone visionCone;
 
@@ -27,7 +31,6 @@ public class EnemyMaster : MonoBehaviour
     [HideInInspector]
     public GameObject animatedRig;
     public GameObject ragdollRig;
-    
     
     //Other necessary variables to make other scripts work
     [HideInInspector]
@@ -43,8 +46,16 @@ public class EnemyMaster : MonoBehaviour
         currentHealth = maxHealth;
 
         enemyMovement = GetComponent<EnemyMovement>();
+        enemyRanged = GetComponent<EnemyRanged>();
+
+        if (myWeapon == "" && enemyType.ToString() == "Ranged")
+            myWeapon = "Gun";
+        else if (myWeapon == "" && enemyType.ToString() == "Melee")
+            myWeapon = "Knife";
 
         WeaponClass = Player.m.weaponManager.GetWeaponByName(myWeapon);
+
+        PutWeaponInHand();
     }
 
 
@@ -112,7 +123,47 @@ public class EnemyMaster : MonoBehaviour
 
     }
 
+    void PutWeaponInHand()
+    {
+        Transform location;
+        switch (enemyType.ToString())
+        {
+            case "Melee":
+                location = enemyMelee.KnifePosition;
+                break;
+            case "Ranged":
+                location = enemyRanged.gunPosition;
+                break;
+            default:
+                location = enemyMelee.KnifePosition;
+                break;
+        }
 
+        GameObject weaponInHand = Instantiate(WeaponClass.WeaponPrefab, location.position, location.rotation);
+        weaponInHand.transform.parent = location.transform;
+
+        // Delete all scripts on the prefab
+        foreach (var comp in weaponInHand.GetComponents<Component>())
+        {
+            if (!(comp is Transform))
+            {
+                if (enemyType.ToString() == "Ranged")
+                    if (comp is Interactable)
+                    {
+                        Interactable interact = weaponInHand.GetComponent<Interactable>();
+                        enemyRanged.shootPoint = interact.myAttackPoint;
+                    }
+
+                Destroy(comp);
+            }
+        }
+
+        // Change the prefab and the children's layer to "Enemy"
+        var children = weaponInHand.GetComponentsInChildren<Transform>(includeInactive: true);
+        foreach (var child in children)
+            child.gameObject.layer = LayerMask.NameToLayer("Enemy");
+        
+    }
 
     public enum EnemyType
     {

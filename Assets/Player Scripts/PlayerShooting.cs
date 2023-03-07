@@ -112,19 +112,22 @@ public class PlayerShooting : MonoBehaviour
 
         // Calculate direction from attackPoint to targetPoint
         Vector3 directionWithoutSpread = (targetPoint - weaponM.currentWeapon.shootPoint.position).normalized;
+        
+        float spreadUp = Random.Range(-1f, 1f) * weaponM.currentWeapon.gunSpread / 10;
+        float spreadRight = Random.Range(-1f, 1f) * weaponM.currentWeapon.gunSpread /10;
 
-        Vector3 directionWithSpread = directionWithoutSpread ;
+        Vector3 directionWithSpread = directionWithoutSpread + new Vector3(spreadUp,spreadRight , 0);
 
         // Instantiate bullet/projectile
         GameObject currentBullet = Instantiate(bullet, weaponM.currentWeapon.shootPoint.position, Quaternion.identity);
-
 
         // Rotate bullet to shoot direction
         currentBullet.transform.forward = directionWithSpread.normalized;
 
         // Add force to bullet
-        currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * weaponM.currentWeapon.gunShootForce, ForceMode.Impulse);
-        currentBullet.GetComponent<Rigidbody>().AddForce(Player.m.MainCamera.transform.up * weaponM.currentWeapon.gunUpwardForce, ForceMode.Impulse);
+        Rigidbody bulletRB = currentBullet.GetComponent<Rigidbody>();
+        bulletRB.AddForce(directionWithSpread.normalized * weaponM.currentWeapon.gunShootForce, ForceMode.Impulse);
+        
 
         // Set bullet damage
         BulletCollision bulletCollision = currentBullet.GetComponent<BulletCollision>();

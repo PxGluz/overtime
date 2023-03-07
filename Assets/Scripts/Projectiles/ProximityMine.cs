@@ -38,7 +38,7 @@ public class ProximityMine : MonoBehaviour
                 switch (LayerMask.LayerToName(obj.gameObject.layer))
                 {
                     case "Enemy":
-                        EnemyStats enemy = obj.gameObject.GetComponentInParent<EnemyStats>();
+                        EnemyMaster enemy = obj.gameObject.GetComponentInParent<EnemyMaster>();
                         if (enemy != null)
                         {
                             ExplosionManager.instance.Explode(transform.position, mineRadius, thrownProjectile.damage, minePushForce);

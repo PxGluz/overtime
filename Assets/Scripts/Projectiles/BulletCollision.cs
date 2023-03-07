@@ -39,17 +39,17 @@ public class BulletCollision : MonoBehaviour
         switch (LayerMask.LayerToName(hit.collider.gameObject.layer))
         {
             case "Enemy":
-                EnemyStats enemy = hit.collider.gameObject.GetComponentInParent<EnemyStats>();
+                EnemyMaster enemy = hit.collider.gameObject.GetComponentInParent<EnemyMaster>();
                 if (enemy != null)
                 {
                     print(hit.collider.gameObject.name);
                     if (hit.collider.gameObject.name == "Head")
                     {
-                        enemy.ReceiveHit(bulletDamage * 2);
+                        enemy.TakeDamage(bulletDamage * 2);
                     }
                     else 
                     {
-                        enemy.ReceiveHit(bulletDamage);
+                        enemy.TakeDamage(bulletDamage);
                     }
                 }
 

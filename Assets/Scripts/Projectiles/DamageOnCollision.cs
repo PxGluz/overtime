@@ -28,10 +28,10 @@ public class DamageOnCollision : MonoBehaviour
         if (thrownProjectile.isInPickUpState || collision.gameObject.layer == LayerMask.NameToLayer("Player"))
             return;
 
-        EnemyStats enemy = collision.gameObject.GetComponent<EnemyStats>();
+        EnemyMaster enemy = collision.gameObject.GetComponent<EnemyMaster>();
         if (enemy != null)
         {
-            enemy.ReceiveHit(thrownProjectile.damage);
+            enemy.TakeDamage(thrownProjectile.damage);
         }
 
         DestroyWhenShot destroyWhenShot = collision.gameObject.GetComponent<DestroyWhenShot>();

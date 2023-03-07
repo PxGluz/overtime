@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &650775469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 650775470}
+  m_Layer: 0
+  m_Name: GunPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &650775470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650775469}
+  m_LocalRotation: {x: -0.6508996, y: -0.71295273, z: 0.103186, w: 0.23954292}
+  m_LocalPosition: {x: 0.0007638788, y: 0.0025948489, z: 0.000878494}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6422748160707701277}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: -9.48, y: -151.152, z: 82.346}
 --- !u!1 &1028206428
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +466,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 7d128fbf6d76d834f8a7fc2af068ceca, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -846,6 +877,7 @@ Transform:
   m_Children:
   - {fileID: 4123468772839572830}
   - {fileID: 1028206429}
+  - {fileID: 650775470}
   m_Father: {fileID: 5927931462780238096}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 6.928469, y: -5.0237856, z: -9.939839}
@@ -3599,6 +3631,7 @@ GameObject:
   - component: {fileID: 8507624026435787116}
   - component: {fileID: 8507624026435787118}
   - component: {fileID: 8507624026435787119}
+  - component: {fileID: 970373106}
   m_Layer: 8
   m_Name: Enemy 2.0
   m_TagString: Untagged
@@ -3624,7 +3657,7 @@ Transform:
   - {fileID: 8507624027868349817}
   - {fileID: 8877500521558715076}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8507624026435787114
 Rigidbody:
@@ -3689,7 +3722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  myWeapon: KitchenKnife
+  myWeapon: M16
   WeaponClass:
     name: 
     WeaponModelOnPlayer: {fileID: 0}
@@ -3714,11 +3747,15 @@ MonoBehaviour:
     gunBulletsPerTap: 1
     gunTimeBetweenShots: 0.05
     gunAllowButtonHold: 0
-  enemyType: 0
+  enemyType: 1
   isStunned: 0
   enemyMovement: {fileID: 0}
+  enemyMelee: {fileID: 755113736778407888}
+  enemyRanged: {fileID: 970373106}
   animator: {fileID: 755113736778407889}
   visionCone: {fileID: 8507624027868349816}
+  animatedRig: {fileID: 0}
+  ragdollRig: {fileID: 0}
   lastMeleeIndex: -1
   blood: {fileID: 0}
   ragdoll: {fileID: 0}
@@ -3744,14 +3781,30 @@ MonoBehaviour:
   isChasingPlayer: 0
   currentMovementAnimation: 
   announceRange: 4.12
-  PreferedDistanceToPlayer: 2
+  PreferedDistanceToPlayer: 4.95
   chaseDuration: 5
   enablePatrol: 0
   patrolPoints:
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+--- !u!114 &970373106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8507624026435787112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3aa01d1fed303d40b7ac22df32b9955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyBullet: {fileID: 3463831868275453303, guid: d0bca510a17191547a2204127261ec47, type: 3}
+  gunPosition: {fileID: 650775470}
+  reloadCooldown: 2
+  bulletsleft: 0
+  shootPoint: {fileID: 0}
+  muzzleFlash: {fileID: 0}
+  isInTransition: 0
 --- !u!1 &8507624027868349766
 GameObject:
   m_ObjectHideFlags: 0

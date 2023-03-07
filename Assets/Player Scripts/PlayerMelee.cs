@@ -76,14 +76,14 @@ public class PlayerMelee : MonoBehaviour
             {
                 case "Enemy":
 
-                    EnemyStats enemy = obj.gameObject.GetComponentInParent<EnemyStats>();
+                    EnemyMaster enemy = obj.gameObject.GetComponentInParent<EnemyMaster>();
                     if (enemy != null)
                     {
 
                         if (CurrentMeleeIndex != enemy.lastMeleeIndex)
                         {
                             enemy.lastMeleeIndex = CurrentMeleeIndex;
-                            enemy.ReceiveHit(Player.m.weaponManager.currentWeapon.meleeDamage);
+                            enemy.TakeDamage(Player.m.weaponManager.currentWeapon.meleeDamage);
                         }
                     }
                     break;

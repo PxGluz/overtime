@@ -33,28 +33,12 @@ public class EnemyMelee : MonoBehaviour
         enemy.animator.SetLayerWeight(1, 1);
 
         if (enemy.enemyType.ToString() != "Melee")
+        {
             this.enabled = false;
-
-        PutWeaponInHand ();
+            return;
+        }
       
         UpdateAnimClipTimes();
-    }
-
-    void PutWeaponInHand()
-    {
-        GameObject weaponInHand = Instantiate (Player.m.weaponManager.GetWeaponByName(enemy.myWeapon).WeaponPrefab,KnifePosition.transform.position, KnifePosition.transform.rotation);
-        weaponInHand.transform.parent = KnifePosition.transform;
-
-        foreach (var comp in weaponInHand.GetComponents<Component>())
-        {
-            if (!(comp is Transform))
-            {
-                Destroy(comp);
-            }
-        }
-
-        Destroy(weaponInHand.GetComponent<Rigidbody>());
-        Destroy(weaponInHand.GetComponent<DamageOnCollision>());
     }
 
     void Update()

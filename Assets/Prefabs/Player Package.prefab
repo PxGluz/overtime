@@ -134,6 +134,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &91754105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 91754106}
+  m_Layer: 3
+  m_Name: Head Location
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &91754106
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91754105}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.613, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 157149138785908631}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &145820727
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,14 +961,14 @@ MonoBehaviour:
     DamageSphereRadius: 0
     meleeAttackSpeed: 0
     shootPoint: {fileID: 1910153133}
-    bulletDamage: 30
-    gunShootForce: 80
+    bulletDamage: 20
+    gunShootForce: 1
     gunUpwardForce: 0
     gunTimeBetweenShooting: 0.8
-    gunSpread: 0
+    gunSpread: 1
     gunReloadTime: 2
-    gunMagazineSize: 20
-    gunBulletsPerTap: 5
+    gunMagazineSize: 1000
+    gunBulletsPerTap: 20
     gunTimeBetweenShots: 0.08
     gunAllowButtonHold: 1
   - name: Beretta
@@ -2127,7 +2158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1278241758}
   m_Layer: 3
-  m_Name: CeilingCheck
+  m_Name: Ceiling Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3357,6 +3388,7 @@ Transform:
   - {fileID: 3982301615366071915}
   - {fileID: 3982301615698761917}
   - {fileID: 1278241758}
+  - {fileID: 91754106}
   m_Father: {fileID: 3982301615608917476}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3410,6 +3442,9 @@ MonoBehaviour:
   rewind: {fileID: 593397564}
   MainCamera: {fileID: 3982301615087226214}
   playerRigidBody: {fileID: 0}
+  PointDebug: {fileID: 0}
+  playerObject: {fileID: 157149139719264051}
+  headPosition: {fileID: 91754106}
   MoveType: stop
   AttackType: melee
   groundLayer:
@@ -3418,8 +3453,6 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  PointDebug: {fileID: 0}
-  playerObject: {fileID: 157149139719264051}
   MaxHealth: 100
   currentHealth: 100
 --- !u!114 &3982301615916881982
@@ -3548,7 +3581,7 @@ GameObject:
   - component: {fileID: 157149139719264052}
   - component: {fileID: 157149139719264053}
   m_Layer: 3
-  m_Name: PlayerObject
+  m_Name: Player Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6053,7 +6086,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3982301615366071915}
   m_Layer: 3
-  m_Name: CameraPos
+  m_Name: Camera Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

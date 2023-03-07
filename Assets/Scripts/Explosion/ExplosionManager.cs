@@ -39,11 +39,11 @@ public class ExplosionManager : MonoBehaviour
                     // Damage decreases proportional to the distance squared.
                     float trueDamage = 1f / Mathf.Pow(Vector3.Distance(position, hit.transform.position), 2) * damage;
 
-                    EnemyStats enemyStats = hit.gameObject.GetComponentInParent<EnemyStats>();
+                    EnemyMaster enemyStats = hit.gameObject.GetComponentInParent<EnemyMaster>();
                     if (enemyStats == null)
                         break;
 
-                    enemyStats.ReceiveHit(trueDamage);
+                    enemyStats.TakeDamage(trueDamage);
                     break;
                 case "Player":
                     trueDamage = 1f / Mathf.Pow(Vector3.Distance(position, hit.transform.position), 2) * damage;
