@@ -21,6 +21,7 @@ public class EnemyMovement : MonoBehaviour
     public float announceRange;
     public float PreferedDistanceToPlayer;
     public float chaseDuration = 5f;
+    public float rotateAfterPlayerSpeed = 5f;
 
     [Header("Patrolling")]
     public bool enablePatrol;
@@ -60,6 +61,22 @@ public class EnemyMovement : MonoBehaviour
 
     private void Move()
     {
+        if (enemy.isStunned)
+        {
+
+            RotateAtTarget(gameObject.transform, Player.m.playerCam.orientation, rotateAfterPlayerSpeed);
+
+            if (currentMovementAnimation != "Idle" && canTransition)
+            {
+                canTransition = false;
+                Invoke(nameof(TransitionEnded), 0.26f);
+                animator.SetTrigger(currentMovementAnimation = "Idle");
+            }
+
+            agent.SetDestination(transform.position);
+            return;
+        }
+
         if (isChasingPlayer)
         {
            // RotateAtTarget(gameObject.transform, Player.m.playerCam.orientation, 5);
@@ -72,7 +89,7 @@ public class EnemyMovement : MonoBehaviour
             else
             {
                 //agent.updateRotation = false;
-                RotateAtTarget(gameObject.transform, Player.m.playerCam.orientation, 5);
+                RotateAtTarget(gameObject.transform, Player.m.playerCam.orientation, rotateAfterPlayerSpeed);
                 if (canSeePlayer)
                     agent.SetDestination(transform.position);
                 else
@@ -260,17 +277,9 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        //Gizmos.color = Color.red;
-        //Gizmos.DrawWireSphere(gameObject.transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(gameObject.transform.position, announceRange);
-        //Gizmos.color = Color.green;
-        //Gizmos.DrawWireSphere(gameObject.transform.position, proximityRange);
-        
-        //Vector3 fwd = gameObject.transform.forward * visionCone.visionDistance;
-        //Gizmos.color = Color.white;
-        //Gizmos.DrawRay(visionCone.gameObject.transform.position, fwd);
-        //Gizmos.DrawRay(visionCone.gameObject.transform.position, rotateVector(fwd, visionCone.visionAngle));
-        //Gizmos.DrawRay(visionCone.gameObject.transform.position, rotateVector(fwd, -visionCone.visionAngle));
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(gameObject.transform.position, PreferedDistanceToPlayer);
     }
 }

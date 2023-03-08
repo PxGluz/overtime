@@ -17,6 +17,7 @@ public class EnemyMaster : MonoBehaviour
     [Header("State:")]
     public EnemyType enemyType;
     public bool isStunned;
+    public float stunTime = 0f;
 
     [Header("References:")]
     [HideInInspector]
@@ -25,6 +26,7 @@ public class EnemyMaster : MonoBehaviour
     public EnemyRanged enemyRanged;
     public Animator animator;
     public VisionCone visionCone;
+    public GameObject weaponInHand;
 
 
     [Header("Ragdoll Death Related:")] 
@@ -58,6 +60,23 @@ public class EnemyMaster : MonoBehaviour
         PutWeaponInHand();
     }
 
+    private void Update()
+    {
+        if (stunTime > 0)
+        {
+            stunTime -= Time.deltaTime;
+        }
+        else
+        {
+            isStunned = false;
+        }
+    }
+
+    public void StunEnemy(float stunDuration = 1f)
+    {
+        stunTime = stunDuration;
+        isStunned = true;
+    }
 
     public void TakeDamage(float damage)
     {
@@ -78,6 +97,13 @@ public class EnemyMaster : MonoBehaviour
 
     public void Die()
     {
+        weaponInHand.SetActive(false);
+        GameObject drop = Instantiate(WeaponClass.WeaponPrefab, weaponInHand.transform.position, weaponInHand.transform.rotation);
+        if (Player.m.weaponManager.GetWeaponType(WeaponClass.name) == "ranged")
+        {
+            Interactable interactable = drop.GetComponent<Interactable>();
+            interactable.quantity = WeaponClass.gunMagazineSize;
+        }
         /*
         EnemyShooting enemyShooting = gameObject.GetComponent<EnemyShooting>();
         if (enemyShooting != null)
@@ -139,7 +165,7 @@ public class EnemyMaster : MonoBehaviour
                 break;
         }
 
-        GameObject weaponInHand = Instantiate(WeaponClass.WeaponPrefab, location.position, location.rotation);
+        weaponInHand = Instantiate(WeaponClass.WeaponPrefab, location.position, location.rotation);
         weaponInHand.transform.parent = location.transform;
 
         // Delete all scripts on the prefab

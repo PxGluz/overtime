@@ -70,6 +70,7 @@ public class EnemyRanged : MonoBehaviour
         if ( enemy.enemyMovement.canSeePlayer && readyToShoot && !reloading && bulletsleft > 0)
         {
             bulletsShot = 0;
+            enemy.StunEnemy(enemy.WeaponClass.gunBulletsPerTap * enemy.WeaponClass.gunTimeBetweenShots +0.5f);
             Shoot();
         }
     }

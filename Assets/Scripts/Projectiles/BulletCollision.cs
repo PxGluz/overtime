@@ -52,13 +52,6 @@ public class BulletCollision : MonoBehaviour
                         enemy.TakeDamage(bulletDamage);
                     }
                 }
-
-                EnemyMaster enemyM = hit.collider.gameObject.GetComponentInParent<EnemyMaster>();
-                if (enemyM != null)
-                {
-                    enemyM.TakeDamage(bulletDamage);
-                }
-
                 break;
 
             case "Explosive":
