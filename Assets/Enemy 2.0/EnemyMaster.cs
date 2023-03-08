@@ -82,8 +82,11 @@ public class EnemyMaster : MonoBehaviour
     {
         currentHealth -= damage;
 
+        print("Oh no, I " + this.gameObject.name + " took " + damage + " damage!");
+
         if (currentHealth <= 0) 
         {
+            print("I " + this.gameObject.name + " am dead");
             Die();
         }
         else
@@ -97,6 +100,7 @@ public class EnemyMaster : MonoBehaviour
 
     public void Die()
     {
+        // Drop enemy weapon
         weaponInHand.SetActive(false);
         GameObject drop = Instantiate(WeaponClass.WeaponPrefab, weaponInHand.transform.position, weaponInHand.transform.rotation);
         if (Player.m.weaponManager.GetWeaponType(WeaponClass.name) == "ranged")
@@ -104,21 +108,8 @@ public class EnemyMaster : MonoBehaviour
             Interactable interactable = drop.GetComponent<Interactable>();
             interactable.quantity = WeaponClass.gunMagazineSize;
         }
-        /*
-        EnemyShooting enemyShooting = gameObject.GetComponent<EnemyShooting>();
-        if (enemyShooting != null)
-        {
-            GameObject drop = Instantiate(enemyShooting.weaponDrop, gameObject.transform.position, new Quaternion());
-            Interactable interactable = drop.GetComponent<Interactable>();
-            interactable.quantity = Player.m.weaponManager.GetWeaponByName(interactable.itemName).gunMagazineSize;
-        }
 
-        GameObject spawned = Instantiate(ragdoll, gameObject.transform.position, gameObject.transform.rotation);
-
-        Destroy(gameObject);
-        */
-        visionCone.enabled = false;
-
+        // Enemy ragdoll
         if (animatedRig != null && ragdollRig != null)
         {
             Queue<Transform> animatedChildList = new Queue<Transform>();
@@ -141,11 +132,16 @@ public class EnemyMaster : MonoBehaviour
             animatedRig.transform.parent.gameObject.SetActive(false);
             ragdollRig.transform.parent.gameObject.SetActive(true);
         }
+
+        // Disable enemy scripts
+        visionCone.enabled = false;
+
         enemyMovement.StopAllCoroutines();
         enemyMovement.agent.enabled = false;
         enemyMovement.enabled = false;
 
-        //animator.enabled = false;
+        enemyMelee.enabled = false;
+        enemyRanged.enabled = false;
 
     }
 
@@ -164,10 +160,8 @@ public class EnemyMaster : MonoBehaviour
                 location = enemyMelee.KnifePosition;
                 break;
         }
-
         weaponInHand = Instantiate(WeaponClass.WeaponPrefab, location.position, location.rotation);
         weaponInHand.transform.parent = location.transform;
-
         // Delete all scripts on the prefab
         foreach (var comp in weaponInHand.GetComponents<Component>())
         {
@@ -179,16 +173,13 @@ public class EnemyMaster : MonoBehaviour
                         Interactable interact = weaponInHand.GetComponent<Interactable>();
                         enemyRanged.shootPoint = interact.myAttackPoint;
                     }
-
                 Destroy(comp);
             }
         }
-
         // Change the prefab and the children's layer to "Enemy"
         var children = weaponInHand.GetComponentsInChildren<Transform>(includeInactive: true);
         foreach (var child in children)
             child.gameObject.layer = LayerMask.NameToLayer("Enemy");
-        
     }
 
     public enum EnemyType

@@ -19,31 +19,34 @@ public class ExplosionManager : MonoBehaviour
 
     public void Explode(Vector3 position, float radius, float damage, float pushForce)
     {
+        float trueDamage;
         ParticleSystem particleExplosion = Instantiate(ExplosionEffect, position, Quaternion.identity).GetComponent<ParticleSystem>();
         var main = particleExplosion.main;
         main.startLifetime = radius / particleExplosion.main.startSpeed.constant + 0.2f; 
 
         Collider[] hits = Physics.OverlapSphere(position, radius, objectsAffectedByExplosions);
 
+        List<EnemyMaster> enemiesHitByExplosion = new List<EnemyMaster>();
+
         foreach (Collider hit in hits)
-        {
+        {    
             switch (LayerMask.LayerToName(hit.gameObject.layer))
             {
                 case "Enemy":
+                    // Damage decreases proportional to the distance squared.
+                    //trueDamage = 1f / Mathf.Pow(Vector3.Distance(position, hit.transform.position), 2) * damage;
+
                     Rigidbody enemyRB = hit.gameObject.GetComponentInParent<Rigidbody>();
                     if (enemyRB == null)
                         break;
-
                     enemyRB.AddExplosionForce(pushForce, position, radius, 0f, ForceMode.Impulse);
 
-                    // Damage decreases proportional to the distance squared.
-                    float trueDamage = 1f / Mathf.Pow(Vector3.Distance(position, hit.transform.position), 2) * damage;
-
                     EnemyMaster enemyStats = hit.gameObject.GetComponentInParent<EnemyMaster>();
-                    if (enemyStats == null)
+                    if (enemyStats == null || enemiesHitByExplosion.Contains(enemyStats))
                         break;
-
-                    enemyStats.TakeDamage(trueDamage);
+                    enemiesHitByExplosion.Add(enemyStats);
+                    enemyStats.TakeDamage(damage);
+                    
                     break;
                 case "Player":
                     trueDamage = 1f / Mathf.Pow(Vector3.Distance(position, hit.transform.position), 2) * damage;

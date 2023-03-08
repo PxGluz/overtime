@@ -279,7 +279,7 @@ public class EnemyMovement : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(gameObject.transform.position, announceRange);
-        Gizmos.color = Color.blue;
+        Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(gameObject.transform.position, PreferedDistanceToPlayer);
     }
 }
