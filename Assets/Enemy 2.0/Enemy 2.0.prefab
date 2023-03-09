@@ -3657,7 +3657,7 @@ Transform:
   - {fileID: 8507624027868349817}
   - {fileID: 8877500521558715076}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8507624026435787114
 Rigidbody:
@@ -3722,7 +3722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  myWeapon: M16
+  myWeapon: Gun
   WeaponClass:
     name: 
     WeaponModelOnPlayer: {fileID: 0}
@@ -3749,11 +3749,13 @@ MonoBehaviour:
     gunAllowButtonHold: 0
   enemyType: 1
   isStunned: 0
-  enemyMovement: {fileID: 0}
+  stunTime: 0
   enemyMelee: {fileID: 755113736778407888}
   enemyRanged: {fileID: 970373106}
   animator: {fileID: 755113736778407889}
   visionCone: {fileID: 8507624027868349816}
+  weaponInHand: {fileID: 0}
+  enemyMovement: {fileID: 0}
   animatedRig: {fileID: 0}
   ragdollRig: {fileID: 0}
   lastMeleeIndex: -1
@@ -3781,8 +3783,9 @@ MonoBehaviour:
   isChasingPlayer: 0
   currentMovementAnimation: 
   announceRange: 4.12
-  PreferedDistanceToPlayer: 4.95
+  PreferedDistanceToPlayer: 7.6
   chaseDuration: 5
+  rotateAfterPlayerSpeed: 5
   enablePatrol: 0
   patrolPoints:
   - {fileID: 0}

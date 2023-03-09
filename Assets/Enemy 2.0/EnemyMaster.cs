@@ -6,6 +6,15 @@ using static WeaponManager;
 
 public class EnemyMaster : MonoBehaviour
 {
+    [Header("References:")]
+    public EnemyMelee enemyMelee;
+    public EnemyRanged enemyRanged;
+    public Animator animator;
+    public VisionCone visionCone;
+    [HideInInspector]
+    public GameObject weaponInHand;
+    [HideInInspector]
+    public EnemyMovement enemyMovement;
 
     [Header("Stats")]
     public float maxHealth = 100f;
@@ -19,28 +28,18 @@ public class EnemyMaster : MonoBehaviour
     public bool isStunned;
     public float stunTime = 0f;
 
-    [Header("References:")]
-    [HideInInspector]
-    public EnemyMovement enemyMovement;
-    public EnemyMelee enemyMelee;
-    public EnemyRanged enemyRanged;
-    public Animator animator;
-    public VisionCone visionCone;
-    public GameObject weaponInHand;
-
-
     [Header("Ragdoll Death Related:")] 
-    [HideInInspector]
     public GameObject animatedRig;
     public GameObject ragdollRig;
     
+    [Header("Other: ")]
+    public GameObject blood;
+    public GameObject ragdoll;
+
     //Other necessary variables to make other scripts work
     [HideInInspector]
     public int lastMeleeIndex = -1;
 
-    [Header("Other: ")]
-    public GameObject blood;
-    public GameObject ragdoll;
 
 
     private void Start()

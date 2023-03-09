@@ -29,9 +29,6 @@ public class BulletCollision : MonoBehaviour
     public void HandleLayerLogic(RaycastHit hit)
     {
 
-        //if (hit.collider.gameObject.GetComponent<BulletCollision>() != null)
-        //    return;
-
         DestroyWhenShot destroyWhenShot = hit.collider.gameObject.GetComponent<DestroyWhenShot>();
         if (destroyWhenShot != null)
             destroyWhenShot.ReceiveHit();

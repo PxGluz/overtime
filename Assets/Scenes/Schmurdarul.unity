@@ -13647,18 +13647,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8507624026435787118, guid: 588f5badee4c3874282a3e2bd55883af, type: 3}
-      propertyPath: myWeapon
-      value: Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: 8507624026435787118, guid: 588f5badee4c3874282a3e2bd55883af, type: 3}
-      propertyPath: enemyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8507624026435787119, guid: 588f5badee4c3874282a3e2bd55883af, type: 3}
-      propertyPath: PreferedDistanceToPlayer
-      value: 7.6
-      objectReference: {fileID: 0}
     - target: {fileID: 8507624026435787119, guid: 588f5badee4c3874282a3e2bd55883af, type: 3}
       propertyPath: patrolPoints.Array.data[0]
       value: 
