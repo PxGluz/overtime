@@ -83,7 +83,7 @@ public class EnemyRanged : MonoBehaviour
         readyToShoot = false;
 
         // Calculate direction from attackPoint to targetPoint
-        Vector3 directionWithoutSpread = (Player.m.headPosition.position - shootPoint.position).normalized;
+        Vector3 directionWithoutSpread = (Player.m.playerCam.transform.position - shootPoint.position).normalized;
 
         float spreadUp = Random.Range(-1f, 1f) * enemy.WeaponClass.gunSpread / 10;
         float spreadRight = Random.Range(-1f, 1f) * enemy.WeaponClass.gunSpread / 10;

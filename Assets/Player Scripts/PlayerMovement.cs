@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     float horizontalInput;
     float verticalInput;
+    bool sprintInput = false;
 
     Vector3 moveDirection;
 
@@ -63,8 +64,6 @@ public class PlayerMovement : MonoBehaviour
         OriginalFOV = Player.m.MainCamera.fieldOfView;
 
     }
-
-
 
     private void Update()
     {
@@ -122,6 +121,17 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        if (Input.GetKey(KeyCode.W)){
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                sprintInput = true;
+            }
+        }
+        else
+        {
+            sprintInput = false;
+        }
+
         if (CanSlide && Player.m.MoveType == "run" && Input.GetKey(KeyCode.LeftControl))
         {
             CanSlide = false;
@@ -154,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Player.m.MoveType = "walk";
 
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && Player.m.MoveType != "run")
+            if (sprintInput && Input.GetKey(KeyCode.W) && Player.m.MoveType != "run")
             {
                 Player.m.MoveType = "run";
             }

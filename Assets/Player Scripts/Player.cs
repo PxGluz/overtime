@@ -23,7 +23,6 @@ public class Player : MonoBehaviour
     public Rigidbody playerRigidBody;
     public GameObject PointDebug;
     public GameObject playerObject;
-    public Transform headPosition;
 
     [Header("Important variables:")]
     public string MoveType = "stop"; // current move types: stop, walk, run, crouch, slide
