@@ -116,7 +116,14 @@ public class PlayerShooting : MonoBehaviour
         float spreadUp = Random.Range(-1f, 1f) * weaponM.currentWeapon.gunSpread / 10;
         float spreadRight = Random.Range(-1f, 1f) * weaponM.currentWeapon.gunSpread /10;
 
-        Vector3 directionWithSpread = directionWithoutSpread + new Vector3(spreadUp,spreadRight , 0);
+        // Vector3 directionWithSpread = directionWithoutSpread + new Vector3(spreadUp,spreadRight , 0);
+
+        // Find random point in the same plane as the targetPoint.
+        Vector3 spreadPoint = targetPoint
+            + Player.m.playerCam.transform.right * spreadRight * (targetPoint - weaponM.currentWeapon.shootPoint.position).magnitude
+            + Player.m.playerCam.transform.up * spreadUp * (targetPoint - weaponM.currentWeapon.shootPoint.position).magnitude;
+        // Calculate direction as before.
+        Vector3 directionWithSpread = (spreadPoint - weaponM.currentWeapon.shootPoint.position).normalized;
 
         // Instantiate bullet/projectile
         GameObject currentBullet = Instantiate(bullet, weaponM.currentWeapon.shootPoint.position, Quaternion.identity);
