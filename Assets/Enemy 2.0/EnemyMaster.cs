@@ -40,11 +40,10 @@ public class EnemyMaster : MonoBehaviour
     [HideInInspector]
     public int lastMeleeIndex = -1;
 
-
-
     private void Start()
     {
-        currentHealth = maxHealth;
+        if (currentHealth == 0f)
+            currentHealth = maxHealth;
 
         enemyMovement = GetComponent<EnemyMovement>();
         enemyRanged = GetComponent<EnemyRanged>();
@@ -146,6 +145,9 @@ public class EnemyMaster : MonoBehaviour
 
     void PutWeaponInHand()
     {
+        if (weaponInHand != null)
+            return;
+
         Transform location;
         switch (enemyType.ToString())
         {
