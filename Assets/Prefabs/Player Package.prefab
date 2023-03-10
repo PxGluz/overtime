@@ -908,7 +908,7 @@ MonoBehaviour:
     attackType: 2
     animationType: 0
     throwDamage: 1000
-    throwForce: 10
+    throwForce: 20
     throwUpwardForce: 5
     DamageSphereOrigin: {fileID: 0}
     meleeDamage: 0
@@ -931,7 +931,7 @@ MonoBehaviour:
     attackType: 2
     animationType: 0
     throwDamage: 1000
-    throwForce: 7
+    throwForce: 15
     throwUpwardForce: 5
     DamageSphereOrigin: {fileID: 0}
     meleeDamage: 0

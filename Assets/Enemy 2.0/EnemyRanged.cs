@@ -8,22 +8,25 @@ public class EnemyRanged : MonoBehaviour
 {
 
     private EnemyMaster enemy;
-    
+
+    [Header("Variables: ")]
     public GameObject enemyBullet;
+    public GameObject muzzleFlash;
     public Transform gunPosition;
+    public float reactionTime = 1f;
     public float reloadCooldown = 2f;
 
+    [Header("For debugging: ")]
     public int bulletsleft;
     private int bulletsShot;
-    private bool  reloading;
-    private bool readyToShoot;
+    public bool  reloading;
+    public bool readyToShoot;
+    public bool isRaisingArms;
 
     // Reference;
     [HideInInspector]
     public Transform shootPoint;
 
-    // Graphics 
-    public GameObject muzzleFlash;
 
     // bug fixing :D
     private bool allowInvoke = true;
@@ -44,23 +47,21 @@ public class EnemyRanged : MonoBehaviour
         bulletsleft = enemy.WeaponClass.gunMagazineSize;
     }
 
-    public bool isInTransition;
-
     private void Update()
     {
 
         if (enemy.enemyMovement.canSeePlayer)
         {
-            if (!isInTransition && !enemy.animator.GetBool("isAiming")) {
-                isInTransition = true;
-                Invoke(nameof(RaiseArmsUp), 1f);
+            if (!isRaisingArms && !enemy.animator.GetBool("isAiming")) {
+                isRaisingArms = true;
+                Invoke(nameof(RaiseArmsUp), reactionTime);
                 enemy.animator.SetBool("isAiming", true);
             }
         }
         else
             enemy.animator.SetBool("isAiming", false);
 
-        if (isInTransition)
+        if (isRaisingArms)
             return;
 
         if ( readyToShoot && !reloading && bulletsleft <= 0)
@@ -75,7 +76,7 @@ public class EnemyRanged : MonoBehaviour
         }
     }
 
-    private void RaiseArmsUp() { isInTransition= false; }
+    private void RaiseArmsUp() { isRaisingArms = false; }
 
     private void Shoot()
     {
