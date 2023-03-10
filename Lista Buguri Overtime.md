@@ -1,5 +1,4 @@
 # Shooting system:
-- Spread-ul bullet-urilor nu functioneaza corect
 - Sistemul de coliziuni din unity nu detecteaza coliziunile cand obiectele se misca extrem de repede (problema in cazul gloantelor)
 - Gloantele trec prin obiecte atunci cand arma se afla in obiectul respectiv.
 
@@ -8,7 +7,7 @@
 
 # Movement: 
 <img src="movement.png" align="right">
-- Cand dai dash sub un collider slope, player-ul poate ramane cateva secunde blocat in acel collider:
+<ul><li>Cand dai dash sub un collider slope, player-ul poate ramane cateva secunde blocat in acel collider:</ul>
 
 # Rewind:
 - Mare grija cu variabilele setate din editor la o anumita valoare
