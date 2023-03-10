@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.W)){
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                sprintInput = true;
+                sprintInput = !sprintInput;
             }
         }
         else
