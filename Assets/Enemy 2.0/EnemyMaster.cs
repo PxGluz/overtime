@@ -29,10 +29,6 @@ public class EnemyMaster : MonoBehaviour
     public bool isStunned;
     private float stunTime = 0f;
 
-    [Header("Ragdoll Death Related:")] 
-    public GameObject animatedRig;
-    public GameObject ragdollRig;
-    
     [Header("Other: ")]
     public GameObject blood;
     public GameObject ragdoll;
@@ -77,7 +73,7 @@ public class EnemyMaster : MonoBehaviour
         isStunned = true;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, GameObject bodyPart=null, Vector3 direction=new Vector3())
     {
         if (isDead)
             return;
@@ -89,7 +85,7 @@ public class EnemyMaster : MonoBehaviour
         if (currentHealth <= 0) 
         {
             print("I " + this.gameObject.name + " am dead");
-            Die();
+            Die(bodyPart, direction);
         }
         else
         {
@@ -100,7 +96,7 @@ public class EnemyMaster : MonoBehaviour
         }
     }
 
-    public void Die()
+    public void Die(GameObject bodyPart=null, Vector3 direction=new Vector3())
     {
         isDead = true;
 
@@ -113,29 +109,24 @@ public class EnemyMaster : MonoBehaviour
             interactable.quantity = WeaponClass.gunMagazineSize;
         }
 
+        animator.enabled = false;
         // Enemy ragdoll
-        if (animatedRig != null && ragdollRig != null)
+        if (ragdoll != null)
         {
             Queue<Transform> animatedChildList = new Queue<Transform>();
-            Queue<Transform> ragdollChildList = new Queue<Transform>();
-            animatedChildList.Enqueue(animatedRig.transform);
-            ragdollChildList.Enqueue(ragdollRig.transform);
+            animatedChildList.Enqueue(ragdoll.transform);
             while (animatedChildList.Count > 0)
             {
                 Transform currentAnimatedChild = animatedChildList.Dequeue();
-                Transform currentRagdollChild = ragdollChildList.Dequeue();
+                if (currentAnimatedChild.TryGetComponent(out Rigidbody rb))
+                    rb.isKinematic = false;
                 foreach (Transform child in currentAnimatedChild)
-                    if (!child.CompareTag("EnemyWeapon"))
-                        animatedChildList.Enqueue(child);
-                foreach (Transform child in currentRagdollChild)
-                    ragdollChildList.Enqueue(child);
-                currentRagdollChild.position = currentAnimatedChild.position;
-                currentRagdollChild.rotation = currentAnimatedChild.rotation;
-                currentRagdollChild.localScale = currentAnimatedChild.localScale;
+                    animatedChildList.Enqueue(child);
             }
-            animatedRig.transform.parent.gameObject.SetActive(false);
-            ragdollRig.transform.parent.gameObject.SetActive(true);
         }
+
+        if (bodyPart && bodyPart.TryGetComponent(out Rigidbody rbBodyPart))
+            rbBodyPart.velocity = direction;
 
         // Disable enemy scripts
         visionCone.enabled = false;

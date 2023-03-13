@@ -46,7 +46,7 @@ public class BulletCollision : MonoBehaviour
                     }
                     else 
                     {
-                        enemy.TakeDamage(bulletDamage);
+                        enemy.TakeDamage(bulletDamage, hit.collider.gameObject, transform.forward * 50f);
                     }
                 }
                 break;

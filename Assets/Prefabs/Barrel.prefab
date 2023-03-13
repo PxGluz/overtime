@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 500
   radius: 10
-  pushForce: 5
+  pushForce: 75
 --- !u!114 &1565873256
 MonoBehaviour:
   m_ObjectHideFlags: 0
