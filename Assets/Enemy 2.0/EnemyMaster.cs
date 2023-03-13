@@ -148,6 +148,8 @@ public class EnemyMaster : MonoBehaviour
         enemyMelee.enabled = false;
         enemyRanged.enabled = false;
 
+        // Create moment in time
+        Player.m.rewind.Invoke (nameof(Player.m.rewind.CreateNewMomentInTime),0.1f);
     }
 
     void PutWeaponInHand()
