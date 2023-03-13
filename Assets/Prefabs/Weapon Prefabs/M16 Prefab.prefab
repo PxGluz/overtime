@@ -701,6 +701,7 @@ GameObject:
   - component: {fileID: 4028280065528267563}
   - component: {fileID: 3928227481988508645}
   - component: {fileID: 786031656986065970}
+  - component: {fileID: 8254322380136453949}
   m_Layer: 7
   m_Name: M16 Prefab
   m_TagString: Untagged
@@ -853,6 +854,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff16472f09d3bfe41b534eff8f822d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8254322380136453949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4028280065528267562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee32aaf1e9e658428ed03fd20f0880c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationForce: 10
 --- !u!1 &4610213299437628963
 GameObject:
   m_ObjectHideFlags: 0

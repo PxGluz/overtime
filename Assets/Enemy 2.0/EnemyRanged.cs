@@ -19,7 +19,7 @@ public class EnemyRanged : MonoBehaviour
     [Header("For debugging: ")]
     public int bulletsleft;
     private int bulletsShot;
-    public bool  reloading;
+    public bool reloading;
     public bool readyToShoot;
     public bool isRaisingArms;
 
@@ -43,6 +43,8 @@ public class EnemyRanged : MonoBehaviour
         }
 
         readyToShoot = true;
+        isRaisingArms = false;
+        reloading = false;
 
         bulletsleft = enemy.WeaponClass.gunMagazineSize;
     }
@@ -82,13 +84,18 @@ public class EnemyRanged : MonoBehaviour
     {
         readyToShoot = false;
 
-        // Calculate direction from attackPoint to targetPoint
-        Vector3 directionWithoutSpread = (Player.m.playerCam.transform.position - shootPoint.position).normalized;
+        Vector3 targetPoint = Player.m.playerCam.transform.position;
 
         float spreadUp = Random.Range(-1f, 1f) * enemy.WeaponClass.gunSpread / 10;
         float spreadRight = Random.Range(-1f, 1f) * enemy.WeaponClass.gunSpread / 10;
 
-        Vector3 directionWithSpread = directionWithoutSpread + new Vector3(spreadUp, spreadRight, 0);
+        // Find random point in the same plane as the targetPoint.
+        Vector3 spreadPoint = targetPoint
+            + Player.m.playerCam.transform.right * spreadRight * (targetPoint - shootPoint.position).magnitude
+            + Player.m.playerCam.transform.up * spreadUp * (targetPoint - shootPoint.position).magnitude;
+
+        // Calculate direction as before.
+        Vector3 directionWithSpread = (spreadPoint - shootPoint.position).normalized;
 
         // Instantiate bullet/projectile
         GameObject currentBullet = Instantiate(enemyBullet, shootPoint.position, Quaternion.identity);
@@ -99,7 +106,6 @@ public class EnemyRanged : MonoBehaviour
         // Add force to bullet
         Rigidbody bulletRB = currentBullet.GetComponent<Rigidbody>();
         bulletRB.AddForce(directionWithSpread.normalized * enemy.WeaponClass.gunShootForce, ForceMode.Impulse);
-
 
         // Set bullet damage
         BulletCollision bulletCollision = currentBullet.GetComponent<BulletCollision>();

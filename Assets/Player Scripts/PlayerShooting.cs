@@ -111,7 +111,7 @@ public class PlayerShooting : MonoBehaviour
 
 
         // Calculate direction from attackPoint to targetPoint
-        Vector3 directionWithoutSpread = (targetPoint - weaponM.currentWeapon.shootPoint.position).normalized;
+        //Vector3 directionWithoutSpread = (targetPoint - weaponM.currentWeapon.shootPoint.position).normalized;
         
         float spreadUp = Random.Range(-1f, 1f) * weaponM.currentWeapon.gunSpread / 10;
         float spreadRight = Random.Range(-1f, 1f) * weaponM.currentWeapon.gunSpread /10;

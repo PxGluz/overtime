@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 8110043329064097266}
   - component: {fileID: 8207849925458263356}
   - component: {fileID: 5585432965822835435}
+  - component: {fileID: -9012203805322029648}
   m_Layer: 7
   m_Name: Beretta Prefab
   m_TagString: Untagged
@@ -240,8 +241,8 @@ MonoBehaviour:
   itemName: Beretta
   isWeaponPickUp: 1
   quantity: 0
-  myAttackPoint: {fileID: 7806735186973203385}
   TriggerFunction: 0
+  myAttackPoint: {fileID: 7806735186973203385}
   myOutline: {fileID: 0}
 --- !u!114 &2050229711
 MonoBehaviour:
@@ -305,3 +306,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff16472f09d3bfe41b534eff8f822d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-9012203805322029648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8110043329064097267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee32aaf1e9e658428ed03fd20f0880c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationForce: 10
