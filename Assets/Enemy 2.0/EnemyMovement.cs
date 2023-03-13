@@ -147,7 +147,7 @@ public class EnemyMovement : MonoBehaviour
 
         isChasingPlayer = false;
 
-        print ("stoppedChasingPlayer");
+        print (this.name+ " stoppedChasingPlayer");
     }
     public void Announce(bool INeedToSeePlayerToAnnounce = true)
     {
@@ -160,8 +160,11 @@ public class EnemyMovement : MonoBehaviour
             if (Array.IndexOf(myColliders, enemy) > -1)
                 continue;
 
+
             EnemyMovement enemyMovement = enemy.transform.parent.GetComponent<EnemyMovement>();
             if (enemyMovement == null)
+                continue;
+            if (enemyMovement.enabled == false)
                 continue;
 
             if (!enemyMovement.isChasingPlayer )

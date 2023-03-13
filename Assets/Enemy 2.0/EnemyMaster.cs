@@ -135,6 +135,7 @@ public class EnemyMaster : MonoBehaviour
         visionCone.enabled = false;
 
         enemyMovement.StopAllCoroutines();
+        enemyMovement.isChasingPlayer = false;
         enemyMovement.agent.enabled = false;
         enemyMovement.enabled = false;
 
@@ -181,6 +182,12 @@ public class EnemyMaster : MonoBehaviour
         var children = weaponInHand.GetComponentsInChildren<Transform>(includeInactive: true);
         foreach (var child in children)
             child.gameObject.layer = LayerMask.NameToLayer("Enemy");
+
+        Collider[] weaponColliders = weaponInHand.GetComponentsInChildren<Collider>(includeInactive: true);
+        foreach(Collider coll in weaponColliders)
+        {
+            Destroy(coll);
+        }
     }
 
     public enum EnemyType
