@@ -211,18 +211,18 @@ public class Rewind : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             Debug.Log("saved");
             CreateNewMomentInTime();
         }
 
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (Input.GetKeyDown(KeyCode.O))
         {
             GoToPreviousMomentInTime(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.U))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             GoToPreviousMomentInTime(false);
         }
