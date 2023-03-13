@@ -11,6 +11,7 @@ public class RotateWhenThrown : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        //enabled = false;
     }
 
 

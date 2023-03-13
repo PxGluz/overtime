@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class VisionCone : MonoBehaviour
 {
+    public Transform sourcePosition;
     public float visionAngle;
     private float halfAngle;
     public float visionDistance;
@@ -16,22 +17,22 @@ public class VisionCone : MonoBehaviour
 
     void Update()
     {
-        Debug.DrawRay(gameObject.transform.position, gameObject.transform.forward * visionDistance, new Color(0, 1, 0));
+        Debug.DrawRay(sourcePosition.position, sourcePosition.forward * visionDistance, new Color(0, 1, 0));
     }
 
     // Checks if object is in view by casting a ray towards the object, and checking if: the object is hit by the ray, and,
     // if that is the case, if the angle between the ray and the forward vector is small enough.
     public bool IsInView(GameObject obj)
     {
-        Vector3 dir = obj.transform.position - gameObject.transform.position;
-        if (Physics.Raycast(gameObject.transform.position, Vector3.Normalize(dir), out RaycastHit hitInfo, visionDistance, hitLayer))
+        Vector3 dir = obj.transform.position - sourcePosition.position;
+        if (Physics.Raycast(sourcePosition.position, Vector3.Normalize(dir), out RaycastHit hitInfo, visionDistance, hitLayer))
         {
             //Debug.Log(hitInfo.collider.gameObject.name);
             if (hitInfo.collider.gameObject.Equals(obj))
             {
-                if (Mathf.Abs(Vector3.Angle(gameObject.transform.forward, Vector3.Normalize(dir))) <= halfAngle)
+                if (Mathf.Abs(Vector3.Angle(sourcePosition.forward, Vector3.Normalize(dir))) <= halfAngle)
                 {
-                    Debug.DrawRay(gameObject.transform.position, dir, new Color(0, 0, 1));
+                    Debug.DrawRay(sourcePosition.position, dir, new Color(0, 0, 1));
                     return true;
                 }
             }
@@ -42,6 +43,6 @@ public class VisionCone : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, visionDistance);
+        Gizmos.DrawWireSphere(sourcePosition.position, visionDistance);
     }
 }

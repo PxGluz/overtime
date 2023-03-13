@@ -15,8 +15,6 @@ public class PlayerThrow : MonoBehaviour
 
     [Header("Throwing")]
     public KeyCode throwKey = KeyCode.Mouse0;
-    //public float throwForce;
-    //public float throwUpwardForce;
 
     bool readyToThrow;
 
@@ -95,6 +93,12 @@ public class PlayerThrow : MonoBehaviour
             thrownProjectile.damage = Player.m.weaponManager.currentWeapon.throwDamage;
             thrownProjectile.myPickUp = Player.m.weaponManager.currentWeapon.WeaponPrefab;
             thrownProjectile.PickUpSetActive(false);
+        }
+
+        RotateWhenThrown rotateWhenThrown = projectile.GetComponent<RotateWhenThrown>();
+        if (rotateWhenThrown != null)
+        {
+            rotateWhenThrown.enabled = true;
         }
 
         SetQuantityOfInteractable(projectile);

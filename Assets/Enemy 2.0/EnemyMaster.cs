@@ -24,9 +24,10 @@ public class EnemyMaster : MonoBehaviour
     public WeaponManager.Weapon WeaponClass;
 
     [Header("State:")]
+    public bool isDead = false;
     public EnemyType enemyType;
     public bool isStunned;
-    public float stunTime = 0f;
+    private float stunTime = 0f;
 
     [Header("Ragdoll Death Related:")] 
     public GameObject animatedRig;
@@ -78,6 +79,9 @@ public class EnemyMaster : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (isDead)
+            return;
+
         currentHealth -= damage;
 
         print("Oh no, I " + this.gameObject.name + " took " + damage + " damage!");
@@ -98,6 +102,8 @@ public class EnemyMaster : MonoBehaviour
 
     public void Die()
     {
+        isDead = true;
+
         // Drop enemy weapon
         weaponInHand.SetActive(false);
         GameObject drop = Instantiate(WeaponClass.WeaponPrefab, weaponInHand.transform.position, weaponInHand.transform.rotation);

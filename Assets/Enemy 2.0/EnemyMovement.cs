@@ -89,9 +89,11 @@ public class EnemyMovement : MonoBehaviour
             else
             {
                 //agent.updateRotation = false;
-                RotateAtTarget(gameObject.transform, Player.m.playerCam.orientation, rotateAfterPlayerSpeed);
                 if (canSeePlayer)
+                {
                     agent.SetDestination(transform.position);
+                    RotateAtTarget(gameObject.transform, Player.m.playerCam.orientation, rotateAfterPlayerSpeed);
+                }
                 else
                     agent.SetDestination(Player.m.transform.position);
             }
@@ -280,7 +282,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(gameObject.transform.position, announceRange);
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(gameObject.transform.position, PreferedDistanceToPlayer);
