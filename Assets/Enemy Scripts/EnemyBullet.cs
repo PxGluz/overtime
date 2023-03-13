@@ -11,9 +11,9 @@ public class EnemyBullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.DrawRay(transform.position, transform.forward * 2f, Color.yellow);
+        Debug.DrawRay(transform.position, transform.forward * 1f, Color.yellow);
 
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 2f))
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1f))
         {
             HandleLayerLogic(hit);
         }
@@ -37,7 +37,10 @@ public class EnemyBullet : MonoBehaviour
 
         }
 
-        Destroy(gameObject);
+        if (LayerMask.LayerToName(hit.collider.gameObject.gameObject.layer) != "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Expire() => Destroy(gameObject);

@@ -13,8 +13,8 @@ public class EnemyRanged : MonoBehaviour
     public GameObject enemyBullet;
     public GameObject muzzleFlash;
     public Transform gunPosition;
-    public float reactionTime = 1f;
     public float reloadCooldown = 2f;
+    public float gunDrawTime = 1f;
 
     [Header("For debugging: ")]
     public int bulletsleft;
@@ -56,7 +56,7 @@ public class EnemyRanged : MonoBehaviour
         {
             if (!isRaisingArms && !enemy.animator.GetBool("isAiming")) {
                 isRaisingArms = true;
-                Invoke(nameof(RaiseArmsUp), reactionTime);
+                Invoke(nameof(RaiseArmsUp), gunDrawTime);
                 enemy.animator.SetBool("isAiming", true);
             }
         }
@@ -73,7 +73,7 @@ public class EnemyRanged : MonoBehaviour
         if ( enemy.enemyMovement.canSeePlayer && readyToShoot && !reloading && bulletsleft > 0)
         {
             bulletsShot = 0;
-            enemy.StunEnemy(enemy.WeaponClass.gunBulletsPerTap * enemy.WeaponClass.gunTimeBetweenShots +0.5f);
+            enemy.StunEnemy(enemy.WeaponClass.gunBulletsPerTap * enemy.WeaponClass.gunTimeBetweenShots + 0.5f);
             Shoot();
         }
     }
