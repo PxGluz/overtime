@@ -56,9 +56,6 @@ public class ThrownProjectile : MonoBehaviour
         else
             gameObject.layer = LayerMask.NameToLayer("Default");
 
-        //if (value)
-        //    rb.velocity = Vector3.zero;
-
         
         foreach (Transform child in AllChildren)
             child.gameObject.layer = value ? LayerMask.NameToLayer("Interactable") : LayerMask.NameToLayer("Default");

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class PlayerMelee : MonoBehaviour
@@ -75,15 +76,16 @@ public class PlayerMelee : MonoBehaviour
             switch (LayerMask.LayerToName(obj.gameObject.layer))
             {
                 case "Enemy":
-
                     EnemyMaster enemy = obj.gameObject.GetComponentInParent<EnemyMaster>();
                     if (enemy != null)
                     {
+                        print(obj.gameObject.name);
 
                         if (CurrentMeleeIndex != enemy.lastMeleeIndex)
                         {
                             enemy.lastMeleeIndex = CurrentMeleeIndex;
-                            enemy.TakeDamage(Player.m.weaponManager.currentWeapon.meleeDamage);
+                            enemy.TakeDamage(Player.m.weaponManager.currentWeapon.meleeDamage, obj.gameObject, transform.forward * 30f);
+                            //enemy.TakeDamage(Player.m.weaponManager.currentWeapon.meleeDamage);
                         }
                     }
                     break;

@@ -22,7 +22,7 @@ public class DamageWhileFalling : MonoBehaviour
 
         alreadyHitObjects.Add(collision.gameObject);
 
-        EnemyMaster enemy = collision.gameObject.GetComponent<EnemyMaster>();
+        EnemyMaster enemy = collision.gameObject.GetComponentInParent<EnemyMaster>();
         if (enemy != null)
         {
             enemy.TakeDamage(damage);
