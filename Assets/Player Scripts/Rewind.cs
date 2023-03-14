@@ -192,10 +192,12 @@ public class Rewind : MonoBehaviour
         if (GhostList.Count == 1)
             ghostColor = newGhost.GetComponentInChildren<SkinnedMeshRenderer>().material.color;
 
-        for (int i = 0; i < GhostList.Count; i++)
+        for (int i = 0; i < GhostList.Count - 1; i++)
         {
             GhostList[i].material.color = new Color(ghostColor.r, ghostColor.g, ghostColor.b, (float)i / (float)GhostList.Count);
         }
+
+        GhostList[GhostList.Count - 1].material.color = MostRecentGhostColor;
 
     }
 
@@ -245,13 +247,6 @@ public class Rewind : MonoBehaviour
 
             }
         }
-
-        /*
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            GoToPreviousMomentInTime(false);
-        }
-        */
         
     }
 
