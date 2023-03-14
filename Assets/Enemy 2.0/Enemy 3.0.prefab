@@ -624,7 +624,7 @@ Transform:
   - {fileID: 1331762506588412869}
   - {fileID: 1251729959106737983}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2258924356588562539
 Rigidbody:
@@ -1796,7 +1796,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &5920384954020159716
@@ -1957,7 +1957,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &6306154725002534473
@@ -2293,6 +2293,7 @@ MonoBehaviour:
   KnifePosition: {fileID: 7586429303956561500}
   meleeDamage: 0
   meleeAttackSpeed: 0.1
+  enemyPunchDuration: 0
   isMeleeAttacking: 0
 --- !u!1 &7162520377436699308
 GameObject:
@@ -2422,7 +2423,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &7586429303495260844
@@ -3090,6 +3091,6 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1

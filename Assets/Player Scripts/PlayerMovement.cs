@@ -297,7 +297,7 @@ public class PlayerMovement : MonoBehaviour
 
             yield return 0;
 
-        } while (time < duration);
+        } while (time < duration * Time.timeScale);
 
         if (Player.m.crouchLogic.hasSpaceAboveHead)
             Player.m.crouchLogic.exitCrouch();

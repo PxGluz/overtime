@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,11 +30,15 @@ public class Player : MonoBehaviour
     public string AttackType = "melee"; // current attack types: none, shoot, melee   | future attack types: throw
     public LayerMask groundLayer;
     public LayerMask enemyLayer;
+    public float lowTimeScale;
+    public float smoothTime;
+    [HideInInspector]public float timeScaleTarget;
 
     [Header("Stats:")]
     public float MaxHealth;
     public float currentHealth;
 
+    private float ref1;
 
     void Awake()
     {
@@ -106,4 +111,14 @@ public class Player : MonoBehaviour
         print("Won");
     }
 
+    void SlowTimeLogic()
+    {
+        Time.timeScale = Mathf.SmoothDamp(Time.timeScale, timeScaleTarget, ref ref1, smoothTime);
+    }
+    
+
+    private void Update()
+    {
+        SlowTimeLogic();
+    }
 }
