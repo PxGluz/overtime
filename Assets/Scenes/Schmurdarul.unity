@@ -3388,11 +3388,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651203779}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &654796374 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 654796374, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
-  m_PrefabInstance: {fileID: 3982301615916881980}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &661478971
 GameObject:
   m_ObjectHideFlags: 0
@@ -11745,14 +11740,6 @@ PrefabInstance:
       propertyPath: AttackPointObject
       value: 
       objectReference: {fileID: 1991072799}
-    - target: {fileID: 593397564, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
-      propertyPath: RewindTimeDisplay
-      value: 
-      objectReference: {fileID: 654796374}
-    - target: {fileID: 593397564, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
-      propertyPath: MostRecentGhostColor.a
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3982301615608917476, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: m_RootOrder
       value: 0
