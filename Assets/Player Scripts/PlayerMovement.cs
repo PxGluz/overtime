@@ -293,8 +293,8 @@ public class PlayerMovement : MonoBehaviour
         {
             time += Time.deltaTime;
 
-            rb.AddForce(moveDirection.normalized * speed * 10f, ForceMode.Force);
-
+            rb.AddForce(moveDirection.normalized * speed * 10f * Time.timeScale, ForceMode.Force);
+            
             yield return 0;
 
         } while (time < duration);

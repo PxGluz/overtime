@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
@@ -23,17 +26,28 @@ public class Player : MonoBehaviour
     public Rigidbody playerRigidBody;
     public GameObject PointDebug;
     public GameObject playerObject;
+    public VolumeProfile volume;
 
     [Header("Important variables:")]
     public string MoveType = "stop"; // current move types: stop, walk, run, crouch, slide
     public string AttackType = "melee"; // current attack types: none, shoot, melee   | future attack types: throw
     public LayerMask groundLayer;
     public LayerMask enemyLayer;
+    public float lowTimeScale;
+    public float smoothTime;
+    private float timeScaleTarget = 1;
 
+    [Header("PostProcessing")] 
+    private float vigTarget = 0;
+    public float vigIntensity;
+    private float bloomTarget = 0;
+    public float bloomIntensity;
+    
     [Header("Stats:")]
     public float MaxHealth;
     public float currentHealth;
 
+    private float ref1, ref2, ref3;
 
     void Awake()
     {
@@ -106,4 +120,35 @@ public class Player : MonoBehaviour
         print("Won");
     }
 
+    public void Slowing()
+    {
+        timeScaleTarget = lowTimeScale;
+        vigTarget = vigIntensity;
+        bloomTarget = bloomIntensity;
+    }
+
+    public void Fasting()
+    {
+        timeScaleTarget = 1;
+        vigTarget = 0;
+        bloomTarget = 0;
+    }
+    
+    void SlowTimeLogic()
+    {
+        Time.timeScale = Mathf.SmoothDamp(Time.timeScale, timeScaleTarget, ref ref1, smoothTime);
+        if (volume)
+        {
+            if (volume.TryGet(out Vignette vig))
+                vig.intensity.value = Mathf.SmoothDamp(vig.intensity.value, vigTarget, ref ref2, smoothTime);
+            if (volume.TryGet(out Bloom blm))
+                blm.intensity.value = Mathf.SmoothDamp(blm.intensity.value, bloomTarget, ref ref3, smoothTime);
+        }
+    }
+    
+
+    private void Update()
+    {
+        SlowTimeLogic();
+    }
 }
