@@ -9323,13 +9323,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerGhost: {fileID: 4455773001095476496, guid: 9f9145bbac3bca54a9ca9df78362e593, type: 3}
-  MostRecentGhostColor: {r: 0, g: 0, b: 0, a: 0}
+  MostRecentGhostColor: {r: 0, g: 0, b: 0, a: 1}
   TimeMoments: []
   PlayerMoments: []
   currentMomentRoot: {fileID: 0}
   CurrentMomentInTime: 0
   rootObjects: []
   GhostList: []
+  RewindTimeDisplay: {fileID: 654796374}
 --- !u!114 &1216285252
 MonoBehaviour:
   m_ObjectHideFlags: 0
