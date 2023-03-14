@@ -136,11 +136,14 @@ public class EnemyMovement : MonoBehaviour
         float time = 0.0f;
         do
         {
+            if (this == null)
+                yield break;
+
             time += Time.deltaTime;
 
             if (canSeePlayer)
-                time = 0.0f;
-
+                time = 0.0f;   
+            
             Announce();
 
             yield return 0;

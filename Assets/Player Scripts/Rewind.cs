@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 
@@ -211,21 +212,68 @@ public class Rewind : MonoBehaviour
 
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.I))
         {
             Debug.Log("saved");
             CreateNewMomentInTime();
         }
 
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            GoToPreviousMomentInTime(true);
+            if (!isInTimeAfterRewind)
+            {
+                GoToPreviousMomentInTime(false);
+
+                if (TimeAfterRewindRef != null)
+                    StopCoroutine(TimeAfterRewindRef);
+
+                TimeAfterRewindRef = TimeAfterRewind(2f);
+                StartCoroutine(TimeAfterRewindRef);
+
+
+            }
+            else
+            {
+                GoToPreviousMomentInTime(true);
+
+                if (TimeAfterRewindRef != null)
+                    StopCoroutine(TimeAfterRewindRef);
+
+                TimeAfterRewindRef = TimeAfterRewind(2f);
+                StartCoroutine(TimeAfterRewindRef);
+
+            }
         }
 
+        /*
         if (Input.GetKeyDown(KeyCode.P))
         {
             GoToPreviousMomentInTime(false);
         }
+        */
         
     }
+
+    private IEnumerator TimeAfterRewindRef;
+    private bool isInTimeAfterRewind;
+    public GameObject RewindTimeDisplay;
+    private IEnumerator TimeAfterRewind(float time)
+    {
+        isInTimeAfterRewind = true;
+        print(CurrentMomentInTime != 1);
+
+        RewindTimeDisplay.SetActive(false);
+        
+        if (CurrentMomentInTime != 1)
+            RewindTimeDisplay.SetActive(true);
+
+        yield return new WaitForSeconds(time);
+
+        if (CurrentMomentInTime != 1)
+            RewindTimeDisplay.SetActive(false);
+
+        isInTimeAfterRewind = false;
+    }
+
 }

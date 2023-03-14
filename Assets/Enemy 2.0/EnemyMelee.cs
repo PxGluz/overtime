@@ -19,10 +19,9 @@ public class EnemyMelee : MonoBehaviour
     public float meleeAttackSpeed;
 
     [Header("Animations durations")]
-    private float enemyPunchDuration;
+    public float enemyPunchDuration;
 
     //States:
-    [HideInInspector]
     public bool isMeleeAttacking = false;
     private bool canAttack = true;
     private bool thisAttackHasHitThePlayer;
@@ -91,7 +90,7 @@ public class EnemyMelee : MonoBehaviour
         {
             switch (clip.name)
             {
-                case "Enemy Punch":
+                case "Enemy Stab":
                     enemyPunchDuration = clip.length;
                     break;
             }

@@ -71,7 +71,7 @@ public class PlayerShooting : MonoBehaviour
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
         // Reloading
-        if (Input.GetKeyDown(KeyCode.R) && bulletsleft < weaponM.currentWeapon.gunMagazineSize && !reloading)
+        if (Input.GetKeyDown(KeyCode.T) && bulletsleft < weaponM.currentWeapon.gunMagazineSize && !reloading)
             Reload();
 
         /*

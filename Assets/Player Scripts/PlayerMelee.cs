@@ -79,7 +79,7 @@ public class PlayerMelee : MonoBehaviour
                     EnemyMaster enemy = obj.gameObject.GetComponentInParent<EnemyMaster>();
                     if (enemy != null)
                     {
-                        print(obj.gameObject.name);
+                        print(obj.gameObject.name); 
 
                         if (CurrentMeleeIndex != enemy.lastMeleeIndex)
                         {

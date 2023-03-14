@@ -76,7 +76,11 @@ public class EnemyMaster : MonoBehaviour
     public void TakeDamage(float damage, GameObject bodyPart=null, Vector3 direction=new Vector3())
     {
         if (isDead)
+        {
+            if (bodyPart && bodyPart.TryGetComponent(out Rigidbody rbBodyPart))
+                rbBodyPart.velocity = direction;
             return;
+        }
 
         currentHealth -= damage;
 
@@ -89,9 +93,10 @@ public class EnemyMaster : MonoBehaviour
         }
         else
         {
-            enemyMovement.Announce(false);
+            if (enemyMovement != null)
+                enemyMovement.Announce(false);
 
-            if (!enemyMovement.isChasingPlayer)
+            if (enemyMovement != null && !enemyMovement.isChasingPlayer)
                 StartCoroutine(enemyMovement.ChasePlayer(enemyMovement.chaseDuration));
         }
     }
@@ -128,16 +133,15 @@ public class EnemyMaster : MonoBehaviour
         if (bodyPart && bodyPart.TryGetComponent(out Rigidbody rbBodyPart))
             rbBodyPart.velocity = direction;
 
-        // Disable enemy scripts
-        visionCone.enabled = false;
-
+        //Destroy Enemy Scripts:
         enemyMovement.StopAllCoroutines();
-        enemyMovement.isChasingPlayer = false;
-        enemyMovement.agent.enabled = false;
-        enemyMovement.enabled = false;
-
-        enemyMelee.enabled = false;
-        enemyRanged.enabled = false;
+        Destroy(enemyMovement.agent);
+        Destroy(enemyMovement);
+        Destroy(GetComponent<Rigidbody>());
+        Destroy(enemyMelee);
+        Destroy(enemyRanged);
+        Destroy(visionCone);
+        Destroy(animator);
 
         // Create moment in time
         Player.m.rewind.Invoke (nameof(Player.m.rewind.CreateNewMomentInTime),0.1f);
