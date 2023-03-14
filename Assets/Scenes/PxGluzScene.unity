@@ -192,18 +192,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 394470291, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1153755962031841816, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2508867731813479231, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3982301615608917476, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -746,22 +734,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2258924356588562538, guid: 23c971ae89076f24c99d428ded9198a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3488678023299750685, guid: 23c971ae89076f24c99d428ded9198a4, type: 3}
-      propertyPath: m_EnablePreprocessing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5350761178898218240, guid: 23c971ae89076f24c99d428ded9198a4, type: 3}
-      propertyPath: m_EnablePreprocessing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5601716765763299986, guid: 23c971ae89076f24c99d428ded9198a4, type: 3}
-      propertyPath: m_EnablePreprocessing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6314119629767949635, guid: 23c971ae89076f24c99d428ded9198a4, type: 3}
-      propertyPath: m_EnablePreprocessing
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

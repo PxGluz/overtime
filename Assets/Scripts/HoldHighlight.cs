@@ -24,13 +24,13 @@ public class HoldHighlight : MonoBehaviour
         if (Input.GetMouseButton(2))
         {
             destinationColor = 1;
-            Player.m.timeScaleTarget = Player.m.lowTimeScale;
+            Player.m.Slowing();
         }
         else
         {
             
             destinationColor = 0;
-            Player.m.timeScaleTarget = 1;
+            Player.m.Fasting();
         }
         destinationColor = Mathf.SmoothDamp(myOutLine.OutlineColor.a, destinationColor, ref refFloat, smoothTime);
         if (!interact || (interact && interact.itemBeingPickedUp != gameObject.GetComponent<Interactable>()))
