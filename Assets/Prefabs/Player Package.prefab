@@ -210,6 +210,89 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &226546525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 226546526}
+  - component: {fileID: 226546528}
+  - component: {fileID: 226546527}
+  m_Layer: 3
+  m_Name: TimeGrenade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &226546526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226546525}
+  m_LocalRotation: {x: -0.29907423, y: 0.4922207, z: 0.69862926, w: 0.42448854}
+  m_LocalPosition: {x: 0.486, y: -0.268, z: 0.679}
+  m_LocalScale: {x: 4.16, y: 4.16, z: 4.16}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 571179596}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: -70.333, y: 0, z: 117.434}
+--- !u!33 &226546528
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226546525}
+  m_Mesh: {fileID: -6412359616235336806, guid: 130b7a6a504e98e4f8acefeaba1cf2de, type: 3}
+--- !u!23 &226546527
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226546525}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 3334f82e7aca30c4b9871821f4a69aa9, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &246176879
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,6 +806,7 @@ Transform:
   - {fileID: 394470292}
   - {fileID: 4205902198792762988}
   - {fileID: 1714318191}
+  - {fileID: 226546526}
   m_Father: {fileID: 3982301615087226215}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -871,29 +955,6 @@ MonoBehaviour:
     gunBulletsPerTap: 0
     gunTimeBetweenShots: 0
     gunAllowButtonHold: 0
-  - name: Grenade
-    WeaponModelOnPlayer: {fileID: 1714318190}
-    WeaponPrefab: {fileID: 7236612706473255808, guid: e19429fe5e43dc94784f6ebf13a1115d, type: 3}
-    attackType: 2
-    animationType: 0
-    throwDamage: 1000
-    throwForce: 20
-    throwUpwardForce: 5
-    DamageSphereOrigin: {fileID: 0}
-    meleeDamage: 0
-    DamageSphereRadius: 0
-    meleeAttackSpeed: 0
-    shootPoint: {fileID: 0}
-    bulletDamage: 0
-    gunShootForce: 0
-    gunUpwardForce: 0
-    gunTimeBetweenShooting: 0
-    gunSpread: 0
-    gunReloadTime: 0
-    gunMagazineSize: 0
-    gunBulletsPerTap: 0
-    gunTimeBetweenShots: 0
-    gunAllowButtonHold: 0
   - name: ProximityMine
     WeaponModelOnPlayer: {fileID: 3536888562561838294}
     WeaponPrefab: {fileID: 2369381963526222805, guid: 0832824d4b54e2e48ae196e80f9357e3, type: 3}
@@ -984,6 +1045,29 @@ MonoBehaviour:
     gunReloadTime: 0.5
     gunMagazineSize: 10
     gunBulletsPerTap: 1
+    gunTimeBetweenShots: 0
+    gunAllowButtonHold: 0
+  - name: TimeGrenade
+    WeaponModelOnPlayer: {fileID: 226546525}
+    WeaponPrefab: {fileID: 4291248884899067702, guid: 42155ebe94a9c714d9e30ad8e632e254, type: 3}
+    attackType: 2
+    animationType: 0
+    throwDamage: 0
+    throwForce: 20
+    throwUpwardForce: 5
+    DamageSphereOrigin: {fileID: 0}
+    meleeDamage: 0
+    DamageSphereRadius: 0
+    meleeAttackSpeed: 0
+    shootPoint: {fileID: 0}
+    bulletDamage: 0
+    gunShootForce: 0
+    gunUpwardForce: 0
+    gunTimeBetweenShooting: 0
+    gunSpread: 0
+    gunReloadTime: 0
+    gunMagazineSize: 0
+    gunBulletsPerTap: 0
     gunTimeBetweenShots: 0
     gunAllowButtonHold: 0
 --- !u!1 &593109983
@@ -9327,6 +9411,7 @@ GameObject:
   - component: {fileID: 4581519826268382893}
   - component: {fileID: 593397564}
   - component: {fileID: 1216285252}
+  - component: {fileID: 2372774186506820670}
   m_Layer: 3
   m_Name: Managers
   m_TagString: Untagged
@@ -9400,6 +9485,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoseScreen: {fileID: 1118265211}
   WinScreen: {fileID: 883355716}
+--- !u!114 &2372774186506820670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8350131747216620355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 570f9e92156951c409d97ae571044825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MasterMixer: {fileID: 24300002, guid: d390e54cd3745a74f9ce824e8bd8bbaf, type: 2}
+  audioMixer: {fileID: 24100000, guid: d390e54cd3745a74f9ce824e8bd8bbaf, type: 2}
+  sounds:
+  - name: cacat
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: cacat
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &8441296587609127583
 GameObject:
   m_ObjectHideFlags: 0

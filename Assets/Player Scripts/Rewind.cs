@@ -256,7 +256,6 @@ public class Rewind : MonoBehaviour
     private IEnumerator TimeAfterRewind(float time)
     {
         isInTimeAfterRewind = true;
-        print(CurrentMomentInTime != 1);
 
         RewindTimeDisplay.SetActive(false);
         

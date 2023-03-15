@@ -134,17 +134,30 @@ public class EnemyMaster : MonoBehaviour
             rbBodyPart.velocity = direction;
 
         //Destroy Enemy Scripts:
-        enemyMovement.StopAllCoroutines();
-        Destroy(enemyMovement.agent);
-        Destroy(enemyMovement);
-        Destroy(GetComponent<Rigidbody>());
-        Destroy(enemyMelee);
-        Destroy(enemyRanged);
-        Destroy(visionCone);
+        IncapacitateEnemy();
         Destroy(animator);
 
         // Create moment in time
         Player.m.rewind.Invoke (nameof(Player.m.rewind.CreateNewMomentInTime),0.1f);
+    }
+
+    public void IncapacitateEnemy()
+    {
+        //Destroy Enemy Scripts:
+        if (enemyMovement != null)
+        {
+            enemyMovement.StopAllCoroutines();
+            Destroy(enemyMovement.agent);
+            Destroy(enemyMovement);
+        }
+        if (TryGetComponent(out Rigidbody rbBody))
+            Destroy(rbBody);
+        if (enemyMelee != null)
+            Destroy(enemyMelee);
+        if (enemyRanged != null)
+            Destroy(enemyRanged);
+        if (visionCone != null)
+            Destroy(visionCone);
     }
 
     void PutWeaponInHand()
