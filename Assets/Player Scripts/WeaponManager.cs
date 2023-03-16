@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -46,7 +48,8 @@ public class WeaponManager : MonoBehaviour
         public int gunMagazineSize;
         [Tooltip("How many bullets are created on click")]
         public int gunBulletsPerTap = 1;
-        [SerializeField][Range(0.0f, 0.2f)]
+        [SerializeField]
+        [Range(0.0f, 0.2f)]
         [Tooltip("This is the time between bullets when shooting more than one bullets per tap")]
         public float gunTimeBetweenShots = 0.05f;
         public bool gunAllowButtonHold;
@@ -57,21 +60,21 @@ public class WeaponManager : MonoBehaviour
     public Weapon currentWeapon;
     public Weapon[] WeaponsList;
 
-    [Header("Animation Settings")] public float smoothTime;
+    [Header("Animation Settings")]
+    public float smoothTime;
 
-    [Header("Animation Related")] 
+    [Header("Animation Related")]
     private Transform animationPoint;
-    private Vector3 ref1, ref2;
-    [HideInInspector]public bool inPlace;
+    [HideInInspector] public bool inPlace;
 
     private void Start()
     {
         weaponAnimator = GetComponent<Animator>();
         ChangeWeapon("Fists");
         LoadAllGuns();
-        foreach (Transform child in currentWeapon.WeaponModelOnPlayer.transform)
-            if (child.name == "AnimationPoint")
-                animationPoint = child;
+        //foreach (Transform child in currentWeapon.WeaponModelOnPlayer.transform)
+        //    if (child.name == "AnimationPoint")
+        //        animationPoint = child;
         inPlace = true;
     }
 
@@ -88,24 +91,22 @@ public class WeaponManager : MonoBehaviour
                 DeactivateNonSelectedWeapons(weapon.name);
 
                 currentWeapon = weapon;
-                
+
                 // Weapon animation start
 
                 if (interactableObject)
                 {
-                    
                     foreach (Transform child in currentWeapon.WeaponModelOnPlayer.transform)
                         if (child.name == "AnimationPoint")
                             animationPoint = child;
 
-                    animationPoint.position = interactableObject.position;
-                    animationPoint.eulerAngles = interactableObject.eulerAngles;
+                    IEnumerator sendItemToPositon = SendItemToPosition(animationPoint, interactableObject, smoothTime, currentWeapon.WeaponModelOnPlayer.transform);
 
-                    inPlace = false;
+                    StartCoroutine(sendItemToPositon);
                 }
-                
+
                 // Weapon animation end
-                
+
                 Player.m.AttackType = weapon.attackType.ToString();
 
                 if (weapon.attackType.ToString() == "melee")
@@ -179,9 +180,49 @@ public class WeaponManager : MonoBehaviour
             interactable.quantity = GetWeaponByName(interactable.itemName).gunMagazineSize;
     }
 
+    public IEnumerator SendItemToPosition(Transform animationPoint, Transform interactableObject, float moveDuration, Transform WeaponModelOnPlayer)
+    {
+        inPlace = false;
+        Vector3 previousPosition = interactableObject.position;
+        Quaternion previousRotation = interactableObject.rotation;
+
+        animationPoint.position = interactableObject.position;
+        animationPoint.rotation = interactableObject.rotation;
+
+        float time = 0.0f;
+        do
+        {
+            time += Time.deltaTime;
+
+            //animationPoint.position = Vector3.SmoothDamp( animationPoint.position, WeaponModelOnPlayer.position, ref ref1, time / moveDuration);
+            animationPoint.position = Vector3.Lerp(previousPosition, WeaponModelOnPlayer.position, time / moveDuration);
+            animationPoint.rotation = Quaternion.Slerp(previousRotation, WeaponModelOnPlayer.rotation, time / moveDuration);
+
+            yield return 0;
+
+        } while (time < moveDuration);
+
+        inPlace = true;
+
+    }
+    private Vector3 ref1, ref2;
+    public enum AnimationType
+    {
+        None, GenericRanged, GenericMelee
+    }
+
+    public enum AttackType
+    {
+        melee, ranged, throwing
+    }
+
     // Function for setting items to their place
+    /*
     public void SendItemToPosition()
     {
+        if (inPlace)
+            return;
+
         animationPoint.position = Vector3.SmoothDamp(
             animationPoint.position, animationPoint.parent.position, ref ref1, smoothTime);
 
@@ -209,20 +250,17 @@ public class WeaponManager : MonoBehaviour
         if ((tempAnim - tempDest).magnitude <= 0.1f) 
             inPlace = true;
     }
-    
+    */
 
-    public enum AnimationType
-    {
-        None, GenericRanged, GenericMelee
-    }
+    /*
+     foreach (Transform child in currentWeapon.WeaponModelOnPlayer.transform)
+                        if (child.name == "AnimationPoint")
+                            animationPoint = child;
 
-    public enum AttackType
-    {
-        melee, ranged, throwing
-    }
+                    animationPoint.position = interactableObject.position;
+                    animationPoint.eulerAngles = interactableObject.eulerAngles;
 
-    private void Update()
-    {
-        SendItemToPosition();
-    }
+                    inPlace = false;
+     */
+
 }

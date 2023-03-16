@@ -79,12 +79,10 @@ public class Interact : MonoBehaviour
 
         itemBeingPickedUp.TriggerFunction = true;
 
-        if (itemBeingPickedUp.isWeaponPickUp)
+        if (itemBeingPickedUp.isWeaponPickUp && Player.m.weaponManager.inPlace)
         {
             Player.m.weaponManager.ChangeWeapon(itemBeingPickedUp.itemName,  itemBeingPickedUp.quantity, interactableObject:itemBeingPickedUp.transform);
-            // TODO: For pickup animation
-            /*Player.m.weaponManager.transform.position = itemBeingPickedUp.transform.position;
-            Player.m.weaponManager.transform.rotation = itemBeingPickedUp.transform.rotation;*/
+
             Destroy(itemBeingPickedUp.gameObject);
 
             return;
