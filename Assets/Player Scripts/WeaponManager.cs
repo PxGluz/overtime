@@ -194,13 +194,16 @@ public class WeaponManager : MonoBehaviour
         {
             time += Time.deltaTime;
 
-            //animationPoint.position = Vector3.SmoothDamp( animationPoint.position, WeaponModelOnPlayer.position, ref ref1, time / moveDuration);
-            animationPoint.position = Vector3.Lerp(previousPosition, WeaponModelOnPlayer.position, time / moveDuration);
+            animationPoint.position = Vector3.SmoothDamp(animationPoint.position, WeaponModelOnPlayer.position, ref ref1, moveDuration);
+            //animationPoint.position = Vector3.Lerp(previousPosition, WeaponModelOnPlayer.position, time / moveDuration);
             animationPoint.rotation = Quaternion.Slerp(previousRotation, WeaponModelOnPlayer.rotation, time / moveDuration);
 
             yield return 0;
 
-        } while (time < moveDuration);
+        }while (Vector3.Distance(animationPoint.position, WeaponModelOnPlayer.position) > 0.01f);
+
+        animationPoint.position = WeaponModelOnPlayer.position;
+        animationPoint.rotation = WeaponModelOnPlayer.rotation;
 
         inPlace = true;
 
