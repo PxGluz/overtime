@@ -180,6 +180,7 @@ public class WeaponManager : MonoBehaviour
             interactable.quantity = GetWeaponByName(interactable.itemName).gunMagazineSize;
     }
 
+    private Vector3 ref1;
     public IEnumerator SendItemToPosition(Transform animationPoint, Transform interactableObject, float moveDuration, Transform WeaponModelOnPlayer)
     {
         inPlace = false;
@@ -197,7 +198,7 @@ public class WeaponManager : MonoBehaviour
             animationPoint.position = Vector3.SmoothDamp(animationPoint.position, WeaponModelOnPlayer.position, ref ref1, moveDuration);
             //animationPoint.position = Vector3.Lerp(previousPosition, WeaponModelOnPlayer.position, time / moveDuration);
             animationPoint.rotation = Quaternion.Slerp(previousRotation, WeaponModelOnPlayer.rotation, time / moveDuration);
-
+            print(time);
             yield return 0;
 
         }while (Vector3.Distance(animationPoint.position, WeaponModelOnPlayer.position) > 0.01f);
@@ -208,7 +209,6 @@ public class WeaponManager : MonoBehaviour
         inPlace = true;
 
     }
-    private Vector3 ref1, ref2;
     public enum AnimationType
     {
         None, GenericRanged, GenericMelee

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Grenade : MonoBehaviour
 {
     ThrownProjectile thrownProjectile;
-    //public GameObject explosionPrefab;
     public float radius = 10;
     public float damage = 10;
     public float pushForce = 10;
@@ -15,7 +14,6 @@ public class Grenade : MonoBehaviour
     {
         thrownProjectile = GetComponent<ThrownProjectile>();
     }
-
 
     private void OnCollisionEnter(Collision collision)
     {

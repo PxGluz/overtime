@@ -13,14 +13,6 @@ public class PlayerMelee : MonoBehaviour
     public KeyCode meleeKey = KeyCode.Mouse0;
     public bool isMeleeAttacking = false;
     public bool canAttack = true;
-    
-    //public Transform DamageSphereOrigin;
-    //public float DamageSphereRadius;
-
-    //[Header("Statistics: ")]
-    //public float MeleeDamage;
-    //public float MeleeAttackCooldown = 1;
-
 
     // The AttackIndex system is in place so the same attack can't hit an enemy more than one, each time the player inputs an attack a new attackIndex is generated,
     // when the enemy is hit, it remebers the last AttackIndex of the attack that hit it, because the player melee does damage during multiple frames, the same attack 
@@ -28,7 +20,6 @@ public class PlayerMelee : MonoBehaviour
     // the CurrentMeleeIndex and lastMeleeIndex in the Enemy Script prevents that 
     [HideInInspector]
     public int CurrentMeleeIndex = 0;
-
 
     void Update()
     {
@@ -56,20 +47,16 @@ public class PlayerMelee : MonoBehaviour
         // check for enemies in melee range
         if (isMeleeAttacking)
         {
-            
             DealDamageFromDamagePoint(Player.m.weaponManager.currentWeapon.DamageSphereOrigin, Player.m.weaponManager.currentWeapon.DamageSphereRadius);
-            
         }
 
     }
 
-    
     public void DealDamageFromDamagePoint(Transform origin, float radius)
     {
 
         //detect enemy
         Collider[] hitObjects = Physics.OverlapSphere(origin.position, radius, Player.m.enemyLayer);
-
 
         foreach (Collider obj in hitObjects)
         {
@@ -85,7 +72,6 @@ public class PlayerMelee : MonoBehaviour
                         {
                             enemy.lastMeleeIndex = CurrentMeleeIndex;
                             enemy.TakeDamage(Player.m.weaponManager.currentWeapon.meleeDamage, obj.gameObject, transform.forward * 30f);
-                            //enemy.TakeDamage(Player.m.weaponManager.currentWeapon.meleeDamage);
                         }
                     }
                     break;
@@ -101,17 +87,11 @@ public class PlayerMelee : MonoBehaviour
 
     public Transform TestMeleeSpherePoint;
     public float TestMeleeSphereRadius;
+    
     void OnDrawGizmosSelected()
     {
-        
         Gizmos.color = Color.yellow;
-
-        //if (!Application.isPlaying || Player.m.AttackType != "melee") return;
-
-        
         Gizmos.DrawWireSphere(TestMeleeSpherePoint.position, TestMeleeSphereRadius);
-        
-        
     }
 
 }
