@@ -13,9 +13,9 @@ public class MainMenu : MonoBehaviour
     public float menuFadeSpeed;
     public float rotationSpeed;
     public Animator weaponAnimator;
-    
+    public Player pl;
+
     private bool started = false;
-    private Player pl;
     private Transform playerCam;
     
     private void StartGame()
@@ -40,8 +40,7 @@ public class MainMenu : MonoBehaviour
     
     private void Awake()
     {
-        pl = Player.m;
-        playerCam = pl.MainCamera.transform;
+        playerCam = pl.playerCam.transform;
         pl.playerCam.enabled = false;
         pl.playerMelee.enabled = false;
         pl.enabled = false;

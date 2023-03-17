@@ -2504,6 +2504,7 @@ MonoBehaviour:
   menuFadeSpeed: 0.025
   rotationSpeed: 0.05
   weaponAnimator: {fileID: 1297950404}
+  pl: {fileID: 5170677757337185743}
 --- !u!1 &1118265211
 GameObject:
   m_ObjectHideFlags: 0
