@@ -370,7 +370,7 @@ Transform:
   m_Children:
   - {fileID: 8872780852792830050}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6628535389122629726
 Rigidbody:
@@ -439,8 +439,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.3131529, y: 0.17063418, z: 0.31009838}
-  m_Center: {x: -0.03504604, y: -0.008918153, z: 0.11976324}
+  m_Size: {x: 0.11036493, y: 0.1706372, z: 1.3492488}
+  m_Center: {x: 0.032938007, y: -0.008918153, z: 0.054835446}
 --- !u!114 &6628535389122629728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,6 +457,7 @@ MonoBehaviour:
   isWeaponPickUp: 1
   quantity: 0
   TriggerFunction: 0
+  myAttackPoint: {fileID: 0}
   myOutline: {fileID: 0}
 --- !u!114 &1674533014
 MonoBehaviour:
@@ -626,8 +627,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8100185176801997528}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.49999997, y: -0.50000006, z: 0.49999997, w: 0.5000001}
+  m_LocalPosition: {x: -0.0017042162, y: 0.1435755, z: 0.1452818}
   m_LocalScale: {x: 5.4026637, y: 0.35461366, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -638,4 +639,4 @@ Transform:
   - {fileID: 3640919156346092227}
   m_Father: {fileID: 6628535389122629724}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
