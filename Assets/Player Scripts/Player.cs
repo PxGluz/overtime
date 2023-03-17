@@ -7,7 +7,6 @@ using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
-
     public static Player m;
 
     [Header("Script References:")]
