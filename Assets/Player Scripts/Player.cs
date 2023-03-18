@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     public MenuManager menuManager;
     public Rewind rewind;
     public ColorManager colorManager;
+    public AudioManager audioManager;
+    public SettingsManager settingsManager;
 
     [Header("Other References:")]
     public Camera MainCamera;
