@@ -26,6 +26,7 @@ public class EnemyMaster : MonoBehaviour
     [Header("State:")]
     public bool isDead = false;
     public EnemyType enemyType;
+    public DamageType damageType;
     public bool isStunned;
     private float stunTime = 0f;
 
@@ -53,6 +54,7 @@ public class EnemyMaster : MonoBehaviour
         WeaponClass = Player.m.weaponManager.GetWeaponByName(myWeapon);
 
         PutWeaponInHand();
+        SetMyDamageType();
     }
 
     private void Update()
@@ -206,9 +208,24 @@ public class EnemyMaster : MonoBehaviour
         }
     }
 
+    public SkinnedMeshRenderer EnemyMesh;
+    public void SetMyDamageType()
+    {
+        Material[] mats = EnemyMesh.materials;
+        mats[4].color = Player.m.colorManager.GetDamageTypeMaterialByName(damageType.ToString());
+        mats[5].color = Player.m.colorManager.GetDamageTypeMaterialByName(damageType.ToString());
+        EnemyMesh.materials = mats;
+    }
+
+
     public enum EnemyType
     {
         Melee, Ranged
     }
+    public enum DamageType
+    {
+        Pierce, Slash, Blunt, Explosion
+    }
+
 
 }

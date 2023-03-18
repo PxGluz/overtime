@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public PlayerShooting playerShooting;
     public MenuManager menuManager;
     public Rewind rewind;
+    public ColorManager colorManager;
 
     [Header("Other References:")]
     public Camera MainCamera;

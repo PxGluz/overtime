@@ -7127,8 +7127,8 @@ Transform:
   - {fileID: 3982301615087226215}
   - {fileID: 1649287561}
   - {fileID: 1070560022}
-  - {fileID: 3114260299712832990}
   - {fileID: 1541052628}
+  - {fileID: 3114260299712832990}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9734,6 +9734,7 @@ GameObject:
   - component: {fileID: 593397564}
   - component: {fileID: 1216285252}
   - component: {fileID: 2372774186506820670}
+  - component: {fileID: 1097992153545824280}
   m_Layer: 3
   m_Name: Managers
   m_TagString: Untagged
@@ -9834,6 +9835,27 @@ MonoBehaviour:
     pitch: 0
     loop: 0
     source: {fileID: 0}
+--- !u!114 &1097992153545824280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8350131747216620355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0debc271443801648baa03c823dca891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageTypeColors:
+  - name: Pierce
+    material: {fileID: 2100000, guid: 5e66cf30bad1ae848999c435828884d7, type: 2}
+  - name: Slash
+    material: {fileID: 2100000, guid: 815ebe8693f333743ae4b032a9566eb0, type: 2}
+  - name: Blunt
+    material: {fileID: 2100000, guid: 4fb16b3fdeb27444cbfe5d63f2185b90, type: 2}
+  - name: Explosion
+    material: {fileID: 2100000, guid: 0bfed0b82898b514e9b7dfd4532c7dee, type: 2}
 --- !u!1 &8402034881947792913
 GameObject:
   m_ObjectHideFlags: 0
