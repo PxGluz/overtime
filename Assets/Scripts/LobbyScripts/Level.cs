@@ -35,7 +35,7 @@ public class Level : MonoBehaviour
 
     void Update()
     {
-        details.localScale = Vector3.Lerp(details.localScale, destination, contract.animationSpeed);
+        details.localScale = Vector3.Lerp(details.localScale, destination, contract.animationSpeed * 2);
         if (!isClosed)
         {
             destination = new Vector3(1f, 0f, 1f);
