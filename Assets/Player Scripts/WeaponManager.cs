@@ -65,7 +65,7 @@ public class WeaponManager : MonoBehaviour
 
     [Header("Animation Related")]
     private Transform animationPoint;
-    [HideInInspector] public bool inPlace;
+    public bool weaponIsInPlace;
 
     private void Start()
     {
@@ -75,7 +75,7 @@ public class WeaponManager : MonoBehaviour
         //foreach (Transform child in currentWeapon.WeaponModelOnPlayer.transform)
         //    if (child.name == "AnimationPoint")
         //        animationPoint = child;
-        inPlace = true;
+        weaponIsInPlace = true;
     }
 
     public void ChangeWeapon(string name, int quantity = 1, bool dropCurrentWeapon = true, Transform interactableObject = null)
@@ -98,11 +98,20 @@ public class WeaponManager : MonoBehaviour
                 {
                     foreach (Transform child in currentWeapon.WeaponModelOnPlayer.transform)
                         if (child.name == "AnimationPoint")
+                        {
                             animationPoint = child;
+                            break;
+                        }
 
-                    IEnumerator sendItemToPositon = SendItemToPosition(animationPoint, interactableObject, smoothTime, currentWeapon.WeaponModelOnPlayer.transform);
+                    weaponIsInPlace = false;
 
-                    StartCoroutine(sendItemToPositon);
+                    smoothDampVelocityRef = new Vector3();
+                    time = 0.0f;
+                    previousRotation = interactableObject.rotation;
+
+                    animationPoint.position = interactableObject.position;
+                    animationPoint.rotation = interactableObject.rotation;
+
                 }
 
                 // Weapon animation end
@@ -180,34 +189,27 @@ public class WeaponManager : MonoBehaviour
             interactable.quantity = GetWeaponByName(interactable.itemName).gunMagazineSize;
     }
 
-    private Vector3 ref1;
-    public IEnumerator SendItemToPosition(Transform animationPoint, Transform interactableObject, float moveDuration, Transform WeaponModelOnPlayer)
+    private Vector3 smoothDampVelocityRef;
+    private Quaternion previousRotation;
+    private float time;
+
+    private void Update()
     {
-        inPlace = false;
-        Vector3 previousPosition = interactableObject.position;
-        Quaternion previousRotation = interactableObject.rotation;
+        if (animationPoint == null)
+            return;
 
-        animationPoint.position = interactableObject.position;
-        animationPoint.rotation = interactableObject.rotation;
-
-        float time = 0.0f;
-        do
+        if (!weaponIsInPlace && Vector3.Distance(animationPoint.position, animationPoint.parent.position) < 0.1f)
+        {
+            weaponIsInPlace = true;
+        }
+        else 
         {
             time += Time.deltaTime;
 
-            animationPoint.position = Vector3.SmoothDamp(animationPoint.position, WeaponModelOnPlayer.position, ref ref1, moveDuration);
-            //animationPoint.position = Vector3.Lerp(previousPosition, WeaponModelOnPlayer.position, time / moveDuration);
-            animationPoint.rotation = Quaternion.Slerp(previousRotation, WeaponModelOnPlayer.rotation, time / moveDuration);
-            print(time);
-            yield return 0;
+            animationPoint.position = Vector3.SmoothDamp(animationPoint.position, animationPoint.parent.position, ref smoothDampVelocityRef, smoothTime);
+            animationPoint.rotation = Quaternion.Slerp(previousRotation, animationPoint.parent.rotation, time / smoothTime);
 
-        }while (Vector3.Distance(animationPoint.position, WeaponModelOnPlayer.position) > 0.01f);
-
-        animationPoint.position = WeaponModelOnPlayer.position;
-        animationPoint.rotation = WeaponModelOnPlayer.rotation;
-
-        inPlace = true;
-
+        }
     }
     public enum AnimationType
     {

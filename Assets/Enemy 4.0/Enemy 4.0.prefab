@@ -1114,7 +1114,7 @@ Transform:
   - {fileID: 1609970915613858861}
   - {fileID: 1545740936300490967}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1978722146465968003
 Rigidbody:
@@ -1212,7 +1212,7 @@ MonoBehaviour:
     gunAllowButtonHold: 0
   isDead: 0
   enemyType: 1
-  damageType: 3
+  damageType: 0
   isStunned: 0
   blood: {fileID: 0}
   ragdoll: {fileID: 0}
@@ -1627,7 +1627,7 @@ SkinnedMeshRenderer:
   - {fileID: -272650604256316255, guid: 0b1c79f8895db754f814a5baffd00140, type: 3}
   - {fileID: 4217796364934669478, guid: 6c0b309f02e0e674f9e58e55d64abbcd, type: 3}
   - {fileID: 8344510415351815395, guid: 0b1c79f8895db754f814a5baffd00140, type: 3}
-  - {fileID: 4835078630258379571, guid: 0b1c79f8895db754f814a5baffd00140, type: 3}
+  - {fileID: 2100000, guid: e727a983a8d1c1f41bad50071be852ce, type: 2}
   - {fileID: 2100000, guid: 4fb16b3fdeb27444cbfe5d63f2185b90, type: 2}
   - {fileID: 2100000, guid: 4fb16b3fdeb27444cbfe5d63f2185b90, type: 2}
   m_StaticBatchInfo:

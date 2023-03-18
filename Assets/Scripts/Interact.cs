@@ -49,7 +49,8 @@ public class Interact : MonoBehaviour
                 if (itemBeingPickedUp.myOutline != null)
                 {
                     itemBeingPickedUp.myOutline.OutlineColor = new Color(itemBeingPickedUp.myOutline.OutlineColor.r, itemBeingPickedUp.myOutline.OutlineColor.g, itemBeingPickedUp.myOutline.OutlineColor.b, 1);
-                    itemBeingPickedUp.myOutline.OutlineMode = Outline.Mode.OutlineVisible;
+                    if (itemBeingPickedUp.isWeaponPickUp)
+                        itemBeingPickedUp.myOutline.OutlineMode = Outline.Mode.OutlineVisible;
                 }
             }
         }
@@ -66,7 +67,8 @@ public class Interact : MonoBehaviour
         if (itemBeingPickedUp.myOutline != null)
         {
             itemBeingPickedUp.myOutline.OutlineColor = new Color(itemBeingPickedUp.myOutline.OutlineColor.r, itemBeingPickedUp.myOutline.OutlineColor.g, itemBeingPickedUp.myOutline.OutlineColor.b, 0);
-            itemBeingPickedUp.myOutline.OutlineMode = Outline.Mode.OutlineVisible;
+            if (itemBeingPickedUp.isWeaponPickUp)
+                itemBeingPickedUp.myOutline.OutlineMode = Outline.Mode.OutlineVisible;
         }
 
 
@@ -79,7 +81,7 @@ public class Interact : MonoBehaviour
 
         itemBeingPickedUp.TriggerFunction = true;
 
-        if (itemBeingPickedUp.isWeaponPickUp && Player.m.weaponManager.inPlace)
+        if (itemBeingPickedUp.isWeaponPickUp && Player.m.weaponManager.weaponIsInPlace)
         {
             Player.m.weaponManager.ChangeWeapon(itemBeingPickedUp.itemName,  itemBeingPickedUp.quantity, interactableObject:itemBeingPickedUp.transform);
 
