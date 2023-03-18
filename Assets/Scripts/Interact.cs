@@ -79,7 +79,7 @@ public class Interact : MonoBehaviour
 
         itemBeingPickedUp.TriggerFunction = true;
 
-        if (itemBeingPickedUp.isWeaponPickUp && Player.m.weaponManager.inPlace)
+        if (itemBeingPickedUp.isWeaponPickUp && Player.m.weaponManager.weaponIsInPlace)
         {
             Player.m.weaponManager.ChangeWeapon(itemBeingPickedUp.itemName,  itemBeingPickedUp.quantity, interactableObject:itemBeingPickedUp.transform);
 

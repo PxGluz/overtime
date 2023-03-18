@@ -210,7 +210,7 @@ public class EnemyMaster : MonoBehaviour
 
     public SkinnedMeshRenderer EnemyMesh;
     public void SetMyDamageType()
-    {
+    { 
         Material[] mats = EnemyMesh.materials;
         mats[4].color = Player.m.colorManager.GetDamageTypeMaterialByName(damageType.ToString());
         mats[5].color = Player.m.colorManager.GetDamageTypeMaterialByName(damageType.ToString());
