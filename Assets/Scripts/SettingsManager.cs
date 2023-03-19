@@ -18,7 +18,7 @@ public class SettingsManager : MonoBehaviour
     public GameObject menu;
     public GameObject togglePrefab;
     [Tooltip("For toggles")]
-    public Vector2 startPosition;
+    public GameObject startPosition;
     public MainMenu mainMenu;
 
     private void Awake()
@@ -48,10 +48,11 @@ public class SettingsManager : MonoBehaviour
         int offset = 0;
         foreach (VolumeComponent component in Player.m.volume.components)
         {
-            GameObject toggle = Instantiate(togglePrefab, startPosition + new Vector2(300, 280 - 40 * offset), new Quaternion(), menu.transform);
+            GameObject toggle = Instantiate(togglePrefab, startPosition.transform.position + new Vector3(/*300*/0, /*280 */- 40 * offset, 0), new Quaternion(), menu.transform);
             toggle.GetComponentInChildren<TextMeshProUGUI>().text = component.name;
             toggle.SetActive(false);
             Toggle currentToggle = toggle.GetComponent<Toggle>();
+            currentToggle.isOn = component.active;
             currentToggle.onValueChanged.AddListener(delegate { mainMenu.VolumeEffect(component.name); });
             mainMenu.dictionaryToggles.Add(component.name, currentToggle);
             offset++;

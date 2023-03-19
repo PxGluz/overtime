@@ -3025,7 +3025,7 @@ MonoBehaviour:
     gunTimeBetweenShots: 0
     gunAllowButtonHold: 0
   smoothTime: 0.2
-  inPlace: 0
+  weaponIsInPlace: 0
 --- !u!1 &585758825
 GameObject:
   m_ObjectHideFlags: 0
@@ -14549,7 +14549,7 @@ MonoBehaviour:
   resolutionDropdown: {fileID: 448195166}
   menu: {fileID: 788019283}
   togglePrefab: {fileID: 317819296317424722, guid: e3138acacb866e8439b8c9d4e0ef1ed6, type: 3}
-  startPosition: {x: -800, y: 230}
+  startPosition: {fileID: 1683960964}
   mainMenu: {fileID: 1070560018}
 --- !u!1 &8402034881947792913
 GameObject:
