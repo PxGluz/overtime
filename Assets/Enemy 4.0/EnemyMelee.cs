@@ -8,11 +8,13 @@ public class EnemyMelee : MonoBehaviour
 
     [Header("Important variables: ")]
     private EnemyMaster enemy;
-    public Transform DamageSphereOrigin;
+    //public Transform DamageSphereOrigin;
     public LayerMask PlayerLayer;
-    public float DamageSphereRange;
+    //public float DamageSphereRange;
     public float DistanceToStartPunch;
     public Transform KnifePosition;
+    public List<MeleeDamagePoint> meleeDamagePoints = new List<MeleeDamagePoint>();
+
 
     [Header("Statistics: ")]
     public float meleeDamage;
@@ -26,6 +28,13 @@ public class EnemyMelee : MonoBehaviour
     private bool canAttack = true;
     private bool thisAttackHasHitThePlayer;
 
+    [Serializable]
+    public class MeleeDamagePoint
+    {
+        public Transform DamageSphereOrigin;
+        public float DamageSphereRange;
+    }
+
     private void Start()
     {
         enemy = GetComponentInParent<EnemyMaster>();
@@ -36,7 +45,7 @@ public class EnemyMelee : MonoBehaviour
             this.enabled = false;
             return;
         }
-      
+
         UpdateAnimClipTimes();
     }
 
@@ -44,10 +53,10 @@ public class EnemyMelee : MonoBehaviour
     {
 
         // start attacking
-        if (enemy.enemyMovement.canSeePlayer && Vector3.Distance(transform.position,Player.m.transform.position) <= DistanceToStartPunch && canAttack)
+        if (enemy.enemyMovement.canSeePlayer && Vector3.Distance(transform.position, Player.m.transform.position) <= DistanceToStartPunch && canAttack)
         {
             enemy.animator.SetTrigger("StartPunch");
-            
+
             canAttack = false;
 
             thisAttackHasHitThePlayer = false;
@@ -57,13 +66,17 @@ public class EnemyMelee : MonoBehaviour
 
         // check for targets in melee range
         if (isMeleeAttacking)
-            DealDamageFromDamagePoint(DamageSphereOrigin, DamageSphereRange);
+            DealDamageFromDamagePoint();
     }
 
-    public void DealDamageFromDamagePoint(Transform origin, float radius)
+    public void DealDamageFromDamagePoint()
     {
         //detect player
-        Collider[] hitObjects = Physics.OverlapSphere(origin.position, radius, PlayerLayer);
+        List<Collider> hitObjects = new List<Collider>();
+        foreach (MeleeDamagePoint damagePoint in meleeDamagePoints)
+        {
+            hitObjects.AddRange(Physics.OverlapSphere(damagePoint.DamageSphereOrigin.position, damagePoint.DamageSphereRange, PlayerLayer));
+        }
 
         foreach (Collider obj in hitObjects)
         {
@@ -97,11 +110,17 @@ public class EnemyMelee : MonoBehaviour
         }
     }
 
+    
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(DamageSphereOrigin.position, DamageSphereRange);
+        for (int i = 0; i < meleeDamagePoints.Count;i++)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(meleeDamagePoints[i].DamageSphereOrigin.position, meleeDamagePoints[i].DamageSphereRange);
+        }
+
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y +1, transform.position.z), DistanceToStartPunch);
     }
+    
 }

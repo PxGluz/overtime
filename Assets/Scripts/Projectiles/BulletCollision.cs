@@ -35,6 +35,9 @@ public class BulletCollision : MonoBehaviour
 
         switch (LayerMask.LayerToName(hit.collider.gameObject.layer))
         {
+            case "Interactable":
+                return;
+
             case "Enemy":
                 EnemyMaster enemy = hit.collider.gameObject.GetComponentInParent<EnemyMaster>();
                 if (enemy != null)
@@ -46,7 +49,7 @@ public class BulletCollision : MonoBehaviour
                     }
                     else 
                     {
-                        enemy.TakeDamage(bulletDamage, hit.collider.gameObject, transform.forward * 50f);
+                        enemy.TakeDamage(bulletDamage, hit.collider.gameObject, transform.forward * 25f);
                     }
                 }
                 break;

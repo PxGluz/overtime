@@ -86,11 +86,11 @@ public class EnemyMaster : MonoBehaviour
 
         currentHealth -= damage;
 
-        print("Oh no, I " + this.gameObject.name + " took " + damage + " damage!");
+        print(this.gameObject.name + " - " + damage + " damage");
 
         if (currentHealth <= 0) 
         {
-            print("I " + this.gameObject.name + " am dead");
+            //print("I " + this.gameObject.name + " am dead");
             Die(bodyPart, direction);
         }
         else

@@ -2778,7 +2778,7 @@ MonoBehaviour:
   canAttack: 1
   CurrentMeleeIndex: 0
   TestMeleeSpherePoint: {fileID: 1193615109}
-  TestMeleeSphereRadius: 0.5
+  TestMeleeSphereRadius: 0.4
 --- !u!114 &2054988533113032772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2801,9 +2801,9 @@ MonoBehaviour:
     throwDamage: 10
     throwForce: 0
     throwUpwardForce: 0
-    DamageSphereOrigin: {fileID: 1581415555}
+    DamageSphereOrigin: {fileID: 1193615109}
     meleeDamage: 0
-    DamageSphereRadius: 0.5
+    DamageSphereRadius: 0.1
     meleeAttackSpeed: 0
     shootPoint: {fileID: 0}
     bulletDamage: 0
@@ -2827,7 +2827,7 @@ MonoBehaviour:
     throwUpwardForce: 0
     DamageSphereOrigin: {fileID: 1581415555}
     meleeDamage: 50
-    DamageSphereRadius: 0.8
+    DamageSphereRadius: 0.7
     meleeAttackSpeed: 0
     shootPoint: {fileID: 0}
     bulletDamage: 0
@@ -2850,7 +2850,7 @@ MonoBehaviour:
     throwUpwardForce: 2
     DamageSphereOrigin: {fileID: 1193615109}
     meleeDamage: 100
-    DamageSphereRadius: 0.5
+    DamageSphereRadius: 0.4
     meleeAttackSpeed: 0
     shootPoint: {fileID: 0}
     bulletDamage: 0
@@ -2873,7 +2873,7 @@ MonoBehaviour:
     throwUpwardForce: 2
     DamageSphereOrigin: {fileID: 1193615109}
     meleeDamage: 100
-    DamageSphereRadius: 0.5
+    DamageSphereRadius: 0.4
     meleeAttackSpeed: 0
     shootPoint: {fileID: 0}
     bulletDamage: 0
@@ -7307,7 +7307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581415554}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.00051, y: 0.00156, z: -0.0023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9533,9 +9533,9 @@ MonoBehaviour:
   rb: {fileID: 0}
   orientation: {fileID: 3982301615298521839}
   currentSpeed: 0
-  walkSpeed: 6
-  sprintSpeed: 12
-  crouchSpeed: 3
+  walkSpeed: 4
+  sprintSpeed: 7
+  crouchSpeed: 2
   groundDrag: 7
   jumpKey: 32
   jumpForce: 8
@@ -10814,7 +10814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2910393371615107290
 Transform:
   m_ObjectHideFlags: 0

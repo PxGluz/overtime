@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerMelee : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class PlayerMelee : MonoBehaviour
             if (CurrentMeleeIndex >= 1000000)
                 CurrentMeleeIndex = 0;
 
-            Invoke("stopAttacking", 0.5f);
+            Invoke("stopAttacking", 0.7f);
         }
 
         // check for enemies in melee range
@@ -66,8 +67,6 @@ public class PlayerMelee : MonoBehaviour
                     EnemyMaster enemy = obj.gameObject.GetComponentInParent<EnemyMaster>();
                     if (enemy != null)
                     {
-                        print(obj.gameObject.name); 
-
                         if (CurrentMeleeIndex != enemy.lastMeleeIndex)
                         {
                             enemy.lastMeleeIndex = CurrentMeleeIndex;

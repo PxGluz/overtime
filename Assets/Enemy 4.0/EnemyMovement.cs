@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -165,8 +166,7 @@ public class EnemyMovement : MonoBehaviour
             if (Array.IndexOf(myColliders, enemy) > -1)
                 continue;
 
-
-            EnemyMovement enemyMovement = enemy.transform.parent.GetComponent<EnemyMovement>();
+            EnemyMovement enemyMovement = enemy.gameObject.GetComponentInParent<EnemyMovement>();
             if (enemyMovement == null)
                 continue;
             if (enemyMovement.enabled == false)
