@@ -2928,7 +2928,7 @@ MonoBehaviour:
     gunTimeBetweenShooting: 0.8
     gunSpread: 0.5
     gunReloadTime: 0.5
-    gunMagazineSize: 5
+    gunMagazineSize: 50
     gunBulletsPerTap: 5
     gunTimeBetweenShots: 0.08
     gunAllowButtonHold: 1
@@ -9496,7 +9496,6 @@ MonoBehaviour:
   playerMovement: {fileID: 3982301615916881982}
   playerShooting: {fileID: 568684796}
   menuManager: {fileID: 1216285252}
-  rewind: {fileID: 0}
   colorManager: {fileID: 1097992153545824280}
   audioManager: {fileID: 2372774186506820670}
   settingsManager: {fileID: 802934106}
