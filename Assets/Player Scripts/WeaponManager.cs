@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -46,7 +48,8 @@ public class WeaponManager : MonoBehaviour
         public int gunMagazineSize;
         [Tooltip("How many bullets are created on click")]
         public int gunBulletsPerTap = 1;
-        [SerializeField][Range(0.0f, 0.2f)]
+        [SerializeField]
+        [Range(0.0f, 0.2f)]
         [Tooltip("This is the time between bullets when shooting more than one bullets per tap")]
         public float gunTimeBetweenShots = 0.05f;
         public bool gunAllowButtonHold;
@@ -57,18 +60,25 @@ public class WeaponManager : MonoBehaviour
     public Weapon currentWeapon;
     public Weapon[] WeaponsList;
 
-    private Vector3 relativePosition;
-    private Vector3 targetRotation;
+    [Header("Animation Settings")]
+    public float smoothTime;
 
+    [Header("Animation Related")]
+    private Transform animationPoint;
+    public bool weaponIsInPlace;
 
     private void Start()
     {
         weaponAnimator = GetComponent<Animator>();
         ChangeWeapon("Fists");
         LoadAllGuns();
+        //foreach (Transform child in currentWeapon.WeaponModelOnPlayer.transform)
+        //    if (child.name == "AnimationPoint")
+        //        animationPoint = child;
+        weaponIsInPlace = true;
     }
 
-    public void ChangeWeapon(string name, int quantity = 1, bool dropCurrentWeapon = true)
+    public void ChangeWeapon(string name, int quantity = 1, bool dropCurrentWeapon = true, Transform interactableObject = null)
     {
 
         if (currentWeapon.name != "" && currentWeapon.name != "Fists" && name != "Fists" && dropCurrentWeapon)
@@ -81,6 +91,30 @@ public class WeaponManager : MonoBehaviour
                 DeactivateNonSelectedWeapons(weapon.name);
 
                 currentWeapon = weapon;
+
+                // Weapon animation start
+
+                if (interactableObject)
+                {
+                    foreach (Transform child in currentWeapon.WeaponModelOnPlayer.transform)
+                        if (child.name == "AnimationPoint")
+                        {
+                            animationPoint = child;
+                            break;
+                        }
+
+                    weaponIsInPlace = false;
+
+                    smoothDampVelocityRef = new Vector3();
+                    time = 0.0f;
+                    previousRotation = interactableObject.rotation;
+
+                    animationPoint.position = interactableObject.position;
+                    animationPoint.rotation = interactableObject.rotation;
+
+                }
+
+                // Weapon animation end
 
                 Player.m.AttackType = weapon.attackType.ToString();
 
@@ -155,7 +189,28 @@ public class WeaponManager : MonoBehaviour
             interactable.quantity = GetWeaponByName(interactable.itemName).gunMagazineSize;
     }
 
+    private Vector3 smoothDampVelocityRef;
+    private Quaternion previousRotation;
+    private float time;
 
+    private void Update()
+    {
+        if (animationPoint == null)
+            return;
+
+        if (!weaponIsInPlace && Vector3.Distance(animationPoint.position, animationPoint.parent.position) < 0.1f)
+        {
+            weaponIsInPlace = true;
+        }
+        else 
+        {
+            time += Time.deltaTime;
+
+            animationPoint.position = Vector3.SmoothDamp(animationPoint.position, animationPoint.parent.position, ref smoothDampVelocityRef, smoothTime);
+            animationPoint.rotation = Quaternion.Slerp(previousRotation, animationPoint.parent.rotation, time / smoothTime);
+
+        }
+    }
     public enum AnimationType
     {
         None, GenericRanged, GenericMelee
@@ -166,8 +221,51 @@ public class WeaponManager : MonoBehaviour
         melee, ranged, throwing
     }
 
-    private void Update()
+    // Function for setting items to their place
+    /*
+    public void SendItemToPosition()
     {
-        // TODO: Pickup animation
+        if (inPlace)
+            return;
+
+        animationPoint.position = Vector3.SmoothDamp(
+            animationPoint.position, animationPoint.parent.position, ref ref1, smoothTime);
+
+        Vector3 tempDest = animationPoint.parent.eulerAngles;
+        Vector3 tempAnim = animationPoint.eulerAngles;
+
+        if (tempDest.x >= 180)
+            tempDest -= Vector3.right * 360f;
+        if (tempDest.y >= 180)
+            tempDest -= Vector3.up * 360f;
+        if (tempDest.z >= 180)
+            tempDest -= Vector3.forward * 360f;
+        
+        if (tempAnim.x >= 180)
+            tempAnim -= Vector3.right * 360f;
+        if (tempAnim.y >= 180)
+            tempAnim -= Vector3.up * 360f;
+        if (tempAnim.z >= 180)
+            tempAnim -= Vector3.forward * 360f;
+        
+        tempAnim = Vector3.SmoothDamp(
+            tempAnim, tempDest, ref ref2, smoothTime);
+        animationPoint.transform.eulerAngles = tempAnim;
+
+        if ((tempAnim - tempDest).magnitude <= 0.1f) 
+            inPlace = true;
     }
+    */
+
+    /*
+     foreach (Transform child in currentWeapon.WeaponModelOnPlayer.transform)
+                        if (child.name == "AnimationPoint")
+                            animationPoint = child;
+
+                    animationPoint.position = interactableObject.position;
+                    animationPoint.eulerAngles = interactableObject.eulerAngles;
+
+                    inPlace = false;
+     */
+
 }

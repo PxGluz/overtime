@@ -7,7 +7,6 @@ using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
-
     public static Player m;
 
     [Header("Script References:")]
@@ -19,7 +18,9 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public PlayerShooting playerShooting;
     public MenuManager menuManager;
-    public Rewind rewind;
+    public ColorManager colorManager;
+    public AudioManager audioManager;
+    public SettingsManager settingsManager;
 
     [Header("Other References:")]
     public Camera MainCamera;

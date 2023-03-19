@@ -17,7 +17,7 @@ public class RotateWhenThrown : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.AddTorque(-transform.up * rotationForce, ForceMode.Acceleration);
+        rb.AddTorque(transform.right * rotationForce, ForceMode.Acceleration);
     }
 
     private void OnCollisionEnter(Collision collision)

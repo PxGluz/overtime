@@ -49,7 +49,8 @@ public class Interact : MonoBehaviour
                 if (itemBeingPickedUp.myOutline != null)
                 {
                     itemBeingPickedUp.myOutline.OutlineColor = new Color(itemBeingPickedUp.myOutline.OutlineColor.r, itemBeingPickedUp.myOutline.OutlineColor.g, itemBeingPickedUp.myOutline.OutlineColor.b, 1);
-                    itemBeingPickedUp.myOutline.OutlineMode = Outline.Mode.OutlineVisible;
+                    if (itemBeingPickedUp.isWeaponPickUp)
+                        itemBeingPickedUp.myOutline.OutlineMode = Outline.Mode.OutlineVisible;
                 }
             }
         }
@@ -66,7 +67,8 @@ public class Interact : MonoBehaviour
         if (itemBeingPickedUp.myOutline != null)
         {
             itemBeingPickedUp.myOutline.OutlineColor = new Color(itemBeingPickedUp.myOutline.OutlineColor.r, itemBeingPickedUp.myOutline.OutlineColor.g, itemBeingPickedUp.myOutline.OutlineColor.b, 0);
-            itemBeingPickedUp.myOutline.OutlineMode = Outline.Mode.OutlineVisible;
+            if (itemBeingPickedUp.isWeaponPickUp)
+                itemBeingPickedUp.myOutline.OutlineMode = Outline.Mode.OutlineVisible;
         }
 
 
@@ -79,12 +81,10 @@ public class Interact : MonoBehaviour
 
         itemBeingPickedUp.TriggerFunction = true;
 
-        if (itemBeingPickedUp.isWeaponPickUp)
+        if (itemBeingPickedUp.isWeaponPickUp && Player.m.weaponManager.weaponIsInPlace)
         {
-            Player.m.weaponManager.ChangeWeapon(itemBeingPickedUp.itemName,  itemBeingPickedUp.quantity);
-            // TODO: For pickup animation
-            /*Player.m.weaponManager.transform.position = itemBeingPickedUp.transform.position;
-            Player.m.weaponManager.transform.rotation = itemBeingPickedUp.transform.rotation;*/
+            Player.m.weaponManager.ChangeWeapon(itemBeingPickedUp.itemName,  itemBeingPickedUp.quantity, interactableObject:itemBeingPickedUp.transform);
+
             Destroy(itemBeingPickedUp.gameObject);
 
             return;

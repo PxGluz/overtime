@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 7
   m_Name: MyAttackPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1550462964923101052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.112, y: 0, z: -0.573}
+  m_LocalPosition: {x: 0, y: 0.571, z: 1.115}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -57,14 +57,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2859936880676400830}
-  m_LocalRotation: {x: -0.5000002, y: -0.49999985, z: 0.5000002, w: 0.4999999}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.0000004707535, y: -1, z: 0.0000003874302, w: 0.000000093390234}
+  m_LocalPosition: {x: 0, y: -0.0000019942609, z: 0}
   m_LocalScale: {x: 107.89629, y: 107.89629, z: 107.89629}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8110043329064097225}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 90}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 180}
 --- !u!33 &1969342188730858401
 MeshFilter:
   m_ObjectHideFlags: 0

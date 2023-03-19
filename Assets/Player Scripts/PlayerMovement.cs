@@ -143,8 +143,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftControl) && isGrounded)
         {
-            //Player.m.MoveType = "crouch";
-
             if (!Player.m.crouchLogic.hasEnteredCrouch)
                 Player.m.crouchLogic.enterCrouch();
 
@@ -152,15 +150,13 @@ public class PlayerMovement : MonoBehaviour
 
         }else if (Player.m.crouchLogic.hasEnteredCrouch)
         {
-            //Player.m.MoveType = "crouch";
-
             if (Player.m.crouchLogic.hasSpaceAboveHead)
                 Player.m.crouchLogic.exitCrouch();
             else
                 return;
         }
 
-        if ((horizontalInput != 0 || verticalInput != 0))
+        if (horizontalInput != 0 || verticalInput != 0)
         {
             Player.m.MoveType = "walk";
 
@@ -255,16 +251,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isGrounded)
         {
-            // Normal gravity when falling 
-            if (!isDescending)
-                rb.AddForce(Vector3.down * gravityForce, ForceMode.Acceleration);
             // Stronger gravity when finishing jump
-            else
+            if (isDescending)
                 rb.AddForce(Vector3.down * gravityForce * fallMultiplier, ForceMode.Acceleration);
+            // Normal gravity when falling 
+            else
+                rb.AddForce(Vector3.down * gravityForce, ForceMode.Acceleration);
         }
         else
         {
-           
             isDescending = false;
         }
     }

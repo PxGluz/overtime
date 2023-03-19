@@ -15,12 +15,10 @@ public class TimeGrenade : MonoBehaviour
 
     public float explosionDuration;
 
-
     private void Start()
     {
         thrownProjectile = GetComponent<ThrownProjectile>();
     }
-
 
     private IEnumerator ExplodeRef;
     private void OnCollisionEnter(Collision collision)
@@ -78,70 +76,5 @@ public class TimeGrenade : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(gameObject.transform.position, FinalRadius);
     }
-
-    /*
-    public void Update()
-    {
-        if (!HasExploded)
-            return;
-
-        
-        sphereEffect.transform.localScale = Vector3.Lerp(previousPosition, new Vector3(FinalRadius * 2, FinalRadius * 2, FinalRadius * 2), timer / explosionDuration);
-        currentRadius = sphereEffect.transform.localScale.x / 2;
-
-        Collider[] hits = Physics.OverlapSphere(sphereEffect.transform.position, currentRadius, objectsAffectedByExplosions);
-        List<EnemyMaster> enemiesHitByExplosion = new List<EnemyMaster>();
-
-        foreach (Collider hit in hits)
-        {
-            switch (LayerMask.LayerToName(hit.gameObject.layer))
-            {
-                case "Enemy":
-
-
-                    EnemyMaster enemyStats = hit.gameObject.GetComponentInParent<EnemyMaster>();
-                    if (enemyStats == null || enemiesHitByExplosion.Contains(enemyStats) || enemyStats.isDead)
-                        break;
-                    enemiesHitByExplosion.Add(enemyStats);
-
-                    enemyStats.IncapacitateEnemy();
-                    if (enemyStats.animator != null)
-                        enemyStats.animator.speed = 0;
-
-                    break;
-
-            }
-        }
-
-        timer += Time.deltaTime;
-        if (timer >= explosionDuration)
-        {
-            this.enabled = false;
-            print("explosion finished");
-        }
-    }
-
-    public bool HasExploded;
-
-    public float timer = 0.0f;
-    public Vector3 previousPosition;
-    public GameObject sphereEffect;
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (thrownProjectile!= null && thrownProjectile.isInPickUpState || HasExploded)
-            return;
-
-        HasExploded = true;
-
-        sphereEffect = Instantiate(SphereEffect, transform.position, Quaternion.identity);
-        sphereEffect.transform.localScale = new Vector3(0, 0, 0);
-        previousPosition = sphereEffect.transform.localScale;
-        timer = 0.0f;
-
-    }
-    */
-
-
 
 }

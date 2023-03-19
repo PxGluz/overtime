@@ -31,7 +31,7 @@ public class DamageOnCollision : MonoBehaviour
         EnemyMaster enemy = collision.gameObject.GetComponentInParent<EnemyMaster>();
         if (enemy != null)
         {
-            enemy.TakeDamage(thrownProjectile.damage, collision.gameObject, transform.right * 30f);
+            enemy.TakeDamage(thrownProjectile.damage, collision.gameObject, transform.forward * 30f);
             //enemy.TakeDamage(thrownProjectile.damage);
         }
 
