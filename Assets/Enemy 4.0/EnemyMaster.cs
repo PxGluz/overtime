@@ -138,9 +138,6 @@ public class EnemyMaster : MonoBehaviour
         //Destroy Enemy Scripts:
         IncapacitateEnemy();
         Destroy(animator);
-
-        // Create moment in time
-        Player.m.rewind.Invoke (nameof(Player.m.rewind.CreateNewMomentInTime),0.1f);
     }
 
     public void IncapacitateEnemy()

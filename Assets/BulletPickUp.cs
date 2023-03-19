@@ -31,12 +31,12 @@ public class BulletPickUp : MonoBehaviour
         if (Player.m.playerShooting.bulletsleft == Player.m.weaponManager.currentWeapon.gunMagazineSize)
             return;
 
-        if (Vector3.Distance(Player.m.transform.position, transform.position) <= pickUpRange)
-            transform.position = Vector3.SmoothDamp(transform.position, Player.m.transform.position, ref smoothDampVelocityRef, pickUpDuration);
+        if (Vector3.Distance(Player.m.playerMovement.GroundCheckSource.transform.position, transform.position) <= pickUpRange)
+            transform.position = Vector3.SmoothDamp(transform.position, Player.m.playerMovement.GroundCheckSource.transform.position, ref smoothDampVelocityRef, pickUpDuration);
         else
             return;
 
-        if (Vector3.Distance(Player.m.transform.position, transform.position) <= collisionRange)
+        if (Vector3.Distance(Player.m.playerMovement.GroundCheckSource.transform.position, transform.position) <= collisionRange)
         {
             while (Player.m.playerShooting.bulletsleft < Player.m.weaponManager.currentWeapon.gunMagazineSize)
             {

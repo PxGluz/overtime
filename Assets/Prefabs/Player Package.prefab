@@ -5303,7 +5303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1070560022
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9496,8 +9496,8 @@ MonoBehaviour:
   playerMovement: {fileID: 3982301615916881982}
   playerShooting: {fileID: 568684796}
   menuManager: {fileID: 1216285252}
-  rewind: {fileID: 593397564}
-  colorManager: {fileID: 0}
+  rewind: {fileID: 0}
+  colorManager: {fileID: 1097992153545824280}
   audioManager: {fileID: 2372774186506820670}
   settingsManager: {fileID: 802934106}
   MainCamera: {fileID: 3982301615087226214}
@@ -14404,7 +14404,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3114260299712832990}
   - component: {fileID: 4581519826268382893}
-  - component: {fileID: 593397564}
   - component: {fileID: 1216285252}
   - component: {fileID: 2372774186506820670}
   - component: {fileID: 1097992153545824280}
@@ -14447,27 +14446,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1800
   ExplosionEffect: {fileID: 4222606600419231085, guid: 71e562e7fb9ab934898a11b5a0638b52, type: 3}
---- !u!114 &593397564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8350131747216620355}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70b7ec9befd7f924e9166fa0ec68db75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerGhost: {fileID: 4455773001095476496, guid: 9f9145bbac3bca54a9ca9df78362e593, type: 3}
-  MostRecentGhostColor: {r: 0, g: 0, b: 0, a: 1}
-  TimeMoments: []
-  PlayerMoments: []
-  currentMomentRoot: {fileID: 0}
-  CurrentMomentInTime: 0
-  rootObjects: []
-  GhostList: []
-  RewindTimeDisplay: {fileID: 654796374}
 --- !u!114 &1216285252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14522,14 +14500,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageTypeColors:
-  - damageTypeName: 
-    color: {r: 0, g: 0, b: 0, a: 0}
-  - damageTypeName: 
-    color: {r: 0, g: 0, b: 0, a: 0}
-  - damageTypeName: 
-    color: {r: 0, g: 0, b: 0, a: 0}
-  - damageTypeName: 
-    color: {r: 0, g: 0, b: 0, a: 0}
+  - damageTypeName: Pierce
+    color: {r: 1, g: 0, b: 0, a: 1}
+  - damageTypeName: Slash
+    color: {r: 0.16653156, g: 0, b: 1, a: 1}
+  - damageTypeName: Blunt
+    color: {r: 0.98064375, g: 1, b: 0, a: 1}
+  - damageTypeName: Explosion
+    color: {r: 0.36234283, g: 1, b: 0, a: 1}
 --- !u!114 &802934106
 MonoBehaviour:
   m_ObjectHideFlags: 0

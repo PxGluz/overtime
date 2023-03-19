@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public PlayerShooting playerShooting;
     public MenuManager menuManager;
-    public Rewind rewind;
     public ColorManager colorManager;
     public AudioManager audioManager;
     public SettingsManager settingsManager;
