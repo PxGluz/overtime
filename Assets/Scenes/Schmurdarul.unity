@@ -1235,9 +1235,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Gun
   isWeaponPickUp: 1
+  isChoice: 0
   quantity: 0
   TriggerFunction: 0
   myAttackPoint: {fileID: 1486606390}
+  scriptToStart: {fileID: 0}
   myOutline: {fileID: 0}
 --- !u!135 &226907723
 SphereCollider:
@@ -6583,9 +6585,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Knife
   isWeaponPickUp: 1
+  isChoice: 0
   quantity: 0
   TriggerFunction: 0
   myAttackPoint: {fileID: 0}
+  scriptToStart: {fileID: 0}
   myOutline: {fileID: 0}
 --- !u!65 &1148832419
 BoxCollider:
@@ -9952,6 +9956,71 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865834087}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1875223851
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8292193609671807756, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: nrOfBullets
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4069067
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807758, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_Name
+      value: Bullets PickUp (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
 --- !u!1 &1936454957
 GameObject:
   m_ObjectHideFlags: 0
@@ -11726,3 +11795,64 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 631203c5e746a184ab980adf6c12a189, type: 3}
+--- !u!1001 &8292193608726527022
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4069067
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807757, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292193609671807758, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+      propertyPath: m_Name
+      value: Bullets PickUp
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
