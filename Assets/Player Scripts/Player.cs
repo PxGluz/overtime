@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     public ColorManager colorManager;
     public AudioManager audioManager;
     public SettingsManager settingsManager;
+    public Interact interact;
+    public PrefabHolder prefabHolder;
 
     [Header("Other References:")]
     public Camera MainCamera;
@@ -59,6 +61,7 @@ public class Player : MonoBehaviour
         playerThrow = GetComponent<PlayerThrow>();
         playerMovement = GetComponent<PlayerMovement>();
         playerShooting = GetComponent<PlayerShooting>();
+        interact = GetComponent<Interact>();
         //playerMelee = GetComponent<PlayerMelee>();
 
         playerRigidBody = GetComponent<Rigidbody>();    

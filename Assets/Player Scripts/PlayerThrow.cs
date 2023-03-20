@@ -62,9 +62,13 @@ public class PlayerThrow : MonoBehaviour
         Vector3 forceDirection = Player.m.MainCamera.transform.forward;
 
         if (Physics.Raycast(ray, out hit))
+        {
             forceDirection = (hit.point - attackPoint.position).normalized;
+        }
         else
+        {
             forceDirection = (ray.GetPoint(75) - attackPoint.position).normalized;
+        }
 
         // instantiate object to throw
         GameObject projectile;

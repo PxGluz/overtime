@@ -850,15 +850,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300785654242904066}
-  m_LocalRotation: {x: 0.10220257, y: 0.72957635, z: 0.67501503, w: 0.04034683}
-  m_LocalPosition: {x: 0.000579993, y: 0.002910044, z: 0.0003700265}
+  m_LocalRotation: {x: 0.05456671, y: 0.72964615, z: 0.68162084, w: -0.005666114}
+  m_LocalPosition: {x: 0.0005799897, y: 0.0029100436, z: 0.0003700397}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 300785652535742269}
   m_Father: {fileID: 29853677683026380}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: -77.608, y: 113.466, z: 71.577}
+  m_LocalEulerAnglesHint: {x: -84.444, y: 136.926, z: 47.961}
 --- !u!1 &377256742746954602
 GameObject:
   m_ObjectHideFlags: 0
@@ -1317,7 +1317,7 @@ Transform:
   - {fileID: 547784208837091194}
   - {fileID: 1545740936300490967}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1978722146465968003
 Rigidbody:
@@ -1435,7 +1435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourcePosition: {fileID: 1545740936300490967}
   visionAngle: 180
-  visionDistance: 10
+  visionDistance: 22
   hitLayer:
     serializedVersion: 2
     m_Bits: 1609
@@ -1461,7 +1461,7 @@ MonoBehaviour:
   isChasingPlayer: 0
   currentMovementAnimation: 
   announceRange: 4.75
-  PreferedDistanceToPlayer: 1.93
+  PreferedDistanceToPlayer: 1.85
   chaseDuration: 5
   rotateAfterPlayerSpeed: 10
   enablePatrol: 0
@@ -2791,7 +2791,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0b1c79f8895db754f814a5baffd00140, type: 3}
   m_Controller: {fileID: 9100000, guid: 7d128fbf6d76d834f8a7fc2af068ceca, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
@@ -2815,14 +2815,13 @@ MonoBehaviour:
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 8
-  DistanceToStartPunch: 1.89
+  DistanceToStartPunch: 1.97
   KnifePosition: {fileID: 300785653340127174}
   meleeDamagePoints:
   - DamageSphereOrigin: {fileID: 1609970915613858861}
     DamageSphereRange: 0.52
   - DamageSphereOrigin: {fileID: 547784208837091194}
     DamageSphereRange: 0.34
-  meleeDamage: 0
   meleeAttackSpeed: 0.1
   enemyPunchDuration: 0
   isMeleeAttacking: 0
@@ -3097,7 +3096,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7315841291722965718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.77, z: 0.351}
+  m_LocalPosition: {x: 0, y: 1.77, z: 0.415}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3321,7 +3320,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8077706476871903854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.77, z: 0.824}
+  m_LocalPosition: {x: 0, y: 1.77, z: 1.064}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

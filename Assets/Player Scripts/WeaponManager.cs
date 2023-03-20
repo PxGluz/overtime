@@ -1,7 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -174,7 +178,7 @@ public class WeaponManager : MonoBehaviour
         {
             if (weapon.name == weaponName)
             {
-                return weapon;
+                return CreateCopyObjOfWeapon(weapon);
             }
         }
         Weapon nullWeapon = new Weapon();
@@ -211,6 +215,7 @@ public class WeaponManager : MonoBehaviour
 
         }
     }
+
     public enum AnimationType
     {
         None, GenericRanged, GenericMelee
@@ -219,6 +224,35 @@ public class WeaponManager : MonoBehaviour
     public enum AttackType
     {
         melee, ranged, throwing
+    }
+
+    private Weapon CreateCopyObjOfWeapon(Weapon weapon)
+    {
+        Weapon weaponCopy = new Weapon();
+        weaponCopy.name = weapon.name;
+        weaponCopy.WeaponModelOnPlayer = weapon.WeaponModelOnPlayer;
+        weaponCopy.WeaponPrefab = weapon.WeaponPrefab;
+        weaponCopy.attackType = weapon.attackType;
+        weaponCopy.animationType = weapon.animationType;
+        weaponCopy.throwDamage = weapon.throwDamage;
+        weaponCopy.throwForce = weapon.throwForce;
+        weaponCopy.throwUpwardForce = weapon.throwUpwardForce;
+        weaponCopy.DamageSphereOrigin = weapon.DamageSphereOrigin;
+        weaponCopy.meleeDamage = weapon.meleeDamage;
+        weaponCopy.DamageSphereRadius = weapon.DamageSphereRadius;
+        weaponCopy.meleeAttackSpeed = weapon.meleeAttackSpeed;
+        weaponCopy.shootPoint = weapon.shootPoint;
+        weaponCopy.bulletDamage = weapon.bulletDamage;
+        weaponCopy.gunShootForce = weapon.gunShootForce;
+        weaponCopy.gunUpwardForce = weapon.gunUpwardForce;
+        weaponCopy.gunTimeBetweenShooting = weapon.gunTimeBetweenShooting;
+        weaponCopy.gunSpread = weapon.gunSpread;
+        weaponCopy.gunReloadTime = weapon.gunReloadTime;
+        weaponCopy.gunMagazineSize = weapon.gunMagazineSize;
+        weaponCopy.gunBulletsPerTap = weapon.gunBulletsPerTap;
+        weaponCopy.gunTimeBetweenShots = weapon.gunTimeBetweenShots;
+        weaponCopy.gunAllowButtonHold = weapon.gunAllowButtonHold;
+        return weaponCopy;
     }
 
     // Function for setting items to their place

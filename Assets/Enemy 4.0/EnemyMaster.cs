@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 using static WeaponManager;
 
 public class EnemyMaster : MonoBehaviour
@@ -20,8 +19,8 @@ public class EnemyMaster : MonoBehaviour
     public float maxHealth = 100f;
     public float currentHealth;
     public string myWeapon;
-    [HideInInspector]
-    public WeaponManager.Weapon WeaponClass;
+    //[HideInInspector]
+    public WeaponManager.Weapon myWeaponClass;
 
     [Header("State:")]
     public bool isDead = false;
@@ -33,10 +32,6 @@ public class EnemyMaster : MonoBehaviour
     [Header("Other: ")]
     public GameObject blood;
     public GameObject ragdoll;
-
-    //Other necessary variables to make other scripts work
-    [HideInInspector]
-    public int lastMeleeIndex = -1;
 
     private void Start()
     {
@@ -51,10 +46,11 @@ public class EnemyMaster : MonoBehaviour
         else if (myWeapon == "" && enemyType.ToString() == "Melee")
             myWeapon = "Knife";
 
-        WeaponClass = Player.m.weaponManager.GetWeaponByName(myWeapon);
+        myWeaponClass = Player.m.weaponManager.GetWeaponByName(myWeapon);
 
         PutWeaponInHand();
         SetMyDamageType();
+        NerfEnemyWeapons();
     }
 
     private void Update()
@@ -90,7 +86,6 @@ public class EnemyMaster : MonoBehaviour
 
         if (currentHealth <= 0) 
         {
-            //print("I " + this.gameObject.name + " am dead");
             Die(bodyPart, direction);
         }
         else
@@ -109,12 +104,15 @@ public class EnemyMaster : MonoBehaviour
 
         // Drop enemy weapon
         weaponInHand.SetActive(false);
-        GameObject drop = Instantiate(WeaponClass.WeaponPrefab, weaponInHand.transform.position, weaponInHand.transform.rotation);
-        if (Player.m.weaponManager.GetWeaponType(WeaponClass.name) == "ranged")
+        GameObject drop = Instantiate(myWeaponClass.WeaponPrefab, weaponInHand.transform.position, weaponInHand.transform.rotation);
+        if (Player.m.weaponManager.GetWeaponType(myWeaponClass.name) == "ranged")
         {
             Interactable interactable = drop.GetComponent<Interactable>();
-            interactable.quantity = WeaponClass.gunMagazineSize;
+            //interactable.quantity = WeaponClass.gunMagazineSize;
+            BulletPickUp bulletPick = Instantiate(Player.m.prefabHolder.bulletPickup,transform.position,Quaternion.identity).GetComponent<BulletPickUp>();
+            bulletPick.nrOfBullets = 2;
         }
+
 
         animator.enabled = false;
         // Enemy ragdoll
@@ -138,6 +136,14 @@ public class EnemyMaster : MonoBehaviour
         //Destroy Enemy Scripts:
         IncapacitateEnemy();
         Destroy(animator);
+    }
+
+    private void NerfEnemyWeapons()
+    {
+        myWeaponClass.gunTimeBetweenShooting *= 200 / 100;
+        print((float)myWeaponClass.gunMagazineSize);
+        myWeaponClass.gunMagazineSize = Mathf.FloorToInt((float)myWeaponClass.gunMagazineSize * 60 / 100);
+        myWeaponClass.gunSpread += 0.05f;
     }
 
     public void IncapacitateEnemy()
@@ -177,8 +183,12 @@ public class EnemyMaster : MonoBehaviour
                 location = enemyMelee.KnifePosition;
                 break;
         }
-        weaponInHand = Instantiate(WeaponClass.WeaponPrefab, location.position, location.rotation);
+        
+        weaponInHand = Instantiate(myWeaponClass.WeaponPrefab, location.position, location.rotation);
         weaponInHand.transform.parent = location.transform;
+
+        Invoke(nameof(SetWeaponInHandToPosition),0.1f);
+        
         // Delete all scripts on the prefab
         foreach (var comp in weaponInHand.GetComponents<Component>())
         {
@@ -212,6 +222,12 @@ public class EnemyMaster : MonoBehaviour
         mats[4].color = Player.m.colorManager.GetDamageTypeMaterialByName(damageType.ToString());
         mats[5].color = Player.m.colorManager.GetDamageTypeMaterialByName(damageType.ToString());
         EnemyMesh.materials = mats;
+    }
+
+    private void SetWeaponInHandToPosition()
+    {
+        weaponInHand.transform.localPosition = new Vector3(0, 0, 0);
+        weaponInHand.transform.localRotation = Quaternion.identity;
     }
 
 

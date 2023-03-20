@@ -17,7 +17,6 @@ public class EnemyMelee : MonoBehaviour
 
 
     [Header("Statistics: ")]
-    public float meleeDamage;
     public float meleeAttackSpeed;
 
     [Header("Animations durations")]
@@ -86,7 +85,7 @@ public class EnemyMelee : MonoBehaviour
                     if (!thisAttackHasHitThePlayer)
                     {
                         thisAttackHasHitThePlayer = true;
-                        Player.m.TakeDamage(meleeDamage);
+                        Player.m.TakeDamage(enemy.myWeaponClass.meleeDamage);
                     }
                 break;
             }

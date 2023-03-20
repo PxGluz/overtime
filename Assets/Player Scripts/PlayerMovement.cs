@@ -121,7 +121,8 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (Input.GetKey(KeyCode.W)){
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 sprintInput = !sprintInput;
@@ -160,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Player.m.MoveType = "walk";
 
-            if (sprintInput && Input.GetKey(KeyCode.W) && Player.m.MoveType != "run")
+            if (sprintInput && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && Player.m.MoveType != "run")
             {
                 Player.m.MoveType = "run";
             }

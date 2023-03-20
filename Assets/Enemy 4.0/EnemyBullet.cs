@@ -27,6 +27,9 @@ public class EnemyBullet : MonoBehaviour
 
         switch (LayerMask.LayerToName(hit.collider.gameObject.layer))
         {
+            case "Interactable":
+                return;
+
             case "Player":
                 Player.m.TakeDamage(bulletDamage);
                 break;
@@ -34,7 +37,6 @@ public class EnemyBullet : MonoBehaviour
             case "Explosive":
                 hit.collider.gameObject.GetComponent<ExplosiveBarrel>().ReceiveHit();
                 break;
-
         }
 
         if (LayerMask.LayerToName(hit.collider.gameObject.gameObject.layer) != "Enemy")

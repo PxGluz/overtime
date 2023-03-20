@@ -2776,7 +2776,7 @@ MonoBehaviour:
   meleeKey: 323
   isMeleeAttacking: 0
   canAttack: 1
-  CurrentMeleeIndex: 0
+  ThisAttackHasDealtDamge: 0
   TestMeleeSpherePoint: {fileID: 1193615109}
   TestMeleeSphereRadius: 0.4
 --- !u!114 &2054988533113032772
@@ -2926,7 +2926,7 @@ MonoBehaviour:
     gunShootForce: 40
     gunUpwardForce: 0
     gunTimeBetweenShooting: 0.8
-    gunSpread: 0.5
+    gunSpread: 0.15
     gunReloadTime: 0.5
     gunMagazineSize: 50
     gunBulletsPerTap: 5
@@ -2946,9 +2946,9 @@ MonoBehaviour:
     meleeAttackSpeed: 0
     shootPoint: {fileID: 4455511482312925621}
     bulletDamage: 100
-    gunShootForce: 100
+    gunShootForce: 40
     gunUpwardForce: 0
-    gunTimeBetweenShooting: 0.2
+    gunTimeBetweenShooting: 0.5
     gunSpread: 0.1
     gunReloadTime: 0.5
     gunMagazineSize: 10
@@ -2969,9 +2969,9 @@ MonoBehaviour:
     meleeAttackSpeed: 0
     shootPoint: {fileID: 1311200060}
     bulletDamage: 100
-    gunShootForce: 50
+    gunShootForce: 40
     gunUpwardForce: 0
-    gunTimeBetweenShooting: 0.1
+    gunTimeBetweenShooting: 0.5
     gunSpread: 0.1
     gunReloadTime: 0.5
     gunMagazineSize: 10
@@ -7307,7 +7307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581415554}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00051, y: 0.00156, z: -0.0023}
+  m_LocalPosition: {x: -0.00051, y: 0.00138, z: -0.00178}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9439,7 +9439,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 157149139719264050}
   - {fileID: 3982301615298521839}
@@ -9499,6 +9499,8 @@ MonoBehaviour:
   colorManager: {fileID: 1097992153545824280}
   audioManager: {fileID: 2372774186506820670}
   settingsManager: {fileID: 802934106}
+  interact: {fileID: 803368446}
+  prefabHolder: {fileID: 6861109611831387852}
   MainCamera: {fileID: 3982301615087226214}
   playerRigidBody: {fileID: 0}
   PointDebug: {fileID: 0}
@@ -9659,7 +9661,7 @@ Transform:
   m_GameObject: {fileID: 157149139719264051}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 1, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 157149138785908631}
@@ -9722,7 +9724,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157149139719264051}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 445fd8454521d2e4d8df9277af979e8d, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -14407,6 +14409,7 @@ GameObject:
   - component: {fileID: 2372774186506820670}
   - component: {fileID: 1097992153545824280}
   - component: {fileID: 802934106}
+  - component: {fileID: 6861109611831387852}
   m_Layer: 3
   m_Name: Managers
   m_TagString: Untagged
@@ -14528,6 +14531,20 @@ MonoBehaviour:
   togglePrefab: {fileID: 317819296317424722, guid: e3138acacb866e8439b8c9d4e0ef1ed6, type: 3}
   startPosition: {fileID: 1683960964}
   mainMenu: {fileID: 1070560018}
+--- !u!114 &6861109611831387852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8350131747216620355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e24196a40b7f2049b1df1a44bd52eba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPickup: {fileID: 8292193609671807758, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
+  ball: {fileID: 0}
 --- !u!1 &8402034881947792913
 GameObject:
   m_ObjectHideFlags: 0

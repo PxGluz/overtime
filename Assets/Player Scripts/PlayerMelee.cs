@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerMelee : MonoBehaviour
 {
@@ -15,12 +13,7 @@ public class PlayerMelee : MonoBehaviour
     public bool isMeleeAttacking = false;
     public bool canAttack = true;
 
-    // The AttackIndex system is in place so the same attack can't hit an enemy more than one, each time the player inputs an attack a new attackIndex is generated,
-    // when the enemy is hit, it remebers the last AttackIndex of the attack that hit it, because the player melee does damage during multiple frames, the same attack 
-    // can deal damage to an enemy each frame the variable isMeleeAttacking is true, this results in the enemy being hit potentially hundreds of times by the same attack,
-    // the CurrentMeleeIndex and lastMeleeIndex in the Enemy Script prevents that 
-    [HideInInspector]
-    public int CurrentMeleeIndex = 0;
+    public bool ThisAttackHasDealtDamge;
 
     void Update()
     {
@@ -35,12 +28,8 @@ public class PlayerMelee : MonoBehaviour
             Player.m.weaponManager.weaponAnimator.SetTrigger("StartAttack");
 
             canAttack = false;
-            
-            isMeleeAttacking = true;
 
-            CurrentMeleeIndex++;
-            if (CurrentMeleeIndex >= 1000000)
-                CurrentMeleeIndex = 0;
+            ThisAttackHasDealtDamge = false;
 
             Invoke("stopAttacking", 0.7f);
         }
@@ -55,31 +44,44 @@ public class PlayerMelee : MonoBehaviour
 
     public void DealDamageFromDamagePoint(Transform origin, float radius)
     {
+        if (ThisAttackHasDealtDamge)
+            return;
 
         //detect enemy
         Collider[] hitObjects = Physics.OverlapSphere(origin.position, radius, Player.m.enemyLayer);
 
+        EnemyMaster closestEnemy = null;
+        float distanceToClosestEnemy = 100;
+        Collider bodyPart = null;
+
         foreach (Collider obj in hitObjects)
         {
-            switch (LayerMask.LayerToName(obj.gameObject.layer))
+            if (LayerMask.LayerToName(obj.gameObject.layer) == "Enemy")
             {
-                case "Enemy":
-                    EnemyMaster enemy = obj.gameObject.GetComponentInParent<EnemyMaster>();
-                    if (enemy != null)
+                EnemyMaster enemy = obj.gameObject.GetComponentInParent<EnemyMaster>();
+                if (enemy != null)
+                {
+                    ThisAttackHasDealtDamge = true;
+                        
+                    float dist = Vector3.Distance(obj.gameObject.transform.position, origin.position);
+                    if (dist < distanceToClosestEnemy || closestEnemy == null)
                     {
-                        if (CurrentMeleeIndex != enemy.lastMeleeIndex)
-                        {
-                            enemy.lastMeleeIndex = CurrentMeleeIndex;
-                            enemy.TakeDamage(Player.m.weaponManager.currentWeapon.meleeDamage, obj.gameObject, transform.forward * 30f);
-                        }
+                        closestEnemy = enemy;
+                        distanceToClosestEnemy = dist;
+                        bodyPart = obj;
                     }
-                    break;
-
+                }
             }
-
         }
+
+        if (closestEnemy != null) {
+
+            closestEnemy.TakeDamage(Player.m.weaponManager.currentWeapon.meleeDamage, bodyPart.gameObject, transform.forward * 30f);
+            ThisAttackHasDealtDamge = true;
+        }
+
     }
-    
+
 
     private void stopAttacking(){ isMeleeAttacking = false; Invoke("resetCanAttack", Player.m.weaponManager.currentWeapon.meleeAttackSpeed); }
     private void resetCanAttack() { canAttack = true; }

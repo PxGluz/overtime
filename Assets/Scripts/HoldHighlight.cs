@@ -13,7 +13,7 @@ public class HoldHighlight : MonoBehaviour
     void Start()
     {
         if (gameObject.TryGetComponent(out Interactable inter))
-            interact = GameObject.Find("Player").GetComponent<Interact>();
+            interact = Player.m.interact;
         if (!TryGetComponent(out myOutLine))
             Debug.LogError("Outline script shouldn't be on this object! (" + gameObject.name + ")");
     }
@@ -21,6 +21,9 @@ public class HoldHighlight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (myOutLine == null)
+            return;
+
         if (Input.GetMouseButton(2))
         {
             destinationColor = 1;

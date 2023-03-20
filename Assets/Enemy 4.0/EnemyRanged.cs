@@ -46,7 +46,7 @@ public class EnemyRanged : MonoBehaviour
         isRaisingArms = false;
         reloading = false;
 
-        bulletsleft = enemy.WeaponClass.gunMagazineSize;
+        bulletsleft = enemy.myWeaponClass.gunMagazineSize;
     }
 
     private void Update()
@@ -73,7 +73,7 @@ public class EnemyRanged : MonoBehaviour
         if ( enemy.enemyMovement.canSeePlayer && readyToShoot && !reloading && bulletsleft > 0)
         {
             bulletsShot = 0;
-            enemy.StunEnemy(enemy.WeaponClass.gunBulletsPerTap * enemy.WeaponClass.gunTimeBetweenShots + 0.5f);
+            enemy.StunEnemy(enemy.myWeaponClass.gunBulletsPerTap * enemy.myWeaponClass.gunTimeBetweenShots + 0.5f);
             Shoot();
         }
     }
@@ -86,8 +86,8 @@ public class EnemyRanged : MonoBehaviour
 
         Vector3 targetPoint = Player.m.playerCam.transform.position;
 
-        float spreadUp = Random.Range(-1f, 1f) * enemy.WeaponClass.gunSpread / 10;
-        float spreadRight = Random.Range(-1f, 1f) * enemy.WeaponClass.gunSpread / 10;
+        float spreadUp = Random.Range(-1f, 1f) * enemy.myWeaponClass.gunSpread / 10;
+        float spreadRight = Random.Range(-1f, 1f) * enemy.myWeaponClass.gunSpread / 10;
 
         // Find random point in the same plane as the targetPoint.
         Vector3 spreadPoint = targetPoint
@@ -100,12 +100,15 @@ public class EnemyRanged : MonoBehaviour
         // Instantiate bullet/projectile
         GameObject currentBullet = Instantiate(enemyBullet, shootPoint.position, Quaternion.identity);
 
+        EnemyBullet bullet = currentBullet.GetComponent<EnemyBullet>();
+        bullet.bulletDamage = enemy.myWeaponClass.bulletDamage;
+
         // Rotate bullet to shoot direction
         currentBullet.transform.forward = directionWithSpread.normalized;
 
         // Add force to bullet
         Rigidbody bulletRB = currentBullet.GetComponent<Rigidbody>();
-        bulletRB.AddForce(directionWithSpread.normalized * enemy.WeaponClass.gunShootForce, ForceMode.Impulse);
+        bulletRB.AddForce(directionWithSpread.normalized * enemy.myWeaponClass.gunShootForce, ForceMode.Impulse);
 
         // Set bullet damage
         BulletCollision bulletCollision = currentBullet.GetComponent<BulletCollision>();
@@ -123,13 +126,13 @@ public class EnemyRanged : MonoBehaviour
         // Invoke resetShot function ( if not already invoked )
         if (allowInvoke)
         {
-            Invoke("ResetShot", enemy.WeaponClass.gunTimeBetweenShooting);
+            Invoke("ResetShot", enemy.myWeaponClass.gunTimeBetweenShooting);
             allowInvoke = false;
         }
 
         // if more than one bulletsPerTap make sure to repeat shoot function
-        if (bulletsShot < enemy.WeaponClass.gunBulletsPerTap && bulletsleft > 0)
-            Invoke("Shoot", enemy.WeaponClass.gunTimeBetweenShots);
+        if (bulletsShot < enemy.myWeaponClass.gunBulletsPerTap && bulletsleft > 0)
+            Invoke("Shoot", enemy.myWeaponClass.gunTimeBetweenShots);
 
     }
 
@@ -147,7 +150,7 @@ public class EnemyRanged : MonoBehaviour
 
     private void ReloadFinished()
     {
-        bulletsleft = enemy.WeaponClass.gunMagazineSize;
+        bulletsleft = enemy.myWeaponClass.gunMagazineSize;
         reloading = false;
     }
 
