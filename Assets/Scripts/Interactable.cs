@@ -7,7 +7,7 @@ public class Interactable : MonoBehaviour
 {
     public string itemName;
     public bool isWeaponPickUp = false;
-    [HideInInspector] public bool isChoice;
+    public bool isChoice;
     public int quantity;
     public bool TriggerFunction = false;
     

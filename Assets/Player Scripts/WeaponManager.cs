@@ -57,6 +57,9 @@ public class WeaponManager : MonoBehaviour
         [Tooltip("This is the time between bullets when shooting more than one bullets per tap")]
         public float gunTimeBetweenShots = 0.05f;
         public bool gunAllowButtonHold;
+
+        [Header("Loadout Related")] 
+        public bool isUnlocked;
     }
 
     [HideInInspector]

@@ -7,7 +7,7 @@ using UnityEngine;
 public class ChoiceManager : MonoBehaviour
 {
     private int currentChoice;
-    [HideInInspector]
+    //[HideInInspector]
     public Material selectedColor, unselectedColor;
 
     public void ChangeChoice(int newChoice)
@@ -25,9 +25,8 @@ public class ChoiceManager : MonoBehaviour
         return currentChoice;
     }
 
-    private void Start()
+    public void UpdateChoice()
     {
-        // In case you don't do setup
         foreach (Transform child in transform)
         {
             if (child.TryGetComponent(out Interactable inter))
@@ -38,5 +37,10 @@ public class ChoiceManager : MonoBehaviour
             else
                 Debug.LogError(child.name + " does not have Interactable.cs and should not be under a choice manager!");
         }
+    }
+    
+    private void Start()
+    {
+        UpdateChoice();
     }
 }
