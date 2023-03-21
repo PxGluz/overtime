@@ -1389,7 +1389,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   myWeapon: Knife
-  WeaponClass:
+  myWeaponClass:
     name: 
     WeaponModelOnPlayer: {fileID: 0}
     WeaponPrefab: {fileID: 0}
@@ -1419,7 +1419,6 @@ MonoBehaviour:
   isStunned: 0
   blood: {fileID: 0}
   ragdoll: {fileID: 887296189527247187}
-  lastMeleeIndex: -1
   EnemyMesh: {fileID: 1107508121578391398}
 --- !u!114 &2251502086470687854
 MonoBehaviour:
