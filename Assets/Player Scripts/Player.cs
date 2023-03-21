@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public PlayerShooting playerShooting;
     public MenuManager menuManager;
+    public MainMenu mainMenu;
     public ColorManager colorManager;
     public AudioManager audioManager;
     public SettingsManager settingsManager;
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
     public float lowTimeScale;
     public float smoothTime;
     private float timeScaleTarget = 1;
+    public bool canPressEscape = false;
 
     [Header("PostProcessing")] 
     private float vigTarget = 0;
@@ -154,5 +156,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         SlowTimeLogic();
+        if (Input.GetKeyDown(KeyCode.Escape) && canPressEscape)
+        {
+            canPressEscape = false;
+            mainMenu.PressedEscape();
+        }
     }
 }

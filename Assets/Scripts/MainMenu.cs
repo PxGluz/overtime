@@ -57,7 +57,7 @@ public class MainMenu : MonoBehaviour
     public Animator weaponAnimator;
     public Player pl;
 
-    private bool started = false;
+    private bool startedTransition = false, firstIteration = true, appearing;
     private Transform playerCam;
     private int optionLevel = 0;
     
@@ -69,7 +69,8 @@ public class MainMenu : MonoBehaviour
         }
 
         Time.timeScale = 1;
-        started = true;
+        startedTransition = true;
+        Invoke(nameof(ResetEscape), 1);
     }
 
     private void SetSettings(bool active)
@@ -83,7 +84,10 @@ public class MainMenu : MonoBehaviour
     {
         SetSettings(true);
         dictionaryButtons["back"].gameObject.SetActive(true);
-        dictionaryButtons["startGame"].gameObject.SetActive(false);
+        if (firstIteration)
+            dictionaryButtons["startGame"].gameObject.SetActive(false);
+        else
+            dictionaryButtons["resume"].gameObject.SetActive(false);
         dictionaryButtons["options"].gameObject.SetActive(false);
         dictionaryButtons["quitGame"].gameObject.SetActive(false);
         optionLevel++;
@@ -99,8 +103,10 @@ public class MainMenu : MonoBehaviour
     {
         if (optionLevel == 1)
         {
-            
-            dictionaryButtons["startGame"].gameObject.SetActive(true);
+            if (firstIteration)
+                dictionaryButtons["startGame"].gameObject.SetActive(true);
+            else
+                dictionaryButtons["resume"].gameObject.SetActive(true);
             dictionaryButtons["options"].gameObject.SetActive(true);
             dictionaryButtons["quitGame"].gameObject.SetActive(true);
             SetSettings(false);
@@ -186,6 +192,20 @@ public class MainMenu : MonoBehaviour
             if (volumeComponent.name.Equals(component))
                 volumeComponent.active = dictionaryToggles[component].isOn;
     }
+
+    private void Resume()
+    {
+        foreach (KeyValuePair<string, Button> button in dictionaryButtons)
+        {
+            button.Value.interactable = false;
+        }
+
+        Time.timeScale = 1;
+        Player.m.playerCam.LockCursor();
+        appearing = false;
+        startedTransition = true;
+        Invoke(nameof(ResetEscape), 1);
+    }
     
     private void Awake()
     {
@@ -218,37 +238,114 @@ public class MainMenu : MonoBehaviour
         dictionarySliders["masterVolume"].onValueChanged.AddListener(delegate { MasterVolume(); });
         dictionarySliders["sensitivity"].onValueChanged.AddListener(delegate { Sensitivity(); });
         dictionaryToggles["subtitles"].onValueChanged.AddListener(delegate { Subtitles(); });
+        dictionaryButtons["resume"].onClick.AddListener(Resume);
         Time.timeScale = 0;
     }
 
     private void Update()
     {
-        if (started)
+        if (firstIteration)
         {
-            foreach (MaskableGraphic playerUIComponent in playerUI)
-                playerUIComponent.color = Color.Lerp(playerUIComponent.color,
-                    new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 1),
-                    menuFadeSpeed);
-            foreach (MaskableGraphic menuItem in menuItems)
-                menuItem.color = Color.Lerp(menuItem.color,
-                    new Color(menuItem.color.r, menuItem.color.g, menuItem.color.b, 0),
-                    menuFadeSpeed);
-            playerFist.position = Vector3.Lerp(playerFist.position, playerFist.parent.position, menuFadeSpeed);
-            pl.enabled = true;
-            pl.playerCam.enabled = true;
-            if ((playerFist.position - playerFist.parent.position).magnitude > 0.001f)
-                return;
-            foreach (MaskableGraphic playerUIComponent in playerUI)
-                if (1 - playerUIComponent.color.a > 0.001f)
+            if (startedTransition)
+            {
+                foreach (MaskableGraphic playerUIComponent in playerUI)
+                    playerUIComponent.color = Color.Lerp(playerUIComponent.color,
+                        new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 1),
+                        menuFadeSpeed);
+                foreach (MaskableGraphic menuItem in menuItems)
+                    menuItem.color = Color.Lerp(menuItem.color,
+                        new Color(menuItem.color.r, menuItem.color.g, menuItem.color.b, 0),
+                        menuFadeSpeed);
+                playerFist.position = Vector3.Lerp(playerFist.position, playerFist.parent.position, menuFadeSpeed);
+                pl.enabled = true;
+                pl.playerCam.enabled = true;
+                if ((playerFist.position - playerFist.parent.position).magnitude > 0.001f)
                     return;
-            foreach (MaskableGraphic menuItem in menuItems)
-                if (menuItem.color.a > 0.001f)
-                    return;
-            pl.playerMelee.enabled = true;
-            weaponAnimator.enabled = true;
-            gameObject.SetActive(false);
-        }
+                foreach (MaskableGraphic playerUIComponent in playerUI)
+                    if (1 - playerUIComponent.color.a > 0.001f)
+                        return;
+                foreach (MaskableGraphic menuItem in menuItems)
+                    if (menuItem.color.a > 0.001f)
+                        return;
+                pl.playerMelee.enabled = true;
+                weaponAnimator.enabled = true;
+                firstIteration = false;
+                startedTransition = false;
+                gameObject.SetActive(false);
+            }
+            else
+                playerCam.Rotate(Vector3.up * rotationSpeed);
+        } 
         else
-            playerCam.Rotate(Vector3.up * rotationSpeed);
+        {
+            if (startedTransition)
+            {
+                if (!appearing)
+                {
+                    foreach (MaskableGraphic playerUIComponent in playerUI)
+                        playerUIComponent.color = Color.Lerp(playerUIComponent.color,
+                            new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 1),
+                            menuFadeSpeed);
+                    foreach (MaskableGraphic menuItem in menuItems)
+                        menuItem.color = Color.Lerp(menuItem.color,
+                            new Color(menuItem.color.r, menuItem.color.g, menuItem.color.b, 0),
+                            menuFadeSpeed);
+                    pl.enabled = true;
+                    pl.playerCam.enabled = true;
+                    foreach (MaskableGraphic playerUIComponent in playerUI)
+                        if (1 - playerUIComponent.color.a > 0.001f)
+                            return;
+                    foreach (MaskableGraphic menuItem in menuItems)
+                        if (menuItem.color.a > 0.001f)
+                            return;
+                    pl.playerMelee.enabled = true;
+                    weaponAnimator.enabled = true;
+                    startedTransition = false;
+                    gameObject.SetActive(false);
+                }
+                else
+                {
+                    foreach (MaskableGraphic playerUIComponent in playerUI)
+                        playerUIComponent.color = Color.Lerp(playerUIComponent.color,
+                            new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 0),
+                            menuFadeSpeed);
+                    foreach (MaskableGraphic menuItem in menuItems)
+                        menuItem.color = Color.Lerp(menuItem.color,
+                            new Color(menuItem.color.r, menuItem.color.g, menuItem.color.b, 1),
+                            menuFadeSpeed);
+                    pl.enabled = false;
+                    pl.playerCam.enabled = false;
+                    pl.playerMelee.enabled = false;
+                    weaponAnimator.enabled = false;
+                    foreach (MaskableGraphic playerUIComponent in playerUI)
+                        if (playerUIComponent.color.a > 0.001f)
+                            return;
+                    foreach (MaskableGraphic menuItem in menuItems)
+                        if (1 - menuItem.color.a > 0.001f)
+                            return;
+                    startedTransition = false;
+                    Time.timeScale = 0;
+                }
+            }
+        }
+    }
+
+    public void PressedEscape()
+    {
+        gameObject.SetActive(true);
+        Player.m.playerCam.UnLockCursor();
+        dictionaryButtons["startGame"].gameObject.SetActive(false);
+        dictionaryButtons["resume"].gameObject.SetActive(true);
+        foreach (KeyValuePair<string, Button> button in dictionaryButtons)
+        {
+            button.Value.interactable = true;
+        }
+        startedTransition = true;
+        appearing = true;
+    }
+
+    private void ResetEscape()
+    {
+        Player.m.canPressEscape = true;
     }
 }
