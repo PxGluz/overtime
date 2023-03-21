@@ -173,7 +173,7 @@ public class MainMenu : MonoBehaviour
 
     private void MasterVolume()
     {
-        AudioManager.AM.audioMixer.SetFloat("volume", dictionarySliders["masterVolume"].value);
+        AudioManager.AM.audioMixer.SetFloat("master", dictionarySliders["masterVolume"].value);
     }
 
     private void Sensitivity()

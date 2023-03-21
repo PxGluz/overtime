@@ -255,6 +255,7 @@ public class WeaponManager : MonoBehaviour
         weaponCopy.gunBulletsPerTap = weapon.gunBulletsPerTap;
         weaponCopy.gunTimeBetweenShots = weapon.gunTimeBetweenShots;
         weaponCopy.gunAllowButtonHold = weapon.gunAllowButtonHold;
+        weaponCopy.isUnlocked = weapon.isUnlocked;
         return weaponCopy;
     }
 

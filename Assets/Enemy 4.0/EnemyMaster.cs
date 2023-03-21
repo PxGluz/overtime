@@ -140,8 +140,7 @@ public class EnemyMaster : MonoBehaviour
 
     private void NerfEnemyWeapons()
     {
-        myWeaponClass.gunTimeBetweenShooting *= 200 / 100;
-        print((float)myWeaponClass.gunMagazineSize);
+        myWeaponClass.gunTimeBetweenShooting *= 150 / 100;
         myWeaponClass.gunMagazineSize = Mathf.FloorToInt((float)myWeaponClass.gunMagazineSize * 60 / 100);
         myWeaponClass.gunSpread += 0.05f;
     }
