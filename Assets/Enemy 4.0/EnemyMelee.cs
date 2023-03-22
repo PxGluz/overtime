@@ -55,6 +55,7 @@ public class EnemyMelee : MonoBehaviour
         if (enemy.enemyMovement.canSeePlayer && Vector3.Distance(transform.position, Player.m.transform.position) <= DistanceToStartPunch && canAttack)
         {
             enemy.animator.SetTrigger("StartPunch");
+            enemy.soundManager.Play("slash");
 
             canAttack = false;
 

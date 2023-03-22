@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 7373039682345800312}
   - component: {fileID: 7437345086626020022}
   - component: {fileID: -3320733817729053444}
+  - component: {fileID: -1404686587834898828}
   m_Layer: 7
   m_Name: Knife Prefab
   m_TagString: Untagged
@@ -340,6 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   myPickUp: {fileID: 0}
+  SoundManager: {fileID: 0}
   interactable: {fileID: 0}
   outline: {fileID: 0}
   sphereCollider: {fileID: 0}
@@ -357,6 +359,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff16472f09d3bfe41b534eff8f822d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1404686587834898828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7373039682345800313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef79ecdf5b866194d90d6a913f793f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySounds:
+  - name: throw
+    source: {fileID: 0}
 --- !u!1 &7864952713744648587
 GameObject:
   m_ObjectHideFlags: 0

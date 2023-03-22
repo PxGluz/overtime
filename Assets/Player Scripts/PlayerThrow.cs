@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder;
 
 public class PlayerThrow : MonoBehaviour
 {
     [Header("References")]
     public Transform attackPoint;
     public Transform dropPoint;
-    public GameObject objectToThrow;
 
     [Header("Settings")]
     public int totalThrows;
@@ -71,13 +71,9 @@ public class PlayerThrow : MonoBehaviour
         }
 
         // instantiate object to throw
-        GameObject projectile;
-        if (Player.m.weaponManager.currentWeapon.WeaponPrefab == null)
-            projectile = Instantiate(objectToThrow, attackPoint.position, Player.m.MainCamera.transform.rotation);
-        else
-        {
-            projectile = Instantiate(Player.m.weaponManager.currentWeapon.WeaponPrefab, attackPoint.position, attackPoint.rotation);
-        }
+        GameObject projectile = Instantiate(Player.m.weaponManager.currentWeapon.WeaponPrefab, attackPoint.position, attackPoint.rotation);
+
+        StartCoroutine(PlaySoundAfterDelay(projectile));
 
         // get rigidbody component
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
@@ -110,7 +106,7 @@ public class PlayerThrow : MonoBehaviour
         // implement throwCooldown
         Invoke(nameof(ResetThrow), ThrowCooldown);
     }
-
+    private IEnumerator PlaySoundAfterDelay(GameObject projectile) {yield return new WaitForEndOfFrame(); projectile.GetComponent<NeedSounds>().Play("throw"); }
     public void DropWeapon()
     {
         

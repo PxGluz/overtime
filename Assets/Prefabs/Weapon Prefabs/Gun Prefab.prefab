@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 7755784052754400701}
   - component: {fileID: 6325658846016000618}
   - component: {fileID: 1517662443588745802}
+  - component: {fileID: -5826221015436115527}
   m_Layer: 7
   m_Name: Gun Prefab
   m_TagString: Untagged
@@ -209,9 +210,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Gun
   isWeaponPickUp: 1
+  isChoice: 0
   quantity: 0
   TriggerFunction: 0
   myAttackPoint: {fileID: 8062423380500406398}
+  scriptToStart: {fileID: 0}
   myOutline: {fileID: 0}
 --- !u!114 &1894379938258304334
 MonoBehaviour:
@@ -258,6 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   myPickUp: {fileID: 0}
+  SoundManager: {fileID: 0}
   interactable: {fileID: 0}
   outline: {fileID: 0}
   sphereCollider: {fileID: 0}
@@ -288,6 +292,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationForce: 10
+--- !u!114 &-5826221015436115527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7694006288779537778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef79ecdf5b866194d90d6a913f793f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySounds:
+  - name: throw
+    source: {fileID: 0}
 --- !u!1 &8147055333936361506
 GameObject:
   m_ObjectHideFlags: 0

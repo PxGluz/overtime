@@ -54,7 +54,6 @@ public class AudioManager : MonoBehaviour
         }
 
         Play("Gremory");
-
     }
 
     // This function is called by the "GiveMeSounds" script on Start to create it's audio sources
@@ -113,8 +112,11 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = listOfAllSounds.Find(sound => sound.name == name);
 
-        if (s == null)
+        if (s == null || s.source == null)
+        {
+            print("Didn't find the sound: " + name);
             return;
+        }
 
         //s.source.Play();
         s.source.PlayOneShot(s.source.clip);
@@ -124,8 +126,11 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = listOfAllSounds.Find(sound => sound.name == name);
 
-        if (s == null)
+        if (s == null || s.source == null)
+        {
+            print("Didn't find the sound: " + name);
             return;
+        }
 
         s.source.Stop();
     }
@@ -134,8 +139,11 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = listOfAllSounds.Find(sound => sound.name == name);
 
-        if (s == null)
+        if (s == null || s.source == null)
+        {
+            print("Didn't find the sound: " + name);
             return false;
+        }
 
         return s.source.isPlaying;
     }
@@ -144,8 +152,11 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = listOfAllSounds.Find(sound => sound.name == name);
 
-        if (s == null)
+        if (s == null || s.source == null)
+        {
+            print("Didn't find the sound: " + name);
             return 0;
+        }
 
         return s.source.clip.length;
     }

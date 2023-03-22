@@ -386,6 +386,7 @@ GameObject:
   - component: {fileID: 2369381963526222804}
   - component: {fileID: 2415390800816970522}
   - component: {fileID: 7012330504260935919}
+  - component: {fileID: -5868351841864768074}
   m_Layer: 7
   m_Name: Proximity Mine Prefab
   m_TagString: Untagged
@@ -545,9 +546,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: ProximityMine
   isWeaponPickUp: 1
+  isChoice: 0
   quantity: 0
   TriggerFunction: 0
   myAttackPoint: {fileID: 0}
+  scriptToStart: {fileID: 0}
   myOutline: {fileID: 0}
 --- !u!114 &1245365014
 MonoBehaviour:
@@ -594,6 +597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   myPickUp: {fileID: 0}
+  SoundManager: {fileID: 0}
   interactable: {fileID: 0}
   outline: {fileID: 0}
   sphereCollider: {fileID: 0}
@@ -616,6 +620,21 @@ MonoBehaviour:
   mineRadius: 4
   minePushForce: 10
   ArmDelay: 2
+--- !u!114 &-5868351841864768074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369381963526222805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef79ecdf5b866194d90d6a913f793f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySounds:
+  - name: throw
+    source: {fileID: 0}
 --- !u!1 &2870308974040440045
 GameObject:
   m_ObjectHideFlags: 0

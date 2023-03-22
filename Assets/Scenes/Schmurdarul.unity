@@ -1412,6 +1412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   myPickUp: {fileID: 0}
+  SoundManager: {fileID: 0}
   interactable: {fileID: 0}
   outline: {fileID: 0}
   sphereCollider: {fileID: 0}
@@ -8069,6 +8070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   myPickUp: {fileID: 0}
+  SoundManager: {fileID: 0}
   interactable: {fileID: 0}
   outline: {fileID: 0}
   sphereCollider: {fileID: 0}

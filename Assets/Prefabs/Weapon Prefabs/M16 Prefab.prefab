@@ -699,6 +699,7 @@ GameObject:
   - component: {fileID: 3928227481988508645}
   - component: {fileID: 786031656986065970}
   - component: {fileID: 8254322380136453949}
+  - component: {fileID: 5860426371604164492}
   m_Layer: 7
   m_Name: M16 Prefab
   m_TagString: Untagged
@@ -788,9 +789,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: M16
   isWeaponPickUp: 1
+  isChoice: 0
   quantity: 0
   TriggerFunction: 0
   myAttackPoint: {fileID: 3190032069683341574}
+  scriptToStart: {fileID: 0}
   myOutline: {fileID: 0}
 --- !u!114 &1552570052
 MonoBehaviour:
@@ -837,6 +840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   myPickUp: {fileID: 0}
+  SoundManager: {fileID: 0}
   interactable: {fileID: 0}
   outline: {fileID: 0}
   sphereCollider: {fileID: 0}
@@ -867,6 +871,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationForce: 10
+--- !u!114 &5860426371604164492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4028280065528267562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef79ecdf5b866194d90d6a913f793f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySounds:
+  - name: throw
+    source: {fileID: 0}
 --- !u!1 &4610213299437628963
 GameObject:
   m_ObjectHideFlags: 0

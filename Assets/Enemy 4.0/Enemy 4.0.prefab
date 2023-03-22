@@ -1506,6 +1506,8 @@ MonoBehaviour:
   mySounds:
   - name: pistolShoot
     source: {fileID: 0}
+  - name: slash
+    source: {fileID: 0}
 --- !u!1 &2146116514591408570
 GameObject:
   m_ObjectHideFlags: 0

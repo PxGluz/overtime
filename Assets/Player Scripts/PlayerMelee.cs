@@ -24,8 +24,9 @@ public class PlayerMelee : MonoBehaviour
         // start attacking
         if (Input.GetKey(meleeKey) && canAttack)
         {
-            
             Player.m.weaponManager.weaponAnimator.SetTrigger("StartAttack");
+
+            AudioManager.AM.Play("slash");
 
             canAttack = false;
 

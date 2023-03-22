@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NeedSounds : MonoBehaviour
@@ -9,7 +7,7 @@ public class NeedSounds : MonoBehaviour
     public class MySounds
     {
         public string name;
-        //[HideInInspector]
+        [HideInInspector]
         public AudioSource source;
     }
 
@@ -34,8 +32,11 @@ public class NeedSounds : MonoBehaviour
     {
         MySounds s = Array.Find(mySounds, sound => sound.name == name);
 
-        if (s.source == null)
+
+        if (s == null || s.source == null) {
+            print("Didn't find the sound: " + name);
             return;
+        }
 
         //s.source.Play();
         s.source.PlayOneShot(s.source.clip);

@@ -8,6 +8,8 @@ public class ThrownProjectile : MonoBehaviour
     public float damage;
     [HideInInspector]
     public GameObject myPickUp;
+    [HideInInspector]
+    public NeedSounds SoundManager;
 
     [HideInInspector]
     public Interactable interactable;
@@ -40,6 +42,19 @@ public class ThrownProjectile : MonoBehaviour
 
         PickUpSetActive(true);
     }
+    /*
+    private void Start()
+    {
+        print("started");
+        SoundManager = GetComponent<NeedSounds>();
+        
+    }
+
+    private void LateStart()
+    {
+        SoundManager.Play("throw");
+    }
+    */
 
     public void PickUpSetActive(bool value)
     {
