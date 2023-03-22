@@ -109,6 +109,8 @@ public class PlayerShooting : MonoBehaviour
         else
             targetPoint = ray.GetPoint(75);
 
+        AudioManager.AM.Play("pistolShoot");
+
 
         // Calculate direction from attackPoint to targetPoint
         //Vector3 directionWithoutSpread = (targetPoint - weaponM.currentWeapon.shootPoint.position).normalized;

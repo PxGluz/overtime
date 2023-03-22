@@ -12939,13 +12939,41 @@ MonoBehaviour:
       is3DSound: 0
       soundRange: 0
       useLinearVolumeRollOff: 0
+    - name: Gremory
+      clip: {fileID: 8300000, guid: e23a6a2b7411d4048a7f884c82e0e7f4, type: 3}
+      source: {fileID: 0}
+      volume: 0.01
+      pitch: 1
+      loop: 1
+      is3DSound: 0
+      soundRange: 0
+      useLinearVolumeRollOff: 0
   - groupName: Sound Effects
     MixerGroup: {fileID: -3911481615702328409, guid: d390e54cd3745a74f9ce824e8bd8bbaf, type: 2}
-    soundList: []
+    soundList:
+    - name: pistolShoot
+      clip: {fileID: 8300000, guid: 26787378933d94b40afe98f2fb25b4b1, type: 3}
+      source: {fileID: 0}
+      volume: 0.15
+      pitch: 2
+      loop: 0
+      is3DSound: 1
+      soundRange: 30
+      useLinearVolumeRollOff: 1
+    - name: explosion
+      clip: {fileID: 8300000, guid: 0fcab5e1d663d5542987f3688737b8a4, type: 3}
+      source: {fileID: 0}
+      volume: 0.2
+      pitch: 1
+      loop: 0
+      is3DSound: 1
+      soundRange: 30
+      useLinearVolumeRollOff: 0
   - groupName: Dialogue
     MixerGroup: {fileID: -6314931162441039161, guid: d390e54cd3745a74f9ce824e8bd8bbaf, type: 2}
     soundList: []
   listOfAllSounds: []
+  RangeReference: 0
 --- !u!1 &3982301615298521838
 GameObject:
   m_ObjectHideFlags: 0
@@ -16155,6 +16183,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1800
   ExplosionEffect: {fileID: 4222606600419231085, guid: 71e562e7fb9ab934898a11b5a0638b52, type: 3}
+  SoundPlayer: {fileID: 3364876276491779210, guid: 2ca5841fe2c297346ae07c46443a1175, type: 3}
+  explosionSoundName: explosion
 --- !u!114 &1216285252
 MonoBehaviour:
   m_ObjectHideFlags: 0

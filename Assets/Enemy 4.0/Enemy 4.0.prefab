@@ -1293,6 +1293,7 @@ GameObject:
   - component: {fileID: 2251502086470687854}
   - component: {fileID: 1978722146465968006}
   - component: {fileID: 7882693205627715867}
+  - component: {fileID: 2823341477042712141}
   m_Layer: 8
   m_Name: Enemy 4.0
   m_TagString: Untagged
@@ -1386,6 +1387,7 @@ MonoBehaviour:
   visionCone: {fileID: 2251502086470687854}
   weaponInHand: {fileID: 0}
   enemyMovement: {fileID: 0}
+  soundManager: {fileID: 0}
   maxHealth: 100
   currentHealth: 0
   myWeapon: Knife
@@ -1413,6 +1415,7 @@ MonoBehaviour:
     gunBulletsPerTap: 1
     gunTimeBetweenShots: 0.05
     gunAllowButtonHold: 0
+    isUnlocked: 0
   isDead: 0
   enemyType: 0
   damageType: 2
@@ -1488,6 +1491,21 @@ MonoBehaviour:
   readyToShoot: 0
   isRaisingArms: 0
   shootPoint: {fileID: 0}
+--- !u!114 &2823341477042712141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978722146465968001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef79ecdf5b866194d90d6a913f793f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySounds:
+  - name: pistolShoot
+    source: {fileID: 0}
 --- !u!1 &2146116514591408570
 GameObject:
   m_ObjectHideFlags: 0

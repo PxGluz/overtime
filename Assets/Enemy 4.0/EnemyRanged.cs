@@ -82,6 +82,8 @@ public class EnemyRanged : MonoBehaviour
 
     private void Shoot()
     {
+        enemy.soundManager.Play("pistolShoot");
+
         readyToShoot = false;
 
         Vector3 targetPoint = Player.m.playerCam.transform.position;

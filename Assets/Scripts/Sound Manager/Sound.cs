@@ -8,7 +8,7 @@ public class Sound
 
     public AudioClip clip;
 
-    //[HideInInspector]
+    [HideInInspector]
     public AudioSource source;
 
     [Header("For all sounds:")]

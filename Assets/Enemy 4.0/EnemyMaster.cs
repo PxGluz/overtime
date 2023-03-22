@@ -14,6 +14,7 @@ public class EnemyMaster : MonoBehaviour
     public GameObject weaponInHand;
     [HideInInspector]
     public EnemyMovement enemyMovement;
+    public NeedSounds soundManager;
 
     [Header("Stats")]
     public float maxHealth = 100f;
@@ -40,6 +41,7 @@ public class EnemyMaster : MonoBehaviour
 
         enemyMovement = GetComponent<EnemyMovement>();
         enemyRanged = GetComponent<EnemyRanged>();
+        soundManager = GetComponent<NeedSounds>();
 
         if (myWeapon == "" && enemyType.ToString() == "Ranged")
             myWeapon = "Gun";

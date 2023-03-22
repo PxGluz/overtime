@@ -37,6 +37,7 @@ public class NeedSounds : MonoBehaviour
         if (s.source == null)
             return;
 
-        s.source.Play();
+        //s.source.Play();
+        s.source.PlayOneShot(s.source.clip);
     }
 }

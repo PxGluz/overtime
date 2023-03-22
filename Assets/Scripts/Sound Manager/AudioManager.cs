@@ -8,6 +8,8 @@ using System.Linq;
 
 public class AudioManager : MonoBehaviour
 {	
+	public static AudioManager AM;
+
     public AudioMixer audioMixer;
 
     [Serializable]
@@ -17,15 +19,12 @@ public class AudioManager : MonoBehaviour
         public AudioMixerGroup MixerGroup;
         public List<Sound> soundList = new List<Sound>();
     }
-
     public List<ListAndGroup> SoundTypeLists = new List<ListAndGroup>();
 
     [HideInInspector]
     public List<Sound> listOfAllSounds = new List<Sound>();
 
-
-	public static AudioManager AM;
-
+    public float RangeReference = 1f;
 
     void Awake()
     {
@@ -40,25 +39,21 @@ public class AudioManager : MonoBehaviour
 
         foreach (var listWithGroup in SoundTypeLists)
         {
-
             foreach(var sound in listWithGroup.soundList)
             {
                 if (sound.name == "")
                     continue;
 
                 listOfAllSounds.Add(sound);
-
-                //if (sound.is3DSound)
-                //    continue;
                 
                 sound.source = gameObject.AddComponent<AudioSource>();
                 
                 SetTheAudioSettings(sound);
-
-
             }
 
         }
+
+        Play("Gremory");
 
     }
 
@@ -121,7 +116,8 @@ public class AudioManager : MonoBehaviour
         if (s == null)
             return;
 
-        s.source.Play();
+        //s.source.Play();
+        s.source.PlayOneShot(s.source.clip);
     }
 
     public void Stop(string name)
@@ -152,6 +148,12 @@ public class AudioManager : MonoBehaviour
             return 0;
 
         return s.source.clip.length;
+    }
+
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, RangeReference);
     }
 
 }

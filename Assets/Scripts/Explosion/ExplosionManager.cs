@@ -7,6 +7,8 @@ public class ExplosionManager : MonoBehaviour
     public static ExplosionManager instance = null;
     public LayerMask objectsAffectedByExplosions;
     public GameObject ExplosionEffect;
+    public GameObject SoundPlayer;
+    public string explosionSoundName;
 
     void Awake()
     {
@@ -61,5 +63,10 @@ public class ExplosionManager : MonoBehaviour
                     break;
             }
         }
+
+        PlaySoundThenDestroy playSoundScript = Instantiate(SoundPlayer, position, Quaternion.identity).GetComponent<PlaySoundThenDestroy>();
+        playSoundScript.SoundToPlay = explosionSoundName;
     }
+
+
 }
