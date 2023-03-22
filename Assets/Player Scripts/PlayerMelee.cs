@@ -21,6 +21,9 @@ public class PlayerMelee : MonoBehaviour
         if (Player.m.AttackType != "melee")
             return;
 
+        if (!Player.m.weaponManager.weaponIsInPlace)
+            return;
+
         // start attacking
         if (Input.GetKey(meleeKey) && canAttack)
         {

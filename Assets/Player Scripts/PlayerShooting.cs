@@ -56,6 +56,9 @@ public class PlayerShooting : MonoBehaviour
         if (Player.m.AttackType != "ranged")
             return;
 
+        if (!Player.m.weaponManager.weaponIsInPlace)
+            return;
+
         MyInput();
 
         // Ammo display

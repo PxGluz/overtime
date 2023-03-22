@@ -12986,6 +12986,15 @@ MonoBehaviour:
       is3DSound: 1
       soundRange: 15
       useLinearVolumeRollOff: 0
+    - name: swoosh
+      clip: {fileID: 8300000, guid: 141da524c5a123943896b3d955152d56, type: 3}
+      source: {fileID: 0}
+      volume: 0.05
+      pitch: 1
+      loop: 0
+      is3DSound: 0
+      soundRange: 15
+      useLinearVolumeRollOff: 0
   - groupName: Dialogue
     MixerGroup: {fileID: -6314931162441039161, guid: d390e54cd3745a74f9ce824e8bd8bbaf, type: 2}
     soundList: []

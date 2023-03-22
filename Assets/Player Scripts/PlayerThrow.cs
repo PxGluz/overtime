@@ -37,6 +37,9 @@ public class PlayerThrow : MonoBehaviour
         if (!Player.m.playerShooting.readyToShoot)
             return;
 
+        if (!Player.m.weaponManager.weaponIsInPlace)
+            return;
+
         if (Input.GetKeyDown(throwKey) && readyToThrow)//&& totalThrows > 0
         {
             Throw();
@@ -109,7 +112,6 @@ public class PlayerThrow : MonoBehaviour
     private IEnumerator PlaySoundAfterDelay(GameObject projectile) {yield return new WaitForEndOfFrame(); projectile.GetComponent<NeedSounds>().Play("throw"); }
     public void DropWeapon()
     {
-        
         // instantiate object to throw
         GameObject projectile = Instantiate(Player.m.weaponManager.currentWeapon.WeaponPrefab, dropPoint.position, dropPoint.rotation);//Player.m.MainCamera.transform.rotation
 

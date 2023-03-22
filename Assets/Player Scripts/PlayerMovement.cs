@@ -138,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
             CanSlide = false;
             SlideCoroutine = SlideAction(SlideSpeed, SlideDuration);
             StartCoroutine(SlideCoroutine);
+            AudioManager.AM.Play("swoosh");
 
             return;
         }
