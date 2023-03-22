@@ -20,6 +20,7 @@ public class LoadoutTab : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        loadoutChoice = new List<LoadoutChoice>();
         WeaponManager.Weapon[] weaponList = Player.m.weaponManager.WeaponsList;
         for (int i = 1; i < weaponList.Length; i++)
         {

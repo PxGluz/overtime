@@ -19,9 +19,22 @@ public class ListDisplay : MonoBehaviour
     {
         currentIndex = -1;
         foreach (Transform child in buttonsEmpty.transform)
+        {
             Destroy(child.gameObject);
+        }
         foreach (Transform child in modelsEmpty.transform)
+        {
             Destroy(child.gameObject);
+        }
+        foreach (Transform child in textsEmpty.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        GameObject none = Instantiate(new GameObject(), modelsEmpty.transform);
+        none = Instantiate(selectButtonPrefab, buttonsEmpty.transform);
+        none.GetComponentInChildren<Canvas>().gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "Select";
+        none = Instantiate(textPrefab, textsEmpty.transform);
+        none.GetComponent<TextMeshProUGUI>().text = "None";
         foreach (LoadoutTab.LoadoutChoice choice in choicesList)
         {
             GameObject currentObject = Instantiate(choice.model, modelsEmpty.transform);
@@ -46,10 +59,18 @@ public class ListDisplay : MonoBehaviour
             GameObject currentText = Instantiate(textPrefab, textsEmpty.transform);
             currentText.GetComponent<TextMeshProUGUI>().text = choice.choiceName;
         }
-        buttonsEmpty.GetComponent<ChoiceManager>().UpdateChoice();
-        MoveRight();
+
+        StartCoroutine(WaitForAFrameActions());
     }
 
+    IEnumerator WaitForAFrameActions()
+    {
+        yield return 0;
+        MoveRight();
+        buttonsEmpty.GetComponent<ChoiceManager>().UpdateChoice();
+        buttonsEmpty.GetComponent<ChoiceManager>().ChangeChoice(currentIndex); // TODO: here it should be the saved index
+    }
+    
     public void MoveLeft()
     {
         if (currentIndex == 0)
@@ -90,21 +111,27 @@ public class ListDisplay : MonoBehaviour
             if (child.GetSiblingIndex() != currentIndex)
                 child.gameObject.SetActive(false);
             else
+            {
                 child.gameObject.SetActive(true);
+            }
         }
         foreach (Transform child in modelsEmpty.transform)
         {
             if (child.GetSiblingIndex() != currentIndex)
                 child.gameObject.SetActive(false);
             else
+            {
                 child.gameObject.SetActive(true);
+            }
         }
         foreach (Transform child in textsEmpty.transform)
         {
             if (child.GetSiblingIndex() != currentIndex)
                 child.gameObject.SetActive(false);
             else
+            {
                 child.gameObject.SetActive(true);
+            }
         }
     }
     
