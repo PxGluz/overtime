@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   myPickUp: {fileID: 0}
+  SoundManager: {fileID: 0}
   interactable: {fileID: 0}
   outline: {fileID: 0}
   sphereCollider: {fileID: 0}
@@ -673,6 +674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   myPickUp: {fileID: 0}
+  SoundManager: {fileID: 0}
   interactable: {fileID: 0}
   outline: {fileID: 0}
   sphereCollider: {fileID: 0}
@@ -2840,7 +2842,7 @@ MonoBehaviour:
   - DamageSphereOrigin: {fileID: 1609970915613858861}
     DamageSphereRange: 0.52
   - DamageSphereOrigin: {fileID: 547784208837091194}
-    DamageSphereRange: 0.34
+    DamageSphereRange: 0.38
   meleeAttackSpeed: 0.1
   enemyPunchDuration: 0
   isMeleeAttacking: 0
@@ -3339,7 +3341,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8077706476871903854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.77, z: 1.064}
+  m_LocalPosition: {x: 0, y: 1.77, z: 1.168}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

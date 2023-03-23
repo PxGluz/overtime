@@ -12,7 +12,7 @@ public class ExplosiveBarrel : MonoBehaviour
     public void ReceiveHit()
     {
         // Collider is disabled so that no explosion (this or another) can pick the collider up.
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        gameObject.GetComponent<Collider>().enabled = false;
         ExplosionManager.instance.Explode(gameObject.transform.position, radius, damage, pushForce);
         // After the explosion is completed the barrel is destroyed.
         Destroy(gameObject);
