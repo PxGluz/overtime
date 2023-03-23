@@ -100,6 +100,7 @@ public class ListDisplay : MonoBehaviour
         }
     }
     
+    
     public void MoveRight()
     {
         if (currentIndex == buttonsEmpty.transform.childCount - 1)

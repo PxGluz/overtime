@@ -18,7 +18,7 @@ public class Interact : MonoBehaviour
 
         if (itemBeingPickedUp != null)
         {
-            if (Input.GetKey(interactKey))
+            if (Input.GetKeyDown(interactKey))
                 UseInteractable();
         }
        

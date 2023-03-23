@@ -13,16 +13,16 @@ public class Level : MonoBehaviour
         public string levelName;
         public float highscore;
         public string levelScene;
+        public GameObject levelLayout;
     }
-
-    public LevelInfo levelInfo;
 
     [Header("Static References")]
     [HideInInspector]public Transform details;
-    [HideInInspector]public Contract contract;
+    public Contract contract;
 
-    [HideInInspector]
-    public bool isClosed;
+    
+    [HideInInspector]public bool isClosed;
+    [HideInInspector]public LevelInfo levelInfo;
 
     private Vector3 destination;
     
@@ -39,7 +39,7 @@ public class Level : MonoBehaviour
         if (!isClosed)
         {
             destination = new Vector3(1f, 0f, 1f);
-            if (contract.selectedLevel != null)
+            if (contract.selectedLevel != null && contract.selectedLevel.script != null)
             {
                 contract.selectedLevel.script.isClosed = false;
                 contract.selectedLevel.script.enabled = false;
