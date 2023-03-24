@@ -7,12 +7,21 @@ public class LeftRight : MonoBehaviour
     public bool left;
     public ListDisplay listDisplay;
 
+    private bool checker;
+
     void Update()
     {
-        if(left)
-            listDisplay.MoveLeft();
-        else
-            listDisplay.MoveRight();
-        enabled = false;
+        if (!Input.GetKey(Player.m.interact.interactKey))
+            checker = false;
+        if (!checker)
+        {
+            if(left)
+                listDisplay.MoveLeft();
+            else
+                listDisplay.MoveRight();
+            checker = true;
+            enabled = false;
+        }
+
     }
 }
