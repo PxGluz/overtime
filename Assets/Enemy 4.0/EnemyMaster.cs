@@ -15,6 +15,7 @@ public class EnemyMaster : MonoBehaviour
     [HideInInspector]
     public EnemyMovement enemyMovement;
     public NeedSounds soundManager;
+    public EnemyHealthBar enemyHealthBar;
 
     [Header("Stats")]
     public float maxHealth = 100f;
@@ -50,6 +51,8 @@ public class EnemyMaster : MonoBehaviour
 
         myWeaponClass = Player.m.weaponManager.GetWeaponByName(myWeapon);
 
+        enemyHealthBar.activateHealthSliders(false);
+
         PutWeaponInHand();
         SetMyDamageType();
         NerfEnemyWeapons();
@@ -75,6 +78,7 @@ public class EnemyMaster : MonoBehaviour
 
     public void TakeDamage(float damage, GameObject bodyPart=null, Vector3 direction=new Vector3())
     {
+
         if (isDead)
         {
             if (bodyPart && bodyPart.TryGetComponent(out Rigidbody rbBodyPart))
@@ -82,7 +86,10 @@ public class EnemyMaster : MonoBehaviour
             return;
         }
 
-        currentHealth -= damage;
+        enemyHealthBar.UpdateHealthBar( Mathf.Max(0, currentHealth - damage));
+        enemyHealthBar.activateHealthSliders(true);
+
+        currentHealth = Mathf.Max(0, currentHealth - damage);
 
         print(this.gameObject.name + " - " + damage + " damage");
 

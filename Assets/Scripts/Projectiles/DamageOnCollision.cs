@@ -32,6 +32,7 @@ public class DamageOnCollision : MonoBehaviour
         if (enemy != null)
         {
             enemy.TakeDamage(thrownProjectile.damage, collision.gameObject, transform.forward * 30f);
+            rb.velocity = Vector3.zero;
             //enemy.TakeDamage(thrownProjectile.damage);
         }
 
