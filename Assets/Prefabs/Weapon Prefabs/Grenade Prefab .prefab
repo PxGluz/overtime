@@ -41,7 +41,7 @@ Transform:
   m_Children:
   - {fileID: 8860214728500658180}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7236612706473255812
 MeshFilter:
@@ -71,7 +71,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 3583275434259673040, guid: 061b5269c67bee54c8d11c03c56a7b47, type: 3}
+  - {fileID: 2100000, guid: e268e2051d129cc4ebab2f65fed31739, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -318,7 +318,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2443490784570210810, guid: 130b7a6a504e98e4f8acefeaba1cf2de, type: 3}
+  - {fileID: 2100000, guid: e268e2051d129cc4ebab2f65fed31739, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

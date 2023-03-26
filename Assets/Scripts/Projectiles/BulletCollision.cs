@@ -6,6 +6,8 @@ public class BulletCollision : MonoBehaviour
 {
     [HideInInspector]
     public float bulletDamage = 0;
+    [HideInInspector]
+    public string myDamageType;
     private void Start()
     {
         Invoke(nameof(Expire), 10f);
@@ -42,14 +44,14 @@ public class BulletCollision : MonoBehaviour
                 EnemyMaster enemy = hit.collider.gameObject.GetComponentInParent<EnemyMaster>();
                 if (enemy != null)
                 {
-                    print(hit.collider.gameObject.name);
+                    //print(hit.collider.gameObject.name);
                     if (hit.collider.gameObject.name == "Head")
                     {
-                        enemy.TakeDamage(bulletDamage * 2);
+                        enemy.TakeDamage(bulletDamage * 2,myDamageType);
                     }
                     else 
                     {
-                        enemy.TakeDamage(bulletDamage, hit.collider.gameObject, transform.forward * 25f);
+                        enemy.TakeDamage(bulletDamage, myDamageType, hit.collider.gameObject, transform.forward * 25f);
                     }
                 }
                 break;

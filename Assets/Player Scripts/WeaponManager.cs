@@ -21,6 +21,7 @@ public class WeaponManager : MonoBehaviour
         public GameObject WeaponPrefab;
         [Tooltip("melee,ranged,throwing")]
         public AttackType attackType;
+        public DamageType damageType;
         [Tooltip("GenericMelee, GenericRanged")]
         public AnimationType animationType;
 
@@ -34,7 +35,6 @@ public class WeaponManager : MonoBehaviour
         public float meleeDamage;
         public float DamageSphereRadius;
         public float meleeAttackSpeed;
-
 
         [Header("Ranged: ")]
         public Transform shootPoint;
@@ -64,6 +64,7 @@ public class WeaponManager : MonoBehaviour
 
     [HideInInspector]
     public Animator weaponAnimator;
+    [HideInInspector]
     public Weapon currentWeapon;
     public Weapon[] WeaponsList;
 
@@ -237,6 +238,7 @@ public class WeaponManager : MonoBehaviour
         weaponCopy.WeaponPrefab = weapon.WeaponPrefab;
         weaponCopy.attackType = weapon.attackType;
         weaponCopy.animationType = weapon.animationType;
+        weaponCopy.damageType= weapon.damageType;
         weaponCopy.throwDamage = weapon.throwDamage;
         weaponCopy.throwForce = weapon.throwForce;
         weaponCopy.throwUpwardForce = weapon.throwUpwardForce;

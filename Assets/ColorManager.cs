@@ -13,7 +13,7 @@ public class ColorManager : MonoBehaviour
         public Color color;
     }
 
-    public Color GetDamageTypeMaterialByName(string damageTypeName)
+    public Color GetDamageTypeColorByName(string damageTypeName)
     {
         foreach (DamageTypeColor obj in DamageTypeColors)
         {

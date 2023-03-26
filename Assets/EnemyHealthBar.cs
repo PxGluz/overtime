@@ -49,6 +49,8 @@ public class EnemyHealthBar : MonoBehaviour
     {
         healthBarTransition = true;
 
+        yield return new WaitForSeconds(0.2f);
+
         float TransitionTime = 0.5f;
 
         for (float t = 0f; t < TransitionTime; t += Time.deltaTime)

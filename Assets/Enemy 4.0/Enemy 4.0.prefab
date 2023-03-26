@@ -432,6 +432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  myDamageType: 
   myPickUp: {fileID: 0}
   SoundManager: {fileID: 0}
   interactable: {fileID: 0}
@@ -463,7 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee32aaf1e9e658428ed03fd20f0880c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationForce: 10
+  rotationsPerMinute: 0
 --- !u!1 &300785652842964052
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,6 +953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  myDamageType: 
   myPickUp: {fileID: 0}
   SoundManager: {fileID: 0}
   interactable: {fileID: 0}
@@ -1755,6 +1757,7 @@ MonoBehaviour:
     WeaponModelOnPlayer: {fileID: 0}
     WeaponPrefab: {fileID: 0}
     attackType: 0
+    damageType: 0
     animationType: 0
     throwDamage: 10
     throwForce: 20
@@ -1844,7 +1847,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   gunPosition: {fileID: 300785654242904067}
   reloadCooldown: 2
-  gunDrawTime: 1
+  gunDrawTime: 2.5
   bulletsleft: 0
   reloading: 0
   readyToShoot: 0

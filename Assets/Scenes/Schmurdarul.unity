@@ -1467,6 +1467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  myDamageType: 
   myPickUp: {fileID: 0}
   SoundManager: {fileID: 0}
   interactable: {fileID: 0}
@@ -3469,18 +3470,6 @@ PrefabInstance:
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7694006288779537736, guid: 4ddf9641b5d160f4fbb0e274b9be2c0f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 7694006288779537736, guid: 4ddf9641b5d160f4fbb0e274b9be2c0f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 7694006288779537736, guid: 4ddf9641b5d160f4fbb0e274b9be2c0f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 7694006288779537736, guid: 4ddf9641b5d160f4fbb0e274b9be2c0f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.630047
       objectReference: {fileID: 0}
@@ -4329,18 +4318,6 @@ PrefabInstance:
     - target: {fileID: 7373039682345800259, guid: c9312e862b75f9142a37e65962fe892d, type: 3}
       propertyPath: m_RootOrder
       value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7373039682345800259, guid: c9312e862b75f9142a37e65962fe892d, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 7373039682345800259, guid: c9312e862b75f9142a37e65962fe892d, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 7373039682345800259, guid: c9312e862b75f9142a37e65962fe892d, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 7373039682345800259, guid: c9312e862b75f9142a37e65962fe892d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8573,6 +8550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  myDamageType: 
   myPickUp: {fileID: 0}
   SoundManager: {fileID: 0}
   interactable: {fileID: 0}
@@ -9503,18 +9481,6 @@ PrefabInstance:
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6628535389122629724, guid: af31e25adcc3b594592100c3ea224428, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.49999994
-      objectReference: {fileID: 0}
-    - target: {fileID: 6628535389122629724, guid: af31e25adcc3b594592100c3ea224428, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.4999999
-      objectReference: {fileID: 0}
-    - target: {fileID: 6628535389122629724, guid: af31e25adcc3b594592100c3ea224428, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.4999999
-      objectReference: {fileID: 0}
-    - target: {fileID: 6628535389122629724, guid: af31e25adcc3b594592100c3ea224428, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.255047
       objectReference: {fileID: 0}
@@ -10385,6 +10351,14 @@ PrefabInstance:
     - target: {fileID: 1978722146465968002, guid: 27705ac629128bf4c9e3c863d3bee37a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375201460393477797, guid: 27705ac629128bf4c9e3c863d3bee37a, type: 3}
+      propertyPath: meleeDamagePoints.Array.data[0].DamageSphereRange
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375201460393477797, guid: 27705ac629128bf4c9e3c863d3bee37a, type: 3}
+      propertyPath: meleeDamagePoints.Array.data[1].DamageSphereRange
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7532343941666780959, guid: 27705ac629128bf4c9e3c863d3bee37a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -12125,18 +12099,6 @@ PrefabInstance:
     - target: {fileID: 8110043329064097225, guid: cf12532ad2f04ca4c88493aa1c89d191, type: 3}
       propertyPath: m_RootOrder
       value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8110043329064097225, guid: cf12532ad2f04ca4c88493aa1c89d191, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 8110043329064097225, guid: cf12532ad2f04ca4c88493aa1c89d191, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 8110043329064097225, guid: cf12532ad2f04ca4c88493aa1c89d191, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 8110043329064097225, guid: cf12532ad2f04ca4c88493aa1c89d191, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14689,6 +14651,7 @@ MonoBehaviour:
     WeaponModelOnPlayer: {fileID: 0}
     WeaponPrefab: {fileID: 0}
     attackType: 0
+    damageType: 0
     animationType: 0
     throwDamage: 10
     throwForce: 20

@@ -7,6 +7,8 @@ public class ThrownProjectile : MonoBehaviour
     [HideInInspector]
     public float damage;
     [HideInInspector]
+    public string myDamageType;
+    [HideInInspector]
     public GameObject myPickUp;
     [HideInInspector]
     public NeedSounds SoundManager;

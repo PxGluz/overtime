@@ -76,8 +76,22 @@ public class EnemyMaster : MonoBehaviour
         isStunned = true;
     }
 
-    public void TakeDamage(float damage, GameObject bodyPart=null, Vector3 direction=new Vector3())
+    public void TakeDamage(float damage, string damageType = "None", GameObject bodyPart=null, Vector3 direction=new Vector3())
     {
+
+        switch (damageType)
+        {
+            case "None":
+                break;
+            case "Slash":
+                break;
+            case "Pierce":
+                break;
+            case "Blunt":
+                break;
+            case "Explosion":
+                break;
+        }
 
         if (isDead)
         {
@@ -227,8 +241,8 @@ public class EnemyMaster : MonoBehaviour
     public void SetMyDamageType()
     { 
         Material[] mats = EnemyMesh.materials;
-        mats[4].color = Player.m.colorManager.GetDamageTypeMaterialByName(damageType.ToString());
-        mats[5].color = Player.m.colorManager.GetDamageTypeMaterialByName(damageType.ToString());
+        mats[4].color = Player.m.colorManager.GetDamageTypeColorByName(damageType.ToString());
+        mats[5].color = Player.m.colorManager.GetDamageTypeColorByName(damageType.ToString());
         EnemyMesh.materials = mats;
     }
 
@@ -243,10 +257,5 @@ public class EnemyMaster : MonoBehaviour
     {
         Melee, Ranged
     }
-    public enum DamageType
-    {
-        Pierce, Slash, Blunt, Explosion
-    }
-
 
 }

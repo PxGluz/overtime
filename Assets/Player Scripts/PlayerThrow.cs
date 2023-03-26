@@ -94,6 +94,7 @@ public class PlayerThrow : MonoBehaviour
         if (thrownProjectile != null)
         {
             thrownProjectile.damage = Player.m.weaponManager.currentWeapon.throwDamage;
+            thrownProjectile.myDamageType = Player.m.weaponManager.currentWeapon.damageType.ToString();
             thrownProjectile.myPickUp = Player.m.weaponManager.currentWeapon.WeaponPrefab;
             thrownProjectile.PickUpSetActive(false);
         }

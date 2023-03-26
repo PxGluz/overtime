@@ -7,6 +7,7 @@ public class DamageOnCollision : MonoBehaviour
     ThrownProjectile thrownProjectile;
     Interactable interact;
 
+
     FixedJoint fixedJoint;
     Rigidbody rb;
 
@@ -31,7 +32,7 @@ public class DamageOnCollision : MonoBehaviour
         EnemyMaster enemy = collision.gameObject.GetComponentInParent<EnemyMaster>();
         if (enemy != null)
         {
-            enemy.TakeDamage(thrownProjectile.damage, collision.gameObject, transform.forward * 30f);
+            enemy.TakeDamage(thrownProjectile.damage, thrownProjectile.myDamageType, collision.gameObject, transform.forward * 30f);
             rb.velocity = Vector3.zero;
             //enemy.TakeDamage(thrownProjectile.damage);
         }

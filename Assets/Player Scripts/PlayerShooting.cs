@@ -146,6 +146,7 @@ public class PlayerShooting : MonoBehaviour
         if (bulletCollision != null)
         {
             bulletCollision.bulletDamage = Player.m.weaponManager.currentWeapon.bulletDamage;
+            bulletCollision.myDamageType = Player.m.weaponManager.currentWeapon.damageType.ToString();
         }
 
         if (muzzleFlash != null)

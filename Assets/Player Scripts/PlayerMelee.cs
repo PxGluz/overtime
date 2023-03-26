@@ -80,7 +80,7 @@ public class PlayerMelee : MonoBehaviour
 
         if (closestEnemy != null) {
 
-            closestEnemy.TakeDamage(Player.m.weaponManager.currentWeapon.meleeDamage, bodyPart.gameObject, transform.forward * 30f);
+            closestEnemy.TakeDamage(Player.m.weaponManager.currentWeapon.meleeDamage, Player.m.weaponManager.currentWeapon.damageType.ToString(), bodyPart.gameObject, transform.forward * 30f);
             ThisAttackHasDealtDamge = true;
         }
 

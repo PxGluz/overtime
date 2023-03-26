@@ -47,7 +47,7 @@ public class ExplosionManager : MonoBehaviour
                     if (enemyStats == null || enemiesHitByExplosion.Contains(enemyStats))
                         break;
                     enemiesHitByExplosion.Add(enemyStats);
-                    enemyStats.TakeDamage(damage);
+                    enemyStats.TakeDamage(damage,"Explosion");
                     
                     break;
                 case "Player":
