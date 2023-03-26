@@ -14770,6 +14770,7 @@ GameObject:
   - component: {fileID: 1097992153545824280}
   - component: {fileID: 802934106}
   - component: {fileID: 6861109611831387852}
+  - component: {fileID: 5393564321336530091}
   m_Layer: 3
   m_Name: Managers
   m_TagString: Untagged
@@ -14857,6 +14858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a23934dfd58464581465e7f8c599ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterVolume: 0
   fullScreenMode: 0
   resolution: {x: 0, y: 0}
   subtitles: 0
@@ -14880,6 +14882,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPickup: {fileID: 8292193609671807758, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
   ball: {fileID: 0}
+--- !u!114 &5393564321336530091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8350131747216620355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5835ce1ef11a246a263cd7fdf1b854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadOnAwake: 0
+  fileName: save2.save
+  instance: {fileID: 0}
+  contractScript: {fileID: 0}
+  settingsManager: {fileID: 802934106}
+  weaponManager: {fileID: 2054988533113032772}
 --- !u!1 &8402034881947792913
 GameObject:
   m_ObjectHideFlags: 0

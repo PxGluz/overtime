@@ -9,10 +9,11 @@ using TMPro;
 public class SettingsManager : MonoBehaviour
 {
     [Header("Settings")]
+    public float masterVolume;
     public FullScreenMode fullScreenMode;
-    public Vector2 resolution;
-    public bool subtitles;
-    public float sensitivity;
+    public Vector2 resolution = new Vector2(Screen.width, Screen.height);
+    public bool subtitles = true;
+    public float sensitivity = 1f;
     [Header("Other")]
     public TMP_Dropdown resolutionDropdown;
     public GameObject menu;
@@ -23,6 +24,8 @@ public class SettingsManager : MonoBehaviour
 
     private void Awake()
     {
+        fullScreenMode = Screen.fullScreenMode;
+
         // Get all possible resolutions for current screen and add them to options.
         Resolution[] possibleResolutions = Screen.resolutions;
         resolutionDropdown.options = new List<TMP_Dropdown.OptionData>();
@@ -35,12 +38,6 @@ public class SettingsManager : MonoBehaviour
             resolutionDropdown.options.Add(new TMP_Dropdown.OptionData(possibleResolutions[i].width.ToString() + " x " + possibleResolutions[i].height.ToString()));
         }
         resolutionDropdown.value = currentResolution;
-
-        // Setting default values.
-        fullScreenMode = Screen.fullScreenMode;
-        resolution = new Vector2(Screen.width, Screen.height);
-        subtitles = true;
-        sensitivity = 1f;
     }
 
     private void Start()
@@ -81,5 +78,11 @@ public class SettingsManager : MonoBehaviour
     {
         this.sensitivity = sensitivity;
         Player.m.playerCam.sensitivity = sensitivity;
+    }
+
+    public void SetMasterVolume(float volume)
+    {
+        masterVolume = volume;
+        AudioManager.AM.audioMixer.SetFloat("master", volume);
     }
 }
