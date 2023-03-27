@@ -37,6 +37,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &648033942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 648033943}
+  m_Layer: 8
+  m_Name: Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &648033943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648033942}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1978722146465968002}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1228111789
 GameObject:
   m_ObjectHideFlags: 0
@@ -1599,7 +1630,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746987238928477635}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.502, z: 0.343}
+  m_LocalPosition: {x: 0, y: 2.832, z: 0.314}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1669,7 +1700,7 @@ Transform:
   m_GameObject: {fileID: 1978722146465968001}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 26.09, y: 0.000000059604645, z: 3.31}
-  m_LocalScale: {x: 0.82, y: 0.82, z: 0.82}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6375201460393477796}
@@ -1677,8 +1708,9 @@ Transform:
   - {fileID: 547784208837091194}
   - {fileID: 1545740936300490967}
   - {fileID: 2215511159244447117}
+  - {fileID: 648033943}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1978722146465968003
 Rigidbody:
@@ -1716,7 +1748,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1978722146465968001}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -1725,7 +1757,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2.3
+  m_Height: 3
   m_BaseOffset: -0.06
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 1
@@ -1747,8 +1779,9 @@ MonoBehaviour:
   visionCone: {fileID: 2251502086470687854}
   weaponInHand: {fileID: 0}
   enemyMovement: {fileID: 0}
-  soundManager: {fileID: 0}
+  soundManager: {fileID: 2823341477042712141}
   enemyHealthBar: {fileID: 1765602086}
+  EnemyCenter: {fileID: 648033943}
   maxHealth: 100
   currentHealth: 0
   myWeapon: Knife
@@ -1780,7 +1813,7 @@ MonoBehaviour:
     isUnlocked: 0
   isDead: 0
   enemyType: 0
-  damageType: 2
+  damageTypeWeakness: 0
   isStunned: 0
   blood: {fileID: 0}
   ragdoll: {fileID: 887296189527247187}
@@ -1824,8 +1857,8 @@ MonoBehaviour:
   canSeePlayer: 0
   isChasingPlayer: 0
   currentMovementAnimation: 
-  announceRange: 4.75
-  PreferedDistanceToPlayer: 1.85
+  announceRange: 5.15
+  PreferedDistanceToPlayer: 2.2
   chaseDuration: 5
   rotateAfterPlayerSpeed: 10
   enablePatrol: 0
@@ -1847,7 +1880,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   gunPosition: {fileID: 300785654242904067}
   reloadCooldown: 2
-  gunDrawTime: 2.5
+  gunDrawTime: 2
   bulletsleft: 0
   reloading: 0
   readyToShoot: 0
@@ -2575,7 +2608,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.649, y: 0.099}
+  m_AnchoredPosition: {x: 0.536, y: 0.099}
   m_SizeDelta: {x: 0.2792, y: 1.6556}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4951378165936964842
@@ -3280,7 +3313,7 @@ Transform:
   m_GameObject: {fileID: 5995016094123711518}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.38, y: 2.38, z: 2.38}
+  m_LocalScale: {x: 2.81, y: 2.81, z: 2.81}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3372310409595828915}
@@ -3320,16 +3353,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62cd6f709c17ef4b891673273fd09bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 1978722146465968007}
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 8
-  DistanceToStartPunch: 1.97
+  DistanceToStartPunch: 2.37
   KnifePosition: {fileID: 300785653340127174}
   meleeDamagePoints:
   - DamageSphereOrigin: {fileID: 1609970915613858861}
-    DamageSphereRange: 0.52
+    DamageSphereRange: 0.55
   - DamageSphereOrigin: {fileID: 547784208837091194}
-    DamageSphereRange: 0.38
+    DamageSphereRange: 0.35
   meleeAttackSpeed: 0.1
   enemyPunchDuration: 0
   isMeleeAttacking: 0
@@ -3773,7 +3807,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7315841291722965718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.77, z: 0.415}
+  m_LocalPosition: {x: 0, y: 1.77, z: 0.753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3997,7 +4031,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8077706476871903854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.77, z: 1.168}
+  m_LocalPosition: {x: 0, y: 1.77, z: 1.643}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -34,7 +34,7 @@ public class CrouchLogic : MonoBehaviour
         playerCapsuleCollider.height = 1.1f;
         playerCapsuleCollider.center = new Vector3(playerCapsuleCollider.center.x, -0.45f, playerCapsuleCollider.center.z);
         
-        enterCrouchAnim = MoveHeadToPos(new Vector3(0, 0, 0), CrouchAnimationDuration);
+        enterCrouchAnim = MoveHeadToPos(new Vector3(0, -0.5f, 0), CrouchAnimationDuration);
         
         StartCoroutine(enterCrouchAnim);
 

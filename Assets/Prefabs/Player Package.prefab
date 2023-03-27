@@ -2777,8 +2777,8 @@ MonoBehaviour:
   isMeleeAttacking: 0
   canAttack: 1
   ThisAttackHasDealtDamge: 0
-  TestMeleeSpherePoint: {fileID: 1193615109}
-  TestMeleeSphereRadius: 0.4
+  TestMeleeSpherePoint: {fileID: 1581415555}
+  TestMeleeSphereRadius: 1
 --- !u!114 &2054988533113032772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2823,14 +2823,14 @@ MonoBehaviour:
     WeaponModelOnPlayer: {fileID: 394470291}
     WeaponPrefab: {fileID: 0}
     attackType: 0
-    damageType: 2
+    damageType: 1
     animationType: 0
     throwDamage: 10
     throwForce: 0
     throwUpwardForce: 0
     DamageSphereOrigin: {fileID: 1581415555}
     meleeDamage: 50
-    DamageSphereRadius: 0.7
+    DamageSphereRadius: 1
     meleeAttackSpeed: 0
     shootPoint: {fileID: 0}
     bulletDamage: 0
@@ -2855,7 +2855,7 @@ MonoBehaviour:
     throwUpwardForce: 2
     DamageSphereOrigin: {fileID: 1193615109}
     meleeDamage: 100
-    DamageSphereRadius: 0.4
+    DamageSphereRadius: 0.5
     meleeAttackSpeed: 0
     shootPoint: {fileID: 0}
     bulletDamage: 0
@@ -2880,7 +2880,7 @@ MonoBehaviour:
     throwUpwardForce: 2
     DamageSphereOrigin: {fileID: 1193615109}
     meleeDamage: 100
-    DamageSphereRadius: 0.4
+    DamageSphereRadius: 0.5
     meleeAttackSpeed: 0
     shootPoint: {fileID: 0}
     bulletDamage: 0
@@ -2898,7 +2898,7 @@ MonoBehaviour:
     WeaponModelOnPlayer: {fileID: 3536888562561838294}
     WeaponPrefab: {fileID: 2369381963526222805, guid: 0832824d4b54e2e48ae196e80f9357e3, type: 3}
     attackType: 2
-    damageType: 3
+    damageType: 2
     animationType: 0
     throwDamage: 1000
     throwForce: 15
@@ -3023,7 +3023,7 @@ MonoBehaviour:
     WeaponModelOnPlayer: {fileID: 8321851656302903669}
     WeaponPrefab: {fileID: 7236612706473255808, guid: e19429fe5e43dc94784f6ebf13a1115d, type: 3}
     attackType: 2
-    damageType: 3
+    damageType: 2
     animationType: 0
     throwDamage: 1000
     throwForce: 20
@@ -6294,7 +6294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278241757}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.626, z: 0}
+  m_LocalPosition: {x: 0, y: 1.087, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7588,7 +7588,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581415554}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00051, y: 0.00138, z: -0.00178}
+  m_LocalPosition: {x: -0.0005, y: 0.0041, z: -0.0097}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9718,7 +9718,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157149138785908624}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.141}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -9829,7 +9829,7 @@ MonoBehaviour:
   fallMultiplier: 2.5
   gravityForce: 12
   GroundCheckSource: {fileID: 3982301615698761917}
-  GroundCheckRadius: 0.36
+  GroundCheckRadius: 0.47
   isGrounded: 0
   SlideDuration: 0.4
   SlideSpeed: 35
@@ -9852,7 +9852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HeadTransform: {fileID: 3982301615366071915}
   CeilingCheck: {fileID: 1278241758}
-  CeilingCheckRadius: 0.49
+  CeilingCheckRadius: 0.6
   playerCapsuleCollider: {fileID: 157149139719264053}
   CrouchAnimationDuration: 0.15
   hasSpaceAboveHead: 0
@@ -9942,8 +9942,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157149139719264051}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 1, z: 0.8}
+  m_LocalPosition: {x: 0, y: -0.178, z: 0}
+  m_LocalScale: {x: 1, y: 1.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 157149138785908631}
@@ -11850,7 +11850,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3982301615087226212}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.874, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11945,7 +11945,7 @@ MonoBehaviour:
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
-  m_Dithering: 0
+  m_Dithering: 1
   m_ClearDepth: 1
   m_AllowXRRendering: 1
   m_UseScreenCoordOverride: 0
@@ -12201,7 +12201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3982301615698761916}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.734, z: 0}
+  m_LocalPosition: {x: 0, y: -1.469, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14848,14 +14848,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageTypeColors:
-  - damageTypeName: Pierce
-    color: {r: 0.24056602, g: 1, b: 0.8808833, a: 1}
-  - damageTypeName: Slash
-    color: {r: 0.17272349, g: 0.8, b: 0, a: 1}
-  - damageTypeName: Blunt
-    color: {r: 0.8301887, g: 0.7997912, b: 0.019579919, a: 1}
+  - damageTypeName: Ranged
+    color: {r: 0.54901963, g: 0.09803922, b: 0.08627451, a: 1}
+  - damageTypeName: Melee
+    color: {r: 0.19215687, g: 0.24705882, b: 0.3882353, a: 1}
   - damageTypeName: Explosion
-    color: {r: 0.7264151, g: 0.10255273, b: 0, a: 1}
+    color: {r: 0.14901961, g: 0.5294118, b: 0.08627451, a: 1}
   - damageTypeName: None
     color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &802934106
@@ -15120,7 +15118,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 16c7776330f7133478a32806b74c4933, type: 2}
+  - {fileID: 2100000, guid: b9abab9453f5c4a4393fb396159a0363, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

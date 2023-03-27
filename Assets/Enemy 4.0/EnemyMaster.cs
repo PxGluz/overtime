@@ -16,6 +16,7 @@ public class EnemyMaster : MonoBehaviour
     public EnemyMovement enemyMovement;
     public NeedSounds soundManager;
     public EnemyHealthBar enemyHealthBar;
+    public Transform EnemyCenter;
 
     [Header("Stats")]
     public float maxHealth = 100f;
@@ -27,7 +28,7 @@ public class EnemyMaster : MonoBehaviour
     [Header("State:")]
     public bool isDead = false;
     public EnemyType enemyType;
-    public DamageType damageType;
+    public DamageType damageTypeWeakness;
     public bool isStunned;
     private float stunTime = 0f;
 
@@ -78,26 +79,32 @@ public class EnemyMaster : MonoBehaviour
 
     public void TakeDamage(float damage, string damageType = "None", GameObject bodyPart=null, Vector3 direction=new Vector3())
     {
-
-        switch (damageType)
-        {
-            case "None":
-                break;
-            case "Slash":
-                break;
-            case "Pierce":
-                break;
-            case "Blunt":
-                break;
-            case "Explosion":
-                break;
-        }
-
         if (isDead)
         {
             if (bodyPart && bodyPart.TryGetComponent(out Rigidbody rbBodyPart))
                 rbBodyPart.velocity = direction;
             return;
+        }
+
+        switch (damageType)
+        {
+            case "None":
+                break;
+            case "Ranged":
+                if (damageType != damageTypeWeakness.ToString())
+                    damage /= 2;
+                break;
+            case "Melee":
+                if (damageType != damageTypeWeakness.ToString())
+                    damage /= 2;
+                break;
+            case "Explosion":
+                if (damageType != damageTypeWeakness.ToString())
+                    damage /= 2;
+                break;
+            case "Accident":
+                damage *= 2;
+                break;
         }
 
         enemyHealthBar.UpdateHealthBar( Mathf.Max(0, currentHealth - damage));
@@ -241,8 +248,8 @@ public class EnemyMaster : MonoBehaviour
     public void SetMyDamageType()
     { 
         Material[] mats = EnemyMesh.materials;
-        mats[4].color = Player.m.colorManager.GetDamageTypeColorByName(damageType.ToString());
-        mats[5].color = Player.m.colorManager.GetDamageTypeColorByName(damageType.ToString());
+        mats[4].color = Player.m.colorManager.GetDamageTypeColorByName(damageTypeWeakness.ToString());
+        mats[5].color = Player.m.colorManager.GetDamageTypeColorByName(damageTypeWeakness.ToString());
         EnemyMesh.materials = mats;
     }
 

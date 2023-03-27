@@ -7,7 +7,7 @@ public class EnemyMelee : MonoBehaviour
 {
 
     [Header("Important variables: ")]
-    private EnemyMaster enemy;
+    public EnemyMaster enemy;
     //public Transform DamageSphereOrigin;
     public LayerMask PlayerLayer;
     //public float DamageSphereRange;
@@ -36,7 +36,6 @@ public class EnemyMelee : MonoBehaviour
 
     private void Start()
     {
-        enemy = GetComponentInParent<EnemyMaster>();
         enemy.animator.SetLayerWeight(1, 1);
 
         if (enemy.enemyType.ToString() != "Melee")
@@ -52,7 +51,7 @@ public class EnemyMelee : MonoBehaviour
     {
 
         // start attacking
-        if (enemy.enemyMovement.canSeePlayer && Vector3.Distance(transform.position, Player.m.transform.position) <= DistanceToStartPunch && canAttack)
+        if (enemy.enemyMovement.canSeePlayer && Vector3.Distance(enemy.EnemyCenter.position, Player.m.transform.position) <= DistanceToStartPunch && canAttack)
         {
             enemy.animator.SetTrigger("StartPunch");
             enemy.soundManager.Play("slash");
@@ -120,7 +119,7 @@ public class EnemyMelee : MonoBehaviour
         }
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y +1, transform.position.z), DistanceToStartPunch);
+        Gizmos.DrawWireSphere(enemy.EnemyCenter.position, DistanceToStartPunch);
     }
     
 }

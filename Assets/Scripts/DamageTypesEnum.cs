@@ -1,4 +1,4 @@
 public enum DamageType
 {
-    Pierce, Slash, Blunt, Explosion, None, Accident
+    Ranged, Melee, Explosion, None, Accident
 }

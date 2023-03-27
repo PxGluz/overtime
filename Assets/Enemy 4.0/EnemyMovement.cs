@@ -82,7 +82,7 @@ public class EnemyMovement : MonoBehaviour
         {
            // RotateAtTarget(gameObject.transform, Player.m.playerCam.orientation, 5);
 
-            if (Vector3.Distance(transform.position, Player.m.transform.position) >= PreferedDistanceToPlayer)
+            if (Vector3.Distance(enemy.EnemyCenter.position, Player.m.transform.position) >= PreferedDistanceToPlayer)
             {
                 //agent.updateRotation = true;
                 agent.SetDestination(Player.m.transform.position);
@@ -102,7 +102,7 @@ public class EnemyMovement : MonoBehaviour
         else if (enablePatrol)
         {
             // Check if the enemy reached the destination.
-            if (Vector3.Distance(transform.position, patrolPoints[currentPatrolPoint].position) <= 2f)
+            if (Vector3.Distance(enemy.EnemyCenter.position, patrolPoints[currentPatrolPoint].position) <= 2f)
                 currentPatrolPoint = (currentPatrolPoint + 1) % patrolPoints.Length;
             
             agent.SetDestination(patrolPoints[currentPatrolPoint].position);   
@@ -158,7 +158,7 @@ public class EnemyMovement : MonoBehaviour
     public void Announce(bool INeedToSeePlayerToAnnounce = true)
     {
         // Announce to all other enemies in range.
-        Collider[] enemies = Physics.OverlapSphere(gameObject.transform.position, announceRange, enemyLayer);
+        Collider[] enemies = Physics.OverlapSphere(enemy.EnemyCenter.position, announceRange, enemyLayer);
 
         foreach (Collider enemy in enemies)
         {
@@ -196,98 +196,11 @@ public class EnemyMovement : MonoBehaviour
         objectToRotate.localRotation = Quaternion.Slerp(current, rotation, Time.deltaTime* speed);
     }
 
-
-
-    
-    /*
-    private void Patrol()
-    {
-        // Get next position to patrol.
-        if (!walkPointSet)
-        {
-            if (randomPatrolling)
-                SearchWalkPoint();
-            else
-            {
-                walkPoint = walkPoints[walkPointIndex];
-                walkPointIndex = (walkPointIndex + 1) % walkPoints.Length;
-            }
-
-            walkPointSet = true;
-        }
-
-        if (walkPointSet)
-            agent.SetDestination(walkPoint);
-
-        // Check if the enemy reached the destination.
-        if (Vector3.Distance(gameObject.transform.position, walkPoint) <= 1f)
-            walkPointSet = false;
-    }
-
-    // Generates random point for patrolling.
-    private void SearchWalkPoint()
-    {
-        do
-        {
-            float randomX = Random.Range(-walkPointRange, walkPointRange);
-            float randomZ = Random.Range(-walkPointRange, walkPointRange);
-
-            walkPoint = gameObject.transform.position + new Vector3(randomX, 0, randomZ);
-        } while (!Physics.Raycast(walkPoint, -gameObject.transform.up, 2f, groundLayer));
-    }
-    */
-
-    /*
-    private void Chase(Vector3 position, bool sawPlayer)
-    {
-        agent.SetDestination(position);
-
-        // If the enemy didn't see the player himself, discards announced information when arriving.
-        if (!sawPlayer && Vector3.Distance(gameObject.transform.position, position) < 1f)
-        {
-            gotAnnounced = false;
-            rememberPlayer = false;
-        }
-    }
-    */
-
-    /*
-    private void Attack()
-    {
-        // Stop the enemy.
-        agent.SetDestination(gameObject.transform.position);
-
-        // Attack.
-        if (!alreadyAttacked)
-        {
-            //animator.SetLayerWeight(1, 1);
-            //animator.Play(attack, 1);
-            alreadyAttacked = true;
-            if (enemyType == EnemyType.Ranged)
-            {
-                enemyShooting.Shoot(Player.m.transform, damage);
-            }
-            else
-            {
-                Player.m.TakeDamage(damage);
-            }
-
-            Invoke(nameof(ResetAttack), attackCooldown);
-        }
-    }
-    
-
-    private void ResetAttack()
-    {
-        alreadyAttacked = false;
-    }
-    */
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(gameObject.transform.position, announceRange);
+        Gizmos.DrawWireSphere(enemy.EnemyCenter.position, announceRange);
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(gameObject.transform.position, PreferedDistanceToPlayer);
+        Gizmos.DrawWireSphere(enemy.EnemyCenter.position, PreferedDistanceToPlayer);
     }
 }

@@ -14674,7 +14674,7 @@ MonoBehaviour:
     isUnlocked: 0
   isDead: 0
   enemyType: 0
-  damageType: 0
+  damageTypeWeakness: 0
   isStunned: 0
   blood: {fileID: 0}
   ragdoll: {fileID: 0}
