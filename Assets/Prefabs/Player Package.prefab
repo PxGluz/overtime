@@ -9818,9 +9818,9 @@ MonoBehaviour:
   rb: {fileID: 0}
   orientation: {fileID: 3982301615298521839}
   currentSpeed: 0
-  walkSpeed: 4
-  sprintSpeed: 7
-  crouchSpeed: 2
+  walkSpeed: 7
+  sprintSpeed: 10
+  crouchSpeed: 5
   groundDrag: 7
   jumpKey: 32
   jumpForce: 8
