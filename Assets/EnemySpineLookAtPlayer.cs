@@ -6,9 +6,13 @@ using UnityEngine;
 public class EnemySpineLookAtPlayer : MonoBehaviour
 {
     public float minimumX, maximumX;
+    public EnemyMaster enemy;
 
     void LateUpdate()
     {
+        if (!enemy.enemyMovement.canSeePlayer)
+            return;
+
         Vector3 direction = (Player.m.transform.position - transform.position).normalized;
 
         // calculate the rotation angle based on the direction vector

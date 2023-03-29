@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -64,7 +66,6 @@ public class EnemyMovement : MonoBehaviour
     {
         if (enemy.isStunned)
         {
-
             RotateAtTarget(gameObject.transform, Player.m.playerCam.orientation, rotateAfterPlayerSpeed);
 
             if (currentMovementAnimation != "Idle" && canTransition)
@@ -79,25 +80,35 @@ public class EnemyMovement : MonoBehaviour
         }
 
         if (isChasingPlayer)
-        {
-           // RotateAtTarget(gameObject.transform, Player.m.playerCam.orientation, 5);
-
-            if (Vector3.Distance(enemy.EnemyCenter.position, Player.m.transform.position) >= PreferedDistanceToPlayer)
+        { 
+            //create empty path
+            NavMeshPath navMeshPath = new NavMeshPath();
+            // check if navMeshAgent can reach player
+            if (agent.CalculatePath(Player.m.transform.position, navMeshPath) && navMeshPath.status == NavMeshPathStatus.PathComplete)
             {
-                //agent.updateRotation = true;
-                agent.SetDestination(Player.m.transform.position);
+                if (Vector3.Distance(enemy.EnemyCenter.position, Player.m.transform.position) >= PreferedDistanceToPlayer)
+                {
+                    agent.SetDestination(Player.m.transform.position);
+                }
+                else
+                {
+                    if (canSeePlayer)
+                    {
+                        agent.SetDestination(transform.position);
+                        RotateAtTarget(gameObject.transform, Player.m.playerCam.orientation, rotateAfterPlayerSpeed);
+                    }
+                    else
+                        agent.SetDestination(Player.m.transform.position);
+                }
             }
             else
             {
-                //agent.updateRotation = false;
+                //Fail condition here
+                agent.SetDestination(transform.position);
                 if (canSeePlayer)
-                {
-                    agent.SetDestination(transform.position);
                     RotateAtTarget(gameObject.transform, Player.m.playerCam.orientation, rotateAfterPlayerSpeed);
-                }
-                else
-                    agent.SetDestination(Player.m.transform.position);
             }
+
         }
         else if (enablePatrol)
         {

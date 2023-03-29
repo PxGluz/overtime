@@ -16,6 +16,7 @@ public class EnemyMaster : MonoBehaviour
     public EnemyMovement enemyMovement;
     public NeedSounds soundManager;
     public EnemyHealthBar enemyHealthBar;
+    public EnemySpineLookAtPlayer enemySpineLookAtPlayer;
     public Transform EnemyCenter;
 
     [Header("Stats")]
@@ -193,6 +194,8 @@ public class EnemyMaster : MonoBehaviour
             Destroy(enemyRanged);
         if (visionCone != null)
             Destroy(visionCone);
+        if (enemySpineLookAtPlayer != null)
+            Destroy(enemySpineLookAtPlayer);
     }
 
     void PutWeaponInHand()
