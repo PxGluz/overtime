@@ -14,6 +14,7 @@ public class EnemyMovement : MonoBehaviour
     public LayerMask enemyLayer;
     public Animator animator;
     private Collider[] myColliders;
+    public Vector3 lastAccesiblePlayerLocation;
 
     [Header("States")]
     public bool canSeePlayer;
@@ -86,9 +87,10 @@ public class EnemyMovement : MonoBehaviour
             // check if navMeshAgent can reach player
             if (agent.CalculatePath(Player.m.transform.position, navMeshPath) && navMeshPath.status == NavMeshPathStatus.PathComplete)
             {
-                if (Vector3.Distance(enemy.EnemyCenter.position, Player.m.transform.position) >= PreferedDistanceToPlayer)
+                lastAccesiblePlayerLocation = Player.m.transform.position;
+                if (Vector3.Distance(enemy.EnemyCenter.position, lastAccesiblePlayerLocation) >= PreferedDistanceToPlayer)
                 {
-                    agent.SetDestination(Player.m.transform.position);
+                    agent.SetDestination(lastAccesiblePlayerLocation);
                 }
                 else
                 {
@@ -98,13 +100,14 @@ public class EnemyMovement : MonoBehaviour
                         RotateAtTarget(gameObject.transform, Player.m.playerCam.orientation, rotateAfterPlayerSpeed);
                     }
                     else
-                        agent.SetDestination(Player.m.transform.position);
+                        agent.SetDestination(lastAccesiblePlayerLocation);
                 }
             }
             else
             {
                 //Fail condition here
-                agent.SetDestination(transform.position);
+                if (lastAccesiblePlayerLocation != Vector3.zero)
+                    agent.SetDestination(lastAccesiblePlayerLocation);
                 if (canSeePlayer)
                     RotateAtTarget(gameObject.transform, Player.m.playerCam.orientation, rotateAfterPlayerSpeed);
             }

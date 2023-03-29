@@ -2961,7 +2961,7 @@ MonoBehaviour:
     bulletDamage: 100
     gunShootForce: 40
     gunUpwardForce: 0
-    gunTimeBetweenShooting: 0.5
+    gunTimeBetweenShooting: 0.1
     gunSpread: 0.1
     gunReloadTime: 0.5
     gunMagazineSize: 10
@@ -2986,7 +2986,7 @@ MonoBehaviour:
     bulletDamage: 100
     gunShootForce: 40
     gunUpwardForce: 0
-    gunTimeBetweenShooting: 0.5
+    gunTimeBetweenShooting: 0.1
     gunSpread: 0.1
     gunReloadTime: 0.5
     gunMagazineSize: 10

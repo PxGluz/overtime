@@ -5623,7 +5623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1978722146465968002, guid: 27705ac629128bf4c9e3c863d3bee37a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 98.3
+      value: 30.72
       objectReference: {fileID: 0}
     - target: {fileID: 1978722146465968002, guid: 27705ac629128bf4c9e3c863d3bee37a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6584,7 +6584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1978722146465968002, guid: 27705ac629128bf4c9e3c863d3bee37a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 98.86
+      value: 31.279997
       objectReference: {fileID: 0}
     - target: {fileID: 1978722146465968002, guid: 27705ac629128bf4c9e3c863d3bee37a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14588,6 +14588,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   animator: {fileID: 1265147908}
+  lastAccesiblePlayerLocation: {x: 0, y: 0, z: 0}
   canSeePlayer: 0
   isChasingPlayer: 0
   currentMovementAnimation: 
@@ -15197,14 +15198,6 @@ PrefabInstance:
       propertyPath: AttackPointObject
       value: 
       objectReference: {fileID: 1991072799}
-    - target: {fileID: 2054988533113032772, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
-      propertyPath: WeaponsList.Array.data[5].gunTimeBetweenShooting
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2054988533113032772, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
-      propertyPath: WeaponsList.Array.data[6].gunTimeBetweenShooting
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 3982301615608917476, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: m_RootOrder
       value: 0
