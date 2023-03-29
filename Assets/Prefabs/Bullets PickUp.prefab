@@ -1069,7 +1069,7 @@ Transform:
   - {fileID: 2911978831625298642}
   - {fileID: 1072397923145815917}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8292193609671807756
 MonoBehaviour:
@@ -1086,7 +1086,7 @@ MonoBehaviour:
   nrOfBullets: 100
   Model: {fileID: 1192204461339965411}
   BulletCountText: {fileID: 976936142}
-  collisionRange: 0.8
+  collisionRange: 1
   pickUpRange: 2
   pickUpDuration: 0.8
   rotationsPerMinute: 60
