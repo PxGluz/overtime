@@ -4,6 +4,7 @@ using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
 
 public class EnemyMovement : MonoBehaviour
@@ -85,7 +86,11 @@ public class EnemyMovement : MonoBehaviour
             //create empty path
             NavMeshPath navMeshPath = new NavMeshPath();
             // check if navMeshAgent can reach player
-            if (agent.CalculatePath(Player.m.transform.position, navMeshPath) && navMeshPath.status == NavMeshPathStatus.PathComplete)
+            
+            RaycastHit hit;
+            Physics.Raycast(Player.m.transform.position, Player.m.transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity,Player.m.groundLayer);
+
+            if (agent.CalculatePath(hit.point, navMeshPath) && navMeshPath.status == NavMeshPathStatus.PathComplete)
             {
                 lastAccesiblePlayerLocation = Player.m.transform.position;
                 if (Vector3.Distance(enemy.EnemyCenter.position, lastAccesiblePlayerLocation) >= PreferedDistanceToPlayer)
