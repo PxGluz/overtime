@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class LevelConstructor : MonoBehaviour
 {
-    [Header("StaticReferences")] public GameObject planningPrefab;
+    [Header("StaticReferences")] public static GameObject planningPrefab;
 
     public static void ConstructLevel(GameObject startingPoint, float sizeX, float sizeZ, Material layoutMaterial, List<Level.LevelInfo> levelList = null, Level.LevelInfo level = null, bool collidersOff = true)
     {
@@ -59,7 +59,7 @@ public class LevelConstructor : MonoBehaviour
 
     }
 
-    public void InsertPlanning(GameObject levelLayout, ChoiceManager choiceManager)
+    public static void InsertPlanning(GameObject levelLayout, ChoiceManager choiceManager)
     {
         Queue<Transform> childrenQueue = new Queue<Transform>();
         childrenQueue.Enqueue(levelLayout.transform);

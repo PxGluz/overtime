@@ -8,9 +8,9 @@ using UnityEngine;
 
 public class Contract : MonoBehaviour
 {
-    private bool closing;
     private Vector3 destination;
     private List<Collider> collidersList = new List<Collider>();
+    private bool canPlan = true;
     
     [Header("Static References")]
     [HideInInspector]public Transform hologram, details;
@@ -18,21 +18,42 @@ public class Contract : MonoBehaviour
     [HideInInspector]public TextMeshProUGUI levelName, levelScore;
     [HideInInspector]public GameObject levelLayout, layoutCenter;
     [HideInInspector]public Material layoutMaterial;
+    [HideInInspector]public PlanningManager planningManager;
+    [HideInInspector]public Transform loadoutTabsRoot;
 
     [Header("Animation Related")]
     public float animationSpeed;
+    [HideInInspector]public bool closing;
 
     [Header("Levels")] 
     public List<Level.LevelInfo> levelList;
 
     [Header("Important for loading correct level")]
     [HideInInspector] public ChoiceManager difficulty; // Use GetChoice() to get the selected difficulty
-    [HideInInspector] public Level.LevelInfo selectedLevel; // Contains levelScene
-    // TODO: Add loadout and planning references for loading purposes
+    [HideInInspector] public List<Level.LevelInfo> selectedLevel = new List<Level.LevelInfo>(); // Contains levelScene
+    // TODO: Add planning references for loading purposes
+
+    /// Call this function in order to get loadout choices as a list depending on the number of tabs
+    public List<int> GetLoadoutChoices()
+    {
+        if (loadoutTabsRoot == null)
+        {
+            Debug.LogError("GetLoadoutChoices was called but loadoutTabsRoot is not set: returning null");
+            return null;
+        }
+        ListDisplay.ForceUpdateChoice();
+        List<int> tabsChoices = new List<int>();
+        foreach (Transform tab in loadoutTabsRoot)
+            if (tab.TryGetComponent(out LoadoutTab loadoutTab))
+                tabsChoices.Add(loadoutTab.selectedChoice);
+        return tabsChoices;
+    }
 
     private IEnumerator Start()
     {
-        selectedLevel = null;
+        if (loadoutTabsRoot == null)
+            Debug.LogWarning("loadoutTabsRoot not set: GetLoadoutChoices will not work");
+        selectedLevel = new List<Level.LevelInfo>();
         
         // Creating level layout
         LevelConstructor.ConstructLevel(
@@ -69,7 +90,10 @@ public class Contract : MonoBehaviour
                 MeshFilter meshFilter = empty.gameObject.AddComponent(typeof(MeshFilter)) as MeshFilter;
                 meshFilter.mesh.CombineMeshes(combineArray);
                 empty.gameObject.layer = 7; // Interactable layer
-                empty.gameObject.AddComponent(typeof(MeshCollider));
+                if (!levelList[level.GetSiblingIndex()].isLocked)
+                    empty.gameObject.AddComponent(typeof(MeshCollider));
+                else
+                    canPlan = false;
                 empty.gameObject.AddComponent(typeof(Outline));
                 Level lv = empty.gameObject.AddComponent(typeof(Level)) as Level;
                 levelList[level.GetSiblingIndex()].script = lv;
@@ -101,16 +125,30 @@ public class Contract : MonoBehaviour
         hologram.localScale = new Vector3(1f, 0f, 1f);
     }
 
+    public void BuildPlanning()
+    {
+        if (canPlan)
+        {
+            planningManager.enabled = true;
+            planningManager.levelToDisplay = selectedLevel;
+        }
+        else
+            planningManager.ResetLayout();
+        
+    }
+    
     // Update is called once per frame
     void Update()
     {
-        if (selectedLevel != null)
+        if (selectedLevel.Count != 0 && selectedLevel.Count == 1)
         {
-            levelName.text = selectedLevel.levelName;
-            levelScore.text = "Score: " + selectedLevel.highscore;
+            levelName.text = selectedLevel[0].levelName;
+            levelScore.text = "Score: " + selectedLevel[0].highscore;
         }
         if (graphics.enabled)
         {
+            selectedLevel = levelList;
+            BuildPlanning();
             foreach (Contract contract in transform.parent.GetComponentsInChildren<Contract>())
                 contract.closing = true;
             closing = false;
@@ -120,10 +158,10 @@ public class Contract : MonoBehaviour
             graphics.enabled = false;
         }
         
-        if (Vector3.Distance(Player.m.transform.position, transform.position) > 10f)
+        /*if (Vector3.Distance(Player.m.transform.position, transform.position) > 10f)
         {
             closing = true;
-        }
+        }*/
 
         if (closing)
         {
@@ -135,11 +173,11 @@ public class Contract : MonoBehaviour
             {
                 hologram.localScale = destination;
                 graphics.enabled = true;
-                if (selectedLevel != null)
+                if (selectedLevel.Count != 0 && selectedLevel.Count == 1)
                 {
-                    selectedLevel.script.details.localScale = new Vector3(1f, 0f, 1f);
-                    selectedLevel.script.isClosed = false;
-                    selectedLevel.script.enabled = false;
+                    selectedLevel[0].script.details.localScale = new Vector3(1f, 0f, 1f);
+                    selectedLevel[0].script.isClosed = false;
+                    selectedLevel[0].script.enabled = false;
                     selectedLevel = null;
                 }
                 levelLayout.SetActive(false);

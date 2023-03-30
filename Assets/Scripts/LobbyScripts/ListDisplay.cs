@@ -13,10 +13,19 @@ public class ListDisplay : MonoBehaviour
 
     public float rotationSpeed;
 
-    private int currentIndex;
-    
-    public void ResetList(List<LoadoutTab.LoadoutChoice> choicesList)
+    [HideInInspector]public static int currentIndex = -1;
+    [HideInInspector]public static LoadoutTab openTab;
+
+    public static void ForceUpdateChoice()
     {
+        openTab.selectedChoice = currentIndex;
+    }
+    
+    public void ResetList(List<LoadoutTab.LoadoutChoice> choicesList, LoadoutTab lTab)
+    {
+        if (currentIndex != -1)
+            ForceUpdateChoice();
+        openTab = lTab;
         currentIndex = -1;
         foreach (Transform child in buttonsEmpty.transform)
         {
@@ -30,7 +39,8 @@ public class ListDisplay : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        GameObject none = Instantiate(new GameObject(), modelsEmpty.transform);
+        GameObject none = Instantiate(new GameObject(), modelsEmpty.transform.position, modelsEmpty.transform.rotation);
+        none.transform.SetParent(modelsEmpty.transform);
         none = Instantiate(selectButtonPrefab, buttonsEmpty.transform);
         none.GetComponentInChildren<Canvas>().gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "Select";
         none = Instantiate(textPrefab, textsEmpty.transform);
@@ -68,7 +78,7 @@ public class ListDisplay : MonoBehaviour
         yield return 0;
         MoveRight();
         buttonsEmpty.GetComponent<ChoiceManager>().UpdateChoice();
-        buttonsEmpty.GetComponent<ChoiceManager>().ChangeChoice(currentIndex); // TODO: here it should be the saved index
+        buttonsEmpty.GetComponent<ChoiceManager>().ChangeChoice(openTab.selectedChoice);
     }
     
     public void MoveLeft()

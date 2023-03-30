@@ -1404,6 +1404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b359e1635c34e89489825973e2491f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedChoice: 0
   listDisplay: {fileID: 184718813}
 --- !u!114 &491146266
 MonoBehaviour:
@@ -1567,6 +1568,52 @@ Transform:
   m_Father: {fileID: 1410420587}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &560387659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 560387660}
+  - component: {fileID: 560387661}
+  m_Layer: 0
+  m_Name: PlantingSpotChoices
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &560387660
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560387659}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1153152527}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &560387661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560387659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf4a4762cf92ec4287b6104d16c6298, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedColor: {fileID: 2100000, guid: e1abf89a6bdb7b4459044c00778817e9, type: 2}
+  unselectedColor: {fileID: 2100000, guid: c2009042fe51c6a45ad79114bc80fc21, type: 2}
 --- !u!1 &618431036
 GameObject:
   m_ObjectHideFlags: 0
@@ -3008,6 +3055,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1467766697}
+  - {fileID: 560387660}
   m_Father: {fileID: 431326941}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3023,9 +3071,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6e5b1533e35b54eb7b33c010743077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contractsRoot: {fileID: 0}
-  layoutRoot: {fileID: 0}
-  choiceManager: {fileID: 0}
+  contractsRoot: {fileID: 1175064283}
+  layoutRoot: {fileID: 1467766697}
+  choiceManager: {fileID: 560387661}
+  planningMaterial: {fileID: 2100000, guid: 0d7fe2c8c9b98fd4ebea3833b28d828b, type: 2}
+  plantingSpotPrefab: {fileID: 2230138581507785796, guid: d17135cbac0c94b4d91f4d0b3de54582, type: 3}
+  levelToDisplay: []
 --- !u!1 &1171154270
 GameObject:
   m_ObjectHideFlags: 0
@@ -3366,6 +3417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b359e1635c34e89489825973e2491f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedChoice: 0
   listDisplay: {fileID: 184718813}
 --- !u!114 &1215352182
 MonoBehaviour:
@@ -4401,45 +4453,49 @@ MonoBehaviour:
   levelLayout: {fileID: 237153320}
   layoutCenter: {fileID: 1605678344}
   layoutMaterial: {fileID: 2100000, guid: 89cfd5b9257cb514c9192ba08751fdf2, type: 2}
+  planningManager: {fileID: 0}
+  loadoutTabsRoot: {fileID: 1744379543}
   animationSpeed: 0.05
+  closing: 0
   levelList:
   - script: {fileID: 0}
+    isLocked: 0
     levelName: dada
     highscore: 2
     levelScene: lacaca
     levelLayout: {fileID: 1906382804901595220, guid: a51a4e479da2f2b46a55d1a76b893631, type: 3}
   - script: {fileID: 0}
+    isLocked: 0
     levelName: la mumu
     highscore: 69
     levelScene: lacaca
     levelLayout: {fileID: 1906382804901595220, guid: a51a4e479da2f2b46a55d1a76b893631, type: 3}
   - script: {fileID: 0}
+    isLocked: 0
     levelName: la caca
     highscore: 1
     levelScene: lacaca
     levelLayout: {fileID: 1906382804901595220, guid: a51a4e479da2f2b46a55d1a76b893631, type: 3}
   - script: {fileID: 0}
+    isLocked: 0
     levelName: pipi
     highscore: 65
     levelScene: lacaca
     levelLayout: {fileID: 1906382804901595220, guid: a51a4e479da2f2b46a55d1a76b893631, type: 3}
   - script: {fileID: 0}
+    isLocked: 0
     levelName: tuti
     highscore: 90
     levelScene: lacaca
     levelLayout: {fileID: 1906382804901595220, guid: a51a4e479da2f2b46a55d1a76b893631, type: 3}
   - script: {fileID: 0}
+    isLocked: 0
     levelName: dada
     highscore: 2
     levelScene: lacaca
     levelLayout: {fileID: 1906382804901595220, guid: a51a4e479da2f2b46a55d1a76b893631, type: 3}
   difficulty: {fileID: 0}
-  selectedLevel:
-    script: {fileID: 0}
-    levelName: 
-    highscore: 0
-    levelScene: 
-    levelLayout: {fileID: 0}
+  selectedLevel: []
 --- !u!1 &1443316982
 GameObject:
   m_ObjectHideFlags: 0
@@ -4681,14 +4737,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467766696}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 10, y: 0, z: -10}
   m_LocalScale: {x: 20, y: 0.25, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1153152527}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!1 &1507153308
 GameObject:
   m_ObjectHideFlags: 0

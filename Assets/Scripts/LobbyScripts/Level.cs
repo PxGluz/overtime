@@ -10,6 +10,7 @@ public class Level : MonoBehaviour
         [HideInInspector]
         public Level script;
 
+        public bool isLocked;
         public string levelName;
         public float highscore;
         public string levelScene;
@@ -32,17 +33,17 @@ public class Level : MonoBehaviour
         destination = new Vector3(1f, 0f, 1f);
     }
 
-
+    // TODO: Add option to deselect
     void Update()
     {
         details.localScale = Vector3.Lerp(details.localScale, destination, contract.animationSpeed * 2);
         if (!isClosed)
         {
             destination = new Vector3(1f, 0f, 1f);
-            if (contract.selectedLevel != null && contract.selectedLevel.script != null)
+            if (contract.selectedLevel.Count != 0 && contract.selectedLevel.Count == 1 && contract.selectedLevel[0].script != null)
             {
-                contract.selectedLevel.script.isClosed = false;
-                contract.selectedLevel.script.enabled = false;
+                contract.selectedLevel[0].script.isClosed = false;
+                contract.selectedLevel[0].script.enabled = false;
             }
             foreach (Transform child in details)
                 if (child.TryGetComponent(out Collider col))
@@ -50,7 +51,10 @@ public class Level : MonoBehaviour
             if (Vector3.Distance(details.localScale, destination) < 0.001f)
             {
                 isClosed = true;
-                contract.selectedLevel = levelInfo;
+                List<LevelInfo> tempList = new List<LevelInfo>();
+                tempList.Add(levelInfo);
+                contract.selectedLevel = tempList;
+                contract.BuildPlanning();
             }
         }
         else
