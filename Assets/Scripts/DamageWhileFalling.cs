@@ -34,7 +34,7 @@ public class DamageWhileFalling : MonoBehaviour
             Player.m.TakeDamage(damage);
         }
 
-        Invoke(nameof(DeactivateCollisionDetection), 0.8f);
+        Invoke(nameof(DeactivateCollisionDetection), 0.3f);
     }
 
     private void DeactivateCollisionDetection()
