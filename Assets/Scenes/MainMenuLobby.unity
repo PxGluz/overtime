@@ -565,7 +565,7 @@ Transform:
   m_GameObject: {fileID: 184718811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.125, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 923849044}
@@ -595,6 +595,7 @@ MonoBehaviour:
   textPrefab: {fileID: 3451038839466117024, guid: 9baeab2fcf1ad434a9709ff3855566f7, type: 3}
   hologramMaterial: {fileID: 2100000, guid: 0d7fe2c8c9b98fd4ebea3833b28d828b, type: 2}
   rotationSpeed: 1
+  closeSpeed: 0.05
 --- !u!1 &205579054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,7 +1400,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491146262}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b359e1635c34e89489825973e2491f4d, type: 3}
   m_Name: 
@@ -2843,6 +2844,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113789959}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1130567222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1130567223}
+  m_Layer: 0
+  m_Name: ParentPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1130567223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130567222}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: -0.5}
+  m_LocalPosition: {x: 10, y: 0, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1467766697}
+  m_Father: {fileID: 1153152527}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1132083221
 GameObject:
   m_ObjectHideFlags: 0
@@ -3054,8 +3087,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1467766697}
   - {fileID: 560387660}
+  - {fileID: 1130567223}
   m_Father: {fileID: 431326941}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3076,7 +3109,9 @@ MonoBehaviour:
   choiceManager: {fileID: 560387661}
   planningMaterial: {fileID: 2100000, guid: 0d7fe2c8c9b98fd4ebea3833b28d828b, type: 2}
   plantingSpotPrefab: {fileID: 2230138581507785796, guid: d17135cbac0c94b4d91f4d0b3de54582, type: 3}
+  animationSpeed: 0.01
   levelToDisplay: []
+  coroutineRunning: 0
 --- !u!1 &1171154270
 GameObject:
   m_ObjectHideFlags: 0
@@ -3412,7 +3447,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215352178}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b359e1635c34e89489825973e2491f4d, type: 3}
   m_Name: 
@@ -3914,6 +3949,10 @@ PrefabInstance:
     - target: {fileID: 1070560017, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153755962031841816, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3982301615087226213, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: m_Enabled
@@ -4737,12 +4776,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467766696}
-  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 10, y: 0, z: -10}
-  m_LocalScale: {x: 20, y: 0.25, z: 20}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1153152527}
+  m_Father: {fileID: 1130567223}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!1 &1507153308

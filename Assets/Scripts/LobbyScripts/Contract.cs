@@ -129,7 +129,7 @@ public class Contract : MonoBehaviour
     {
         if (canPlan)
         {
-            planningManager.enabled = true;
+            planningManager.coroutineRunning = false;
             planningManager.levelToDisplay = selectedLevel;
         }
         else
@@ -177,6 +177,7 @@ public class Contract : MonoBehaviour
                 {
                     selectedLevel[0].script.details.localScale = new Vector3(1f, 0f, 1f);
                     selectedLevel[0].script.isClosed = false;
+                    selectedLevel[0].script.deselecting = false;
                     selectedLevel[0].script.enabled = false;
                     selectedLevel = null;
                 }

@@ -12,9 +12,11 @@ public class ListDisplay : MonoBehaviour
     [HideInInspector]public Material hologramMaterial;
 
     public float rotationSpeed;
+    public float closeSpeed;
 
     [HideInInspector]public static int currentIndex = -1;
     [HideInInspector]public static LoadoutTab openTab;
+    private Vector3 destination;
 
     public static void ForceUpdateChoice()
     {
@@ -27,6 +29,7 @@ public class ListDisplay : MonoBehaviour
             ForceUpdateChoice();
         openTab = lTab;
         currentIndex = -1;
+        transform.localScale = Vector3.right + Vector3.up;
         foreach (Transform child in buttonsEmpty.transform)
         {
             Destroy(child.gameObject);
@@ -76,7 +79,8 @@ public class ListDisplay : MonoBehaviour
     IEnumerator WaitForAFrameActions()
     {
         yield return 0;
-        MoveRight();
+        for(int i = 0; i <= openTab.selectedChoice; i++)
+            MoveRight();
         buttonsEmpty.GetComponent<ChoiceManager>().UpdateChoice();
         buttonsEmpty.GetComponent<ChoiceManager>().ChangeChoice(openTab.selectedChoice);
     }
@@ -148,6 +152,27 @@ public class ListDisplay : MonoBehaviour
     
     void Update()
     {
+        transform.localScale = Vector3.Lerp(transform.localScale, destination, closeSpeed);
+        if (Vector3.Angle(transform.right, transform.position - Player.m.transform.position) > 90 && currentIndex != -1 && Vector3.Distance(transform.position, Player.m.transform.position) < 10)
+        {
+            transform.localScale = Vector3.right + Vector3.up + Vector3.forward * transform.localScale.z;
+            destination = Vector3.one;
+        }
+        else
+        {
+            if ((destination == Vector3.right + Vector3.up || destination == Vector3.zero) && Vector3.Distance(destination, transform.localScale) < 0.01f)
+            {
+                destination = Vector3.zero;
+                transform.localScale = Vector3.zero;
+            }
+            else
+            {
+                if (openTab && currentIndex != -1)
+                    ForceUpdateChoice();
+                currentIndex = -1;
+                destination = Vector3.right + Vector3.up;
+            }
+        }
         foreach (Transform child in modelsEmpty.transform)
             child.Rotate(Vector3.up * rotationSpeed);
     }

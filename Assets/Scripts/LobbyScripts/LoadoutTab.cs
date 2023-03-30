@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -16,6 +17,25 @@ public class LoadoutTab : MonoBehaviour
     [HideInInspector]public List<LoadoutChoice> loadoutChoice = new List<LoadoutChoice>();
     [HideInInspector]public int selectedChoice = 0;
     [HideInInspector]public ListDisplay listDisplay;
+
+    private Vector3 destination;
+
+    IEnumerator CloseOpenMenu()
+    {
+        transform.parent.parent.localScale = Vector3.Lerp(transform.parent.parent.localScale, destination, listDisplay.closeSpeed);
+        if (Vector3.Distance(transform.position, Player.m.transform.position) < 10)
+            destination = Vector3.one;
+        else
+            destination = Vector3.right + Vector3.forward;
+        yield return 0;
+        StartCoroutine(CloseOpenMenu());
+    }
+
+    void Start()
+    {
+        StartCoroutine(CloseOpenMenu());
+        enabled = false;
+    }
 
     // Update is called once per frame
     void Update()
