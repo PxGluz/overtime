@@ -62,6 +62,19 @@ public class WeaponManager : MonoBehaviour
         public bool isUnlocked;
     }
 
+    [System.Serializable]
+    public class WeaponData
+    {
+        public string name;
+        public bool isUnlocked;
+
+        public WeaponData(string name, bool isUnlocked)
+        {
+            this.name = name;
+            this.isUnlocked = isUnlocked;
+        }
+    }
+
     [HideInInspector]
     public Animator weaponAnimator;
     [HideInInspector]
@@ -84,6 +97,18 @@ public class WeaponManager : MonoBehaviour
         //    if (child.name == "AnimationPoint")
         //        animationPoint = child;
         weaponIsInPlace = true;
+
+        object data = SerializationManager.Load("weapons");
+        if (data != null)
+        {
+            List<WeaponData> weaponDatas = data as List<WeaponData>;
+            foreach (WeaponData weaponData in weaponDatas)
+            {
+                foreach (Weapon weapon in WeaponsList)
+                    if (weapon.name.Equals(weaponData.name))
+                        weapon.isUnlocked = weaponData.isUnlocked;
+            }
+        }
     }
 
     public void ChangeWeapon(string name, int quantity = 1, bool dropCurrentWeapon = true, Transform interactableObject = null)

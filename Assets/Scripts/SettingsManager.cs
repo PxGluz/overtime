@@ -2,18 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 using TMPro;
 
 public class SettingsManager : MonoBehaviour
 {
+    [System.Serializable]
+    public class SettingsData
+    {
+        public float masterVolume;
+        public int fullScreenMode;
+        public int resolutionX, resolutionY;
+        public bool subtitles;
+        public float sensitivity;
+
+        public SettingsData(float masterVolume, FullScreenMode fullScreenMode, Vector2 resolution, bool subtitles, float sensitivity)
+        {
+            this.masterVolume = masterVolume;
+            this.fullScreenMode = (int)fullScreenMode;
+            resolutionX = (int)resolution.x;
+            resolutionY = (int)resolution.y;
+            this.subtitles = subtitles;
+            this.sensitivity = sensitivity;
+        }
+    }
+
     [Header("Settings")]
     public float masterVolume;
     public FullScreenMode fullScreenMode;
-    public Vector2 resolution = new Vector2(Screen.width, Screen.height);
-    public bool subtitles = true;
-    public float sensitivity = 1f;
+    public Vector2 resolution;
+    public bool subtitles;
+    public float sensitivity;
     [Header("Other")]
     public TMP_Dropdown resolutionDropdown;
     public GameObject menu;
@@ -22,9 +41,25 @@ public class SettingsManager : MonoBehaviour
     public GameObject startPosition;
     public MainMenu mainMenu;
 
-    private void Awake()
+    private void Start()
     {
-        fullScreenMode = Screen.fullScreenMode;
+        object data = SerializationManager.Load("settings");
+        if (data == null)
+        {
+            SetMasterVolume(20f);
+            mainMenu.dictionarySliders["masterVolume"].value = 20f;
+            SetFullScreenMode(Screen.fullScreenMode);
+            SetResolution(Screen.width, Screen.height);
+            SetSubtitles(true);
+            mainMenu.dictionaryToggles["subtitles"].isOn = true;
+            SetSensitivity(1f);
+            mainMenu.dictionarySliders["sensitivity"].value = 1f;
+        }
+        else
+        {
+            SettingsData settingsData = data as SettingsData;
+            UpdateSettings(settingsData);
+        }
 
         // Get all possible resolutions for current screen and add them to options.
         Resolution[] possibleResolutions = Screen.resolutions;
@@ -32,16 +67,14 @@ public class SettingsManager : MonoBehaviour
         int currentResolution = 0;
         for (int i = 0; i < possibleResolutions.Length; i++)
         {
-            if (possibleResolutions[i].height == Screen.height && possibleResolutions[i].width == Screen.width)
+            if (possibleResolutions[i].height == resolution.y && possibleResolutions[i].width == resolution.x)
                 currentResolution = i;
 
             resolutionDropdown.options.Add(new TMP_Dropdown.OptionData(possibleResolutions[i].width.ToString() + " x " + possibleResolutions[i].height.ToString()));
         }
         resolutionDropdown.value = currentResolution;
-    }
 
-    private void Start()
-    {
+
         int offset = 0;
         foreach (VolumeComponent component in Player.m.volume.components)
         {
@@ -54,7 +87,6 @@ public class SettingsManager : MonoBehaviour
             mainMenu.dictionaryToggles.Add(component.name, currentToggle);
             offset++;
         }
-        Player.m.playerCam.sensitivity = 1f;
     }
 
     public void SetFullScreenMode(FullScreenMode fullScreenMode)
@@ -84,5 +116,22 @@ public class SettingsManager : MonoBehaviour
     {
         masterVolume = volume;
         AudioManager.AM.audioMixer.SetFloat("master", volume);
+    }
+
+    public SettingsData SettingsToData()
+    {
+        return new SettingsData(masterVolume, fullScreenMode, resolution, subtitles, sensitivity);
+    }
+
+    public void UpdateSettings(SettingsData data)
+    {
+        SetMasterVolume(data.masterVolume);
+        mainMenu.dictionarySliders["masterVolume"].value = data.masterVolume;
+        SetFullScreenMode((FullScreenMode)data.fullScreenMode);
+        SetResolution(data.resolutionX, data.resolutionY);
+        SetSubtitles(data.subtitles);
+        mainMenu.dictionaryToggles["subtitles"].isOn = data.subtitles;
+        SetSensitivity(data.sensitivity);
+        mainMenu.dictionarySliders["sensitivity"].value = data.sensitivity;
     }
 }

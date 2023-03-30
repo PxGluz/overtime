@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
     }
 
     public NamedButton[] buttons; // What is modified in inspector
-    private Dictionary<string, Button> dictionaryButtons = new Dictionary<string, Button>(); // Actual dictionary
+    public Dictionary<string, Button> dictionaryButtons = new Dictionary<string, Button>(); // Actual dictionary
 
     [System.Serializable]
     public struct NamedSlider
@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
     }
 
     public NamedSlider[] sliders;
-    private Dictionary<string, Slider> dictionarySliders = new Dictionary<string, Slider>();
+    public Dictionary<string, Slider> dictionarySliders = new Dictionary<string, Slider>();
 
     [System.Serializable]
     public struct NamedDropdown
@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour
     }
 
     public NamedDropdown[] dropdowns;
-    private Dictionary<string, TMP_Dropdown> dictionaryDropdowns = new Dictionary<string, TMP_Dropdown>();
+    public Dictionary<string, TMP_Dropdown> dictionaryDropdowns = new Dictionary<string, TMP_Dropdown>();
 
     [System.Serializable]
     public struct NamedToggle
@@ -112,6 +112,7 @@ public class MainMenu : MonoBehaviour
             SetSettings(false);
             dictionaryButtons["back"].gameObject.SetActive(false);
             optionLevel--;
+            SerializationManager.Save("settings", Player.m.settingsManager.SettingsToData());
         } else if (optionLevel == 2)
         {
             foreach (KeyValuePair<string, Slider> slider in dictionarySliders)

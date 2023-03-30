@@ -8,6 +8,18 @@ using UnityEngine;
 
 public class Contract : MonoBehaviour
 {
+    [System.Serializable]
+    public class LevelData
+    {
+        public string levelName;
+        public float highscore;
+
+        public LevelData(string levelName, float highscore)
+        {
+            this.levelName = levelName;
+            this.highscore = highscore;
+        }
+    }
     private Vector3 destination;
     private List<Collider> collidersList = new List<Collider>();
     private bool canPlan = true;
@@ -51,6 +63,17 @@ public class Contract : MonoBehaviour
 
     private IEnumerator Start()
     {
+        object data = SerializationManager.Load("levels");
+        if (data != null)
+        {
+            List<LevelData> levelDatas = data as List<LevelData>;
+            foreach (LevelData levelData in levelDatas)
+            {
+                foreach (Level.LevelInfo level in levelList)
+                    if (level.levelName.Equals(levelData.levelName))
+                        level.highscore = levelData.highscore;
+            }
+        }
         if (loadoutTabsRoot == null)
             Debug.LogWarning("loadoutTabsRoot not set: GetLoadoutChoices will not work");
         selectedLevel = new List<Level.LevelInfo>();
