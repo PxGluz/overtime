@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class LevelConstructor : MonoBehaviour
 {
-    [Header("StaticReferences")] public GameObject planningPrefab;
+    [Header("StaticReferences")] public static GameObject planningPrefab;
 
     public static void ConstructLevel(GameObject startingPoint, float sizeX, float sizeZ, Material layoutMaterial, List<Level.LevelInfo> levelList = null, Level.LevelInfo level = null, bool collidersOff = true)
     {
@@ -20,7 +20,6 @@ public class LevelConstructor : MonoBehaviour
             levelList = new List<Level.LevelInfo>();
             levelList.Add(level);
         }
-
         GameObject minZ = startingPoint, maxZ = startingPoint, minX = startingPoint, maxX = startingPoint;
         
         GameObject prevLevel = startingPoint;
@@ -36,7 +35,7 @@ public class LevelConstructor : MonoBehaviour
                     childrenQueue.Enqueue(child);
                 if (currentChild.name.Equals("Exit"))
                     prevLevel = currentChild.gameObject;
-                else
+                else if (!currentChild.name.Contains("Plane"))
                 {
                     if (currentChild.position.y + currentChild.lossyScale.x / 2 > maxX.transform.position.y) maxX = currentChild.gameObject;
                     if (currentChild.position.y - currentChild.lossyScale.x / 2 < minX.transform.position.y) minX = currentChild.gameObject;
@@ -49,8 +48,10 @@ public class LevelConstructor : MonoBehaviour
                 }
             }
         }
-        float dimX = Mathf.Abs(minX.transform.position.y - maxX.transform.position.y), dimZ = Mathf.Abs(minZ.transform.position.z - maxZ.transform.position.z);
+        float dimX = Mathf.Abs((minX.transform.position.y - minX.transform.lossyScale.x) - (maxX.transform.position.y + maxX.transform.lossyScale.x)), 
+              dimZ = Mathf.Abs((minZ.transform.position.z - minZ.transform.lossyScale.z) - (maxZ.transform.position.z + maxZ.transform.lossyScale.z));
         float resizeCoef = dimX > dimZ ? sizeX / dimX : sizeZ / dimZ;
+        
         startingPoint.transform.localScale = new Vector3(resizeCoef, startingPoint.transform.localScale.y ,resizeCoef);
         Vector3 differential = 
         new Vector3(startingPoint.transform.position.x, startingPoint.transform.position.y + sizeX / 2, startingPoint.transform.position.z - sizeZ / 2) - 
@@ -59,7 +60,7 @@ public class LevelConstructor : MonoBehaviour
 
     }
 
-    public void InsertPlanning(GameObject levelLayout, ChoiceManager choiceManager)
+    public static void InsertPlanning(GameObject levelLayout, ChoiceManager choiceManager)
     {
         Queue<Transform> childrenQueue = new Queue<Transform>();
         childrenQueue.Enqueue(levelLayout.transform);
