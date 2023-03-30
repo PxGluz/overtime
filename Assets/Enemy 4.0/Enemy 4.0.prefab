@@ -1710,7 +1710,7 @@ Transform:
   - {fileID: 2215511159244447117}
   - {fileID: 648033943}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1978722146465968003
 Rigidbody:
@@ -1785,7 +1785,7 @@ MonoBehaviour:
   EnemyCenter: {fileID: 648033943}
   maxHealth: 100
   currentHealth: 0
-  myWeapon: Gun
+  myWeapon: Knife
   myWeaponClass:
     name: 
     WeaponModelOnPlayer: {fileID: 0}
@@ -1813,7 +1813,7 @@ MonoBehaviour:
     gunAllowButtonHold: 0
     isUnlocked: 0
   isDead: 0
-  enemyType: 1
+  enemyType: 0
   damageTypeWeakness: 0
   isStunned: 0
   blood: {fileID: 0}
@@ -1855,11 +1855,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   animator: {fileID: 6375201460393477798}
+  lastAccesiblePlayerLocation: {x: 0, y: 0, z: 0}
   canSeePlayer: 0
   isChasingPlayer: 0
   currentMovementAnimation: 
   announceRange: 5.15
-  PreferedDistanceToPlayer: 2.2
+  PreferedDistanceToPlayer: 2.26
   chaseDuration: 5
   rotateAfterPlayerSpeed: 100
   enablePatrol: 0
@@ -4048,7 +4049,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8077706476871903854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.77, z: 1.643}
+  m_LocalPosition: {x: -0, y: 1.77, z: 1.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
