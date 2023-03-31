@@ -164,6 +164,8 @@ public class EnemyMaster : MonoBehaviour
         if (bodyPart && bodyPart.TryGetComponent(out Rigidbody rbBodyPart))
             rbBodyPart.velocity = direction;
 
+        enemyRanged.enemyAmmoReloadDisplay.SliderSetActive(false);
+
         //Destroy Enemy Scripts:
         IncapacitateEnemy();
         Destroy(animator);
