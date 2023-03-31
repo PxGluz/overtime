@@ -515,7 +515,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 60}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.12, y: 0}
+  m_AnchoredPosition: {x: 11.12, y: -6.0999756}
   m_SizeDelta: {x: 3.365, y: 27.5141}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &145820730
@@ -2962,7 +2962,7 @@ MonoBehaviour:
     gunShootForce: 40
     gunUpwardForce: 0
     gunTimeBetweenShooting: 0.1
-    gunSpread: 0.1
+    gunSpread: 0
     gunReloadTime: 0.5
     gunMagazineSize: 10
     gunBulletsPerTap: 1
@@ -2987,7 +2987,7 @@ MonoBehaviour:
     gunShootForce: 40
     gunUpwardForce: 0
     gunTimeBetweenShooting: 0.1
-    gunSpread: 0.1
+    gunSpread: 0
     gunReloadTime: 0.5
     gunMagazineSize: 10
     gunBulletsPerTap: 1
@@ -3543,7 +3543,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -60}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11.09, y: 0}
+  m_AnchoredPosition: {x: -11.09, y: -6.0999756}
   m_SizeDelta: {x: 3.365, y: 27.5142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &691099695
@@ -14693,7 +14693,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 60}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.49, y: 0}
+  m_AnchoredPosition: {x: 11.49, y: -6.1}
   m_SizeDelta: {x: 3.365, y: 27.5141}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6435311065257621792
@@ -15156,7 +15156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -60}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11.41, y: 0}
+  m_AnchoredPosition: {x: -11.41, y: -6.0999756}
   m_SizeDelta: {x: 3.365, y: 27.5142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2614776718106707096

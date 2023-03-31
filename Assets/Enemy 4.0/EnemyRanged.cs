@@ -8,6 +8,7 @@ public class EnemyRanged : MonoBehaviour
 {
 
     private EnemyMaster enemy;
+    public EnemyAmmoReloadDisplay enemyAmmoReloadDisplay;
 
     [Header("Variables: ")]
     public GameObject enemyBullet;
@@ -67,7 +68,7 @@ public class EnemyRanged : MonoBehaviour
             return;
 
         if ( readyToShoot && !reloading && bulletsleft <= 0)
-            Reload();
+            StartCoroutine(Reload(reloadCooldown));
 
         // Shooting
         if ( enemy.enemyMovement.canSeePlayer && readyToShoot && !reloading && bulletsleft > 0)
@@ -144,6 +145,30 @@ public class EnemyRanged : MonoBehaviour
         allowInvoke = true;
     }
 
+    private IEnumerator Reload(float duration)
+    {
+        reloading = true;
+
+        enemyAmmoReloadDisplay.SliderSetActive(true);
+        
+        float time = 0.0f;
+
+        do
+        {
+            time += Time.deltaTime;
+
+            enemyAmmoReloadDisplay.UpdateSliderValue(time/duration);
+
+            yield return 0;
+
+        } while (time < duration);
+
+        enemyAmmoReloadDisplay.SliderSetActive(false);
+
+        bulletsleft = enemy.myWeaponClass.gunMagazineSize;
+        reloading = false;
+    }
+    /*
     private void Reload()
     {
         reloading = true;
@@ -155,5 +180,6 @@ public class EnemyRanged : MonoBehaviour
         bulletsleft = enemy.myWeaponClass.gunMagazineSize;
         reloading = false;
     }
+    */
 
 }
