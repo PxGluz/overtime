@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class LevelConstructor : MonoBehaviour
 {
-    [Header("StaticReferences")] public static GameObject planningPrefab;
-
     public static void ConstructLevel(GameObject startingPoint, float sizeX, float sizeZ, Material layoutMaterial, List<Level.LevelInfo> levelList = null, Level.LevelInfo level = null, bool collidersOff = true)
     {
         if (levelList == null)
@@ -35,7 +33,7 @@ public class LevelConstructor : MonoBehaviour
                     childrenQueue.Enqueue(child);
                 if (currentChild.name.Equals("Exit"))
                     prevLevel = currentChild.gameObject;
-                else if (!currentChild.name.Contains("Plane"))
+                else if (!currentChild.name.Contains("Plane") && !currentChild.name.Contains("PlantingSpot"))
                 {
                     if (currentChild.position.y + currentChild.lossyScale.x / 2 > maxX.transform.position.y) maxX = currentChild.gameObject;
                     if (currentChild.position.y - currentChild.lossyScale.x / 2 < minX.transform.position.y) minX = currentChild.gameObject;
@@ -52,15 +50,16 @@ public class LevelConstructor : MonoBehaviour
               dimZ = Mathf.Abs((minZ.transform.position.z - minZ.transform.lossyScale.z) - (maxZ.transform.position.z + maxZ.transform.lossyScale.z));
         float resizeCoef = dimX > dimZ ? sizeX / dimX : sizeZ / dimZ;
         
+        
+        
         startingPoint.transform.localScale = new Vector3(resizeCoef, startingPoint.transform.localScale.y ,resizeCoef);
         Vector3 differential = 
         new Vector3(startingPoint.transform.position.x, startingPoint.transform.position.y + sizeX / 2, startingPoint.transform.position.z - sizeZ / 2) - 
-        new Vector3(startingPoint.transform.position.x, ((maxX.transform.position + minX.transform.position)/2).y, ((maxZ.transform.position + minZ.transform.position)/2).z); 
+        new Vector3(startingPoint.transform.position.x, ((maxX.transform.position + minX.transform.position)/2).y, ((maxZ.transform.position + minZ.transform.position)/2).z);
         startingPoint.transform.position += differential;
-
     }
 
-    public static void InsertPlanning(GameObject levelLayout, ChoiceManager choiceManager)
+    public static void InsertPlanning(GameObject levelLayout, Transform choiceRoot, GameObject planningPrefab)
     {
         Queue<Transform> childrenQueue = new Queue<Transform>();
         childrenQueue.Enqueue(levelLayout.transform);
@@ -70,9 +69,9 @@ public class LevelConstructor : MonoBehaviour
             foreach (Transform child in currentChild)
                 childrenQueue.Enqueue(child);
             if (currentChild.name.Contains("PlantingSpot"))
-                Instantiate(planningPrefab, currentChild.position, currentChild.rotation, choiceManager.transform);
+                Instantiate(planningPrefab, currentChild.position, choiceRoot.rotation, choiceRoot);
         }
-        choiceManager.UpdateChoice();
-        choiceManager.ChangeChoice(0);
+        /*choiceManager.UpdateChoice();
+        choiceManager.ChangeChoice(0);*/
     }
 }

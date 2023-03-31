@@ -167,7 +167,7 @@ public class ListDisplay : MonoBehaviour
             }
             else
             {
-                if (openTab && currentIndex != -1)
+                if (openTab && currentIndex != -1 && currentIndex == buttonsEmpty.GetComponent<ChoiceManager>().GetChoice())
                     ForceUpdateChoice();
                 currentIndex = -1;
                 destination = Vector3.right + Vector3.up;

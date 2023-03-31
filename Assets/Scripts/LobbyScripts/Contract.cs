@@ -154,6 +154,7 @@ public class Contract : MonoBehaviour
         {
             planningManager.coroutineRunning = false;
             planningManager.levelToDisplay = selectedLevel;
+            planningManager.currentContract = this;
         }
         else
             planningManager.ResetLayout();

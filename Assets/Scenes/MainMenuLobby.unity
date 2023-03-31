@@ -1156,6 +1156,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &458161241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1381,6 +1387,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &491146265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1598,11 +1610,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 560387659}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf4a4762cf92ec4287b6104d16c6298, type: 3}
+  m_Script: {fileID: 11500000, guid: 714b16e0c1f515041b6fff1f123b3905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedColor: {fileID: 2100000, guid: e1abf89a6bdb7b4459044c00778817e9, type: 2}
-  unselectedColor: {fileID: 2100000, guid: c2009042fe51c6a45ad79114bc80fc21, type: 2}
+  minDistanceObject: {fileID: 0}
+  animationSpeed: 0.05
+  animationPeak: {x: 1, y: 1.5, z: 1}
+  currentPlanting: -1
 --- !u!1 &618431036
 GameObject:
   m_ObjectHideFlags: 0
@@ -2734,6 +2748,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &1113789963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2850,7 +2870,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130567222}
   m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: -0.5}
-  m_LocalPosition: {x: 10, y: 0, z: 10}
+  m_LocalPosition: {x: -10, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2932,6 +2952,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!65 &1132083225
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3082,12 +3108,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contractsRoot: {fileID: 1175064283}
   layoutRoot: {fileID: 1467766697}
-  choiceManager: {fileID: 560387661}
+  choiceRoot: {fileID: 560387660}
   planningMaterial: {fileID: 2100000, guid: 0d7fe2c8c9b98fd4ebea3833b28d828b, type: 2}
   plantingSpotPrefab: {fileID: 2230138581507785796, guid: d17135cbac0c94b4d91f4d0b3de54582, type: 3}
   animationSpeed: 0.01
+  planningPrefab: {fileID: 6292596219010433120, guid: 532ab287c394c504ba1ebad3f19e8603, type: 3}
   levelToDisplay: []
   coroutineRunning: 0
+  currentContract: {fileID: 0}
 --- !u!1 &1171154270
 GameObject:
   m_ObjectHideFlags: 0
@@ -3410,6 +3438,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &1215352181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3810,6 +3844,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &1252547254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4781,6 +4821,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &1507153311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6248,6 +6294,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &1469772833503539627
 MonoBehaviour:
   m_ObjectHideFlags: 0

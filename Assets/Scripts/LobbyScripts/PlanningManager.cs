@@ -10,14 +10,16 @@ public class PlanningManager : MonoBehaviour
     [Header("Static References")] 
     public Transform contractsRoot;
     public Transform layoutRoot;
-    public ChoiceManager choiceManager;
+    public Transform choiceRoot;
     public Material planningMaterial;
     public GameObject plantingSpotPrefab;
 
     [Header("AnimationRelated")] public float animationSpeed;
+    [Header("StaticReferences")] public GameObject planningPrefab;
 
     [HideInInspector]public List<Level.LevelInfo> levelToDisplay;
     [HideInInspector]public bool coroutineRunning;
+    [HideInInspector]public Contract currentContract;
     
     private Vector3 initialLayoutRotation;
     private float initialScaleY;
@@ -44,9 +46,8 @@ public class PlanningManager : MonoBehaviour
         {
             initialScaleY = layoutRoot.localScale.y;
             initialLayoutRotation = layoutRoot.parent.eulerAngles;
-            layoutRoot.parent.position += Vector3.up * layoutRoot.lossyScale.y;
         }
-        if (choiceManager == null)
+        if (choiceRoot == null)
         {
             Debug.LogWarning("choiceManager not set: planting spots will not work");
             coroutineRunning = true;
@@ -68,11 +69,21 @@ public class PlanningManager : MonoBehaviour
 
     public void ResetLayout()
     {
+        transform.eulerAngles = Vector3.zero;
         foreach(Transform child in layoutRoot)
+            Destroy(child.gameObject);
+        foreach (Transform child in choiceRoot)
             Destroy(child.gameObject);
         layoutRoot.parent.eulerAngles = initialLayoutRotation;
         layoutRoot.position = layoutRoot.parent.position;
         layoutRoot.localScale = new Vector3(1, 0, 1);
+        choiceRoot.GetComponent<PlantingSpotLogic>().minDistanceObject = null;
+    }
+
+    public void RotateLayout(Transform reference)
+    {
+        float angle = Vector3.Angle(reference.right, -transform.right);
+        transform.eulerAngles += new Vector3(0, angle, 0);
     }
     
     private IEnumerator UpdateFunctions()
@@ -93,20 +104,10 @@ public class PlanningManager : MonoBehaviour
             Debug.LogError("levelToDisplay has no levels! It was not passed down after enabling the script!");
 
         yield return 0;
-        layoutRoot.parent.eulerAngles += Vector3.right * -90f;
-        /*foreach (Transform level in layoutRoot)
-        {
-            GameObject currentPlantingSpotPivot = level.Find("PlantingSpot").gameObject;
-            if (currentPlantingSpotPivot)
-            {
-                GameObject currentPlantingSpot = Instantiate(plantingSpotPrefab,
-                    currentPlantingSpotPivot.transform.position, currentPlantingSpotPivot.transform.rotation,
-                    choiceManager.transform);
-                //TODO: add planting spot logic
-            }
-        }*/
-        choiceManager.UpdateChoice();
-        choiceManager.ChangeChoice(0);
+        layoutRoot.parent.eulerAngles += Vector3.right * 90f;
+        LevelConstructor.InsertPlanning(layoutRoot.gameObject, choiceRoot, planningPrefab);
+        yield return 0;
+        RotateLayout(currentContract.transform);
     }
     
     // Update is called once per frame

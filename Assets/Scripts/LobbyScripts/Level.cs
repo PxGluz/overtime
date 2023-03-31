@@ -67,6 +67,7 @@ public class Level : MonoBehaviour
                     contract.selectedLevel = contract.levelList;
                     details.localScale = new Vector3(1f, 0f, 1f);
                     deselecting = false;
+                    isClosed = false;
                     enabled = false;
                 }
                 contract.BuildPlanning();
