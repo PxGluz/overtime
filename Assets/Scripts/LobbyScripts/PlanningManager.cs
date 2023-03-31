@@ -24,6 +24,8 @@ public class PlanningManager : MonoBehaviour
     private Vector3 initialLayoutRotation;
     private float initialScaleY;
 
+    //TODO: Get planning info (plating spot index of selected level and what item to plant)
+    
     private void Start()
     {
         if (contractsRoot != null)

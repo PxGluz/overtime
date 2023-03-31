@@ -10,24 +10,34 @@ public class ListDisplay : MonoBehaviour
     [HideInInspector]public GameObject buttonsEmpty, modelsEmpty, textsEmpty;
     [HideInInspector]public GameObject selectButtonPrefab, textPrefab;
     [HideInInspector]public Material hologramMaterial;
+    [HideInInspector]public bool forceClose;
 
     public float rotationSpeed;
     public float closeSpeed;
 
-    [HideInInspector]public static int currentIndex = -1;
-    [HideInInspector]public static LoadoutTab openTab;
+    [HideInInspector]public int currentIndex = -1;
+    [HideInInspector]public LoadoutTab openTab = null;
+    [HideInInspector]public PlantingSpot planningTab = null;
     private Vector3 destination;
 
-    public static void ForceUpdateChoice()
+    public void ForceUpdateChoice()
     {
-        openTab.selectedChoice = currentIndex;
+        if (currentIndex != -1)
+        {
+            if (openTab && openTab.loadoutChoice[currentIndex].isUnlocked)
+                openTab.selectedChoice = currentIndex;
+
+            if (planningTab && planningTab.loadoutChoice[currentIndex].isUnlocked)
+                planningTab.UpdateChoice(currentIndex);
+        }
     }
     
-    public void ResetList(List<LoadoutTab.LoadoutChoice> choicesList, LoadoutTab lTab)
+    public void ResetList(List<LoadoutTab.LoadoutChoice> choicesList, LoadoutTab lTab=null, PlantingSpot pSpot=null)
     {
         if (currentIndex != -1)
             ForceUpdateChoice();
         openTab = lTab;
+        planningTab = pSpot;
         currentIndex = -1;
         transform.localScale = Vector3.right + Vector3.up;
         foreach (Transform child in buttonsEmpty.transform)
@@ -42,12 +52,12 @@ public class ListDisplay : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        GameObject none = Instantiate(new GameObject(), modelsEmpty.transform.position, modelsEmpty.transform.rotation);
+        /*GameObject none = Instantiate(new GameObject(), modelsEmpty.transform.position, modelsEmpty.transform.rotation);
         none.transform.SetParent(modelsEmpty.transform);
         none = Instantiate(selectButtonPrefab, buttonsEmpty.transform);
         none.GetComponentInChildren<Canvas>().gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "Select";
         none = Instantiate(textPrefab, textsEmpty.transform);
-        none.GetComponent<TextMeshProUGUI>().text = "None";
+        none.GetComponent<TextMeshProUGUI>().text = "None";*/
         foreach (LoadoutTab.LoadoutChoice choice in choicesList)
         {
             GameObject currentObject = Instantiate(choice.model, modelsEmpty.transform);
@@ -79,10 +89,11 @@ public class ListDisplay : MonoBehaviour
     IEnumerator WaitForAFrameActions()
     {
         yield return 0;
-        for(int i = 0; i <= openTab.selectedChoice; i++)
+        int margin = openTab ? openTab.selectedChoice : planningTab.selectedChoice;
+        for(int i = 0; i <= margin; i++)
             MoveRight();
         buttonsEmpty.GetComponent<ChoiceManager>().UpdateChoice();
-        buttonsEmpty.GetComponent<ChoiceManager>().ChangeChoice(openTab.selectedChoice);
+        buttonsEmpty.GetComponent<ChoiceManager>().ChangeChoice(margin);
     }
     
     public void MoveLeft()
@@ -153,7 +164,7 @@ public class ListDisplay : MonoBehaviour
     void Update()
     {
         transform.localScale = Vector3.Lerp(transform.localScale, destination, closeSpeed);
-        if (Vector3.Angle(transform.right, transform.position - Player.m.transform.position) > 90 && currentIndex != -1 && Vector3.Distance(transform.position, Player.m.transform.position) < 10)
+        if (!forceClose && Vector3.Angle(transform.right, transform.position - new Vector3(Player.m.transform.position.x, transform.position.y, Player.m.transform.position.z)) > 90 && currentIndex != -1 && Vector3.Distance(transform.position, Player.m.transform.position) < 5)
         {
             transform.localScale = Vector3.right + Vector3.up + Vector3.forward * transform.localScale.z;
             destination = Vector3.one;
@@ -162,13 +173,17 @@ public class ListDisplay : MonoBehaviour
         {
             if ((destination == Vector3.right + Vector3.up || destination == Vector3.zero) && Vector3.Distance(destination, transform.localScale) < 0.01f)
             {
+                forceClose = false;
                 destination = Vector3.zero;
                 transform.localScale = Vector3.zero;
             }
             else
             {
-                if (openTab && currentIndex != -1 && currentIndex == buttonsEmpty.GetComponent<ChoiceManager>().GetChoice())
+                if ((openTab || planningTab) && currentIndex != -1 &&
+                    currentIndex == buttonsEmpty.GetComponent<ChoiceManager>().GetChoice())
+                {
                     ForceUpdateChoice();
+                }
                 currentIndex = -1;
                 destination = Vector3.right + Vector3.up;
             }

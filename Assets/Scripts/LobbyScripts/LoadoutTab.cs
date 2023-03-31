@@ -19,6 +19,7 @@ public class LoadoutTab : MonoBehaviour
     [HideInInspector]public ListDisplay listDisplay;
 
     private Vector3 destination;
+    private bool checker = true;
 
     IEnumerator CloseOpenMenu()
     {
@@ -37,22 +38,33 @@ public class LoadoutTab : MonoBehaviour
         enabled = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        loadoutChoice = new List<LoadoutChoice>();
-        WeaponManager.Weapon[] weaponList = Player.m.weaponManager.WeaponsList;
-        for (int i = 1; i < weaponList.Length; i++)
+        if (!Input.GetKey(Player.m.interact.interactKey))
+            checker = false;
+        if (!checker)
         {
-            LoadoutChoice choice = new LoadoutChoice();
-            foreach (Transform child in weaponList[i].WeaponModelOnPlayer.transform)
-                if (child.name == "AnimationPoint")
-                    choice.model = child.gameObject;
-            choice.choiceName = weaponList[i].name;
-            choice.isUnlocked = weaponList[i].isUnlocked;
-            loadoutChoice.Add(choice);
+            loadoutChoice = new List<LoadoutChoice>();
+            GameObject empty = new GameObject();
+            LoadoutChoice emptyChoice = new LoadoutChoice();
+            emptyChoice.model = empty;
+            emptyChoice.choiceName = "None";
+            emptyChoice.isUnlocked = true;
+            loadoutChoice.Add(emptyChoice);
+            WeaponManager.Weapon[] weaponList = Player.m.weaponManager.WeaponsList;
+            for (int i = 1; i < weaponList.Length; i++)
+            {
+                LoadoutChoice choice = new LoadoutChoice();
+                foreach (Transform child in weaponList[i].WeaponModelOnPlayer.transform)
+                    if (child.name == "AnimationPoint")
+                        choice.model = child.gameObject;
+                choice.choiceName = weaponList[i].name;
+                choice.isUnlocked = weaponList[i].isUnlocked;
+                loadoutChoice.Add(choice);
+            }
+            listDisplay.ResetList(loadoutChoice, lTab:this);
+            enabled = false;
+            checker = true;
         }
-        listDisplay.ResetList(loadoutChoice, this);
-        enabled = false;
     }
 }

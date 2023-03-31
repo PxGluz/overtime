@@ -508,8 +508,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9118500240164348375}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c9906937f2712b48acfee3921912e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedChoice: 0
+  listDisplay: {fileID: 0}
+  pLogic: {fileID: 0}
+  toggle: 0

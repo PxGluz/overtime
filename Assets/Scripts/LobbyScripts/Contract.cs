@@ -53,11 +53,13 @@ public class Contract : MonoBehaviour
             Debug.LogError("GetLoadoutChoices was called but loadoutTabsRoot is not set: returning null");
             return null;
         }
-        ListDisplay.ForceUpdateChoice();
         List<int> tabsChoices = new List<int>();
         foreach (Transform tab in loadoutTabsRoot)
             if (tab.TryGetComponent(out LoadoutTab loadoutTab))
+            {
+                loadoutTab.listDisplay.ForceUpdateChoice();
                 tabsChoices.Add(loadoutTab.selectedChoice);
+            }
         return tabsChoices;
     }
 
