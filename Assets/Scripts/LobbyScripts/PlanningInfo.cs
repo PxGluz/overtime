@@ -10,7 +10,6 @@ public class PlanningInfo : MonoBehaviour
     public List<int> loadoutChoices = new List<int>();
     public int difficulty;
 
-    //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private void OnLevelLoad(Scene scene, LoadSceneMode mode)
     {
         StartCoroutine(OnLevelLoadCoroutine());
@@ -19,7 +18,6 @@ public class PlanningInfo : MonoBehaviour
     IEnumerator OnLevelLoadCoroutine()
     {
         yield return 0;
-        print("mda");
         if (plantingSpot.Count == 0)
             yield break;
         //TODO: set difficulty of level
