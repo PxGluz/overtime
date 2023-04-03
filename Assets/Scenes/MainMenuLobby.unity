@@ -275,7 +275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &106587688
 RectTransform:
   m_ObjectHideFlags: 0
@@ -865,7 +865,7 @@ Transform:
   m_GameObject: {fileID: 237153320}
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: -0.31, y: -1.25, z: 2.25}
-  m_LocalScale: {x: 1, y: 0.05, z: 1}
+  m_LocalScale: {x: 1, y: 0.01, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 552175038}
@@ -2561,7 +2561,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Alex Belea
+  m_text: Demo Level
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3362,7 +3362,7 @@ Transform:
   m_GameObject: {fileID: 1130567222}
   m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: -0.5}
   m_LocalPosition: {x: -10, y: 0, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1467766697}
@@ -4302,6 +4302,7 @@ GameObject:
   - component: {fileID: 1252547255}
   - component: {fileID: 1252547254}
   - component: {fileID: 1252547253}
+  - component: {fileID: 1252547258}
   m_Layer: 7
   m_Name: Start
   m_TagString: Untagged
@@ -4360,7 +4361,7 @@ MonoBehaviour:
   quantity: 0
   TriggerFunction: 0
   myAttackPoint: {fileID: 0}
-  scriptToStart: {fileID: 0}
+  scriptToStart: {fileID: 1252547258}
   myOutline: {fileID: 0}
 --- !u!64 &1252547255
 MeshCollider:
@@ -4434,6 +4435,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1252547251}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1252547258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252547251}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae427b95edcd9f4f81a21b298fcfb02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contract: {fileID: 1410420588}
 --- !u!1001 &1297820461
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4979,40 +4993,10 @@ MonoBehaviour:
   levelList:
   - script: {fileID: 0}
     isLocked: 0
-    levelName: dada
-    highscore: 2
-    levelScene: lacaca
-    levelLayout: {fileID: 1906382804901595220, guid: a51a4e479da2f2b46a55d1a76b893631, type: 3}
-  - script: {fileID: 0}
-    isLocked: 0
-    levelName: la mumu
-    highscore: 69
-    levelScene: lacaca
-    levelLayout: {fileID: 1906382804901595220, guid: a51a4e479da2f2b46a55d1a76b893631, type: 3}
-  - script: {fileID: 0}
-    isLocked: 0
-    levelName: la caca
-    highscore: 1
-    levelScene: lacaca
-    levelLayout: {fileID: 1906382804901595220, guid: a51a4e479da2f2b46a55d1a76b893631, type: 3}
-  - script: {fileID: 0}
-    isLocked: 0
-    levelName: pipi
-    highscore: 65
-    levelScene: lacaca
-    levelLayout: {fileID: 1906382804901595220, guid: a51a4e479da2f2b46a55d1a76b893631, type: 3}
-  - script: {fileID: 0}
-    isLocked: 0
-    levelName: tuti
-    highscore: 90
-    levelScene: lacaca
-    levelLayout: {fileID: 1906382804901595220, guid: a51a4e479da2f2b46a55d1a76b893631, type: 3}
-  - script: {fileID: 0}
-    isLocked: 0
-    levelName: dada
-    highscore: 2
-    levelScene: lacaca
-    levelLayout: {fileID: 1906382804901595220, guid: a51a4e479da2f2b46a55d1a76b893631, type: 3}
+    levelName: Demo Level
+    highscore: 0
+    levelScene: Demo Scene
+    levelLayout: {fileID: 3435792985498852352, guid: 018c1b717c2cb8f4d978fb90c1145ae5, type: 3}
   difficulty: {fileID: 0}
   selectedLevel: []
 --- !u!1 &1435583740
