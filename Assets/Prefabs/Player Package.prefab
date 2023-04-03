@@ -7714,7 +7714,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1541052628}
   - component: {fileID: 1541052629}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: PlayerVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10248,7 +10248,7 @@ MonoBehaviour:
   smoothTime: 0.3
   canPressEscape: 0
   vigIntensity: 0.25
-  bloomIntensity: 0.3
+  bloomIntensity: 1.5
   MaxHealth: 100
   currentHealth: 100
 --- !u!114 &3982301615916881982

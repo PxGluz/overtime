@@ -17,9 +17,11 @@ public class PlanningInfo : MonoBehaviour
 
     IEnumerator OnLevelLoadCoroutine()
     {
+        Player.m.scoringSystem.combo.gameObject.transform.parent.gameObject.SetActive(false);
         yield return 0;
         if (plantingSpot.Count == 0)
-            yield break;
+            yield break;     
+        Player.m.scoringSystem.combo.gameObject.transform.parent.gameObject.SetActive(true);
         Player.m.scoringSystem.enabled = true;
         //TODO: set difficulty of level
         Player.m.weaponManager.ChangeWeapon(Player.m.weaponManager.WeaponsList[loadoutChoices[0]].name);

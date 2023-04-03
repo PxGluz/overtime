@@ -115,6 +115,7 @@ public class Player : MonoBehaviour
     
     public void YouWin()
     {
+        scoringSystem.combo.transform.parent.gameObject.SetActive(false);
         gameObject.SetActive(false);
         playerCam.enabled = false;
 
