@@ -6409,6 +6409,12 @@ MonoBehaviour:
     highscore: 0
     levelScene: Demo Scene
     levelLayout: {fileID: 3435792985498852352, guid: 018c1b717c2cb8f4d978fb90c1145ae5, type: 3}
+  - script: {fileID: 0}
+    isLocked: 0
+    levelName: Level 2
+    highscore: 0
+    levelScene: Level2
+    levelLayout: {fileID: 4994484692158748158, guid: e372348a191fb3844b0cf053029858ba, type: 3}
   difficulty: {fileID: 0}
   selectedLevel: []
 --- !u!1 &1435583740
