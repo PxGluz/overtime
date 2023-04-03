@@ -70,7 +70,7 @@ public class MainMenu : MonoBehaviour
 
         Time.timeScale = 1;
         startedTransition = true;
-        Invoke(nameof(ResetEscape), 1);
+        Invoke(nameof(ResetEscape), 2);
     }
 
     private void SetSettings(bool active)
@@ -95,7 +95,14 @@ public class MainMenu : MonoBehaviour
     
     private void QuitGame()
     {
-        // And saving should also be done here
+        Player.m.weaponManager.SaveWeapons();
+
+        GameObject contract = GameObject.Find("Contract");
+        if (contract != null)
+            contract.GetComponent<Contract>().SaveScores();
+        else
+            Debug.Log("Couldn't find contract");
+
         Application.Quit();
     }
 
@@ -205,7 +212,7 @@ public class MainMenu : MonoBehaviour
         Player.m.playerCam.LockCursor();
         appearing = false;
         startedTransition = true;
-        Invoke(nameof(ResetEscape), 1);
+        Invoke(nameof(ResetEscape), 2);
     }
     
     private void Awake()
@@ -219,14 +226,6 @@ public class MainMenu : MonoBehaviour
         foreach (NamedToggle toggle in toggles)
             dictionaryToggles.Add(toggle.name, toggle.toggle);
 
-        playerCam = pl.playerCam.transform;
-        pl.playerCam.enabled = false;
-        pl.playerMelee.enabled = false;
-        pl.enabled = false;
-        weaponAnimator.enabled = false;
-        foreach (MaskableGraphic playerUIComponent in playerUI)
-            playerUIComponent.color = new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 0);
-        playerFist.position -= Vector3.up * 0.3f;
         dictionaryButtons["startGame"].onClick.AddListener(StartGame);
         dictionaryButtons["options"].onClick.AddListener(Options);
         dictionaryButtons["quitGame"].onClick.AddListener(QuitGame);
@@ -240,7 +239,29 @@ public class MainMenu : MonoBehaviour
         dictionarySliders["sensitivity"].onValueChanged.AddListener(delegate { Sensitivity(); });
         dictionaryToggles["subtitles"].onValueChanged.AddListener(delegate { Subtitles(); });
         dictionaryButtons["resume"].onClick.AddListener(Resume);
-        Time.timeScale = 0;
+
+        if (SceneManager.GetActiveScene().name.Equals("MainMenuLobby"))
+        {
+            playerCam = pl.playerCam.transform;
+            pl.playerCam.enabled = false;
+            pl.playerMelee.enabled = false;
+            pl.enabled = false;
+            weaponAnimator.enabled = false;
+            foreach (MaskableGraphic playerUIComponent in playerUI)
+                playerUIComponent.color = new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 0);
+            playerFist.position -= Vector3.up * 0.3f;
+            Time.timeScale = 0;
+        } else
+        {
+            foreach (MaskableGraphic menuItem in menuItems)
+                menuItem.color = new Color(menuItem.color.r, menuItem.color.g, menuItem.color.b, 0);
+            firstIteration = false;
+            foreach (KeyValuePair<string, Button> button in dictionaryButtons)
+            {
+                button.Value.interactable = false;
+            }
+            gameObject.SetActive(false);
+        }
     }
 
     private void Update()

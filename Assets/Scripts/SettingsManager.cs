@@ -43,6 +43,20 @@ public class SettingsManager : MonoBehaviour
 
     private void Start()
     {
+        resolution = new Vector2(Screen.width, Screen.height);
+        Resolution[] possibleResolutions = Screen.resolutions;
+        print(possibleResolutions.ToString());
+        resolutionDropdown.options = new List<TMP_Dropdown.OptionData>();
+        int currentResolution = 0;
+        for (int i = 0; i < possibleResolutions.Length; i++)
+        {
+            if (possibleResolutions[i].height == resolution.y && possibleResolutions[i].width == resolution.x)
+                currentResolution = i;
+
+            resolutionDropdown.options.Add(new TMP_Dropdown.OptionData(possibleResolutions[i].width.ToString() + " x " + possibleResolutions[i].height.ToString()));
+        }
+        resolutionDropdown.value = currentResolution;
+
         object data = SerializationManager.Load("settings");
         if (data == null)
         {
@@ -62,17 +76,7 @@ public class SettingsManager : MonoBehaviour
         }
 
         // Get all possible resolutions for current screen and add them to options.
-        Resolution[] possibleResolutions = Screen.resolutions;
-        resolutionDropdown.options = new List<TMP_Dropdown.OptionData>();
-        int currentResolution = 0;
-        for (int i = 0; i < possibleResolutions.Length; i++)
-        {
-            if (possibleResolutions[i].height == resolution.y && possibleResolutions[i].width == resolution.x)
-                currentResolution = i;
-
-            resolutionDropdown.options.Add(new TMP_Dropdown.OptionData(possibleResolutions[i].width.ToString() + " x " + possibleResolutions[i].height.ToString()));
-        }
-        resolutionDropdown.value = currentResolution;
+        
 
 
         int offset = 0;
@@ -128,10 +132,44 @@ public class SettingsManager : MonoBehaviour
         SetMasterVolume(data.masterVolume);
         mainMenu.dictionarySliders["masterVolume"].value = data.masterVolume;
         SetFullScreenMode((FullScreenMode)data.fullScreenMode);
+        mainMenu.dictionaryDropdowns["fullscreen"].value = FullscreenModeToDropdownValue((FullScreenMode)data.fullScreenMode);
         SetResolution(data.resolutionX, data.resolutionY);
+        mainMenu.dictionaryDropdowns["resolution"].value = ResolutionToDropdownValue(data.resolutionX, data.resolutionY);
         SetSubtitles(data.subtitles);
         mainMenu.dictionaryToggles["subtitles"].isOn = data.subtitles;
         SetSensitivity(data.sensitivity);
         mainMenu.dictionarySliders["sensitivity"].value = data.sensitivity;
+    }
+
+    private int FullscreenModeToDropdownValue(FullScreenMode fullScreenMode)
+    {
+        switch (fullScreenMode)
+        {
+            case FullScreenMode.ExclusiveFullScreen:
+                return 0;
+            case FullScreenMode.FullScreenWindow:
+                return 1;
+            case FullScreenMode.Windowed:
+                return 2;
+            default:
+                return 1;
+        }
+    }
+
+    private int ResolutionToDropdownValue(int x, int y)
+    {
+        int currentIndex = 0;
+        for (int i = 0; i < mainMenu.dictionaryDropdowns["resolution"].options.Count; i++)
+        {
+            TMP_Dropdown.OptionData currentOption = mainMenu.dictionaryDropdowns["resolution"].options[i];
+            string[] resString = currentOption.text.Split(' ');
+            if (int.Parse(resString[0]) == x && int.Parse(resString[2]) == y)
+            {
+                currentIndex = i;
+                break;
+            }
+        }
+
+        return currentIndex;
     }
 }

@@ -88,6 +88,15 @@ public class WeaponManager : MonoBehaviour
     private Transform animationPoint;
     public bool weaponIsInPlace;
 
+    public void SaveWeapons()
+    {
+        List<WeaponData> saveData = new List<WeaponData>();
+        foreach (Weapon weapon in WeaponsList)
+            saveData.Add(new WeaponData(weapon.name, weapon.isUnlocked));
+
+        SerializationManager.Save("weapons", saveData);
+    }
+
     private void Start()
     {
         weaponAnimator = GetComponent<Animator>();

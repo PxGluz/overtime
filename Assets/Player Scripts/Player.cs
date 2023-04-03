@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -40,7 +41,7 @@ public class Player : MonoBehaviour
     public float lowTimeScale;
     public float smoothTime;
     private float timeScaleTarget = 1;
-    public bool canPressEscape = false;
+    public bool canPressEscape;
 
     [Header("PostProcessing")] 
     private float vigTarget = 0;
@@ -66,7 +67,9 @@ public class Player : MonoBehaviour
         interact = GetComponent<Interact>();
         //playerMelee = GetComponent<PlayerMelee>();
 
-        playerRigidBody = GetComponent<Rigidbody>();    
+        playerRigidBody = GetComponent<Rigidbody>();
+
+        canPressEscape = !SceneManager.GetActiveScene().name.Equals("MainMenuLobby");
     }
 
     private void Start()
