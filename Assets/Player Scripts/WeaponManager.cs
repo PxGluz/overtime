@@ -101,7 +101,7 @@ public class WeaponManager : MonoBehaviour
     {
         weaponAnimator = GetComponent<Animator>();
         ChangeWeapon("Fists");
-        LoadAllGuns();
+        //LoadAllGuns();
         //foreach (Transform child in currentWeapon.WeaponModelOnPlayer.transform)
         //    if (child.name == "AnimationPoint")
         //        animationPoint = child;
