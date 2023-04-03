@@ -157,7 +157,10 @@ public class Contract : MonoBehaviour
             foreach (Transform child in currentChild)
                 childList.Enqueue(child);
             if (currentChild.TryGetComponent(out Collider col))
+            {
                 collidersList.Add(col);
+                col.enabled = false;
+            }
         }
         difficulty = hologram.GetComponentInChildren<ChoiceManager>();
         levelLayout.SetActive(false);
@@ -193,8 +196,7 @@ public class Contract : MonoBehaviour
                 contract.closing = true;
             closing = false;
             levelLayout.SetActive(true);
-            foreach (Collider collider in collidersList)
-                collider.enabled = true;
+            
             graphics.enabled = false;
         }
         
@@ -228,6 +230,11 @@ public class Contract : MonoBehaviour
         else
         {
             destination = Vector3.one;
+            if (Vector3.Distance(hologram.localScale, destination) < 0.01f)
+            {
+                foreach (Collider collider in collidersList)
+                    collider.enabled = true;
+            }
         }
 
         hologram.localScale = Vector3.Lerp(hologram.localScale, destination, animationSpeed);

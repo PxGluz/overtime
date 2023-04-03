@@ -24,10 +24,10 @@ public class ListDisplay : MonoBehaviour
     {
         if (currentIndex != -1)
         {
-            if (openTab && openTab.loadoutChoice[currentIndex].isUnlocked)
+            if (openTab && openTab.loadoutChoice[currentIndex].isUnlocked && buttonsEmpty.GetComponent<ChoiceManager>().GetChoice() == currentIndex)
                 openTab.selectedChoice = currentIndex;
 
-            if (planningTab && planningTab.loadoutChoice[currentIndex].isUnlocked)
+            if (planningTab && planningTab.loadoutChoice[currentIndex].isUnlocked && buttonsEmpty.GetComponent<ChoiceManager>().GetChoice() == currentIndex)
                 planningTab.UpdateChoice(currentIndex);
         }
     }

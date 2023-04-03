@@ -131,6 +131,8 @@ public class EnemyMaster : MonoBehaviour
 
     public void Die(GameObject bodyPart=null, Vector3 direction=new Vector3())
     {
+        if (!isDead)
+            Player.m.scoringSystem.AddScore(50, "good");
         isDead = true;
 
         // Drop enemy weapon
