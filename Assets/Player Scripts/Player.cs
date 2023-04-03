@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public SettingsManager settingsManager;
     public Interact interact;
     public PrefabHolder prefabHolder;
+    public ScoringSystem scoringSystem;
 
     [Header("Other References:")]
     public Camera MainCamera;

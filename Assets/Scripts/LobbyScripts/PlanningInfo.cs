@@ -20,6 +20,7 @@ public class PlanningInfo : MonoBehaviour
         yield return 0;
         if (plantingSpot.Count == 0)
             yield break;
+        Player.m.scoringSystem.enabled = true;
         //TODO: set difficulty of level
         Player.m.weaponManager.ChangeWeapon(Player.m.weaponManager.WeaponsList[loadoutChoices[0]].name);
         if (plantingSpot[0] != -1)

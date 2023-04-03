@@ -70,7 +70,6 @@ public class Contract : MonoBehaviour
 
     private IEnumerator Start()
     {
-        print(Player.m.transform.parent.parent);
         object data = SerializationManager.Load("levels");
         if (data != null)
         {
