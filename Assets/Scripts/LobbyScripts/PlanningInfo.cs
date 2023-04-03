@@ -40,8 +40,9 @@ public class PlanningInfo : MonoBehaviour
                 if (child.GetSiblingIndex() == plantingSpot[0])
                 {
                     plantingSpot[0] = -1;
-                    Instantiate(Player.m.weaponManager.WeaponsList[plantingSpot[1]].WeaponPrefab,
+                    GameObject plantedWeapon = Instantiate(Player.m.weaponManager.WeaponsList[plantingSpot[1]].WeaponPrefab,
                         child.position, child.rotation);
+                    plantedWeapon.GetComponent<Interactable>().quantity = Player.m.weaponManager.WeaponsList[plantingSpot[1]].gunMagazineSize;
                 }
             if (plantingSpot[0] != -1)
                 plantingSpot[0] -= pSpot.transform.childCount;
