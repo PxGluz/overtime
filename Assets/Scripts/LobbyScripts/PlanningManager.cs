@@ -24,7 +24,31 @@ public class PlanningManager : MonoBehaviour
     private Vector3 initialLayoutRotation;
     private float initialScaleY;
 
-    //TODO: Get planning info (plating spot index of selected level and what item to plant)
+    /// <summary>
+    /// return a list of two elements representing the planting spot that has a weapon selected on it.
+    /// </summary>
+    /// <returns>A list with two elements
+    /// [0]: index of planting spot ();
+    /// [1] index of weapon chosen (0 means none);</returns>
+    public List<int> GetPlanning()
+    {
+        List<int> plantingChoice = new List<int>();
+        foreach (Transform child in choiceRoot)
+        {
+            if (child.GetComponentInChildren<PlantingSpot>().selectedChoice != 0)
+            {
+                plantingChoice.Add(child.GetSiblingIndex());
+                plantingChoice.Add(child.GetComponentInChildren<PlantingSpot>().selectedChoice);
+                break;
+            }
+        }
+        if (plantingChoice.Count == 0)
+        {
+            plantingChoice.Add(-1);
+            plantingChoice.Add(0);
+        }
+        return plantingChoice;
+    }
     
     private void Start()
     {

@@ -2843,7 +2843,7 @@ MonoBehaviour:
     gunBulletsPerTap: 0
     gunTimeBetweenShots: 0
     gunAllowButtonHold: 0
-    isUnlocked: 0
+    isUnlocked: 1
   - name: Knife
     WeaponModelOnPlayer: {fileID: 2533305531179024992}
     WeaponPrefab: {fileID: 7373039682345800313, guid: c9312e862b75f9142a37e65962fe892d, type: 3}
@@ -2868,7 +2868,7 @@ MonoBehaviour:
     gunBulletsPerTap: 0
     gunTimeBetweenShots: 0
     gunAllowButtonHold: 0
-    isUnlocked: 0
+    isUnlocked: 1
   - name: KitchenKnife
     WeaponModelOnPlayer: {fileID: 1153755962031841816}
     WeaponPrefab: {fileID: 6628535389122629734, guid: af31e25adcc3b594592100c3ea224428, type: 3}
@@ -2893,7 +2893,7 @@ MonoBehaviour:
     gunBulletsPerTap: 0
     gunTimeBetweenShots: 0
     gunAllowButtonHold: 0
-    isUnlocked: 0
+    isUnlocked: 1
   - name: ProximityMine
     WeaponModelOnPlayer: {fileID: 3536888562561838294}
     WeaponPrefab: {fileID: 2369381963526222805, guid: 0832824d4b54e2e48ae196e80f9357e3, type: 3}
@@ -2918,7 +2918,7 @@ MonoBehaviour:
     gunBulletsPerTap: 0
     gunTimeBetweenShots: 0
     gunAllowButtonHold: 0
-    isUnlocked: 0
+    isUnlocked: 1
   - name: M16
     WeaponModelOnPlayer: {fileID: 3017401777850759349}
     WeaponPrefab: {fileID: 4028280065528267562, guid: aa9b173c17a7da140aaa43ff38cd87fc, type: 3}
@@ -2943,7 +2943,7 @@ MonoBehaviour:
     gunBulletsPerTap: 5
     gunTimeBetweenShots: 0.08
     gunAllowButtonHold: 1
-    isUnlocked: 0
+    isUnlocked: 1
   - name: Beretta
     WeaponModelOnPlayer: {fileID: 6627362665397338969}
     WeaponPrefab: {fileID: 8110043329064097267, guid: cf12532ad2f04ca4c88493aa1c89d191, type: 3}
@@ -2993,7 +2993,7 @@ MonoBehaviour:
     gunBulletsPerTap: 1
     gunTimeBetweenShots: 0
     gunAllowButtonHold: 0
-    isUnlocked: 0
+    isUnlocked: 1
   - name: TimeGrenade
     WeaponModelOnPlayer: {fileID: 423689341724429160}
     WeaponPrefab: {fileID: 4291248884899067702, guid: 42155ebe94a9c714d9e30ad8e632e254, type: 3}
@@ -3018,7 +3018,7 @@ MonoBehaviour:
     gunBulletsPerTap: 0
     gunTimeBetweenShots: 0
     gunAllowButtonHold: 0
-    isUnlocked: 0
+    isUnlocked: 1
   - name: Grenade
     WeaponModelOnPlayer: {fileID: 8321851656302903669}
     WeaponPrefab: {fileID: 7236612706473255808, guid: e19429fe5e43dc94784f6ebf13a1115d, type: 3}

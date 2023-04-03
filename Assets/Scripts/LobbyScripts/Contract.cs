@@ -43,7 +43,12 @@ public class Contract : MonoBehaviour
     [Header("Important for loading correct level")]
     [HideInInspector] public ChoiceManager difficulty; // Use GetChoice() to get the selected difficulty
     [HideInInspector] public List<Level.LevelInfo> selectedLevel = new List<Level.LevelInfo>(); // Contains levelScene
-    // TODO: Add planning references for loading purposes
+
+    public void SetPlanning()
+    {
+        PlanningInfo planningInfo = GameObject.Find("PlanningInfo").GetComponent<PlanningInfo>();
+        planningInfo.UpdatePlanning(planningManager.GetPlanning(), GetLoadoutChoices(), difficulty.GetChoice());
+    }
 
     /// Call this function in order to get loadout choices as a list depending on the number of tabs
     public List<int> GetLoadoutChoices()

@@ -10,7 +10,9 @@ public class PlayLevel : MonoBehaviour
     // TODO: TEMP SCRIPT
     void Update()
     {
+        contract.SetPlanning();
         Player.m.playerCam.UnLockCursor();
         SceneManager.LoadScene(contract.selectedLevel[0].levelScene);
+        enabled = false;
     }
 }
