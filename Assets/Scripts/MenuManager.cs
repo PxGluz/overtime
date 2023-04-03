@@ -52,6 +52,12 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void NextLevel()
+    {
+        print("going to " + PlanningInfo.instance.GetNextScene());
+        SceneManager.LoadScene(PlanningInfo.instance.GetNextScene());
+    }
+
     public void QuitGame()
     {
         Player.m.gameObject.SetActive(false);

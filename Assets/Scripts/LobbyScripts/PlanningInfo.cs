@@ -9,7 +9,10 @@ public class PlanningInfo : MonoBehaviour
     public List<int> plantingSpot = new List<int>();
     public List<int> loadoutChoices = new List<int>();
     public int difficulty;
+    public Queue<Level.LevelInfo> remainingLevels = new Queue<Level.LevelInfo>();
 
+    public static PlanningInfo instance;
+    
     private void OnLevelLoad(Scene scene, LoadSceneMode mode)
     {
         StartCoroutine(OnLevelLoadCoroutine());
@@ -45,20 +48,27 @@ public class PlanningInfo : MonoBehaviour
         }
     }
 
-    public void UpdatePlanning(List<int> plant,List<int> load, int diff)
+    public void UpdatePlanning(List<int> plant,List<int> load, int diff, Queue<Level.LevelInfo> remLevels)
     {
         plantingSpot = plant;
         loadoutChoices = load;
         difficulty = diff;
+        remainingLevels = remLevels;
     }
 
     public void KeepLastWeapon()
     {
         loadoutChoices[0] = Array.IndexOf(Player.m.weaponManager.WeaponsList, Player.m.weaponManager.currentWeapon);
     }
+
+    public string GetNextScene()
+    {
+        return remainingLevels.Count > 0 ? remainingLevels.Dequeue().levelScene : "MainMenuLobby";
+    }
     
     void Awake()
     {
+        instance = this;
         SceneManager.sceneLoaded += OnLevelLoad;
         DontDestroyOnLoad(gameObject);
     }

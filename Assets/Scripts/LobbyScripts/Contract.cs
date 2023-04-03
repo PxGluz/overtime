@@ -56,7 +56,16 @@ public class Contract : MonoBehaviour
     public void SetPlanning()
     {
         PlanningInfo planningInfo = GameObject.Find("PlanningInfo").GetComponent<PlanningInfo>();
-        planningInfo.UpdatePlanning(planningManager.GetPlanning(), GetLoadoutChoices(), difficulty.GetChoice());
+        bool startIndexing = false;
+        Queue<Level.LevelInfo> remLevels = new Queue<Level.LevelInfo>();
+        foreach (Level.LevelInfo level in levelList)
+        {
+            if (startIndexing)
+                remLevels.Enqueue(level);
+            if (level == selectedLevel[0])
+                startIndexing = true;
+        }
+        planningInfo.UpdatePlanning(planningManager.GetPlanning(), GetLoadoutChoices(), difficulty.GetChoice(), remLevels);
     }
 
     /// Call this function in order to get loadout choices as a list depending on the number of tabs
