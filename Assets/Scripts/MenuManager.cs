@@ -43,7 +43,7 @@ public class MenuManager : MonoBehaviour
     public void GoToMainMenu()
     {
         //Player.m.gameObject.transform.parent.gameObject.SetActive(false);
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("MainMenuLobby");
     }
 
     public void RestartScene()
@@ -62,7 +62,7 @@ public class MenuManager : MonoBehaviour
     
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        /*if (Input.GetKeyDown(KeyCode.N))
         {
             OpenMenu("WinMenu");
         }
@@ -72,7 +72,7 @@ public class MenuManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.B)) {
             CloseAllMenus();
-        }
+        }*/
     }
     
 
