@@ -8,10 +8,16 @@ public class PlayerThrow : MonoBehaviour
     [Header("References")]
     public Transform attackPoint;
     public Transform dropPoint;
+    public ThrowChargerSlider throwChargerSlider;
 
     [Header("Settings")]
     public int totalThrows;
     public float ThrowCooldown;
+    [Header("Throw force")]
+    public float minThrowForce;
+    public float maxThrowForce;
+    public float throwMultiplier;
+    public float throwForce;
 
     [Header("Throwing")]
     public KeyCode throwKey = KeyCode.Mouse0;
@@ -23,6 +29,7 @@ public class PlayerThrow : MonoBehaviour
     public float dropForce;
 
     public GameObject DebugBox;
+
 
     private void Start()
     {
@@ -40,10 +47,25 @@ public class PlayerThrow : MonoBehaviour
         if (!Player.m.weaponManager.weaponIsInPlace)
             return;
 
-        if (Input.GetKeyDown(throwKey) && readyToThrow)//&& totalThrows > 0
+        if (Input.GetKeyDown(throwKey) && readyToThrow)
         {
-            Throw();
+            throwForce = minThrowForce;
+            throwChargerSlider.ActivateSliders(true);
+        }
+        if (Input.GetKey(throwKey) && readyToThrow)
+        {
+            throwForce += Time.deltaTime * throwMultiplier;
+            if (throwForce > maxThrowForce)
+                throwForce = maxThrowForce;
+
+            throwChargerSlider.ChargeSliders(minThrowForce,maxThrowForce,throwForce);
+        }
+        if (Input.GetKeyUp(throwKey) && readyToThrow)
+        {
+            Throw(throwForce);
             Player.m.weaponManager.ChangeWeapon("Fists");
+            throwChargerSlider.ActivateSliders(false);
+            throwForce = minThrowForce;
         }
 
         if (Input.GetKeyDown(dropKey))
@@ -53,7 +75,7 @@ public class PlayerThrow : MonoBehaviour
         }
     }
 
-    private void Throw()
+    private void Throw(float throwForce)
     {
         readyToThrow= false;
         
@@ -81,8 +103,8 @@ public class PlayerThrow : MonoBehaviour
         // get rigidbody component
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
 
-        // add force
-        Vector3 forceToAdd = forceDirection * Player.m.weaponManager.currentWeapon.throwForce + transform.up * Player.m.weaponManager.currentWeapon.throwUpwardForce;
+        // add force                          Player.m.weaponManager.currentWeapon.throwForce
+        Vector3 forceToAdd = forceDirection * throwForce + transform.up * Player.m.weaponManager.currentWeapon.throwUpwardForce;
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
         //projectileRb.velocity += Player.m.playerMovement.rb.velocity ;

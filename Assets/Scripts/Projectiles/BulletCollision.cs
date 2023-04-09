@@ -47,11 +47,11 @@ public class BulletCollision : MonoBehaviour
                     //print(hit.collider.gameObject.name);
                     if (hit.collider.gameObject.name == "Head")
                     {
-                        enemy.TakeDamage(bulletDamage * 2,myDamageType);
+                        enemy.TakeDamage(bulletDamage * 2);
                     }
                     else 
                     {
-                        enemy.TakeDamage(bulletDamage, myDamageType, hit.collider.gameObject, transform.forward * 25f);
+                        enemy.TakeDamage(bulletDamage, hit.collider.gameObject, transform.forward * 25f);
                     }
                 }
                 break;

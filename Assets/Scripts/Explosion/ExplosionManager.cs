@@ -19,7 +19,7 @@ public class ExplosionManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void Explode(Vector3 position, float radius, float damage, float pushForce, string damageType = "Explosion")
+    public void Explode(Vector3 position, float radius, float damage, float pushForce)
     {
         float trueDamage;
         ParticleSystem particleExplosion = Instantiate(ExplosionEffect, position, Quaternion.identity).GetComponent<ParticleSystem>();
@@ -47,7 +47,7 @@ public class ExplosionManager : MonoBehaviour
                     if (enemyStats == null || enemiesHitByExplosion.Contains(enemyStats))
                         break;
                     enemiesHitByExplosion.Add(enemyStats);
-                    enemyStats.TakeDamage(damage, damageType);
+                    enemyStats.TakeDamage(damage);
                     
                     break;
                 case "Player":

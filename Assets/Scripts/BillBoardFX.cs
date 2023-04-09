@@ -4,18 +4,8 @@ using UnityEngine;
 
 public class BillBoardFX : MonoBehaviour
 {
-	private Transform camTransform;
-
-	Quaternion originalRotation;
-
-    void Start()
-    {
-        originalRotation = transform.rotation;
-        camTransform = Player.m.MainCamera.transform;
-    }
-
     void Update()
     {
-     	transform.rotation = camTransform.rotation * originalRotation;   
+        transform.LookAt(Player.m.MainCamera.transform);
     }
 }

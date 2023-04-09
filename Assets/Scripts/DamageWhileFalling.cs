@@ -25,7 +25,7 @@ public class DamageWhileFalling : MonoBehaviour
         EnemyMaster enemy = collision.gameObject.GetComponentInParent<EnemyMaster>();
         if (enemy != null)
         {
-            enemy.TakeDamage(damage,"Accident");
+            enemy.TakeDamage(damage);
         }
 
         print(collision.gameObject + "  " + Player.m.gameObject);

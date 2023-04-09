@@ -104,8 +104,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0069999695}
-  m_SizeDelta: {x: 19.7208, y: 214.2143}
+  m_AnchoredPosition: {x: 0, y: -0.1886}
+  m_SizeDelta: {x: 19.7208, y: 157.0037}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1228111791
 MonoBehaviour:
@@ -1710,7 +1710,7 @@ Transform:
   - {fileID: 2215511159244447117}
   - {fileID: 648033943}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1978722146465968003
 Rigidbody:
@@ -1785,7 +1785,7 @@ MonoBehaviour:
   EnemyCenter: {fileID: 648033943}
   maxHealth: 100
   currentHealth: 0
-  myWeapon: Knife
+  myWeapon: Gun
   myWeaponClass:
     name: 
     WeaponModelOnPlayer: {fileID: 0}
@@ -1813,8 +1813,8 @@ MonoBehaviour:
     gunAllowButtonHold: 0
     isUnlocked: 0
   isDead: 0
-  enemyType: 0
-  damageTypeWeakness: 0
+  enemyType: 1
+  damageTypeWeakness: 2
   isStunned: 0
   blood: {fileID: 0}
   ragdoll: {fileID: 887296189527247187}
@@ -2288,8 +2288,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.007}
-  m_SizeDelta: {x: 20, y: 215.6174}
+  m_AnchoredPosition: {x: 0, y: -0.1886}
+  m_SizeDelta: {x: 20, y: 158.6653}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &782580940841028967
 MonoBehaviour:
@@ -3711,7 +3711,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6477585407843978802}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.2195122, y: 1.2195122, z: 1.2195122}
   m_ConstrainProportionsScale: 0
@@ -3720,7 +3720,7 @@ RectTransform:
   - {fileID: 1485052127136113279}
   m_Father: {fileID: 1978722146465968002}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 1.7934}

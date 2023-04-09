@@ -29,7 +29,6 @@ public class EnemyMaster : MonoBehaviour
     [Header("State:")]
     public bool isDead = false;
     public EnemyType enemyType;
-    public DamageType damageTypeWeakness;
     public bool isStunned;
     private float stunTime = 0f;
 
@@ -56,7 +55,6 @@ public class EnemyMaster : MonoBehaviour
         enemyHealthBar.activateHealthSliders(false);
 
         PutWeaponInHand();
-        SetMyDamageType();
         NerfEnemyWeapons();
     }
 
@@ -78,7 +76,7 @@ public class EnemyMaster : MonoBehaviour
         isStunned = true;
     }
 
-    public void TakeDamage(float damage, string damageType = "None", GameObject bodyPart=null, Vector3 direction=new Vector3())
+    public void TakeDamage(float damage, GameObject bodyPart=null, Vector3 direction=new Vector3())
     {
         if (isDead)
         {
@@ -87,26 +85,6 @@ public class EnemyMaster : MonoBehaviour
             return;
         }
 
-        switch (damageType)
-        {
-            case "None":
-                break;
-            case "Ranged":
-                if (damageType != damageTypeWeakness.ToString())
-                    damage /= 2;
-                break;
-            case "Melee":
-                if (damageType != damageTypeWeakness.ToString())
-                    damage /= 2;
-                break;
-            case "Explosion":
-                if (damageType != damageTypeWeakness.ToString())
-                    damage /= 2;
-                break;
-            case "Accident":
-                damage *= 2;
-                break;
-        }
 
         enemyHealthBar.UpdateHealthBar( Mathf.Max(0, currentHealth - damage));
         enemyHealthBar.activateHealthSliders(true);
@@ -253,6 +231,8 @@ public class EnemyMaster : MonoBehaviour
     }
 
     public SkinnedMeshRenderer EnemyMesh;
+    
+    /*
     public void SetMyDamageType()
     { 
         Material[] mats = EnemyMesh.materials;
@@ -260,6 +240,7 @@ public class EnemyMaster : MonoBehaviour
         mats[5].color = Player.m.colorManager.GetDamageTypeColorByName(damageTypeWeakness.ToString());
         EnemyMesh.materials = mats;
     }
+    */
 
     private void SetWeaponInHandToPosition()
     {
