@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8680422665353786928}
   - component: {fileID: 7013447834584791069}
   - component: {fileID: 5723164708620678353}
-  - component: {fileID: 2296197637243600931}
   - component: {fileID: 7717425118014816833}
   - component: {fileID: 3693895306303017436}
   m_Layer: 0
@@ -64,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: beef351dc9f38f743a47d52b385f0251, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,27 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2296197637243600931
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2306890262460853105}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7717425118014816833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,7 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146d78a8b10c04742aeff4efa527d7aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cacat: 0
+  teleportProjectileCollisionLayer:
+    serializedVersion: 2
+    m_Bits: 1345
+  colliderRadius: 0.7
+  playerHeight: 0
 --- !u!54 &3693895306303017436
 Rigidbody:
   m_ObjectHideFlags: 0

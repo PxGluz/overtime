@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -33,10 +35,14 @@ public class Player : MonoBehaviour
     public GameObject PointDebug;
     public GameObject playerObject;
     public VolumeProfile volume;
+    public Transform bottomPos;
+    public Transform topPosition;
+
 
     [Header("Important variables:")]
     public string MoveType = "stop"; // current move types: stop, walk, run, crouch, slide
     public string AttackType = "melee"; // current attack types: none, shoot, melee   | future attack types: throw
+    public float playerHeight;
     public LayerMask groundLayer;
     public LayerMask enemyLayer;
     public float lowTimeScale;
@@ -76,6 +82,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         currentHealth = MaxHealth;
+        playerHeight = topPosition.position.y - bottomPos.position.y;
     }
 
     public void TakeDamage(float damage)
@@ -166,5 +173,13 @@ public class Player : MonoBehaviour
             canPressEscape = false;
             mainMenu.PressedEscape();
         }
+        
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        // Draws a 5 unit long red line in front of the object
+        Gizmos.color = Color.red;
+        Debug.DrawRay(bottomPos.position, bottomPos.TransformDirection(Vector3.up) * playerHeight, Color.yellow);
     }
 }

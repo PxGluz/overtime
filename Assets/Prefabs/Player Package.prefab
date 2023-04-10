@@ -403,6 +403,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &104269551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 104269552}
+  m_Layer: 3
+  m_Name: Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &104269552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104269551}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.509, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 157149138785908631}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &105626360
 GameObject:
   m_ObjectHideFlags: 0
@@ -6177,6 +6208,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1170063794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1170063795}
+  m_Layer: 3
+  m_Name: Feet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1170063795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170063794}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.845, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 157149138785908631}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1193615108
 GameObject:
   m_ObjectHideFlags: 0
@@ -7062,7 +7124,7 @@ GameObject:
   m_Layer: 3
   m_Name: TeleportShootPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -7073,12 +7135,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319165282}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.796, y: 0.293, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.292, y: -0.5809999, z: 0.226}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 157149138785908631}
+  m_Father: {fileID: 3982301615087226215}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1331281528
@@ -10605,7 +10667,8 @@ Transform:
   - {fileID: 3982301615366071915}
   - {fileID: 3982301615698761917}
   - {fileID: 1278241758}
-  - {fileID: 1319165283}
+  - {fileID: 1170063795}
+  - {fileID: 104269552}
   m_Father: {fileID: 3982301615608917476}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10668,8 +10731,11 @@ MonoBehaviour:
   PointDebug: {fileID: 0}
   playerObject: {fileID: 157149139719264051}
   volume: {fileID: 11400000, guid: 5d149c5f4c673654b98a5663ce1443bc, type: 2}
+  bottomPos: {fileID: 1170063795}
+  topPosition: {fileID: 104269552}
   MoveType: stop
   AttackType: melee
+  playerHeight: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 321
@@ -10815,9 +10881,9 @@ MonoBehaviour:
   shootOriginPoint: {fileID: 1319165283}
   teleportProjectilePrefab: {fileID: 2306890262460853105, guid: b051b02469731be4e8848eeab8f02753, type: 3}
   teleportKey: 102
-  teleportCooldown: 2
+  teleportCooldown: 0
   readyToTeleport: 1
-  throwForce: 0
+  throwForce: 20
   throwUpwardForce: 0
 --- !u!1 &157149139719264051
 GameObject:
@@ -12843,6 +12909,7 @@ Transform:
   m_Children:
   - {fileID: 571179596}
   - {fileID: 1469121288}
+  - {fileID: 1319165283}
   - {fileID: 29378364}
   m_Father: {fileID: 3982301615608917476}
   m_RootOrder: -1
