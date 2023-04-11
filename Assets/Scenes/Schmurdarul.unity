@@ -15580,20 +15580,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 253142752, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
-      propertyPath: teleportCooldown
-      value: 0
+      propertyPath: throwForce
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 568684796, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: AttackPointObject
       value: 
       objectReference: {fileID: 1991072799}
-    - target: {fileID: 1319165282, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
-    - target: {fileID: 1319165283, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.669
+    - target: {fileID: 803368446, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: pickupRange
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3982301615608917476, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: m_RootOrder

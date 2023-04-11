@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CrouchLogic : MonoBehaviour
@@ -39,6 +40,25 @@ public class CrouchLogic : MonoBehaviour
         StartCoroutine(enterCrouchAnim);
 
         if (exitCrouchAnim!= null) 
+            StopCoroutine(exitCrouchAnim);
+
+    }
+
+    public void enterCrouchInstantly()
+    {
+        Player.m.MoveType = "crouch";
+        hasEnteredCrouch = true;
+        playerCapsuleCollider.height = 1.1f;
+        playerCapsuleCollider.center = new Vector3(playerCapsuleCollider.center.x, -0.45f, playerCapsuleCollider.center.z);
+
+        //enterCrouchAnim = MoveHeadToPos(new Vector3(0, -0.5f, 0), CrouchAnimationDuration);
+
+        //StartCoroutine(enterCrouchAnim);
+
+        HeadTransform.localPosition = new Vector3(0, -0.5f, 0);
+
+
+        if (exitCrouchAnim != null)
             StopCoroutine(exitCrouchAnim);
 
     }

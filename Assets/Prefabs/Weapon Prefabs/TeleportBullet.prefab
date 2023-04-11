@@ -100,7 +100,7 @@ MonoBehaviour:
   teleportProjectileCollisionLayer:
     serializedVersion: 2
     m_Bits: 1345
-  colliderRadius: 0.7
+  colliderRadius: 1
   playerHeight: 0
 --- !u!54 &3693895306303017436
 Rigidbody:

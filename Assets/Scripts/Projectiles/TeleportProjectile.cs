@@ -35,15 +35,27 @@ public class TeleportProjectile : MonoBehaviour
 
             Physics.Raycast(transform.position, Vector3.down, out downHitRaycast, Mathf.Infinity, teleportProjectileCollisionLayer);
 
-            
-            Physics.Raycast(downHitRaycast.point, Vector3.up, out upHitRaycast, Mathf.Infinity, teleportProjectileCollisionLayer);
+            Physics.Raycast(transform.position, Vector3.up, out upHitRaycast, Mathf.Infinity, teleportProjectileCollisionLayer);
 
             float teleportPositionY = transform.position.y;
 
-            if (Vector3.Distance(transform.position,downHitRaycast.point) < Player.m.playerHeight / 2)
+            if (Vector3.Distance(upHitRaycast.point, downHitRaycast.point) < Player.m.playerHeight)
+            {
+                teleportPositionY = (upHitRaycast.point.y+downHitRaycast.point.y)/2 + Player.m.playerHeight / 4;
+                Player.m.crouchLogic.enterCrouchInstantly();
+                print("tight spot");
+            }
+
+            else if (Vector3.Distance(transform.position,downHitRaycast.point) < Player.m.playerHeight / 2)
             {
                 teleportPositionY = downHitRaycast.point.y + Player.m.playerHeight / 2;
                 print("hit ground");
+            }
+
+            else if (Vector3.Distance(transform.position, upHitRaycast.point) < Player.m.playerHeight / 2)
+            {
+                teleportPositionY = upHitRaycast.point.y - Player.m.playerHeight / 2;
+                print("hit tavan");
             }
 
 
