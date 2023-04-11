@@ -31,7 +31,6 @@ public class HoldHighlight : MonoBehaviour
         }
         else
         {
-            
             destinationColor = 0;
             Player.m.Fasting();
         }

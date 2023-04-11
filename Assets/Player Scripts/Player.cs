@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
     public float vigIntensity;
     private float bloomTarget = 0;
     public float bloomIntensity;
-    private float lensTarget;
+    private float lensTarget = 0;
     public float lensIntensity;
     
     [Header("Stats:")]
@@ -61,6 +61,11 @@ public class Player : MonoBehaviour
     public float currentHealth;
 
     private float ref1, ref2, ref3, ref4;
+
+    private void OnApplicationQuit()
+    {
+        SnapEffects(true);
+    }
 
     void Awake()
     {
@@ -83,6 +88,7 @@ public class Player : MonoBehaviour
     {
         currentHealth = MaxHealth;
         playerHeight = topPosition.position.y - bottomPos.position.y;
+        SnapEffects(true);
     }
 
     public void TakeDamage(float damage)
@@ -138,6 +144,19 @@ public class Player : MonoBehaviour
         print("Won");
     }
 
+    public void SnapEffects(bool toZero = false)
+    {
+        if (volume)
+        {
+            if (volume.TryGet(out Vignette vig))
+                vig.intensity.value = toZero ? 0 : vigIntensity;
+            if (volume.TryGet(out Bloom blm))
+                blm.intensity.value = toZero ? 0.5f : bloomIntensity;
+            if (volume.TryGet(out LensDistortion lnsD))
+                lnsD.intensity.value = toZero ? 0 : lensIntensity;
+        }
+    }
+    
     public void Slowing()
     {
         vigTarget = vigIntensity;
@@ -148,7 +167,7 @@ public class Player : MonoBehaviour
     public void Fasting()
     {
         vigTarget = 0;
-        bloomTarget = 0;
+        bloomTarget = 0.5f;
         lensTarget = 0;
     }
     
@@ -156,13 +175,12 @@ public class Player : MonoBehaviour
     {
         if (volume)
         {
-            if (volume.TryGet(out Vignette vig))
+            if (volume.TryGet(out Vignette vig) && Mathf.Abs(vig.intensity.value - vigTarget) > 0.001f)
                 vig.intensity.value = Mathf.SmoothDamp(vig.intensity.value, vigTarget, ref ref2, smoothTime);
-            if (volume.TryGet(out Bloom blm))
+            if (volume.TryGet(out Bloom blm) && Mathf.Abs(blm.intensity.value - bloomTarget) > 0.001f)
                 blm.intensity.value = Mathf.SmoothDamp(blm.intensity.value, bloomTarget, ref ref3, smoothTime);
-            if (volume.TryGet(out LensDistortion lnsD))
-                lnsD.intensity.value = Mathf.SmoothDamp(blm.intensity.value, bloomTarget, ref ref4, smoothTime);
-            print(lnsD.intensity.value);
+            if (volume.TryGet(out LensDistortion lnsD) && Mathf.Abs(lnsD.intensity.value - lensTarget) > 0.001f)
+                lnsD.intensity.value = Mathf.SmoothDamp(lnsD.intensity.value, lensTarget, ref ref4, smoothTime);
         }
     }
     

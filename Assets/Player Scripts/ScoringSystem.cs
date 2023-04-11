@@ -23,9 +23,8 @@ public class ScoringSystem : MonoBehaviour
     
     public void AddScore(int addedScore, string pointType)
     {
-
+        Player.m.SnapEffects();
         float calculatedCombo = comboValue + Mathf.Floor(comboBar.transform.localScale.x * 10f) / 10f;
-        print(calculatedCombo);
         addedScore = (int) (addedScore * calculatedCombo);
         score.color = scoringColor;
         score.transform.localScale = Vector3.one * 2;
@@ -70,7 +69,6 @@ public class ScoringSystem : MonoBehaviour
         score.text = scoreValue.ToString();
         float calculatedCombo = comboValue + Mathf.Floor(comboBar.transform.localScale.x * 10f) / 10f;
         combo.text = "x" + calculatedCombo;
-        comboBar.transform.localScale = Vector3.SmoothDamp(comboBar.transform.localScale, Vector3.up + Vector3.forward, ref ref1, comboSmoothTime);
         combo.transform.localScale = Vector3.Lerp(combo.transform.localScale, Vector3.one, animationSpeed * 10);
         combo.transform.rotation = Quaternion.Lerp(combo.transform.rotation, Quaternion.identity, animationSpeed * 10);
         combo.color = Color.Lerp(combo.color, Color.white, animationSpeed);
@@ -94,6 +92,10 @@ public class ScoringSystem : MonoBehaviour
             comboValue = 1;
             comboBar.transform.localScale = Vector3.up + Vector3.forward;
             combo.color = minusPoints;
+        }
+        else if (comboBar.transform.localScale.x > 0.01f)
+        {
+            comboBar.transform.localScale = Vector3.SmoothDamp(comboBar.transform.localScale, Vector3.up + Vector3.forward, ref ref1, comboSmoothTime);
         }
     }
 }

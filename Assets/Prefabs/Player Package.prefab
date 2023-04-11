@@ -10743,11 +10743,11 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  lowTimeScale: 0.5
   smoothTime: 0.3
   canPressEscape: 0
   vigIntensity: 0.25
   bloomIntensity: 1.5
+  lensIntensity: 0.25
   MaxHealth: 100
   currentHealth: 100
 --- !u!114 &3982301615916881982
