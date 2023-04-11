@@ -7,7 +7,7 @@ public class PlayerCam : MonoBehaviour
     public float sensitivity = 1f;
 
     public Transform orientation;
-    public Transform cameraPosition;
+    //public Transform cameraPosition;
 
     [HideInInspector]
     public float xRotation, yRotation;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using CameraShake;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -37,11 +38,10 @@ public class PlayerShooting : MonoBehaviour
     public GameObject AmmoDisplayParent;
     public TextMeshProUGUI ammunitionDisplay;
 
-
     // bug fixing :D
     public bool allowInvoke = true;
     public GameObject AttackPointObject;
-
+    public BounceShake.Params shakeParams;
     private void Start()
     {
         weaponM = Player.m.weaponManager;
@@ -77,18 +77,13 @@ public class PlayerShooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T) && bulletsleft < weaponM.currentWeapon.gunMagazineSize && !reloading)
             Reload();
 
-        /*
-        // Reload automatically when trying to shoot without ammo
-        if (readyToShoot && shooting && !reloading && bulletsleft <= 0)
-            Reload();
-        */
-
         // Shooting
         if (readyToShoot && shooting && !reloading && bulletsleft > 0)
         {
             // Set bullets shot to 0
             bulletsShot = 0;
-
+            //CameraShaker.Shake(new BounceShake(shakeParams, transform.position));
+            //CameraShaker.Presets.ShortShake3D();
             Shoot();
         }
 

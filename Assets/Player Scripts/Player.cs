@@ -1,12 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour
 {
@@ -93,7 +92,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-
+        
         print("The player took " + damage + " damage");
         SetPlayerHealth(currentHealth - damage);
 
