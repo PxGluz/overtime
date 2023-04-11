@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Rendering;
+using System.Collections;
 
 public class MainMenu : MonoBehaviour
 {
@@ -60,6 +61,7 @@ public class MainMenu : MonoBehaviour
     private bool startedTransition = false, firstIteration = true, appearing;
     private Transform playerCam;
     private int optionLevel = 0;
+    private Coroutine displayCoroutine = null;
     
     private void StartGame()
     {
@@ -70,7 +72,7 @@ public class MainMenu : MonoBehaviour
 
         Time.timeScale = 1;
         startedTransition = true;
-        Invoke(nameof(ResetEscape), 2);
+        ResetEscape();
     }
 
     private void SetSettings(bool active)
@@ -212,7 +214,7 @@ public class MainMenu : MonoBehaviour
         Player.m.playerCam.LockCursor();
         appearing = false;
         startedTransition = true;
-        Invoke(nameof(ResetEscape), 2);
+        ResetEscape();
     }
     
     private void Awake()
@@ -304,6 +306,11 @@ public class MainMenu : MonoBehaviour
             {
                 if (!appearing)
                 {
+                    if (displayCoroutine != null)
+                    {
+                        StopCoroutine(displayCoroutine);
+                        displayCoroutine = null;
+                    }
                     foreach (MaskableGraphic playerUIComponent in playerUI)
                         playerUIComponent.color = Color.Lerp(playerUIComponent.color,
                             new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 1),
@@ -327,29 +334,41 @@ public class MainMenu : MonoBehaviour
                 }
                 else
                 {
-                    foreach (MaskableGraphic playerUIComponent in playerUI)
-                        playerUIComponent.color = Color.Lerp(playerUIComponent.color,
-                            new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 0),
-                            menuFadeSpeed);
-                    foreach (MaskableGraphic menuItem in menuItems)
-                        menuItem.color = Color.Lerp(menuItem.color,
-                            new Color(menuItem.color.r, menuItem.color.g, menuItem.color.b, 1),
-                            menuFadeSpeed);
-                    pl.enabled = false;
-                    pl.playerCam.enabled = false;
-                    pl.playerMelee.enabled = false;
-                    weaponAnimator.enabled = false;
-                    foreach (MaskableGraphic playerUIComponent in playerUI)
-                        if (playerUIComponent.color.a > 0.001f)
-                            return;
-                    foreach (MaskableGraphic menuItem in menuItems)
-                        if (1 - menuItem.color.a > 0.001f)
-                            return;
+                    displayCoroutine = StartCoroutine(nameof(DisplayMenu));
                     startedTransition = false;
                     Time.timeScale = 0;
                 }
             }
         }
+    }
+
+    private IEnumerator DisplayMenu()
+    {
+        bool exit = false;
+        while (!exit)
+        {
+            yield return new WaitForSecondsRealtime(1f / 240);
+            foreach (MaskableGraphic playerUIComponent in playerUI)
+                playerUIComponent.color = Color.Lerp(playerUIComponent.color,
+                    new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 0),
+                    menuFadeSpeed);
+            foreach (MaskableGraphic menuItem in menuItems)
+                menuItem.color = Color.Lerp(menuItem.color,
+                    new Color(menuItem.color.r, menuItem.color.g, menuItem.color.b, 1),
+                    menuFadeSpeed);
+            pl.enabled = false;
+            pl.playerCam.enabled = false;
+            pl.playerMelee.enabled = false;
+            weaponAnimator.enabled = false;
+            exit = true;
+            foreach (MaskableGraphic playerUIComponent in playerUI)
+                if (playerUIComponent.color.a > 0.001f)
+                    exit = false;
+            foreach (MaskableGraphic menuItem in menuItems)
+                if (1 - menuItem.color.a > 0.001f)
+                    exit = false;
+        }
+        displayCoroutine = null;
     }
 
     public void PressedEscape()
