@@ -14,11 +14,13 @@ public class ScoringSystem : MonoBehaviour
 
     public Color goodPoints, badPoints, minusPoints, scoringColor;
 
-    public float animationSpeed;
+    public float animationSpeed, comboSmoothTime;
     public float rotationAngle, instantiateOffset;
     
     [HideInInspector] public int scoreValue = 0, comboValue = 1;
 
+    private Vector3 ref1;
+    
     public void AddScore(int addedScore, string pointType)
     {
 
@@ -68,7 +70,7 @@ public class ScoringSystem : MonoBehaviour
         score.text = scoreValue.ToString();
         float calculatedCombo = comboValue + Mathf.Floor(comboBar.transform.localScale.x * 10f) / 10f;
         combo.text = "x" + calculatedCombo;
-        comboBar.transform.localScale = Vector3.Lerp(comboBar.transform.localScale, Vector3.up + Vector3.forward, animationSpeed / 2f);
+        comboBar.transform.localScale = Vector3.SmoothDamp(comboBar.transform.localScale, Vector3.up + Vector3.forward, ref ref1, comboSmoothTime);
         combo.transform.localScale = Vector3.Lerp(combo.transform.localScale, Vector3.one, animationSpeed * 10);
         combo.transform.rotation = Quaternion.Lerp(combo.transform.rotation, Quaternion.identity, animationSpeed * 10);
         combo.color = Color.Lerp(combo.color, Color.white, animationSpeed);

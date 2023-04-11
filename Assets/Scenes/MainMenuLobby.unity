@@ -5435,6 +5435,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Package
       objectReference: {fileID: 0}
+    - target: {fileID: 5170677757337185743, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: lensIntensity
+      value: -0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -189,6 +189,7 @@ MonoBehaviour:
   minusPoints: {r: 1, g: 0, b: 0, a: 1}
   scoringColor: {r: 0, g: 1, b: 0.9723275, a: 1}
   animationSpeed: 0.01
+  comboSmoothTime: 1.5
   rotationAngle: 15
   instantiateOffset: 50
   scoreValue: 0

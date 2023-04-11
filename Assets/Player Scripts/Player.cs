@@ -45,9 +45,7 @@ public class Player : MonoBehaviour
     public float playerHeight;
     public LayerMask groundLayer;
     public LayerMask enemyLayer;
-    public float lowTimeScale;
     public float smoothTime;
-    private float timeScaleTarget = 1;
     public bool canPressEscape;
 
     [Header("PostProcessing")] 
@@ -55,12 +53,14 @@ public class Player : MonoBehaviour
     public float vigIntensity;
     private float bloomTarget = 0;
     public float bloomIntensity;
+    private float lensTarget;
+    public float lensIntensity;
     
     [Header("Stats:")]
     public float MaxHealth;
     public float currentHealth;
 
-    private float ref1, ref2, ref3;
+    private float ref1, ref2, ref3, ref4;
 
     void Awake()
     {
@@ -140,27 +140,29 @@ public class Player : MonoBehaviour
 
     public void Slowing()
     {
-        timeScaleTarget = lowTimeScale;
         vigTarget = vigIntensity;
         bloomTarget = bloomIntensity;
+        lensTarget = lensIntensity;
     }
 
     public void Fasting()
     {
-        timeScaleTarget = 1;
         vigTarget = 0;
         bloomTarget = 0;
+        lensTarget = 0;
     }
     
     void SlowTimeLogic()
     {
-        Time.timeScale = Mathf.SmoothDamp(Time.timeScale, timeScaleTarget, ref ref1, smoothTime);
         if (volume)
         {
             if (volume.TryGet(out Vignette vig))
                 vig.intensity.value = Mathf.SmoothDamp(vig.intensity.value, vigTarget, ref ref2, smoothTime);
             if (volume.TryGet(out Bloom blm))
                 blm.intensity.value = Mathf.SmoothDamp(blm.intensity.value, bloomTarget, ref ref3, smoothTime);
+            if (volume.TryGet(out LensDistortion lnsD))
+                lnsD.intensity.value = Mathf.SmoothDamp(blm.intensity.value, bloomTarget, ref ref4, smoothTime);
+            print(lnsD.intensity.value);
         }
     }
     
