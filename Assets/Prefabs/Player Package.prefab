@@ -3426,8 +3426,8 @@ MonoBehaviour:
   maxStepDistance: 0.06
   rotationStep: 4
   maxRotationStep: 5
-  smooth: 10
-  speedCurve: 0
+  smooth: 2
+  speedCurve: 2
   travelLimit: {x: 0.025, y: 0.025, z: 0.025}
   bobLimit: {x: 0.01, y: 0.01, z: 0.01}
   bobExaggeration: 0
@@ -16134,7 +16134,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletMiss: {fileID: 5967443826055666256, guid: 0893821c2d9e7b24cb58805e617d28bf, type: 3}
   bulletHit: {fileID: 7074259865034566709, guid: c3b698d3750f3b249aa4dfa673e77310, type: 3}
-  enemyDeath: {fileID: 3961936448350007186, guid: ce13f4df4e899fb4f8fc842d748d8768, type: 3}
 --- !u!1 &8402034881947792913
 GameObject:
   m_ObjectHideFlags: 0
