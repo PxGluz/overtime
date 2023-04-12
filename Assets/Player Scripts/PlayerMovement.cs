@@ -300,7 +300,6 @@ public class PlayerMovement : MonoBehaviour
             Player.m.crouchLogic.exitCrouch();
         else 
             Player.m.MoveType = "crouch";
-
         if (ChangeFOVCoroutine != null)
             StopCoroutine(ChangeFOVCoroutine);
 

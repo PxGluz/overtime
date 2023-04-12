@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     public Interact interact;
     public PrefabHolder prefabHolder;
     public ScoringSystem scoringSystem;
+    public ParticleManager particleManager;
 
     [Header("Other References:")]
     public Camera MainCamera;
