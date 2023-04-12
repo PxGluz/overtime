@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ParticleManager : MonoBehaviour
 {
 
-    public GameObject bulletMiss, bulletHit, enemyDeath;
+    public GameObject bulletMiss, bulletHit;
 
     public void CreateParticle(Vector3 contactPoint, Vector3 direction, string particleType = "bulletMiss")
     {
@@ -19,13 +16,9 @@ public class ParticleManager : MonoBehaviour
             case "bulletHit":
                 toBeInstantiated = bulletHit;
                 break;
-            case "enemyDeath":
-                toBeInstantiated = enemyDeath;
-                break;
         }
-
         GameObject particle = Instantiate(toBeInstantiated, contactPoint, Quaternion.identity);
-        particle.transform.eulerAngles = Quaternion.FromToRotation(particle.transform.forward, direction).eulerAngles;
+        particle.transform.eulerAngles = -Quaternion.FromToRotation(particle.transform.forward, direction).eulerAngles;
     }
 
 }

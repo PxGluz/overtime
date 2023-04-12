@@ -107,13 +107,10 @@ public class EnemyMaster : MonoBehaviour
         }
     }
 
-    public void Die(GameObject bodyPart=null, Vector3 direction=new Vector3(), Vector3 contactPoint=new Vector3())
+    public void Die(GameObject bodyPart=null, Vector3 direction=new Vector3())
     {
         if (!isDead)
-        {
             Player.m.scoringSystem.AddScore(50, "good");
-            Player.m.particleManager.CreateParticle(contactPoint, direction, "bulletHit");
-        }
         isDead = true;
 
         // Drop enemy weapon
