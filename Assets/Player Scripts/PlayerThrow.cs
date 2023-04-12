@@ -1,3 +1,4 @@
+using CameraShake;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,6 +30,8 @@ public class PlayerThrow : MonoBehaviour
     public float dropForce;
 
     public GameObject DebugBox;
+
+    public BounceShake.Params throwingShakeParams;
 
 
     private void Start()
@@ -77,7 +80,9 @@ public class PlayerThrow : MonoBehaviour
 
     private void Throw(float throwForce)
     {
-        readyToThrow= false;
+        CameraShaker.Shake(new BounceShake(throwingShakeParams, transform.position));
+
+        readyToThrow = false;
         
         // Find the exact hit position using raycast
         Ray ray = Player.m.MainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); // Just a ray through the middle of your camera
@@ -136,6 +141,9 @@ public class PlayerThrow : MonoBehaviour
     private IEnumerator PlaySoundAfterDelay(GameObject projectile) {yield return new WaitForEndOfFrame(); projectile.GetComponent<NeedSounds>().Play("throw"); }
     public void DropWeapon()
     {
+        throwChargerSlider.ActivateSliders(false);
+        throwForce = minThrowForce;
+
         // instantiate object to throw
         GameObject projectile = Instantiate(Player.m.weaponManager.currentWeapon.WeaponPrefab, dropPoint.position, dropPoint.rotation);//Player.m.MainCamera.transform.rotation
 

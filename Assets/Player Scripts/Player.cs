@@ -1,3 +1,4 @@
+using CameraShake;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour
     public LayerMask enemyLayer;
     public float smoothTime;
     public bool canPressEscape;
+    public BounceShake.Params takeDamageShakeParams;
 
     [Header("PostProcessing")] 
     private float vigTarget = 0;
@@ -93,7 +95,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        
+        CameraShaker.Shake(new BounceShake(takeDamageShakeParams, transform.position));
         print("The player took " + damage + " damage");
         SetPlayerHealth(currentHealth - damage);
 

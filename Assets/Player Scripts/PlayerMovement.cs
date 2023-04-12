@@ -1,3 +1,4 @@
+using CameraShake;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +26,8 @@ public class PlayerMovement : MonoBehaviour
     private bool readyToJump = true;
     public float gravityForce = 10f;
     private bool isAscending = false;
-    private bool isDescending = false;
+    private bool isDescending = false; 
+    public BounceShake.Params fallShakeParams;
 
     [Header("Ground Check")]
     public Transform GroundCheckSource;
@@ -262,7 +264,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            isDescending = false;
+            if (isDescending)
+            {
+                CameraShaker.Shake(new BounceShake(fallShakeParams, transform.position));
+                isDescending = false;
+            }
         }
     }
 

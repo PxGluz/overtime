@@ -86,15 +86,15 @@ public class EnemyRanged : MonoBehaviour
 
         readyToShoot = false;
 
-        Vector3 targetPoint = Player.m.playerCam.transform.position;
+        Vector3 targetPoint = Player.m.crouchLogic.HeadTransform.position;
 
         float spreadUp = Random.Range(-1f, 1f) * enemy.myWeaponClass.gunSpread / 10;
         float spreadRight = Random.Range(-1f, 1f) * enemy.myWeaponClass.gunSpread / 10;
 
         // Find random point in the same plane as the targetPoint.
         Vector3 spreadPoint = targetPoint
-            + Player.m.playerCam.transform.right * spreadRight * (targetPoint - shootPoint.position).magnitude
-            + Player.m.playerCam.transform.up * spreadUp * (targetPoint - shootPoint.position).magnitude;
+            + Player.m.crouchLogic.HeadTransform.right * spreadRight * (targetPoint - shootPoint.position).magnitude
+            + Player.m.crouchLogic.HeadTransform.up * spreadUp * (targetPoint - shootPoint.position).magnitude;
 
         // Calculate direction as before.
         Vector3 directionWithSpread = (spreadPoint - shootPoint.position).normalized;
@@ -167,18 +167,5 @@ public class EnemyRanged : MonoBehaviour
         bulletsleft = enemy.myWeaponClass.gunMagazineSize;
         reloading = false;
     }
-    /*
-    private void Reload()
-    {
-        reloading = true;
-        Invoke("ReloadFinished", reloadCooldown);
-    }
-
-    private void ReloadFinished()
-    {
-        bulletsleft = enemy.myWeaponClass.gunMagazineSize;
-        reloading = false;
-    }
-    */
 
 }

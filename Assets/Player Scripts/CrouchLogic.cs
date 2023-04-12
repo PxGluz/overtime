@@ -8,7 +8,7 @@ public class CrouchLogic : MonoBehaviour
     //Possible fix needed: should only be able to crouch while in "stop" or "walk"/"run" to fix looking wonky while crouch jumping
 
     [Header("Crouching")]
-    [SerializeField] Transform HeadTransform;
+    [SerializeField] public Transform HeadTransform;
     private Vector3 OriginalHeadLocation;
     [SerializeField] public Transform CeilingCheck;
     [SerializeField] public float CeilingCheckRadius;
@@ -18,6 +18,7 @@ public class CrouchLogic : MonoBehaviour
 
     [HideInInspector] public bool hasSpaceAboveHead;
     public bool hasEnteredCrouch = false;
+
 
     void Start()
     {
@@ -50,13 +51,11 @@ public class CrouchLogic : MonoBehaviour
         hasEnteredCrouch = true;
         playerCapsuleCollider.height = 1.1f;
         playerCapsuleCollider.center = new Vector3(playerCapsuleCollider.center.x, -0.45f, playerCapsuleCollider.center.z);
-
         //enterCrouchAnim = MoveHeadToPos(new Vector3(0, -0.5f, 0), CrouchAnimationDuration);
 
         //StartCoroutine(enterCrouchAnim);
 
         HeadTransform.localPosition = new Vector3(0, -0.5f, 0);
-
 
         if (exitCrouchAnim != null)
             StopCoroutine(exitCrouchAnim);

@@ -11,9 +11,9 @@ public class EnemyBullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.DrawRay(transform.position, transform.forward * 1f, Color.yellow);
+        Debug.DrawRay(transform.position, transform.forward * 2f, Color.yellow);
 
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1f))
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 2f))
         {
             HandleLayerLogic(hit);
         }
