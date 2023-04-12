@@ -78,8 +78,10 @@ public class PlayerMelee : MonoBehaviour
             }
         }
 
-        if (closestEnemy != null) {
-
+        if (closestEnemy != null)
+        {
+            RaycastHit contactHit;
+            Physics.Raycast(Player.m.MainCamera.transform.position, Player.m.MainCamera.transform.forward, out contactHit);
             closestEnemy.TakeDamage(Player.m.weaponManager.currentWeapon.meleeDamage, bodyPart.gameObject, transform.forward * 30f);
             ThisAttackHasDealtDamge = true;
         }

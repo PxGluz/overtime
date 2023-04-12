@@ -8,7 +8,7 @@ public class ParticleManager : MonoBehaviour
 
     public GameObject bulletMiss, bulletHit, enemyDeath;
 
-    public void CreateParticle(GameObject parentObject, Vector3 direction, string particleType = "bulletMiss")
+    public void CreateParticle(Vector3 contactPoint, Vector3 direction, string particleType = "bulletMiss")
     {
         
     }

@@ -47,11 +47,11 @@ public class BulletCollision : MonoBehaviour
                     //print(hit.collider.gameObject.name);
                     if (hit.collider.gameObject.name == "Head")
                     {
-                        enemy.TakeDamage(bulletDamage * 2);
+                        enemy.TakeDamage(bulletDamage * 2, hit.collider.gameObject, transform.forward * 25f, hit.point);
                     }
                     else 
                     {
-                        enemy.TakeDamage(bulletDamage, hit.collider.gameObject, transform.forward * 25f);
+                        enemy.TakeDamage(bulletDamage, hit.collider.gameObject, transform.forward * 25f, hit.point);
                     }
                 }
                 break;
@@ -59,6 +59,9 @@ public class BulletCollision : MonoBehaviour
             case "Explosive":
                 hit.collider.gameObject.GetComponent<ExplosiveBarrel>().ReceiveHit();
             break;
+            default:
+                Player.m.particleManager.CreateParticle(hit.point, -transform.forward);
+                break;
 
         }
 

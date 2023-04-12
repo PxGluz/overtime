@@ -76,15 +76,15 @@ public class EnemyMaster : MonoBehaviour
         isStunned = true;
     }
 
-    public void TakeDamage(float damage, GameObject bodyPart=null, Vector3 direction=new Vector3())
+    public void TakeDamage(float damage, GameObject bodyPart=null, Vector3 direction=new Vector3(), Vector3 contactPoint = new Vector3())
     {
+        Player.m.particleManager.CreateParticle(contactPoint, direction, "bulletHit");
         if (isDead)
         {
             if (bodyPart && bodyPart.TryGetComponent(out Rigidbody rbBodyPart))
                 rbBodyPart.velocity = direction;
             return;
         }
-
 
         enemyHealthBar.UpdateHealthBar( Mathf.Max(0, currentHealth - damage));
         enemyHealthBar.activateHealthSliders(true);
@@ -107,10 +107,13 @@ public class EnemyMaster : MonoBehaviour
         }
     }
 
-    public void Die(GameObject bodyPart=null, Vector3 direction=new Vector3())
+    public void Die(GameObject bodyPart=null, Vector3 direction=new Vector3(), Vector3 contactPoint=new Vector3())
     {
         if (!isDead)
+        {
             Player.m.scoringSystem.AddScore(50, "good");
+            Player.m.particleManager.CreateParticle(contactPoint, direction, "bulletHit");
+        }
         isDead = true;
 
         // Drop enemy weapon

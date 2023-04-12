@@ -10727,6 +10727,7 @@ MonoBehaviour:
   interact: {fileID: 803368446}
   prefabHolder: {fileID: 6861109611831387852}
   scoringSystem: {fileID: 29378365}
+  particleManager: {fileID: 647467297}
   MainCamera: {fileID: 3982301615087226214}
   playerRigidBody: {fileID: 0}
   PointDebug: {fileID: 0}
@@ -10842,6 +10843,20 @@ MonoBehaviour:
   ammunitionDisplay: {fileID: 1430281830}
   allowInvoke: 1
   AttackPointObject: {fileID: 0}
+  shakeParams:
+    positionStrength: 0.05
+    rotationStrength: 0.1
+    axesMultiplier:
+      position: {x: 1, y: 1, z: 0}
+      eulerAngles: {x: 0, y: 0, z: 1}
+    freq: 25
+    numBounces: 5
+    randomness: 0.5
+    attenuation:
+      clippingDistance: 10
+      falloffScale: 50
+      falloffDegree: 1
+      axesMultiplier: {x: 1, y: 1, z: 1}
 --- !u!114 &3884872536870258053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15979,6 +15994,7 @@ GameObject:
   - component: {fileID: 1097992153545824280}
   - component: {fileID: 802934106}
   - component: {fileID: 6861109611831387852}
+  - component: {fileID: 647467297}
   m_Layer: 3
   m_Name: Managers
   m_TagString: Untagged
@@ -16090,6 +16106,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPickup: {fileID: 8292193609671807758, guid: 907381b022ec2c14ea2283bb3e31ca60, type: 3}
   ball: {fileID: 0}
+--- !u!114 &647467297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8350131747216620355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 692bd1eda3933324c87fafe51173050a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletMiss: {fileID: 5967443826055666256, guid: 0893821c2d9e7b24cb58805e617d28bf, type: 3}
+  bulletHit: {fileID: 7074259865034566709, guid: c3b698d3750f3b249aa4dfa673e77310, type: 3}
+  enemyDeath: {fileID: 3961936448350007186, guid: ce13f4df4e899fb4f8fc842d748d8768, type: 3}
 --- !u!1 &8402034881947792913
 GameObject:
   m_ObjectHideFlags: 0
