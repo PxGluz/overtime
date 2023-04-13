@@ -191,7 +191,7 @@ MonoBehaviour:
   animationSpeed: 0.01
   comboSmoothTime: 1.5
   rotationAngle: 15
-  instantiateOffset: 50
+  instantiateOffset: 200
   scoreValue: 0
   comboValue: 1
 --- !u!1 &65280242
@@ -10777,7 +10777,7 @@ MonoBehaviour:
   menuManager: {fileID: 1216285252}
   mainMenu: {fileID: 1070560018}
   colorManager: {fileID: 1097992153545824280}
-  audioManager: {fileID: 0}
+  audioManager: {fileID: 7545448514449810091}
   settingsManager: {fileID: 802934106}
   interact: {fileID: 803368446}
   prefabHolder: {fileID: 6861109611831387852}
@@ -13198,7 +13198,7 @@ MonoBehaviour:
     MixerGroup: {fileID: -3911481615702328409, guid: d390e54cd3745a74f9ce824e8bd8bbaf, type: 2}
     soundList:
     - name: pistolShoot
-      clip: {fileID: 8300000, guid: 26787378933d94b40afe98f2fb25b4b1, type: 3}
+      clip: {fileID: 8300000, guid: bad73cfc687b9c348a1936b9a40b19b7, type: 3}
       source: {fileID: 0}
       volume: 0.15
       pitch: 1.6
@@ -13207,7 +13207,7 @@ MonoBehaviour:
       soundRange: 30
       useLinearVolumeRollOff: 1
     - name: explosion
-      clip: {fileID: 8300000, guid: 0fcab5e1d663d5542987f3688737b8a4, type: 3}
+      clip: {fileID: 8300000, guid: bdce5d4a9c577ef48aa20caf0a66fe8e, type: 3}
       source: {fileID: 0}
       volume: 0.2
       pitch: 1
@@ -13216,7 +13216,7 @@ MonoBehaviour:
       soundRange: 30
       useLinearVolumeRollOff: 0
     - name: slash
-      clip: {fileID: 8300000, guid: 3a9c47dc63d44df49b5b4c18f565c672, type: 3}
+      clip: {fileID: 8300000, guid: e79c194d2a7e79249aafccdd793a34d1, type: 3}
       source: {fileID: 0}
       volume: 0.2
       pitch: 1
@@ -13225,7 +13225,7 @@ MonoBehaviour:
       soundRange: 5
       useLinearVolumeRollOff: 0
     - name: throw
-      clip: {fileID: 8300000, guid: 19b46819a9fe86a49b015a66cef626bc, type: 3}
+      clip: {fileID: 8300000, guid: 7dcfbbda40e5e0f4bac2750be49e910e, type: 3}
       source: {fileID: 0}
       volume: 0.2
       pitch: 1
@@ -13234,7 +13234,16 @@ MonoBehaviour:
       soundRange: 15
       useLinearVolumeRollOff: 0
     - name: swoosh
-      clip: {fileID: 8300000, guid: 141da524c5a123943896b3d955152d56, type: 3}
+      clip: {fileID: 8300000, guid: 9e282fa704e026f4b972320aa05ce13e, type: 3}
+      source: {fileID: 0}
+      volume: 0.05
+      pitch: 1
+      loop: 0
+      is3DSound: 0
+      soundRange: 15
+      useLinearVolumeRollOff: 0
+    - name: bulletHit
+      clip: {fileID: 8300000, guid: b98faf52b01fabd4396fa3892a34a1f0, type: 3}
       source: {fileID: 0}
       volume: 0.05
       pitch: 1

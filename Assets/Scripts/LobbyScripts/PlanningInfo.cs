@@ -22,7 +22,7 @@ public class PlanningInfo : MonoBehaviour
     {
         Player.m.scoringSystem.combo.gameObject.transform.parent.gameObject.SetActive(false);
         yield return 0;
-        if (plantingSpot.Count == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 0)
             yield break;     
         Player.m.scoringSystem.combo.gameObject.transform.parent.gameObject.SetActive(true);
         Player.m.scoringSystem.enabled = true;

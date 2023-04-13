@@ -23,19 +23,16 @@ public class ScoringSystem : MonoBehaviour
     
     public void AddScore(int addedScore, string pointType)
     {
-        Player.m.SnapEffects();
+        if (pointType != "bad")
+            Player.m.SnapEffects(vigType:pointType);
         float calculatedCombo = comboValue + Mathf.Floor(comboBar.transform.localScale.x * 10f) / 10f;
-        addedScore = (int) (addedScore * calculatedCombo);
-        score.color = scoringColor;
         score.transform.localScale = Vector3.one * 2;
         score.transform.eulerAngles = Vector3.forward * Random.Range(-rotationAngle, rotationAngle);
-        combo.color = scoringColor;
         combo.transform.localScale = Vector3.one * 2;
         combo.transform.eulerAngles = Vector3.forward * Random.Range(-rotationAngle, rotationAngle);
-        comboBar.transform.localScale = Vector3.one;
         Vector3 offset = Vector3.right * Random.Range(-instantiateOffset, instantiateOffset) +
                          Vector3.up * Random.Range(-instantiateOffset, instantiateOffset);
-        GameObject currentPoint = Instantiate(pointsPrefab, score.transform.position + offset, score.transform.rotation);
+        GameObject currentPoint = Instantiate(pointsPrefab, score.transform.position + offset, score.transform.rotation, score.transform);
         TextMeshProUGUI currentPointText = currentPoint.GetComponent<TextMeshProUGUI>();
         pointsList.Add(currentPointText);
         switch (pointType)
@@ -43,19 +40,35 @@ public class ScoringSystem : MonoBehaviour
             case "good":
                 currentPointText.color = goodPoints;
                 currentPointText.text = "+";
+                addedScore = (int) (addedScore * calculatedCombo);
+                scoreValue += addedScore;
+                comboValue++;
+                score.color = scoringColor;
+                combo.color = scoringColor;
+                comboBar.transform.localScale = Vector3.one;
                 break;
             case "bad":
                 currentPointText.color = badPoints;
                 currentPointText.text = "+";
+                addedScore = (int) (addedScore * calculatedCombo);
+                scoreValue += addedScore;
+                comboValue++;
+                score.color = scoringColor;
+                combo.color = scoringColor;
+                comboBar.transform.localScale = Vector3.one;
                 break;
             case "minus":
                 currentPointText.color = minusPoints;
                 currentPointText.text = "-";
+                scoreValue -= addedScore;
+                addedScore = -addedScore;
+                comboValue = 1;
+                score.color = minusPoints;
+                combo.color = minusPoints;
+                comboBar.transform.localScale = Vector3.up + Vector3.forward;
                 break;
         }
         currentPointText.text += addedScore;
-        scoreValue += addedScore;
-        comboValue++;
     }
     
     private void Start()
@@ -79,8 +92,8 @@ public class ScoringSystem : MonoBehaviour
         List<TextMeshProUGUI> newList = new List<TextMeshProUGUI>();
         foreach (TextMeshProUGUI point in pointsList)
         {
-            point.transform.position += Vector3.up * animationSpeed;
-            point.color = Color.Lerp(point.color, new Color(point.color.r, point.color.g, point.color.b, 0), animationSpeed * 5);
+            point.transform.position += Vector3.up * animationSpeed * 100;
+            point.color = Color.Lerp(point.color, new Color(point.color.r, point.color.g, point.color.b, 0), animationSpeed);
             if (point.color.a > 0)
                 newList.Add(point);
             else

@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damage)
     {
         CameraShaker.Shake(new BounceShake(takeDamageShakeParams, transform.position));
+        scoringSystem.AddScore(100,"minus");
         print("The player took " + damage + " damage");
         SetPlayerHealth(currentHealth - damage);
 
@@ -146,8 +147,16 @@ public class Player : MonoBehaviour
         print("Won");
     }
 
-    public void SnapEffects(bool toZero = false)
+    public void SnapEffects(bool toZero = false, string vigType="good")
     {
+        if (vigType == "minus")
+        {
+            if (volume.TryGet(out Vignette vig))
+                vig.color.value = Color.red;
+        }
+        else
+            if (volume.TryGet(out Vignette vig))
+                vig.color.value = Color.cyan;
         if (volume)
         {
             if (volume.TryGet(out Vignette vig))
@@ -161,6 +170,8 @@ public class Player : MonoBehaviour
     
     public void Slowing()
     {
+        if (volume.TryGet(out Vignette vig))
+            vig.color.value = Color.cyan;
         vigTarget = vigIntensity;
         bloomTarget = bloomIntensity;
         lensTarget = lensIntensity;
