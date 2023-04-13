@@ -55,8 +55,8 @@ public class MainMenu : MonoBehaviour
     public Transform playerFist;
     public float menuFadeSpeed;
     public float rotationSpeed;
-    public Animator weaponAnimator;
     public Player pl;
+    public Animator weaponAnimator;
 
     private bool startedTransition = false, firstIteration = true, appearing;
     private Transform playerCam;
@@ -246,8 +246,6 @@ public class MainMenu : MonoBehaviour
         {
             playerCam = pl.playerCam.transform;
             pl.playerCam.enabled = false;
-            pl.playerMelee.enabled = false;
-            pl.enabled = false;
             weaponAnimator.enabled = false;
             foreach (MaskableGraphic playerUIComponent in playerUI)
                 playerUIComponent.color = new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 0);
@@ -280,19 +278,17 @@ public class MainMenu : MonoBehaviour
                     menuItem.color = Color.Lerp(menuItem.color,
                         new Color(menuItem.color.r, menuItem.color.g, menuItem.color.b, 0),
                         menuFadeSpeed);
-                playerFist.position = Vector3.Lerp(playerFist.position, playerFist.parent.position, menuFadeSpeed);
-                pl.enabled = true;
+                playerFist.position = Vector3.Lerp(playerFist.position, playerFist.parent.position, menuFadeSpeed * 5);
                 pl.playerCam.enabled = true;
                 if ((playerFist.position - playerFist.parent.position).magnitude > 0.001f)
                     return;
+                weaponAnimator.enabled = true;
                 foreach (MaskableGraphic playerUIComponent in playerUI)
                     if (1 - playerUIComponent.color.a > 0.001f)
                         return;
                 foreach (MaskableGraphic menuItem in menuItems)
                     if (menuItem.color.a > 0.001f)
                         return;
-                pl.playerMelee.enabled = true;
-                weaponAnimator.enabled = true;
                 firstIteration = false;
                 startedTransition = false;
                 gameObject.SetActive(false);
@@ -319,7 +315,6 @@ public class MainMenu : MonoBehaviour
                         menuItem.color = Color.Lerp(menuItem.color,
                             new Color(menuItem.color.r, menuItem.color.g, menuItem.color.b, 0),
                             menuFadeSpeed);
-                    pl.enabled = true;
                     pl.playerCam.enabled = true;
                     foreach (MaskableGraphic playerUIComponent in playerUI)
                         if (1 - playerUIComponent.color.a > 0.001f)
@@ -327,8 +322,6 @@ public class MainMenu : MonoBehaviour
                     foreach (MaskableGraphic menuItem in menuItems)
                         if (menuItem.color.a > 0.001f)
                             return;
-                    pl.playerMelee.enabled = true;
-                    weaponAnimator.enabled = true;
                     startedTransition = false;
                     gameObject.SetActive(false);
                 }
@@ -356,10 +349,7 @@ public class MainMenu : MonoBehaviour
                 menuItem.color = Color.Lerp(menuItem.color,
                     new Color(menuItem.color.r, menuItem.color.g, menuItem.color.b, 1),
                     menuFadeSpeed);
-            pl.enabled = false;
             pl.playerCam.enabled = false;
-            pl.playerMelee.enabled = false;
-            weaponAnimator.enabled = false;
             exit = true;
             foreach (MaskableGraphic playerUIComponent in playerUI)
                 if (playerUIComponent.color.a > 0.001f)
