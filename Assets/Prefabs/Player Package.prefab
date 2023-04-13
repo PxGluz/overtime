@@ -3424,9 +3424,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   step: 0.01
   maxStepDistance: 0.06
-  rotationStep: 4
+  rotationStep: 2
   maxRotationStep: 5
-  smooth: 2
+  smooth: 1
   speedCurve: 2
   travelLimit: {x: 0.025, y: 0.025, z: 0.025}
   bobLimit: {x: 0.01, y: 0.01, z: 0.01}
