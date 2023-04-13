@@ -32,7 +32,11 @@ public class DamageOnCollision : MonoBehaviour
         EnemyMaster enemy = collision.gameObject.GetComponentInParent<EnemyMaster>();
         if (enemy != null)
         {
-            enemy.TakeDamage(thrownProjectile.damage, collision.gameObject, transform.forward * 30f, contactPoint:collision.contacts[0].point);
+            if (collision.gameObject.name == "spine.006")
+                enemy.TakeDamage(thrownProjectile.damage, collision.gameObject, transform.forward * 30f, contactPoint:collision.contacts[0].point,true);
+            else
+                enemy.TakeDamage(thrownProjectile.damage, collision.gameObject, transform.forward * 30f, contactPoint: collision.contacts[0].point);
+
             rb.velocity = Vector3.zero;
             //enemy.TakeDamage(thrownProjectile.damage);
         }

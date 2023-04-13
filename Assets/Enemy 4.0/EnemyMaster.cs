@@ -76,7 +76,7 @@ public class EnemyMaster : MonoBehaviour
         isStunned = true;
     }
 
-    public void TakeDamage(float damage, GameObject bodyPart=null, Vector3 direction=new Vector3(), Vector3 contactPoint = new Vector3())
+    public void TakeDamage(float damage, GameObject bodyPart=null, Vector3 direction=new Vector3(), Vector3 contactPoint = new Vector3(), bool isHeadShot = false)
     {
         Player.m.particleManager.CreateParticle(contactPoint, direction, "bulletHit");
         if (isDead)
@@ -85,6 +85,9 @@ public class EnemyMaster : MonoBehaviour
                 rbBodyPart.velocity = direction;
             return;
         }
+
+        if (isHeadShot)
+            print("HEADSHOT");
 
         enemyHealthBar.UpdateHealthBar( Mathf.Max(0, currentHealth - damage));
         enemyHealthBar.activateHealthSliders(true);

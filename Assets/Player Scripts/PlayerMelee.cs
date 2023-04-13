@@ -20,8 +20,6 @@ public class PlayerMelee : MonoBehaviour
     {
         if (EventSystem.current.IsPointerOverGameObject())
             return;
-        
-        print("registed melee input");
 
         // stop the melee script if the player isn't in the melee attack type
         if (Player.m.AttackType != "melee")
