@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using CameraShake;
+using UnityEngine.EventSystems;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -51,6 +52,8 @@ public class PlayerShooting : MonoBehaviour
 
     private void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
 
         // stop the shooting script if the player isn't in the shoot attack type
         if (Player.m.AttackType != "ranged")

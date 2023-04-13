@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMelee : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class PlayerMelee : MonoBehaviour
 
     void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+        
+        print("registed melee input");
+
         // stop the melee script if the player isn't in the melee attack type
         if (Player.m.AttackType != "melee")
             return;
