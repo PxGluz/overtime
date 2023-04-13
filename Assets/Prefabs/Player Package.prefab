@@ -5943,8 +5943,8 @@ MonoBehaviour:
   playerFist: {fileID: 1442064419967563178}
   menuFadeSpeed: 0.025
   rotationSpeed: 0.05
-  weaponAnimator: {fileID: 1297950404}
   pl: {fileID: 5170677757337185743}
+  weaponAnimator: {fileID: 1297950404}
 --- !u!1 &1097037648
 GameObject:
   m_ObjectHideFlags: 0
@@ -12853,7 +12853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7175340268382951532
 Transform:
   m_ObjectHideFlags: 0
