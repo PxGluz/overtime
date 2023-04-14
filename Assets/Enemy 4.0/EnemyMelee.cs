@@ -37,19 +37,11 @@ public class EnemyMelee : MonoBehaviour
     private void Start()
     {
         enemy.animator.SetLayerWeight(1, 1);
-
-        if (enemy.enemyType.ToString() != "Melee")
-        {
-            this.enabled = false;
-            return;
-        }
-
         UpdateAnimClipTimes();
     }
 
     void Update()
     {
-
         // start attacking
         if (enemy.enemyMovement.canSeePlayer && Vector3.Distance(enemy.EnemyCenter.position, Player.m.transform.position) <= DistanceToStartPunch && canAttack)
         {

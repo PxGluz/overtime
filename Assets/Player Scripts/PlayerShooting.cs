@@ -2,24 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using CameraShake;
 using UnityEngine.EventSystems;
 
 public class PlayerShooting : MonoBehaviour
 {
-    // Projectile system:
-
-
-    // bullet
     public GameObject bullet;
-
-    // bullet force
-    //public float shootForce, upwardForce;
-
-    // Gun Stats
-    //public float timeBetweenShooting, spread, reloadTime, timeBetweenShots;
-    //public int magazineSize, bulletsPerTap;
-    //public bool allowButtonHold;
 
     public int bulletsleft;
     int bulletsShot;
@@ -30,7 +17,6 @@ public class PlayerShooting : MonoBehaviour
     public bool readyToShoot;
 
     // Reference;
-    //public Transform attackPoint;
     [HideInInspector]
     private WeaponManager weaponM;
 
@@ -42,11 +28,10 @@ public class PlayerShooting : MonoBehaviour
     // bug fixing :D
     public bool allowInvoke = true;
     public GameObject AttackPointObject;
-    public BounceShake.Params shakeParams;
+
     private void Start()
     {
         weaponM = Player.m.weaponManager;
-        //bulletsleft = weaponM.currentWeapon.gunMagazineSize;
         readyToShoot= true;
     }
 
@@ -85,17 +70,17 @@ public class PlayerShooting : MonoBehaviour
         {
             // Set bullets shot to 0
             bulletsShot = 0;
-            //CameraShaker.Shake(new BounceShake(shakeParams, transform.position));
-            //CameraShaker.Presets.ShortShake3D();
             Shoot();
         }
-
-
     }
 
     private void Shoot()
     {
-        readyToShoot= false;
+        AudioManager.AM.Play("pistolShoot");
+
+        Player.m.crossHairLogic.ActivateCrossHairEffect();
+
+        readyToShoot = false;
 
         // Find the exact hit position using raycast
         Ray ray = Player.m.MainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); // Just a ray through the middle of your camera
@@ -104,27 +89,19 @@ public class PlayerShooting : MonoBehaviour
         // check if ray hits something
         Vector3 targetPoint;
         if (Physics.Raycast(ray, out hit))
-        {
              targetPoint = hit.point;
-        }
         else
             targetPoint = ray.GetPoint(75);
 
-        AudioManager.AM.Play("pistolShoot");
-
-
-        // Calculate direction from attackPoint to targetPoint
-        //Vector3 directionWithoutSpread = (targetPoint - weaponM.currentWeapon.shootPoint.position).normalized;
-        
+        // Calculate direction from attackPoint to targetPoint  
         float spreadUp = Random.Range(-1f, 1f) * weaponM.currentWeapon.gunSpread / 10;
         float spreadRight = Random.Range(-1f, 1f) * weaponM.currentWeapon.gunSpread /10;
-
-        // Vector3 directionWithSpread = directionWithoutSpread + new Vector3(spreadUp,spreadRight , 0);
 
         // Find random point in the same plane as the targetPoint.
         Vector3 spreadPoint = targetPoint
             + Player.m.playerCam.transform.right * spreadRight * (targetPoint - weaponM.currentWeapon.shootPoint.position).magnitude
             + Player.m.playerCam.transform.up * spreadUp * (targetPoint - weaponM.currentWeapon.shootPoint.position).magnitude;
+
         // Calculate direction as before.
         Vector3 directionWithSpread = (spreadPoint - weaponM.currentWeapon.shootPoint.position).normalized;
 
@@ -144,7 +121,6 @@ public class PlayerShooting : MonoBehaviour
         if (bulletCollision != null)
         {
             bulletCollision.bulletDamage = Player.m.weaponManager.currentWeapon.bulletDamage;
-            bulletCollision.myDamageType = Player.m.weaponManager.currentWeapon.damageType.ToString();
         }
 
         if (muzzleFlash != null)
@@ -185,101 +161,4 @@ public class PlayerShooting : MonoBehaviour
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // Raycast system:
-    /*
-
-    public KeyCode shootKey = KeyCode.Mouse0;
-    public float shootingCooldown;
-    public float shootingDistance = 10f;
-    private Transform playerCameraTransform;
-    private bool canShoot = true;
-    public float baseDamage = 50f;
-    void Start()
-    {
-        playerCameraTransform = Player.m.MainCamera.transform;
-    }
-
-    void Update()
-    {
-
-        // stop the shooting script if the player isn't in the shoot attack type
-        if (Player.m.AttackType != "shoot")
-            return;
-
-        if (Input.GetKey(shootKey))
-        {
-            TryShooting();
-        }
-    }
-
-    // Function called on hit. Change it for something to happen.
-    void HitEffects(RaycastHit hitInfo)
-    {
-        //Debug.DrawRay(playerCameraTransform.position, hitInfo.point - playerCameraTransform.position, new Color(0, 0, 1), 2);
-        //Debug.Log(hitInfo.collider.gameObject.name + " " + hitInfo.point);
-        switch (LayerMask.LayerToName(hitInfo.collider.gameObject.layer))
-        {
-            case "Enemy":
-                if (hitInfo.collider.gameObject.name == "Body")
-                {
-                    hitInfo.collider.gameObject.GetComponentInParent<EnemyStats>().ReceiveHit(baseDamage);
-                }
-                else if (hitInfo.collider.gameObject.name == "Head")
-                {
-                    hitInfo.collider.gameObject.GetComponentInParent<EnemyStats>().ReceiveHit(baseDamage * 2);
-                }
-                break;
-            case "Explosive":
-                hitInfo.collider.gameObject.GetComponent<ExplosiveBarrel>().ReceiveHit();
-                break;
-
-        }
-    }
-
-    void TryShooting()
-    {
-        if (canShoot)
-        {
-            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit hitInfo, shootingDistance))
-            {
-                HitEffects(hitInfo);
-            }
-            canShoot = false;
-            Invoke("ResetShooting", shootingCooldown);
-        }
-    }
-
-    void ResetShooting()
-    {
-        canShoot = true;
-    }
-
-    */
 }

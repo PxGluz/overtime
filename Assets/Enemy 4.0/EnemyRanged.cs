@@ -19,9 +19,9 @@ public class EnemyRanged : MonoBehaviour
     [Header("For debugging: ")]
     public int bulletsleft;
     private int bulletsShot;
-    public bool reloading;
-    public bool readyToShoot;
-    public bool isRaisingArms;
+    private bool reloading = false;
+    private bool readyToShoot = true;
+    private bool isRaisingArms = false;
 
     // Reference;
     [HideInInspector]
@@ -35,18 +35,6 @@ public class EnemyRanged : MonoBehaviour
     {
         enemy = GetComponentInParent<EnemyMaster>();
         enemy.animator.SetLayerWeight(1, 1);
-
-        if (enemy.enemyType.ToString() != "Ranged")
-        {
-            this.enabled = false;
-            return;
-        }
-
-        readyToShoot = true;
-        isRaisingArms = false;
-        reloading = false;
-
-        bulletsleft = enemy.myWeaponClass.gunMagazineSize;
     }
 
     private void Update()

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static WeaponManager;
+
 
 public class EnemyMaster : MonoBehaviour
 {
@@ -19,66 +19,82 @@ public class EnemyMaster : MonoBehaviour
     public EnemySpineLookAtPlayer enemySpineLookAtPlayer;
     public Transform EnemyCenter;
 
-    [Header("Stats")]
+    [Header("Important:")]
+    public string myWeapon;
     public float maxHealth = 100f;
     public float currentHealth;
-    public string myWeapon;
-    //[HideInInspector]
+    public float MeleePreferedDistanceToPlayer;
+    public float RangedPreferedDistanceToPlayer;
+    [HideInInspector]
     public WeaponManager.Weapon myWeaponClass;
 
     [Header("State:")]
     public bool isDead = false;
-    public EnemyType enemyType;
     public bool isStunned;
+    public string enemyType;
     private float stunTime = 0f;
 
     [Header("Other: ")]
-    public GameObject blood;
     public GameObject ragdoll;
 
     private void Start()
     {
-        if (currentHealth == 0f)
-            currentHealth = maxHealth;
-
         enemyMovement = GetComponent<EnemyMovement>();
         enemyRanged = GetComponent<EnemyRanged>();
         soundManager = GetComponent<NeedSounds>();
 
-        if (myWeapon == "" && enemyType.ToString() == "Ranged")
-            myWeapon = "Gun";
-        else if (myWeapon == "" && enemyType.ToString() == "Melee")
-            myWeapon = "Knife";
+        if (currentHealth == 0f)
+            currentHealth = maxHealth;
 
+        if (myWeapon == "" )
+            myWeapon = "Knife";
+       
         myWeaponClass = Player.m.weaponManager.GetWeaponByName(myWeapon);
+        enemyType = myWeaponClass.attackType.ToString();
 
         enemyHealthBar.activateHealthSliders(false);
 
+        ActivateAttackScripts();
         PutWeaponInHand();
         NerfEnemyWeapons();
+    }
+
+    private void ActivateAttackScripts()
+    {
+        if (enemyType != "ranged")
+        {
+            enemyRanged.enabled = false;
+        }
+        else
+        {
+            enemyMovement.PreferedDistanceToPlayer = RangedPreferedDistanceToPlayer;
+            enemyRanged.bulletsleft = myWeaponClass.gunMagazineSize;
+            return;
+        }
+
+        if (enemyType != "melee")
+        {
+            enemyMelee.enabled = false;
+        }
+        else
+        {
+            enemyMovement.PreferedDistanceToPlayer = MeleePreferedDistanceToPlayer;
+        }
     }
 
     private void Update()
     {
         if (stunTime > 0)
-        {
             stunTime -= Time.deltaTime;
-        }
         else
-        {
             isStunned = false;
-        }
-    }
-
-    public void StunEnemy(float stunDuration = 1f)
-    {
-        stunTime = stunDuration;
-        isStunned = true;
     }
 
     public void TakeDamage(float damage, GameObject bodyPart=null, Vector3 direction=new Vector3(), Vector3 contactPoint = new Vector3(), bool isHeadShot = false)
     {
+        Player.m.crossHairLogic.ActivateHitXEffect(isHeadShot);
         Player.m.particleManager.CreateParticle(contactPoint, direction, "bulletHit");
+        
         if (isDead)
         {
             if (bodyPart && bodyPart.TryGetComponent(out Rigidbody rbBodyPart))
@@ -121,7 +137,7 @@ public class EnemyMaster : MonoBehaviour
         GameObject drop = Instantiate(myWeaponClass.WeaponPrefab, weaponInHand.transform.position, weaponInHand.transform.rotation);
         if (Player.m.weaponManager.GetWeaponType(myWeaponClass.name) == "ranged")
         {
-            Interactable interactable = drop.GetComponent<Interactable>();
+            //Interactable interactable = drop.GetComponent<Interactable>();
             //interactable.quantity = WeaponClass.gunMagazineSize;
             BulletPickUp bulletPick = Instantiate(Player.m.prefabHolder.bulletPickup,transform.position,Quaternion.identity).GetComponent<BulletPickUp>();
             bulletPick.nrOfBullets = 2;
@@ -182,6 +198,11 @@ public class EnemyMaster : MonoBehaviour
         if (enemySpineLookAtPlayer != null)
             Destroy(enemySpineLookAtPlayer);
     }
+    public void StunEnemy(float stunDuration = 1f)
+    {
+        stunTime = stunDuration;
+        isStunned = true;
+    }
 
     void PutWeaponInHand()
     {
@@ -189,12 +210,12 @@ public class EnemyMaster : MonoBehaviour
             return;
 
         Transform location;
-        switch (enemyType.ToString())
+        switch (enemyType)
         {
-            case "Melee":
+            case "melee":
                 location = enemyMelee.KnifePosition;
                 break;
-            case "Ranged":
+            case "ranged":
                 location = enemyRanged.gunPosition;
                 break;
             default:
@@ -212,7 +233,7 @@ public class EnemyMaster : MonoBehaviour
         {
             if (!(comp is Transform))
             {
-                if (enemyType.ToString() == "Ranged")
+                if (enemyType == "ranged")
                     if (comp is Interactable)
                     {
                         Interactable interact = weaponInHand.GetComponent<Interactable>();
@@ -221,6 +242,7 @@ public class EnemyMaster : MonoBehaviour
                 Destroy(comp);
             }
         }
+
         // Change the prefab and the children's layer to "Enemy"
         var children = weaponInHand.GetComponentsInChildren<Transform>(includeInactive: true);
         foreach (var child in children)
@@ -233,28 +255,10 @@ public class EnemyMaster : MonoBehaviour
         }
     }
 
-    public SkinnedMeshRenderer EnemyMesh;
-    
-    /*
-    public void SetMyDamageType()
-    { 
-        Material[] mats = EnemyMesh.materials;
-        mats[4].color = Player.m.colorManager.GetDamageTypeColorByName(damageTypeWeakness.ToString());
-        mats[5].color = Player.m.colorManager.GetDamageTypeColorByName(damageTypeWeakness.ToString());
-        EnemyMesh.materials = mats;
-    }
-    */
-
     private void SetWeaponInHandToPosition()
     {
         weaponInHand.transform.localPosition = new Vector3(0, 0, 0);
         weaponInHand.transform.localRotation = Quaternion.identity;
-    }
-
-
-    public enum EnemyType
-    {
-        Melee, Ranged
     }
 
 }

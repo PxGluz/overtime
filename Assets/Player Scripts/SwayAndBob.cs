@@ -40,8 +40,8 @@ public class SwayAndBob : MonoBehaviour
 
         Sway();
         SwayRotation();
-        BobOffset();
-        BobRotation();
+        //BobOffset();
+        //BobRotation();
 
         CompositePositionRotation();
     }

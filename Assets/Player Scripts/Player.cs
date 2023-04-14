@@ -22,13 +22,13 @@ public class Player : MonoBehaviour
     public PlayerShooting playerShooting;
     public MenuManager menuManager;
     public MainMenu mainMenu;
-    public ColorManager colorManager;
     public AudioManager audioManager;
     public SettingsManager settingsManager;
     public Interact interact;
     public PrefabHolder prefabHolder;
     public ScoringSystem scoringSystem;
     public ParticleManager particleManager;
+    public CrossHairLogic crossHairLogic;
 
     [Header("Other References:")]
     public Camera MainCamera;

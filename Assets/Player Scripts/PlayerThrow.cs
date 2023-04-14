@@ -12,7 +12,6 @@ public class PlayerThrow : MonoBehaviour
     public ThrowChargerSlider throwChargerSlider;
 
     [Header("Settings")]
-    public int totalThrows;
     public float ThrowCooldown;
     [Header("Throw force")]
     public float minThrowForce;
@@ -28,11 +27,6 @@ public class PlayerThrow : MonoBehaviour
     [Header("Drop:")]
     public KeyCode dropKey = KeyCode.Q;
     public float dropForce;
-
-    public GameObject DebugBox;
-
-    public BounceShake.Params throwingShakeParams;
-
 
     private void Start()
     {
@@ -80,8 +74,6 @@ public class PlayerThrow : MonoBehaviour
 
     private void Throw(float throwForce)
     {
-        CameraShaker.Shake(new BounceShake(throwingShakeParams, transform.position));
-
         readyToThrow = false;
         
         // Find the exact hit position using raycast
@@ -112,16 +104,12 @@ public class PlayerThrow : MonoBehaviour
         Vector3 forceToAdd = forceDirection * throwForce + transform.up * Player.m.weaponManager.currentWeapon.throwUpwardForce;
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
-        //projectileRb.velocity += Player.m.playerMovement.rb.velocity ;
-
-        totalThrows--;
 
         // Set damage and pickup
         ThrownProjectile thrownProjectile = projectile.GetComponent<ThrownProjectile>();
         if (thrownProjectile != null)
         {
             thrownProjectile.damage = Player.m.weaponManager.currentWeapon.throwDamage;
-            //thrownProjectile.myDamageType = Player.m.weaponManager.currentWeapon.damageType.ToString();
             thrownProjectile.myDamageType = "Ranged";
             thrownProjectile.myPickUp = Player.m.weaponManager.currentWeapon.WeaponPrefab;
             thrownProjectile.PickUpSetActive(false);

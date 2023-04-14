@@ -21,7 +21,6 @@ public class WeaponManager : MonoBehaviour
         public GameObject WeaponPrefab;
         [Tooltip("melee,ranged,throwing")]
         public AttackType attackType;
-        public DamageType damageType;
         [Tooltip("GenericMelee, GenericRanged")]
         public AnimationType animationType;
 
@@ -101,10 +100,6 @@ public class WeaponManager : MonoBehaviour
     {
         weaponAnimator = GetComponent<Animator>();
         ChangeWeapon("Fists");
-        //LoadAllGuns();
-        //foreach (Transform child in currentWeapon.WeaponModelOnPlayer.transform)
-        //    if (child.name == "AnimationPoint")
-        //        animationPoint = child;
         weaponIsInPlace = true;
 
         object data = SerializationManager.Load("weapons");
@@ -272,7 +267,6 @@ public class WeaponManager : MonoBehaviour
         weaponCopy.WeaponPrefab = weapon.WeaponPrefab;
         weaponCopy.attackType = weapon.attackType;
         weaponCopy.animationType = weapon.animationType;
-        weaponCopy.damageType= weapon.damageType;
         weaponCopy.throwDamage = weapon.throwDamage;
         weaponCopy.throwForce = weapon.throwForce;
         weaponCopy.throwUpwardForce = weapon.throwUpwardForce;
@@ -294,52 +288,5 @@ public class WeaponManager : MonoBehaviour
         weaponCopy.isUnlocked = weapon.isUnlocked;
         return weaponCopy;
     }
-
-    // Function for setting items to their place
-    /*
-    public void SendItemToPosition()
-    {
-        if (inPlace)
-            return;
-
-        animationPoint.position = Vector3.SmoothDamp(
-            animationPoint.position, animationPoint.parent.position, ref ref1, smoothTime);
-
-        Vector3 tempDest = animationPoint.parent.eulerAngles;
-        Vector3 tempAnim = animationPoint.eulerAngles;
-
-        if (tempDest.x >= 180)
-            tempDest -= Vector3.right * 360f;
-        if (tempDest.y >= 180)
-            tempDest -= Vector3.up * 360f;
-        if (tempDest.z >= 180)
-            tempDest -= Vector3.forward * 360f;
-        
-        if (tempAnim.x >= 180)
-            tempAnim -= Vector3.right * 360f;
-        if (tempAnim.y >= 180)
-            tempAnim -= Vector3.up * 360f;
-        if (tempAnim.z >= 180)
-            tempAnim -= Vector3.forward * 360f;
-        
-        tempAnim = Vector3.SmoothDamp(
-            tempAnim, tempDest, ref ref2, smoothTime);
-        animationPoint.transform.eulerAngles = tempAnim;
-
-        if ((tempAnim - tempDest).magnitude <= 0.1f) 
-            inPlace = true;
-    }
-    */
-
-    /*
-     foreach (Transform child in currentWeapon.WeaponModelOnPlayer.transform)
-                        if (child.name == "AnimationPoint")
-                            animationPoint = child;
-
-                    animationPoint.position = interactableObject.position;
-                    animationPoint.eulerAngles = interactableObject.eulerAngles;
-
-                    inPlace = false;
-     */
 
 }
