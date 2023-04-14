@@ -1710,7 +1710,7 @@ Transform:
   - {fileID: 2215511159244447117}
   - {fileID: 648033943}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1978722146465968003
 Rigidbody:
@@ -1783,15 +1783,16 @@ MonoBehaviour:
   enemyHealthBar: {fileID: 1765602086}
   enemySpineLookAtPlayer: {fileID: 1445946869}
   EnemyCenter: {fileID: 648033943}
+  myWeapon: Gun
   maxHealth: 100
   currentHealth: 0
-  myWeapon: Gun
+  MeleePreferedDistanceToPlayer: 2.26
+  RangedPreferedDistanceToPlayer: 8
   myWeaponClass:
     name: 
     WeaponModelOnPlayer: {fileID: 0}
     WeaponPrefab: {fileID: 0}
     attackType: 0
-    damageType: 0
     animationType: 0
     throwDamage: 10
     throwForce: 20
@@ -1813,11 +1814,9 @@ MonoBehaviour:
     gunAllowButtonHold: 0
     isUnlocked: 0
   isDead: 0
-  enemyType: 1
   isStunned: 0
-  blood: {fileID: 0}
+  enemyType: 
   ragdoll: {fileID: 887296189527247187}
-  EnemyMesh: {fileID: 1107508121578391398}
 --- !u!114 &2251502086470687854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1832,7 +1831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourcePosition: {fileID: 1545740936300490967}
   visionAngle: 180
-  visionDistance: 22
+  visionDistance: 30
   hitLayer:
     serializedVersion: 2
     m_Bits: 1609
@@ -1858,7 +1857,7 @@ MonoBehaviour:
   canSeePlayer: 0
   isChasingPlayer: 0
   currentMovementAnimation: 
-  announceRange: 5.15
+  announceRange: 4.31
   PreferedDistanceToPlayer: 2.26
   chaseDuration: 5
   rotateAfterPlayerSpeed: 100
@@ -1884,9 +1883,6 @@ MonoBehaviour:
   reloadCooldown: 2
   gunDrawTime: 2
   bulletsleft: 0
-  reloading: 0
-  readyToShoot: 0
-  isRaisingArms: 0
   shootPoint: {fileID: 0}
 --- !u!114 &2823341477042712141
 MonoBehaviour:

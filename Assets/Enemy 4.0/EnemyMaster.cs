@@ -92,7 +92,6 @@ public class EnemyMaster : MonoBehaviour
 
     public void TakeDamage(float damage, GameObject bodyPart=null, Vector3 direction=new Vector3(), Vector3 contactPoint = new Vector3(), bool isHeadShot = false)
     {
-        Player.m.crossHairLogic.ActivateHitXEffect(isHeadShot);
         Player.m.particleManager.CreateParticle(contactPoint, direction, "bulletHit");
         
         if (isDead)
@@ -101,6 +100,8 @@ public class EnemyMaster : MonoBehaviour
                 rbBodyPart.velocity = direction;
             return;
         }
+
+        Player.m.crossHairLogic.ActivateHitXEffect(isHeadShot);
 
         if (isHeadShot)
             print("HEADSHOT");
