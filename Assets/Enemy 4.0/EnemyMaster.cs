@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 
@@ -33,6 +34,12 @@ public class EnemyMaster : MonoBehaviour
     public bool isStunned;
     public string enemyType;
     private float stunTime = 0f;
+
+    [Header("Throw weapon towards player:")]
+    public float verticalDropForce;
+    public float horizontalDropForce;
+    public float maxDistanceToThrow;
+    public float minDistanceToThrow;
 
     [Header("Other: ")]
     public GameObject ragdoll;
@@ -80,6 +87,38 @@ public class EnemyMaster : MonoBehaviour
         {
             enemyMovement.PreferedDistanceToPlayer = MeleePreferedDistanceToPlayer;
         }
+    }
+
+    private void ThrowWeaponTowardsPlayer(GameObject droppedWeapon)
+    {
+        if (Vector3.Distance(Player.m.transform.position, transform.position) >= maxDistanceToThrow)
+            return;
+
+        Vector3 forceDirection = (Player.m.transform.position - droppedWeapon.transform.position).normalized;
+
+        // get rigidbody component
+        Rigidbody projectileRb = droppedWeapon.GetComponent<Rigidbody>();
+
+        // add force
+        Vector3 forceToAdd;
+        if (Vector3.Distance(Player.m.transform.position, transform.position) <= minDistanceToThrow)
+        {
+            forceToAdd = forceDirection * 2 + transform.up * verticalDropForce;
+        }
+        else
+        {
+            forceToAdd = forceDirection * horizontalDropForce + transform.up * verticalDropForce;
+        }
+
+        projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
+
+        /*
+        RotateWhenThrown rotateWhenThrown = droppedWeapon.GetComponent<RotateWhenThrown>();
+        if (rotateWhenThrown != null)
+        {
+            rotateWhenThrown.enabled = true;
+        }
+        */
     }
 
     private void Update()
@@ -144,6 +183,7 @@ public class EnemyMaster : MonoBehaviour
             bulletPick.nrOfBullets = 2;
         }
 
+        ThrowWeaponTowardsPlayer(drop);
 
         animator.enabled = false;
         // Enemy ragdoll
