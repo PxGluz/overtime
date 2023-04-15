@@ -6,6 +6,7 @@ public class ExplosionManager : MonoBehaviour
 {
     public static ExplosionManager instance = null;
     public LayerMask objectsAffectedByExplosions;
+    public LayerMask obstacles;
     public GameObject ExplosionEffect;
     public GameObject SoundPlayer;
     public string explosionSoundName;
@@ -30,12 +31,7 @@ public class ExplosionManager : MonoBehaviour
         if (distance <= minimumExplosionDistance)
             return true;
 
-        if (Physics.Raycast(explosionPosition, targetPosition - explosionPosition, out RaycastHit hit))
-        {
-            return hit.collider.gameObject.Equals(target);
-        }
-
-        return false;
+        return !Physics.Raycast(explosionPosition, Vector3.Normalize(targetPosition - explosionPosition), distance, obstacles);
     }
 
     // position - center of explosion

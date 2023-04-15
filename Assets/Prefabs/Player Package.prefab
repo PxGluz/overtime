@@ -17366,6 +17366,9 @@ MonoBehaviour:
   objectsAffectedByExplosions:
     serializedVersion: 2
     m_Bits: 1800
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 65
   ExplosionEffect: {fileID: 4222606600419231085, guid: 71e562e7fb9ab934898a11b5a0638b52, type: 3}
   SoundPlayer: {fileID: 3364876276491779210, guid: 2ca5841fe2c297346ae07c46443a1175, type: 3}
   explosionSoundName: explosion
@@ -17398,6 +17401,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   masterVolume: 0
+  musicVolume: 0
+  sfxVolume: 0
+  dialogueVolume: 0
   fullScreenMode: 0
   resolution: {x: 0, y: 0}
   subtitles: 0
