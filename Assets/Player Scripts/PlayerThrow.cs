@@ -74,6 +74,8 @@ public class PlayerThrow : MonoBehaviour
 
     private void Throw(float throwForce)
     {
+        Player.m.crossHairLogic.ActivateCrossHairEffect();
+
         readyToThrow = false;
         
         // Find the exact hit position using raycast

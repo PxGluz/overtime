@@ -11204,7 +11204,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 448
   interactKey: 101
-  pickupRange: 4
+  pickupRange: 6
   itemBeingPickedUp: {fileID: 0}
 --- !u!114 &568684796
 MonoBehaviour:

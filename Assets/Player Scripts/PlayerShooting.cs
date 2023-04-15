@@ -75,6 +75,7 @@ public class PlayerShooting : MonoBehaviour
     private void Shoot()
     {
         AudioManager.AM.Play("pistolShoot");
+        Player.m.weaponManager.weaponAnimator.Play("GunRecoil");
 
         Player.m.crossHairLogic.ActivateCrossHairEffect();
 
