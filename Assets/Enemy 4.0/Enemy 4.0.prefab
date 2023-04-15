@@ -1710,7 +1710,7 @@ Transform:
   - {fileID: 2215511159244447117}
   - {fileID: 648033943}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1978722146465968003
 Rigidbody:
@@ -1803,6 +1803,7 @@ MonoBehaviour:
     meleeAttackSpeed: 0
     shootPoint: {fileID: 0}
     bulletDamage: 0
+    ammoBar: {fileID: 0}
     gunShootForce: 0
     gunUpwardForce: 0
     gunTimeBetweenShooting: 0
@@ -1819,7 +1820,7 @@ MonoBehaviour:
   verticalDropForce: 5
   horizontalDropForce: 5
   maxDistanceToThrow: 20
-  minDistanceToThrow: 3.8
+  minDistanceToThrow: 3
   ragdoll: {fileID: 887296189527247187}
 --- !u!114 &2251502086470687854
 MonoBehaviour:
@@ -1862,7 +1863,7 @@ MonoBehaviour:
   isChasingPlayer: 0
   currentMovementAnimation: 
   announceRange: 4.31
-  PreferedDistanceToPlayer: 0
+  PreferedDistanceToPlayer: 1.93
   chaseDuration: 5
   rotateAfterPlayerSpeed: 100
   enablePatrol: 0

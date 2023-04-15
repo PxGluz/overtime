@@ -3,8 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-using System.Linq;
+
 
 public class AudioManager : MonoBehaviour
 {	
@@ -28,7 +27,6 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-
         if (AM == null)
             AM = this;
         else
@@ -50,8 +48,9 @@ public class AudioManager : MonoBehaviour
                 
                 SetTheAudioSettings(sound);
             }
-
         }
+
+        SetDialogueAudioSettings();
 
         Play("Gremory");
     }
@@ -135,31 +134,73 @@ public class AudioManager : MonoBehaviour
         s.source.Stop();
     }
 
-    public bool isPlaying(string name)
+    // Dialogue system from here:
+    public AudioMixerGroup DialogueMixerGroup;
+    public List<DialogueLineGroup> dialogueLineGroups = new List<DialogueLineGroup>();
+
+    [System.Serializable]
+    public class DialogueLineGroup
     {
-        Sound s = listOfAllSounds.Find(sound => sound.name == name);
-
-        if (s == null || s.source == null)
-        {
-            print("Didn't find the sound: " + name);
-            return false;
-        }
-
-        return s.source.isPlaying;
+        public string GroupName;
+        public List<DialogueLine> linesList = new List<DialogueLine>();
     }
 
-    public float GetSoundLength(string name)
+    [System.Serializable]
+    public class DialogueLine
     {
-        Sound s = listOfAllSounds.Find(sound => sound.name == name);
+        public string lineText;
+        public AudioClip clip;
+        [HideInInspector]
+        public AudioSource source;
+        [Range(0, 1f)]
+        public float volume = 1f;
+        [Range(-3f, 3f)]
+        public float pitch = 1f;
+    }
 
-        if (s == null || s.source == null)
+    private void SetDialogueAudioSettings()
+    {
+        foreach (var dialogueGroup in dialogueLineGroups)
         {
-            print("Didn't find the sound: " + name);
-            return 0;
+            foreach (var dialogueLine in dialogueGroup.linesList)
+            {
+                if (dialogueLine.clip == null)
+                    continue;
+
+                dialogueLine.source = gameObject.AddComponent<AudioSource>();
+                dialogueLine.source.outputAudioMixerGroup = DialogueMixerGroup;
+
+                dialogueLine.source.clip = dialogueLine.clip;
+                dialogueLine.source.volume = dialogueLine.volume;
+                dialogueLine.source.pitch = dialogueLine.pitch;
+            }
+        }
+    }
+
+    public List<DialogueLine> GetDialogueGroupByName(string groupName)
+    {
+        List<DialogueLine> listToReturn = dialogueLineGroups.Find(group => group.GroupName == groupName).linesList;
+
+        if (listToReturn != null)
+        {
+            return listToReturn;
         }
 
-        return s.source.clip.length;
+        return null;
     }
+
+    public void PlayRandomFromDialogueGroup(string groupName)
+    {
+        List<DialogueLine> listToReturn = dialogueLineGroups.Find(group => group.GroupName == groupName).linesList;
+
+        if (listToReturn == null)
+        {
+            print("audio group " + groupName + " not found");
+            return;
+        }
+
+    }
+
 
     public void OnDrawGizmosSelected()
     {

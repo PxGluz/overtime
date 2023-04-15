@@ -44,7 +44,6 @@ public class BulletCollision : MonoBehaviour
                 EnemyMaster enemy = hit.collider.gameObject.GetComponentInParent<EnemyMaster>();
                 if (enemy != null)
                 {
-                    //print(hit.collider.gameObject.name);
                     if (hit.collider.gameObject.name == "spine.006")
                     {
                         enemy.TakeDamage(bulletDamage, hit.collider.gameObject, transform.forward * 25f, hit.point, true);
@@ -68,8 +67,6 @@ public class BulletCollision : MonoBehaviour
         if (LayerMask.LayerToName(hit.collider.gameObject.gameObject.layer) != "Player")
         {
             Destroy(gameObject);
-            //coll.enabled = false;
-            //rb.isKinematic = true;
         }
     }
 

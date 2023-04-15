@@ -7,7 +7,6 @@ public class DamageOnCollision : MonoBehaviour
     ThrownProjectile thrownProjectile;
     Interactable interact;
 
-
     FixedJoint fixedJoint;
     Rigidbody rb;
 
@@ -38,7 +37,10 @@ public class DamageOnCollision : MonoBehaviour
                 enemy.TakeDamage(thrownProjectile.damage, collision.gameObject, transform.forward * 30f, contactPoint: collision.contacts[0].point);
 
             rb.velocity = Vector3.zero;
-            //enemy.TakeDamage(thrownProjectile.damage);
+        }
+        else
+        {
+            Player.m.particleManager.CreateParticle(collision.contacts[0].point, -transform.forward);
         }
 
         DestroyWhenShot destroyWhenShot = collision.gameObject.GetComponent<DestroyWhenShot>();
