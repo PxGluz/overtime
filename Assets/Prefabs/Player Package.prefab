@@ -16115,6 +16115,8 @@ MonoBehaviour:
   ExplosionEffect: {fileID: 4222606600419231085, guid: 71e562e7fb9ab934898a11b5a0638b52, type: 3}
   SoundPlayer: {fileID: 3364876276491779210, guid: 2ca5841fe2c297346ae07c46443a1175, type: 3}
   explosionSoundName: explosion
+  pushToAttackRadiusRatio: 0.5
+  minimumExplosionDistance: 1
 --- !u!114 &1216285252
 MonoBehaviour:
   m_ObjectHideFlags: 0

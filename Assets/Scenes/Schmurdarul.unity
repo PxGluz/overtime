@@ -4183,18 +4183,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2054988533113032772, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
-      propertyPath: WeaponsList.Array.data[5].gunMagazineSize
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017401777850759349, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3767303830763389557, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3982301615608917476, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: m_RootOrder
       value: 0
