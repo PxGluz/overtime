@@ -121,7 +121,7 @@ public class MainMenu : MonoBehaviour
             SetSettings(false);
             dictionaryButtons["back"].gameObject.SetActive(false);
             optionLevel--;
-            SerializationManager.Save("settings", Player.m.settingsManager.SettingsToData());
+            SerializationManager.Save("settingsFile", Player.m.settingsManager.SettingsToData());
         } else if (optionLevel == 2)
         {
             foreach (KeyValuePair<string, Slider> slider in dictionarySliders)
@@ -141,6 +141,9 @@ public class MainMenu : MonoBehaviour
         optionLevel++;
         SetSettings(false);
         dictionarySliders["masterVolume"].gameObject.SetActive(true);
+        dictionarySliders["musicVolume"].gameObject.SetActive(true);
+        dictionarySliders["sfxVolume"].gameObject.SetActive(true);
+        dictionarySliders["dialogueVolume"].gameObject.SetActive(true);
     }
 
     private void GeneralSettings()
@@ -184,6 +187,21 @@ public class MainMenu : MonoBehaviour
     private void MasterVolume()
     {
         Player.m.settingsManager.SetMasterVolume(dictionarySliders["masterVolume"].value);
+    }
+
+    private void MusicVolume()
+    {
+        Player.m.settingsManager.SetMusicVolume(dictionarySliders["musicVolume"].value);
+    }
+
+    private void SFXVolume()
+    {
+        Player.m.settingsManager.SetSFXVolume(dictionarySliders["sfxVolume"].value);
+    }
+
+    private void DialogueVolume()
+    {
+        Player.m.settingsManager.SetDialogueVolume(dictionarySliders["dialogueVolume"].value);
     }
 
     private void Sensitivity()
@@ -241,6 +259,9 @@ public class MainMenu : MonoBehaviour
         dictionarySliders["sensitivity"].onValueChanged.AddListener(delegate { Sensitivity(); });
         dictionaryToggles["subtitles"].onValueChanged.AddListener(delegate { Subtitles(); });
         dictionaryButtons["resume"].onClick.AddListener(Resume);
+        dictionarySliders["musicVolume"].onValueChanged.AddListener(delegate { MusicVolume(); });
+        dictionarySliders["sfxVolume"].onValueChanged.AddListener(delegate { SFXVolume(); });
+        dictionarySliders["dialogueVolume"].onValueChanged.AddListener(delegate { DialogueVolume(); });
 
         if (SceneManager.GetActiveScene().name.Equals("MainMenuLobby"))
         {

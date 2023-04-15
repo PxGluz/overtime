@@ -10,15 +10,18 @@ public class SettingsManager : MonoBehaviour
     [System.Serializable]
     public class SettingsData
     {
-        public float masterVolume;
+        public float masterVolume, musicVolume, sfxVolume, dialogueVolume;
         public int fullScreenMode;
         public int resolutionX, resolutionY;
         public bool subtitles;
         public float sensitivity;
 
-        public SettingsData(float masterVolume, FullScreenMode fullScreenMode, Vector2 resolution, bool subtitles, float sensitivity)
+        public SettingsData(float masterVolume, float musicVolume, float sfxVolume, float dialogueVolume, FullScreenMode fullScreenMode, Vector2 resolution, bool subtitles, float sensitivity)
         {
             this.masterVolume = masterVolume;
+            this.musicVolume = musicVolume;
+            this.sfxVolume = sfxVolume;
+            this.dialogueVolume = dialogueVolume;
             this.fullScreenMode = (int)fullScreenMode;
             resolutionX = (int)resolution.x;
             resolutionY = (int)resolution.y;
@@ -28,7 +31,7 @@ public class SettingsManager : MonoBehaviour
     }
 
     [Header("Settings")]
-    public float masterVolume;
+    public float masterVolume, musicVolume, sfxVolume, dialogueVolume;
     public FullScreenMode fullScreenMode;
     public Vector2 resolution;
     public bool subtitles;
@@ -43,6 +46,7 @@ public class SettingsManager : MonoBehaviour
 
     private void Start()
     {
+        // Get all possible resolutions for current screen and add them to options.
         resolution = new Vector2(Screen.width, Screen.height);
         Resolution[] possibleResolutions = Screen.resolutions;
         print(possibleResolutions.ToString());
@@ -57,11 +61,17 @@ public class SettingsManager : MonoBehaviour
         }
         resolutionDropdown.value = currentResolution;
 
-        object data = SerializationManager.Load("settings");
+        object data = SerializationManager.Load("settingsFile");
         if (data == null)
         {
             SetMasterVolume(20f);
             mainMenu.dictionarySliders["masterVolume"].value = 20f;
+            SetMusicVolume(20f);
+            mainMenu.dictionarySliders["musicVolume"].value = 20f;
+            SetSFXVolume(20f);
+            mainMenu.dictionarySliders["sfxVolume"].value = 20f;
+            SetDialogueVolume(20f);
+            mainMenu.dictionarySliders["dialogueVolume"].value = 20f;
             SetFullScreenMode(Screen.fullScreenMode);
             SetResolution(Screen.width, Screen.height);
             SetSubtitles(true);
@@ -74,10 +84,6 @@ public class SettingsManager : MonoBehaviour
             SettingsData settingsData = data as SettingsData;
             UpdateSettings(settingsData);
         }
-
-        // Get all possible resolutions for current screen and add them to options.
-        
-
 
         int offset = 0;
         foreach (VolumeComponent component in Player.m.volume.components)
@@ -122,15 +128,39 @@ public class SettingsManager : MonoBehaviour
         AudioManager.AM.audioMixer.SetFloat("master", volume);
     }
 
+    public void SetMusicVolume(float volume)
+    {
+        musicVolume = volume;
+        AudioManager.AM.audioMixer.SetFloat("music", volume);
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        sfxVolume = volume;
+        AudioManager.AM.audioMixer.SetFloat("soundEffects", volume);
+    }
+
+    public void SetDialogueVolume(float volume)
+    {
+        dialogueVolume = volume;
+        AudioManager.AM.audioMixer.SetFloat("dialogue", volume);
+    }
+
     public SettingsData SettingsToData()
     {
-        return new SettingsData(masterVolume, fullScreenMode, resolution, subtitles, sensitivity);
+        return new SettingsData(masterVolume, musicVolume, sfxVolume, dialogueVolume, fullScreenMode, resolution, subtitles, sensitivity);
     }
 
     public void UpdateSettings(SettingsData data)
     {
         SetMasterVolume(data.masterVolume);
         mainMenu.dictionarySliders["masterVolume"].value = data.masterVolume;
+        SetMusicVolume(data.musicVolume);
+        mainMenu.dictionarySliders["musicVolume"].value = data.musicVolume;
+        SetSFXVolume(data.sfxVolume);
+        mainMenu.dictionarySliders["sfxVolume"].value = data.sfxVolume;
+        SetDialogueVolume(data.dialogueVolume);
+        mainMenu.dictionarySliders["dialogueVolume"].value = data.dialogueVolume;
         SetFullScreenMode((FullScreenMode)data.fullScreenMode);
         mainMenu.dictionaryDropdowns["fullscreen"].value = FullscreenModeToDropdownValue((FullScreenMode)data.fullScreenMode);
         SetResolution(data.resolutionX, data.resolutionY);
