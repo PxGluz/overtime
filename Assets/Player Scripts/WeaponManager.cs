@@ -38,6 +38,7 @@ public class WeaponManager : MonoBehaviour
         [Header("Ranged: ")]
         public Transform shootPoint;
         public float bulletDamage;
+        public GameObject ammoBar = null;
         [Tooltip("Speed of the bullet")]
         public float gunShootForce;
         [Tooltip("How much does the bullet go upward")]
@@ -166,11 +167,6 @@ public class WeaponManager : MonoBehaviour
                 if (weapon.attackType.ToString() == "ranged")
                 {
                     Player.m.playerShooting.bulletsleft = quantity;
-                    Player.m.playerShooting.AmmoDisplayParent.SetActive(true);
-                }
-                else
-                {
-                    Player.m.playerShooting.AmmoDisplayParent.SetActive(false);
                 }
 
                 break;
