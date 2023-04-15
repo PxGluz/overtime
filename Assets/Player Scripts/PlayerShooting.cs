@@ -22,8 +22,7 @@ public class PlayerShooting : MonoBehaviour
 
     // Graphics 
     public GameObject muzzleFlash;
-    public GameObject AmmoDisplayParent;
-    public TextMeshProUGUI ammunitionDisplay;
+    public GameObject ammunitionDisplay;
 
     // bug fixing :D
     public bool allowInvoke = true;
@@ -50,9 +49,8 @@ public class PlayerShooting : MonoBehaviour
         MyInput();
 
         // Ammo display
-        if (weaponM.currentWeapon.gunBulletsPerTap != 0 && weaponM.currentWeapon.gunBulletsPerTap != 0)
-            if (ammunitionDisplay != null)
-                ammunitionDisplay.SetText(bulletsleft / weaponM.currentWeapon.gunBulletsPerTap + " / " + weaponM.currentWeapon.gunMagazineSize / weaponM.currentWeapon.gunBulletsPerTap);
+        if (weaponM.currentWeapon.ammoBar != null)
+            weaponM.currentWeapon.ammoBar.transform.localScale = new Vector3((float)bulletsleft / (float)weaponM.currentWeapon.gunMagazineSize, 1, 1);
     }
 
     private void MyInput()
