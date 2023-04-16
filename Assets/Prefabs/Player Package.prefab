@@ -3967,7 +3967,7 @@ MonoBehaviour:
     gunTimeBetweenShots: 0.0902
     gunAllowButtonHold: 1
     isUnlocked: 0
-  smoothTime: 0.1
+  smoothTime: 0.2
   weaponIsInPlace: 0
 --- !u!114 &6865103243759458628
 MonoBehaviour:
@@ -12412,9 +12412,7 @@ MonoBehaviour:
   bulletsleft: 0
   readyToShoot: 0
   muzzleFlash: {fileID: 4222606600419231085, guid: 863d42e614079ae4cbf2256c0d63e877, type: 3}
-  ammunitionDisplay: {fileID: 0}
   allowInvoke: 1
-  AttackPointObject: {fileID: 0}
 --- !u!114 &3884872536870258053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14536,13 +14534,13 @@ MonoBehaviour:
     MixerGroup: {fileID: -3911481615702328409, guid: d390e54cd3745a74f9ce824e8bd8bbaf, type: 2}
     soundList:
     - name: pistolShoot
-      clip: {fileID: 8300000, guid: bad73cfc687b9c348a1936b9a40b19b7, type: 3}
+      clip: {fileID: 8300000, guid: 2b26229c3b9ad9c498d9b7c36c42c56f, type: 3}
       source: {fileID: 0}
       volume: 0.15
-      pitch: 1.6
+      pitch: 2
       loop: 0
       is3DSound: 1
-      soundRange: 30
+      soundRange: 35
       useLinearVolumeRollOff: 1
     - name: explosion
       clip: {fileID: 8300000, guid: bdce5d4a9c577ef48aa20caf0a66fe8e, type: 3}
@@ -14589,6 +14587,42 @@ MonoBehaviour:
       is3DSound: 0
       soundRange: 15
       useLinearVolumeRollOff: 0
+    - name: pickup
+      clip: {fileID: 8300000, guid: c840a39ea108c404aae95f44fc17c2cd, type: 3}
+      source: {fileID: 0}
+      volume: 0.2
+      pitch: 1.5
+      loop: 0
+      is3DSound: 0
+      soundRange: 15
+      useLinearVolumeRollOff: 0
+    - name: emptyGun
+      clip: {fileID: 8300000, guid: 0e4e6de39dd437f4387808d2a9ff23f9, type: 3}
+      source: {fileID: 0}
+      volume: 0.2
+      pitch: 1.5
+      loop: 0
+      is3DSound: 0
+      soundRange: 15
+      useLinearVolumeRollOff: 0
+    - name: enemyFootSteps
+      clip: {fileID: 8300000, guid: eac6331f2841fa0419442935ad39de5f, type: 3}
+      source: {fileID: 0}
+      volume: 1
+      pitch: 1
+      loop: 1
+      is3DSound: 1
+      soundRange: 50
+      useLinearVolumeRollOff: 1
+    - name: enemyHurt
+      clip: {fileID: 8300000, guid: c8c61eacb3dc58d4d940a7f495b9b14d, type: 3}
+      source: {fileID: 0}
+      volume: 0.842
+      pitch: 2
+      loop: 0
+      is3DSound: 1
+      soundRange: 50
+      useLinearVolumeRollOff: 1
   listOfAllSounds: []
   RangeReference: 5
   DialogueMixerGroup: {fileID: 0}

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class NeedSounds : MonoBehaviour
@@ -40,5 +41,48 @@ public class NeedSounds : MonoBehaviour
 
         //s.source.Play();
         s.source.PlayOneShot(s.source.clip);
+    }
+
+    public void StandardPlay(string name)
+    {
+        MySounds s = Array.Find(mySounds, sound => sound.name == name);
+
+
+        if (s == null || s.source == null)
+        {
+            print("Didn't find the sound: " + name);
+            return;
+        }
+
+        s.source.Play();
+        //s.source.PlayOneShot(s.source.clip);
+    }
+    public void Stop(string name)
+    {
+        MySounds s = Array.Find(mySounds, sound => sound.name == name);
+
+        if (s == null || s.source == null)
+        {
+            print("Didn't find the sound: " + name);
+            return;
+        }
+
+        s.source.Stop();
+    }
+
+    public IEnumerator FadeOut(string name, float FadeTime)
+    {
+        AudioSource audioSource = Array.Find(mySounds, sound => sound.name == name).source;
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
     }
 }

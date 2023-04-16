@@ -12,7 +12,7 @@ public class PlayerShooting : MonoBehaviour
     int bulletsShot;
 
     // bools
-    bool shooting, reloading;
+    bool shooting;
     [HideInInspector]
     public bool readyToShoot;
 
@@ -22,11 +22,9 @@ public class PlayerShooting : MonoBehaviour
 
     // Graphics 
     public GameObject muzzleFlash;
-    public GameObject ammunitionDisplay;
 
     // bug fixing :D
     public bool allowInvoke = true;
-    public GameObject AttackPointObject;
 
     private void Start()
     {
@@ -59,16 +57,19 @@ public class PlayerShooting : MonoBehaviour
         if (weaponM.currentWeapon.gunAllowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-        // Reloading
-        if (Input.GetKeyDown(KeyCode.T) && bulletsleft < weaponM.currentWeapon.gunMagazineSize && !reloading)
-            Reload();
-
         // Shooting
-        if (readyToShoot && shooting && !reloading && bulletsleft > 0)
+        if (readyToShoot && shooting)
         {
-            // Set bullets shot to 0
-            bulletsShot = 0;
-            Shoot();
+            if (bulletsleft > 0)
+            {
+                // Set bullets shot to 0
+                bulletsShot = 0;
+                Shoot();
+            }
+            else
+            {
+                AudioManager.AM.Play("emptyGun");
+            }
         }
     }
 
@@ -146,18 +147,5 @@ public class PlayerShooting : MonoBehaviour
         readyToShoot = true;
         allowInvoke = true;
     }
-
-    private void Reload()
-    {
-        reloading = true;
-        Invoke("ReloadFinished", weaponM.currentWeapon.gunReloadTime);
-    }
-
-    private void ReloadFinished()
-    {
-        bulletsleft = weaponM.currentWeapon.gunMagazineSize;
-        reloading = false;
-    }
-
 
 }

@@ -1710,7 +1710,7 @@ Transform:
   - {fileID: 2215511159244447117}
   - {fileID: 648033943}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1978722146465968003
 Rigidbody:
@@ -1783,7 +1783,7 @@ MonoBehaviour:
   enemyHealthBar: {fileID: 1765602086}
   enemySpineLookAtPlayer: {fileID: 1445946869}
   EnemyCenter: {fileID: 648033943}
-  myWeapon: Knife
+  myWeapon: Gun
   maxHealth: 100
   currentHealth: 0
   MeleePreferedDistanceToPlayer: 2.26
@@ -1817,7 +1817,7 @@ MonoBehaviour:
   isDead: 0
   isStunned: 0
   enemyType: 0
-  verticalDropForce: 5
+  verticalDropForce: 4
   horizontalDropForce: 5
   maxDistanceToThrow: 20
   minDistanceToThrow: 3
@@ -1905,6 +1905,10 @@ MonoBehaviour:
   - name: pistolShoot
     source: {fileID: 0}
   - name: slash
+    source: {fileID: 0}
+  - name: enemyFootSteps
+    source: {fileID: 0}
+  - name: enemyHurt
     source: {fileID: 0}
 --- !u!1 &2146116514591408570
 GameObject:

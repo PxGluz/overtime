@@ -1,13 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -118,6 +112,8 @@ public class WeaponManager : MonoBehaviour
 
     public void ChangeWeapon(string name, int quantity = 1, bool dropCurrentWeapon = true, Transform interactableObject = null)
     {
+        if (name != "Fists")
+            AudioManager.AM.Play("pickup");
 
         if (currentWeapon.name != "" && currentWeapon.name != "Fists" && name != "Fists" && dropCurrentWeapon)
             Player.m.playerThrow.DropWeapon();

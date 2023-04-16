@@ -76,7 +76,6 @@ public class EnemyMaster : MonoBehaviour
         {
             enemyMovement.PreferedDistanceToPlayer = RangedPreferedDistanceToPlayer;
             enemyRanged.bulletsleft = myWeaponClass.gunMagazineSize;
-            return;
         }
 
         if (enemyType != "melee")
@@ -132,7 +131,7 @@ public class EnemyMaster : MonoBehaviour
     public void TakeDamage(float damage, GameObject bodyPart=null, Vector3 direction=new Vector3(), Vector3 contactPoint = new Vector3(), bool isHeadShot = false)
     {
         Player.m.particleManager.CreateParticle(contactPoint, direction, "bulletHit");
-        
+
         if (isDead)
         {
             if (bodyPart && bodyPart.TryGetComponent(out Rigidbody rbBodyPart))
@@ -140,6 +139,7 @@ public class EnemyMaster : MonoBehaviour
             return;
         }
 
+        soundManager.Play("enemyHurt");
         Player.m.crossHairLogic.ActivateHitXEffect(isHeadShot);
 
         if (isHeadShot)
@@ -172,15 +172,18 @@ public class EnemyMaster : MonoBehaviour
             Player.m.scoringSystem.AddScore(50, "good");
         isDead = true;
 
+
+        soundManager.Stop("enemyFootSteps");
+
         // Drop enemy weapon
         weaponInHand.SetActive(false);
         GameObject drop = Instantiate(myWeaponClass.WeaponPrefab, weaponInHand.transform.position, weaponInHand.transform.rotation);
         if (Player.m.weaponManager.GetWeaponType(myWeaponClass.name) == "ranged")
         {
-            //Interactable interactable = drop.GetComponent<Interactable>();
-            //interactable.quantity = WeaponClass.gunMagazineSize;
-            BulletPickUp bulletPick = Instantiate(Player.m.prefabHolder.bulletPickup,transform.position,Quaternion.identity).GetComponent<BulletPickUp>();
-            bulletPick.nrOfBullets = 2;
+            Interactable interactable = drop.GetComponent<Interactable>();
+            interactable.quantity = Player.m.weaponManager.GetWeaponByName(myWeaponClass.name).gunMagazineSize;
+            //BulletPickUp bulletPick = Instantiate(Player.m.prefabHolder.bulletPickup,transform.position,Quaternion.identity).GetComponent<BulletPickUp>();
+            //bulletPick.nrOfBullets = 2;
         }
 
         ThrowWeaponTowardsPlayer(drop);
@@ -221,6 +224,8 @@ public class EnemyMaster : MonoBehaviour
 
     public void IncapacitateEnemy()
     {
+        soundManager.Stop("enemyFootSteps");
+        
         //Destroy Enemy Scripts:
         if (enemyMovement != null)
         {

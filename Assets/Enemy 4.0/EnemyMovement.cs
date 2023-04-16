@@ -72,6 +72,7 @@ public class EnemyMovement : MonoBehaviour
 
             if (currentMovementAnimation != "Idle" && canTransition)
             {
+                enemy.soundManager.Stop("enemyFootSteps");
                 canTransition = false;
                 Invoke(nameof(TransitionEnded), 0.26f);
                 animator.SetTrigger(currentMovementAnimation = "Idle");
@@ -134,6 +135,7 @@ public class EnemyMovement : MonoBehaviour
         {
             if (currentMovementAnimation != "Idle" && canTransition)
             {
+                enemy.soundManager.Stop("enemyFootSteps");
                 canTransition = false;
                 Invoke(nameof(TransitionEnded), 0.26f);
                 animator.SetTrigger(currentMovementAnimation = "Idle");
@@ -143,6 +145,7 @@ public class EnemyMovement : MonoBehaviour
         {
             if (currentMovementAnimation != "Run" && canTransition)
             {
+                enemy.soundManager.StandardPlay("enemyFootSteps");
                 canTransition = false;
                 Invoke(nameof(TransitionEnded), 0.26f);
                 animator.SetTrigger(currentMovementAnimation = "Run");

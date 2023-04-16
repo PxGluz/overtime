@@ -67,7 +67,7 @@ public class AudioManager : MonoBehaviour
         newSound.name = s.name;
         newSound.clip = s.clip;
         newSound.volume = s.volume;
-        newSound.pitch = s.pitch;
+        newSound.pitch = s.pitch + UnityEngine.Random.Range(-0.15f,0.15f);
         newSound.loop = s.loop;
         newSound.is3DSound= s.is3DSound;
         newSound.soundRange= s.soundRange;
@@ -132,6 +132,36 @@ public class AudioManager : MonoBehaviour
         }
 
         s.source.Stop();
+    }
+
+    public void StandardPlay(string name)
+    {
+        Sound s = listOfAllSounds.Find(sound => sound.name == name);
+
+        if (s == null || s.source == null)
+        {
+            print("Didn't find the sound: " + name);
+            return;
+        }
+
+        s.source.Play();
+        //s.source.PlayOneShot(s.source.clip);
+    }
+
+    public IEnumerator FadeOut(string name, float FadeTime)
+    {
+        AudioSource audioSource = listOfAllSounds.Find(sound => sound.name == name).source;
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
     }
 
     // Dialogue system from here:
