@@ -46,9 +46,6 @@ public class PlayerShooting : MonoBehaviour
 
         MyInput();
 
-        // Ammo display
-        if (weaponM.currentWeapon.ammoBar != null)
-            weaponM.currentWeapon.ammoBar.transform.localScale = new Vector3((float)bulletsleft / (float)weaponM.currentWeapon.gunMagazineSize, 1, 1);
     }
 
     private void MyInput()
@@ -139,8 +136,20 @@ public class PlayerShooting : MonoBehaviour
         // if more than one bulletsPerTap make sure to repeat shoot function
         if (bulletsShot < weaponM.currentWeapon.gunBulletsPerTap && bulletsleft > 0)
             Invoke("Shoot", weaponM.currentWeapon.gunTimeBetweenShots);
+        else
+        {
+            UpdateGunAmmoDisplay();
+        }
 
     }
+
+    public void UpdateGunAmmoDisplay()
+    {
+        // Ammo display
+        if (weaponM.currentWeapon.ammoBar != null)
+            weaponM.currentWeapon.ammoBar.transform.localScale = new Vector3((float)bulletsleft / (float)weaponM.currentWeapon.gunMagazineSize, 1, 1);
+    }
+
 
     private void ResetShot()
     {

@@ -143,7 +143,10 @@ public class EnemyMaster : MonoBehaviour
         Player.m.crossHairLogic.ActivateHitXEffect(isHeadShot);
 
         if (isHeadShot)
+        {
+            damage *= 2;
             print("HEADSHOT");
+        }
 
         enemyHealthBar.UpdateHealthBar( Mathf.Max(0, currentHealth - damage));
         enemyHealthBar.activateHealthSliders(true);

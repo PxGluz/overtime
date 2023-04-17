@@ -46,6 +46,8 @@ public class BulletPickUp : MonoBehaviour
                 Player.m.playerShooting.bulletsleft += Mathf.Max(1 , Player.m.weaponManager.currentWeapon.gunBulletsPerTap);
                 Mathf.Clamp(Player.m.playerShooting.bulletsleft, 0, Player.m.weaponManager.currentWeapon.gunMagazineSize);
 
+                Player.m.playerShooting.UpdateGunAmmoDisplay();
+
                 if (nrOfBullets <= 0)
                 {
                     Destroy(this.gameObject);

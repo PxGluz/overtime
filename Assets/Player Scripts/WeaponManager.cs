@@ -163,6 +163,7 @@ public class WeaponManager : MonoBehaviour
                 if (weapon.attackType.ToString() == "ranged")
                 {
                     Player.m.playerShooting.bulletsleft = quantity;
+                    Player.m.playerShooting.UpdateGunAmmoDisplay();
                 }
 
                 break;

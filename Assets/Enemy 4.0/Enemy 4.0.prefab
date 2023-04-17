@@ -1820,7 +1820,7 @@ MonoBehaviour:
   verticalDropForce: 4
   horizontalDropForce: 5
   maxDistanceToThrow: 20
-  minDistanceToThrow: 3
+  minDistanceToThrow: 4
   ragdoll: {fileID: 887296189527247187}
 --- !u!114 &2251502086470687854
 MonoBehaviour:

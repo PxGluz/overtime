@@ -596,6 +596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  myDamageType: 
   myPickUp: {fileID: 0}
   SoundManager: {fileID: 0}
   interactable: {fileID: 0}

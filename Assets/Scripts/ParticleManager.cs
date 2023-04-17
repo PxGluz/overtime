@@ -7,7 +7,8 @@ public class ParticleManager : MonoBehaviour
 
     public void CreateParticle(Vector3 contactPoint, Vector3 direction, string particleType = "bulletMiss")
     {
-        GameObject toBeInstantiated = new GameObject();
+        //GameObject toBeInstantiated = new GameObject();
+        GameObject toBeInstantiated = null;
         switch (particleType)
         {
             case "bulletMiss":
