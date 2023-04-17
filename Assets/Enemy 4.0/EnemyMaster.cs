@@ -155,14 +155,15 @@ public class EnemyMaster : MonoBehaviour
 
         print(this.gameObject.name + " - " + damage + " damage");
 
+        if (enemyMovement != null)
+            enemyMovement.Announce(false);
+        
         if (currentHealth <= 0) 
         {
             Die(bodyPart, direction);
         }
         else
         {
-            if (enemyMovement != null)
-                enemyMovement.Announce(false);
 
             if (enemyMovement != null && !enemyMovement.isChasingPlayer)
                 StartCoroutine(enemyMovement.ChasePlayer(enemyMovement.chaseDuration));

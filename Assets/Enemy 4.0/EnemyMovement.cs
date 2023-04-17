@@ -152,6 +152,13 @@ public class EnemyMovement : MonoBehaviour
             }
         }
     }
+
+    public void StartChasePlayer()
+    {
+        if (!isChasingPlayer)
+            StartCoroutine(ChasePlayer(chaseDuration));
+    }
+
     public IEnumerator ChasePlayer(float duration)
     {
         isChasingPlayer = true;
@@ -177,6 +184,7 @@ public class EnemyMovement : MonoBehaviour
 
         print (this.name+ " stoppedChasingPlayer");
     }
+
     public void Announce(bool INeedToSeePlayerToAnnounce = true)
     {
         // Announce to all other enemies in range.
@@ -196,11 +204,19 @@ public class EnemyMovement : MonoBehaviour
 
             if (!enemyMovement.isChasingPlayer )
             {
-                if (INeedToSeePlayerToAnnounce) {
+                if (INeedToSeePlayerToAnnounce)
+                {
                     if (canSeePlayer)
-                        StartCoroutine(enemyMovement.ChasePlayer(enemyMovement.chaseDuration));
-                } else
-                    StartCoroutine(enemyMovement.ChasePlayer(enemyMovement.chaseDuration));
+                    {
+                        enemyMovement.StartChasePlayer();
+                        //StartCoroutine(enemyMovement.ChasePlayer(enemyMovement.chaseDuration));
+                    }
+                }
+                else
+                {
+                    enemyMovement.StartChasePlayer();
+                    //StartCoroutine(enemyMovement.ChasePlayer(enemyMovement.chaseDuration));
+                }
             }
         }
     }
