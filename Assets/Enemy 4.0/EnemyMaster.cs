@@ -57,13 +57,13 @@ public class EnemyMaster : MonoBehaviour
             myWeapon = "Knife";
        
         myWeaponClass = Player.m.weaponManager.GetWeaponByName(myWeapon);
+        NerfEnemyWeapons();
         enemyType = myWeaponClass.attackType.ToString();
 
         enemyHealthBar.activateHealthSliders(false);
 
         ActivateAttackScripts();
         PutWeaponInHand();
-        NerfEnemyWeapons();
     }
 
     private void ActivateAttackScripts()
@@ -221,9 +221,10 @@ public class EnemyMaster : MonoBehaviour
     private void NerfEnemyWeapons()
     {
         myWeaponClass.bulletDamage = 0;
-        myWeaponClass.gunTimeBetweenShooting *= 150 / 100;
+        myWeaponClass.gunTimeBetweenShooting *= 2;
         myWeaponClass.gunMagazineSize = Mathf.FloorToInt((float)myWeaponClass.gunMagazineSize * 60 / 100);
         myWeaponClass.gunSpread += 0.05f;
+        myWeaponClass.gunShootForce *= 0.5f;
     }
 
     public void IncapacitateEnemy()

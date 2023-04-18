@@ -7,8 +7,16 @@ public class EnemyBullet : MonoBehaviour
     [HideInInspector]
     public float bulletDamage;
 
-    private void Start() => Invoke(nameof(Expire), 10f);
+    private void Start()
+    {
+        if (Vector3.Distance(transform.position, Player.m.crouchLogic.HeadTransform.position) < 0.5f)
+        {
+            Player.m.TakeDamage(bulletDamage);
+            Destroy(gameObject);
+        }
 
+        Invoke(nameof(Expire), 10f);
+    }
     private void FixedUpdate()
     {
         Debug.DrawRay(transform.position, transform.forward * 2f, Color.yellow);

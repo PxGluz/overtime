@@ -41,7 +41,7 @@ Transform:
   m_Children:
   - {fileID: 8860214728500658180}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7236612706473255812
 MeshFilter:
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fdf07c29fb81404bbe05c8e471b99d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 10
+  radius: 6
   damage: 1000
   pushForce: 50
   explosionDelay: 2
@@ -269,8 +269,9 @@ GameObject:
   - component: {fileID: 5573791469304041377}
   - component: {fileID: 7691834281062611819}
   - component: {fileID: 2733164225853657509}
+  - component: {fileID: 137490162}
   m_Layer: 0
-  m_Name: MK2
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -363,3 +364,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6412359616235336806, guid: 130b7a6a504e98e4f8acefeaba1cf2de, type: 3}
+--- !u!114 &137490162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8196022416980777662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea3969b9fba47a4daa03da3cc16cf6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 100
+  radius: 6
+  pushForce: 50

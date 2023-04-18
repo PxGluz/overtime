@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     public float playerHeight;
     public LayerMask groundLayer;
     public LayerMask enemyLayer;
+    public LayerMask playerLayer;
     public float smoothTime;
     public bool canPressEscape;
     public BounceShake.Params takeDamageShakeParams;

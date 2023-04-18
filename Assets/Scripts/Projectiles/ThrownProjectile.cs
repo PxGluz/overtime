@@ -71,11 +71,11 @@ public class ThrownProjectile : MonoBehaviour
         if (value)
             gameObject.layer = LayerMask.NameToLayer("Interactable");
         else
-            gameObject.layer = LayerMask.NameToLayer("Default");
+            gameObject.layer = LayerMask.NameToLayer("NoPlayerCollision");
 
         
         foreach (Transform child in AllChildren)
-            child.gameObject.layer = value ? LayerMask.NameToLayer("Interactable") : LayerMask.NameToLayer("Default");
+            child.gameObject.layer = value ? LayerMask.NameToLayer("Interactable") : LayerMask.NameToLayer("NoPlayerCollision");
 
     }
 }
