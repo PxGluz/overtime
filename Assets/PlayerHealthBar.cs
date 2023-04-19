@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyHealthBar : MonoBehaviour
+public class PlayerHealthBar : MonoBehaviour
 {
 
-    public EnemyMaster enemy;
     public Slider HealthBarSlider;
     public Slider HealthBarBackGroundSlider;
 
     public bool healthBarTransition;
     public IEnumerator ChangeHealthBackGroundRef;
 
+
     public void Start()
     {
-        setSliderMax(HealthBarSlider, enemy.maxHealth);
-        setSliderMax(HealthBarBackGroundSlider, enemy.maxHealth);
+        setSliderMax(HealthBarSlider, Player.m.MaxHealth);
+        setSliderMax(HealthBarBackGroundSlider, Player.m.MaxHealth);
     }
 
     private void setSliderMax(Slider slider, float maxVal)
@@ -25,19 +25,13 @@ public class EnemyHealthBar : MonoBehaviour
         slider.value = maxVal;
     }
 
-    public void activateHealthSliders(bool enable)
-    {
-        HealthBarSlider.gameObject.SetActive(enable);
-        HealthBarBackGroundSlider.gameObject.SetActive(enable);
-    }
-
     public void UpdateHealthBar(float healthAfterTakingDamage)
     {
         HealthBarSlider.value = healthAfterTakingDamage;
 
         if (healthBarTransition && ChangeHealthBackGroundRef != null)
             StopCoroutine(ChangeHealthBackGroundRef);
-        
+
         ChangeHealthBackGroundRef = ChangeHealthBackGround(HealthBarBackGroundSlider.value, healthAfterTakingDamage);
         StartCoroutine(ChangeHealthBackGroundRef);
     }
@@ -61,12 +55,14 @@ public class EnemyHealthBar : MonoBehaviour
 
         healthBarTransition = false;
 
+        /*
         if (enemy.isDead)
         {
             //yield return new WaitForSeconds(0.2f);
             HealthBarBackGroundSlider.gameObject.SetActive(false);
             HealthBarSlider.gameObject.SetActive(false);
         }
+        */
 
     }
 }

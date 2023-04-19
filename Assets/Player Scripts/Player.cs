@@ -29,15 +29,18 @@ public class Player : MonoBehaviour
     public ScoringSystem scoringSystem;
     public ParticleManager particleManager;
     public CrossHairLogic crossHairLogic;
+    public PlayerHealthBar playerHealthBar;
 
     [Header("Other References:")]
     public Camera MainCamera;
     public Rigidbody playerRigidBody;
+    public Animator playerUIAnimator;
     public GameObject PointDebug;
     public GameObject playerObject;
     public VolumeProfile volume;
     public Transform bottomPos;
     public Transform topPosition;
+
 
 
     [Header("Important variables:")]
@@ -75,12 +78,10 @@ public class Player : MonoBehaviour
         m = this;
 
         crouchLogic = GetComponent<CrouchLogic>();
-        //weaponManager = GetComponent<WeaponManager>();
         playerThrow = GetComponent<PlayerThrow>();
         playerMovement = GetComponent<PlayerMovement>();
         playerShooting = GetComponent<PlayerShooting>();
         interact = GetComponent<Interact>();
-        //playerMelee = GetComponent<PlayerMelee>();
 
         playerRigidBody = GetComponent<Rigidbody>();
 
@@ -99,18 +100,17 @@ public class Player : MonoBehaviour
         CameraShaker.Shake(new BounceShake(takeDamageShakeParams, transform.position));
         scoringSystem.AddScore(100,"minus");
         print("The player took " + damage + " damage");
-        SetPlayerHealth(currentHealth - damage);
+
+        currentHealth -= damage;
+        
+        playerHealthBar.UpdateHealthBar(currentHealth);
+
 
         if (currentHealth <= 0)
         {
             Die();
         }
 
-    }
-
-    public void SetPlayerHealth(float health)
-    {
-        currentHealth = health;
     }
 
     public void Die()
@@ -217,6 +217,11 @@ public class Player : MonoBehaviour
             mainMenu.PressedEscape();
         }
         
+    }
+
+    public void PlayHeadShotAnimation()
+    {
+        playerUIAnimator.Play("HeadShotText");
     }
 
     void OnDrawGizmosSelected()

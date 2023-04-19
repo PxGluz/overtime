@@ -145,6 +145,7 @@ public class EnemyMaster : MonoBehaviour
         if (isHeadShot)
         {
             damage *= 2;
+            Player.m.PlayHeadShotAnimation();
             print("HEADSHOT");
         }
 
@@ -160,7 +161,7 @@ public class EnemyMaster : MonoBehaviour
         
         if (currentHealth <= 0) 
         {
-            Die(bodyPart, direction);
+            Die(bodyPart, direction, isHeadShot);
         }
         else
         {
@@ -170,10 +171,12 @@ public class EnemyMaster : MonoBehaviour
         }
     }
 
-    public void Die(GameObject bodyPart=null, Vector3 direction=new Vector3())
+    public void Die(GameObject bodyPart=null, Vector3 direction=new Vector3(),bool isHeadShot = false)
     {
         if (!isDead)
-            Player.m.scoringSystem.AddScore(50, "good");
+        {
+            Player.m.scoringSystem.AddScore(isHeadShot ? 100: 50, "good");
+        }
         isDead = true;
 
 
@@ -220,8 +223,8 @@ public class EnemyMaster : MonoBehaviour
 
     private void NerfEnemyWeapons()
     {
-        myWeaponClass.bulletDamage = 0;
-        myWeaponClass.gunTimeBetweenShooting *= 2;
+        myWeaponClass.bulletDamage = 10;
+        myWeaponClass.gunTimeBetweenShooting *= 5;
         myWeaponClass.gunMagazineSize = Mathf.FloorToInt((float)myWeaponClass.gunMagazineSize * 60 / 100);
         myWeaponClass.gunSpread += 0.05f;
         myWeaponClass.gunShootForce *= 0.5f;
