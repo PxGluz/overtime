@@ -65,6 +65,16 @@ public class MainMenu : MonoBehaviour
     
     private void StartGame()
     {
+        object data = SerializationManager.Load("levels");
+        if (data == null)
+        {
+            GameObject contract = GameObject.Find("Contract");
+            if (contract != null)
+                contract.GetComponent<Contract>().SaveScores();
+            else
+                Debug.Log("Couldn't find contract");
+        }
+               
         foreach (KeyValuePair<string, Button> button in dictionaryButtons)
         {
             button.Value.interactable = false;

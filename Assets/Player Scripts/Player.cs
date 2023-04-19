@@ -132,6 +132,15 @@ public class Player : MonoBehaviour
     
     public void YouWin()
     {
+        object data = SerializationManager.Load("levels");
+        if (data != null)
+        {
+            List<Contract.LevelData> levelDatas = data as List<Contract.LevelData>;
+            foreach (Contract.LevelData levelData in levelDatas)
+                if (levelData.levelName == SceneManager.GetActiveScene().name)
+                    levelData.highscore = Mathf.Max(levelData.highscore, scoringSystem.scoreValue);
+            SerializationManager.Save("levels", levelDatas);
+        }
         scoringSystem.combo.transform.parent.gameObject.SetActive(false);
         gameObject.SetActive(false);
         playerCam.enabled = false;

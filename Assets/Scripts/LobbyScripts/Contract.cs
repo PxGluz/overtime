@@ -48,7 +48,7 @@ public class Contract : MonoBehaviour
     {
         List<LevelData> saveData = new List<LevelData>();
         foreach (Level.LevelInfo level in levelList)
-            saveData.Add(new LevelData(level.levelName, level.highscore));
+            saveData.Add(new LevelData(level.levelScene, level.highscore));
 
         SerializationManager.Save("levels", saveData);
     }
@@ -95,7 +95,7 @@ public class Contract : MonoBehaviour
             foreach (LevelData levelData in levelDatas)
             {
                 foreach (Level.LevelInfo level in levelList)
-                    if (level.levelName.Equals(levelData.levelName))
+                    if (level.levelScene.Equals(levelData.levelName))
                         level.highscore = levelData.highscore;
             }
         }
