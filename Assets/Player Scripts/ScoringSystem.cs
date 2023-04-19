@@ -59,7 +59,7 @@ public class ScoringSystem : MonoBehaviour
                 break;
             case "minus":
                 currentPointText.color = minusPoints;
-                currentPointText.text = "-";
+                currentPointText.text = "";
                 scoreValue -= addedScore;
                 addedScore = -addedScore;
                 comboValue = 1;
