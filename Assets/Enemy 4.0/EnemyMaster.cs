@@ -145,7 +145,6 @@ public class EnemyMaster : MonoBehaviour
         if (isHeadShot)
         {
             damage *= 2;
-            Player.m.PlayHeadShotAnimation();
             print("HEADSHOT");
         }
 
