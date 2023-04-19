@@ -72,7 +72,7 @@ public class MainMenu : MonoBehaviour
 
         Time.timeScale = 1;
         startedTransition = true;
-        ResetEscape();
+        Invoke(nameof(ResetEscape), 3f);
     }
 
     private void ActivateBackToMenu()
@@ -104,6 +104,7 @@ public class MainMenu : MonoBehaviour
         }
         dictionaryButtons["options"].gameObject.SetActive(false);
         dictionaryButtons["quitGame"].gameObject.SetActive(false);
+        dictionaryButtons["backToMenu"].gameObject.SetActive(false);
         optionLevel++;
     }
     
@@ -124,8 +125,10 @@ public class MainMenu : MonoBehaviour
     {
         if (optionLevel == 1)
         {
-            if (firstIteration)
+            if (firstIteration) {
                 dictionaryButtons["startGame"].gameObject.SetActive(true);
+                dictionaryButtons["quitGame"].gameObject.SetActive(true);
+            }
             else
             {
                 dictionaryButtons["resume"].gameObject.SetActive(true);
@@ -321,9 +324,18 @@ public class MainMenu : MonoBehaviour
             if (startedTransition)
             {
                 foreach (MaskableGraphic playerUIComponent in playerUI)
-                    playerUIComponent.color = Color.Lerp(playerUIComponent.color,
-                        new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 1),
-                        menuFadeSpeed);
+                    if (playerUIComponent.gameObject.name.Equals("Center Point")
+                        || playerUIComponent.gameObject.name.Equals("Right")
+                        || playerUIComponent.gameObject.name.Equals("Left"))
+                    {
+                        playerUIComponent.color = new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 1);
+                    }
+                    else
+                    {
+                        playerUIComponent.color = Color.Lerp(playerUIComponent.color,
+                            new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 1),
+                            menuFadeSpeed);
+                    }
                 foreach (MaskableGraphic menuItem in menuItems)
                     menuItem.color = Color.Lerp(menuItem.color,
                         new Color(menuItem.color.r, menuItem.color.g, menuItem.color.b, 0),
@@ -358,9 +370,18 @@ public class MainMenu : MonoBehaviour
                         displayCoroutine = null;
                     }
                     foreach (MaskableGraphic playerUIComponent in playerUI)
-                        playerUIComponent.color = Color.Lerp(playerUIComponent.color,
-                            new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 1),
-                            menuFadeSpeed);
+                        if (playerUIComponent.gameObject.name.Equals("Center Point")
+                            || playerUIComponent.gameObject.name.Equals("Right")
+                            || playerUIComponent.gameObject.name.Equals("Left"))
+                        {
+                            playerUIComponent.color = new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 1);
+                        }
+                        else
+                        {
+                            playerUIComponent.color = Color.Lerp(playerUIComponent.color,
+                                new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 1),
+                                menuFadeSpeed);
+                        }
                     foreach (MaskableGraphic menuItem in menuItems)
                         menuItem.color = Color.Lerp(menuItem.color,
                             new Color(menuItem.color.r, menuItem.color.g, menuItem.color.b, 0),
@@ -392,9 +413,16 @@ public class MainMenu : MonoBehaviour
         {
             yield return new WaitForSecondsRealtime(1f / 240);
             foreach (MaskableGraphic playerUIComponent in playerUI)
-                playerUIComponent.color = Color.Lerp(playerUIComponent.color,
-                    new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 0),
-                    menuFadeSpeed);
+                if (playerUIComponent.gameObject.name.Equals("Center Point")
+                    || playerUIComponent.gameObject.name.Equals("Right")
+                    || playerUIComponent.gameObject.name.Equals("Left")) {
+                    playerUIComponent.color = new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 0);
+                }
+                else {
+                    playerUIComponent.color = Color.Lerp(playerUIComponent.color,
+                        new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 0),
+                        menuFadeSpeed);
+                }
             foreach (MaskableGraphic menuItem in menuItems)
                 menuItem.color = Color.Lerp(menuItem.color,
                     new Color(menuItem.color.r, menuItem.color.g, menuItem.color.b, 1),
