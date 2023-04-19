@@ -27,7 +27,7 @@ public class PlanningInfo : MonoBehaviour
         Player.m.scoringSystem.combo.gameObject.transform.parent.gameObject.SetActive(true);
         Player.m.scoringSystem.enabled = true;
         //TODO: set difficulty of level
-        Player.m.weaponManager.ChangeWeapon(Player.m.weaponManager.WeaponsList[loadoutChoices[0]].name);
+        Player.m.weaponManager.ChangeWeapon(Player.m.weaponManager.WeaponsList[loadoutChoices[0]].name, quantity:Player.m.weaponManager.WeaponsList[loadoutChoices[0]].gunMagazineSize);
         if (plantingSpot[0] != -1)
         {
             GameObject pSpot = GameObject.Find("PSpots");

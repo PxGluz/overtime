@@ -69,7 +69,12 @@ public class ListDisplay : MonoBehaviour
                 foreach (Transform child in currentChild)
                     modelQueue.Enqueue(child);
                 if (currentChild.TryGetComponent(out MeshRenderer meshRend))
-                    meshRend.material = hologramMaterial;
+                {
+                    Material[] tempMats = new Material[meshRend.materials.Length];
+                    for (int i = 0; i < tempMats.Length; i++)
+                        tempMats[i] = hologramMaterial;
+                    meshRend.materials = tempMats;
+                }
             }
 
             GameObject currentButton = Instantiate(selectButtonPrefab, buttonsEmpty.transform);
