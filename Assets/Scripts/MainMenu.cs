@@ -75,6 +75,15 @@ public class MainMenu : MonoBehaviour
         ResetEscape();
     }
 
+    private void ActivateBackToMenu()
+    {
+        if (!SceneManager.GetActiveScene().name.Equals("MainMenuLobby"))
+        {
+            dictionaryButtons["backToMenu"].gameObject.SetActive(true);
+            dictionaryButtons["quitGame"].gameObject.SetActive(false);
+        }
+    }
+
     private void SetSettings(bool active)
     {
         dictionaryButtons["soundSettings"].gameObject.SetActive(active);
@@ -89,7 +98,10 @@ public class MainMenu : MonoBehaviour
         if (firstIteration)
             dictionaryButtons["startGame"].gameObject.SetActive(false);
         else
+        {
             dictionaryButtons["resume"].gameObject.SetActive(false);
+            ActivateBackToMenu();
+        }
         dictionaryButtons["options"].gameObject.SetActive(false);
         dictionaryButtons["quitGame"].gameObject.SetActive(false);
         optionLevel++;
@@ -115,9 +127,15 @@ public class MainMenu : MonoBehaviour
             if (firstIteration)
                 dictionaryButtons["startGame"].gameObject.SetActive(true);
             else
+            {
                 dictionaryButtons["resume"].gameObject.SetActive(true);
+                if (!SceneManager.GetActiveScene().name.Equals("MainMenuLobby"))
+                    dictionaryButtons["backToMenu"].gameObject.SetActive(true);
+                else
+                    dictionaryButtons["quitGame"].gameObject.SetActive(true);
+            }
             dictionaryButtons["options"].gameObject.SetActive(true);
-            dictionaryButtons["quitGame"].gameObject.SetActive(true);
+            
             SetSettings(false);
             dictionaryButtons["back"].gameObject.SetActive(false);
             optionLevel--;
@@ -234,6 +252,16 @@ public class MainMenu : MonoBehaviour
         startedTransition = true;
         ResetEscape();
     }
+
+    private void BackToMenu()
+    {
+        SceneManager.LoadScene("MainMenuLobby");
+        dictionaryButtons["resume"].gameObject.SetActive(false);
+        dictionaryButtons["startGame"].gameObject.SetActive(true);
+        firstIteration = true;
+        dictionaryButtons["quitGame"].gameObject.SetActive(true);
+        dictionaryButtons["backToMenu"].gameObject.SetActive(false);
+    }
     
     private void Awake()
     {
@@ -262,6 +290,7 @@ public class MainMenu : MonoBehaviour
         dictionarySliders["musicVolume"].onValueChanged.AddListener(delegate { MusicVolume(); });
         dictionarySliders["sfxVolume"].onValueChanged.AddListener(delegate { SFXVolume(); });
         dictionarySliders["dialogueVolume"].onValueChanged.AddListener(delegate { DialogueVolume(); });
+        dictionaryButtons["backToMenu"].onClick.AddListener(BackToMenu);
 
         if (SceneManager.GetActiveScene().name.Equals("MainMenuLobby"))
         {
@@ -388,6 +417,7 @@ public class MainMenu : MonoBehaviour
         Player.m.playerCam.UnLockCursor();
         dictionaryButtons["startGame"].gameObject.SetActive(false);
         dictionaryButtons["resume"].gameObject.SetActive(true);
+        ActivateBackToMenu();
         foreach (KeyValuePair<string, Button> button in dictionaryButtons)
         {
             button.Value.interactable = true;
