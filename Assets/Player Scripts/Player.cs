@@ -219,11 +219,6 @@ public class Player : MonoBehaviour
         
     }
 
-    public void PlayHeadShotAnimation()
-    {
-        playerUIAnimator.Play("HeadShotText");
-    }
-
     void OnDrawGizmosSelected()
     {
         // Draws a 5 unit long red line in front of the object
