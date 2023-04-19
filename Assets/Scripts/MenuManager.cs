@@ -55,6 +55,8 @@ public class MenuManager : MonoBehaviour
     public void NextLevel()
     {
         print("going to " + PlanningInfo.instance.GetNextScene());
+        PlanningInfo planningInfo = GameObject.Find("PlanningInfo").GetComponent<PlanningInfo>();
+        planningInfo.KeepLastWeapon();
         SceneManager.LoadScene(PlanningInfo.instance.GetNextScene());
     }
 
