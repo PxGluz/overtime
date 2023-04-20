@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5774,10 +5774,6 @@ PrefabInstance:
     - target: {fileID: 4791706073558479660, guid: 95c2e4f876f3d974cb65f4ecdfed5539, type: 3}
       propertyPath: m_Name
       value: Floor (22)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4791706073558479660, guid: 95c2e4f876f3d974cb65f4ecdfed5539, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4868913908421114423, guid: 95c2e4f876f3d974cb65f4ecdfed5539, type: 3}
       propertyPath: m_RootOrder
@@ -19554,6 +19550,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Walls
       objectReference: {fileID: 0}
+    - target: {fileID: 4196603833592949223, guid: a2d563d71326f3e4e946a82863965a49, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ca384d203f65ab64ab4d6f2a530c4fe9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

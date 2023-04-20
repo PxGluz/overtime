@@ -1,3 +1,4 @@
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 
@@ -27,6 +28,11 @@ public class DamageOnCollision : MonoBehaviour
 
         if (thrownProjectile.isInPickUpState || collision.gameObject.layer == LayerMask.NameToLayer("Player"))
             return;
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Explosive"))
+        {
+            collision.gameObject.GetComponent<ExplosiveBarrel>().ReceiveHit();
+        }
 
         EnemyMaster enemy = collision.gameObject.GetComponentInParent<EnemyMaster>();
         if (enemy != null)
