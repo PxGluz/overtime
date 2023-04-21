@@ -144,7 +144,7 @@ public class PlayerThrow : MonoBehaviour
         Vector3 forceToAdd = Player.m.MainCamera.transform.forward * dropForce + transform.up ;
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
-        projectileRb.velocity += Player.m.playerMovement.rb.velocity;
+        //projectileRb.velocity += Player.m.playerMovement.rb.velocity;
 
         ThrownProjectile thrownProjectile = projectile.GetComponent<ThrownProjectile>();
         if (thrownProjectile != null)

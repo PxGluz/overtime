@@ -107,7 +107,7 @@ Transform:
   - {fileID: 5480400317835935217}
   - {fileID: 1875067044230152615}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1875067043153284144
 GameObject:
@@ -1848,7 +1848,7 @@ PrefabInstance:
     - target: {fileID: 10038429080721315, guid: 9b3bdae1724db8f489404ab5d2cb0e0c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0395d452dba51e94d8fd24e7ddb16b04, type: 2}
+      objectReference: {fileID: 2100000, guid: 12123816a3da1e146807ed5fe0fbf82d, type: 2}
     - target: {fileID: 1026333617372256545, guid: 9b3bdae1724db8f489404ab5d2cb0e0c, type: 3}
       propertyPath: m_Name
       value: Wall
@@ -2071,6 +2071,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pedestal (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3309077927501185968, guid: 2f2ebb50b5f6ba44ba5da795817dbbeb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 12123816a3da1e146807ed5fe0fbf82d, type: 2}
     - target: {fileID: 6200287389111483026, guid: 2f2ebb50b5f6ba44ba5da795817dbbeb, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -2333,6 +2337,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_door
       objectReference: {fileID: 0}
+    - target: {fileID: 8873915773672578971, guid: 284fd970dec8073458b92548f5dea191, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 12123816a3da1e146807ed5fe0fbf82d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3839,6 +3847,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1875067043126417958}
     m_Modifications:
+    - target: {fileID: 10038429080721315, guid: 9b3bdae1724db8f489404ab5d2cb0e0c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 12123816a3da1e146807ed5fe0fbf82d, type: 2}
     - target: {fileID: 1026333617372256545, guid: 9b3bdae1724db8f489404ab5d2cb0e0c, type: 3}
       propertyPath: m_Name
       value: Wall (48)
@@ -4296,6 +4308,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pedestal (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3309077927501185968, guid: 2f2ebb50b5f6ba44ba5da795817dbbeb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 12123816a3da1e146807ed5fe0fbf82d, type: 2}
     - target: {fileID: 6200287389111483026, guid: 2f2ebb50b5f6ba44ba5da795817dbbeb, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4522,6 +4538,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pedestal (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3309077927501185968, guid: 2f2ebb50b5f6ba44ba5da795817dbbeb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 12123816a3da1e146807ed5fe0fbf82d, type: 2}
     - target: {fileID: 6200287389111483026, guid: 2f2ebb50b5f6ba44ba5da795817dbbeb, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4806,6 +4826,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1875067043126417958}
     m_Modifications:
+    - target: {fileID: 2321824931880139667, guid: 07242fe7787033a48887d23340f47c6a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 12123816a3da1e146807ed5fe0fbf82d, type: 2}
     - target: {fileID: 5657261003690610085, guid: 07242fe7787033a48887d23340f47c6a, type: 3}
       propertyPath: m_Name
       value: WallMadeOutOfSegments

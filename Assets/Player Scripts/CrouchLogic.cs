@@ -10,7 +10,8 @@ public class CrouchLogic : MonoBehaviour
     [Header("Crouching")]
     [SerializeField] public Transform HeadTransform;
     private Vector3 OriginalHeadLocation;
-    [SerializeField] public Transform CeilingCheck;
+    [SerializeField] public Transform CeilingCheck1;
+    [SerializeField] public Transform CeilingCheck2;
     [SerializeField] public float CeilingCheckRadius;
     private float initialHeight;
     public CapsuleCollider playerCapsuleCollider;
@@ -100,6 +101,8 @@ public class CrouchLogic : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(CeilingCheck.position, CeilingCheckRadius);
+        Gizmos.DrawWireSphere(CeilingCheck1.position, CeilingCheckRadius);
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(CeilingCheck2.position, CeilingCheckRadius);
     }
 }

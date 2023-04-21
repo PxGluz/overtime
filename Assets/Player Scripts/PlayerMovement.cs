@@ -73,7 +73,8 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics.CheckSphere(GroundCheckSource.position, GroundCheckRadius, Player.m.groundLayer);
         
         // Checks if the player has enough space above it's head to exit crouching
-        Player.m.crouchLogic.hasSpaceAboveHead = !Physics.CheckSphere(Player.m.crouchLogic.CeilingCheck.position, Player.m.crouchLogic.CeilingCheckRadius, Player.m.groundLayer);
+        Player.m.crouchLogic.hasSpaceAboveHead = !Physics.CheckSphere(Player.m.crouchLogic.CeilingCheck1.position, Player.m.crouchLogic.CeilingCheckRadius, Player.m.groundLayer)
+                                              && !Physics.CheckSphere(Player.m.crouchLogic.CeilingCheck2.position, Player.m.crouchLogic.CeilingCheckRadius, Player.m.groundLayer);
 
         MovementInputs();
         SpeedControl();
@@ -125,9 +126,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                sprintInput = !sprintInput;
+                sprintInput = true;
+                //sprintInput = !sprintInput;
             }
         }
         else

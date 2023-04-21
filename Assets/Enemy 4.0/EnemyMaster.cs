@@ -223,10 +223,10 @@ public class EnemyMaster : MonoBehaviour
     private void NerfEnemyWeapons()
     {
         myWeaponClass.bulletDamage = 10;
-        myWeaponClass.gunTimeBetweenShooting *= 5;
-        myWeaponClass.gunMagazineSize = Mathf.FloorToInt((float)myWeaponClass.gunMagazineSize * 60 / 100);
+        myWeaponClass.gunTimeBetweenShooting *= 4;
+        //myWeaponClass.gunMagazineSize = Mathf.FloorToInt((float)myWeaponClass.gunMagazineSize * 60 / 100);
         myWeaponClass.gunSpread += 0.05f;
-        myWeaponClass.gunShootForce *= 0.5f;
+        myWeaponClass.gunShootForce *= 0.7f;
     }
 
     public void IncapacitateEnemy()
