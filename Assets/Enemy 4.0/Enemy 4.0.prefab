@@ -1749,7 +1749,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.6
-  m_Speed: 8
+  m_Speed: 10
   m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 1000
@@ -1783,10 +1783,10 @@ MonoBehaviour:
   enemyHealthBar: {fileID: 1765602086}
   enemySpineLookAtPlayer: {fileID: 1445946869}
   EnemyCenter: {fileID: 648033943}
-  myWeapon: Gun
+  myWeapon: Knife
   maxHealth: 100
   currentHealth: 0
-  MeleePreferedDistanceToPlayer: 2.26
+  MeleePreferedDistanceToPlayer: 1.8
   RangedPreferedDistanceToPlayer: 8
   myWeaponClass:
     name: 
@@ -1862,9 +1862,9 @@ MonoBehaviour:
   canSeePlayer: 0
   isChasingPlayer: 0
   currentMovementAnimation: 
-  announceRange: 4.31
-  PreferedDistanceToPlayer: 1.93
-  chaseDuration: 5
+  announceRange: 5.47
+  PreferedDistanceToPlayer: 1.9
+  chaseDuration: 3
   rotateAfterPlayerSpeed: 100
   enablePatrol: 0
   patrolPoints:
@@ -3545,7 +3545,7 @@ MonoBehaviour:
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 8
-  DistanceToStartPunch: 2.37
+  DistanceToStartPunch: 2.27
   KnifePosition: {fileID: 300785653340127174}
   meleeDamagePoints:
   - DamageSphereOrigin: {fileID: 1609970915613858861}
@@ -4125,7 +4125,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7315841291722965718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.77, z: 0.753}
+  m_LocalPosition: {x: 0, y: 1.77, z: 0.597}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4349,7 +4349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8077706476871903854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.77, z: 1.71}
+  m_LocalPosition: {x: 0, y: 1.77, z: 1.5540018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
