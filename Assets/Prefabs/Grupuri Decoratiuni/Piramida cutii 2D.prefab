@@ -1,0 +1,614 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6972490189814136720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 621400104850734324}
+  m_Layer: 0
+  m_Name: Piramida cutii 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &621400104850734324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972490189814136720}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.707, y: 1.012, z: -16.405}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8225574435644426672}
+  - {fileID: 8073841404436925087}
+  - {fileID: 8036449875172492204}
+  - {fileID: 7054262784072175873}
+  - {fileID: 275062237286402720}
+  - {fileID: 6831483333657937492}
+  - {fileID: 8362455714071813297}
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &37086912434893451
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 621400104850734324}
+    m_Modifications:
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 168.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 168.05998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 168.05998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.17599869
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.6859989
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786257527467794817, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_Name
+      value: Sci-fi Container Game Free
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+--- !u!4 &8225574435644426672 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+  m_PrefabInstance: {fileID: 37086912434893451}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &191638266819932580
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 621400104850734324}
+    m_Modifications:
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 168.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 168.05998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 168.05998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.17599869
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.3949986
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786257527467794817, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_Name
+      value: Sci-fi Container Game Free (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+--- !u!4 &8073841404436925087 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+  m_PrefabInstance: {fileID: 191638266819932580}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &480116241748338570
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 621400104850734324}
+    m_Modifications:
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 168.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 168.05998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 168.05998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.17599869
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.2680001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.11499977
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786257527467794817, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_Name
+      value: Sci-fi Container Game Free (6)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+--- !u!4 &8362455714071813297 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+  m_PrefabInstance: {fileID: 480116241748338570}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1387417267683256890
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 621400104850734324}
+    m_Modifications:
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 168.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 168.05998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 168.05998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.17599869
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.6560011
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786257527467794817, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_Name
+      value: Sci-fi Container Game Free (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+--- !u!4 &7054262784072175873 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+  m_PrefabInstance: {fileID: 1387417267683256890}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2099779767686543511
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 621400104850734324}
+    m_Modifications:
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 168.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 168.05998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 168.05998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.17599869
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.031000137
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786257527467794817, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_Name
+      value: Sci-fi Container Game Free (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+--- !u!4 &8036449875172492204 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+  m_PrefabInstance: {fileID: 2099779767686543511}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3200533085562043759
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 621400104850734324}
+    m_Modifications:
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 168.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 168.05998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 168.05998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.17599869
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.648
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.9389992
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786257527467794817, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_Name
+      value: Sci-fi Container Game Free (5)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+--- !u!4 &6831483333657937492 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+  m_PrefabInstance: {fileID: 3200533085562043759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8175697581493793179
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 621400104850734324}
+    m_Modifications:
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 168.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 168.05998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 168.05998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.17599869
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.648
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.7480011
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786257527467794817, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+      propertyPath: m_Name
+      value: Sci-fi Container Game Free (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+--- !u!4 &275062237286402720 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8260971742300846907, guid: a9ea77fa960078342a6bf692db4ca4d0, type: 3}
+  m_PrefabInstance: {fileID: 8175697581493793179}
+  m_PrefabAsset: {fileID: 0}
