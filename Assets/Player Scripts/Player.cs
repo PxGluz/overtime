@@ -132,14 +132,14 @@ public class Player : MonoBehaviour
     
     public void YouWin()
     {
-        object data = SerializationManager.Load("levels");
+        object data = SerializationManager.Load("levelInfo");
         if (data != null)
         {
             List<Contract.LevelData> levelDatas = data as List<Contract.LevelData>;
             foreach (Contract.LevelData levelData in levelDatas)
                 if (levelData.levelName == SceneManager.GetActiveScene().name)
                     levelData.highscore = Mathf.Max(levelData.highscore, scoringSystem.scoreValue);
-            SerializationManager.Save("levels", levelDatas);
+            SerializationManager.Save("levelInfo", levelDatas);
         }
         scoringSystem.combo.transform.parent.gameObject.SetActive(false);
         gameObject.SetActive(false);

@@ -44,15 +44,6 @@ public class Contract : MonoBehaviour
     [HideInInspector] public ChoiceManager difficulty; // Use GetChoice() to get the selected difficulty
     [HideInInspector] public List<Level.LevelInfo> selectedLevel = new List<Level.LevelInfo>(); // Contains levelScene
 
-    public void SaveScores()
-    {
-        List<LevelData> saveData = new List<LevelData>();
-        foreach (Level.LevelInfo level in levelList)
-            saveData.Add(new LevelData(level.levelScene, level.highscore));
-
-        SerializationManager.Save("levels", saveData);
-    }
-
     public void SetPlanning()
     {
         PlanningInfo planningInfo = GameObject.Find("PlanningInfo").GetComponent<PlanningInfo>();

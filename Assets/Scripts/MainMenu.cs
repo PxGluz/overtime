@@ -65,14 +65,20 @@ public class MainMenu : MonoBehaviour
     
     private void StartGame()
     {
-        object data = SerializationManager.Load("levels");
+        object data = SerializationManager.Load("levelInfo");
         if (data == null)
         {
-            GameObject contract = GameObject.Find("Contract");
-            if (contract != null)
-                contract.GetComponent<Contract>().SaveScores();
-            else
-                Debug.Log("Couldn't find contract");
+            GameObject root = GameObject.Find("ContractRoot");
+            if (root)
+            {
+                Contract[] contracts = root.GetComponentsInChildren<Contract>();
+                List<Contract.LevelData> levelData = new List<Contract.LevelData>();
+                foreach (Contract contract in contracts)
+                    foreach (Level.LevelInfo level in contract.levelList)
+                        levelData.Add(new Contract.LevelData(level.levelScene, level.highscore));
+
+                SerializationManager.Save("levelInfo", levelData);
+            }
         }
                
         foreach (KeyValuePair<string, Button> button in dictionaryButtons)
@@ -122,11 +128,22 @@ public class MainMenu : MonoBehaviour
     {
         Player.m.weaponManager.SaveWeapons();
 
-        GameObject contract = GameObject.Find("Contract");
-        if (contract != null)
-            contract.GetComponent<Contract>().SaveScores();
-        else
-            Debug.Log("Couldn't find contract");
+        //GameObject contract = GameObject.Find("Contract");
+        //if (contract != null)
+        //    contract.GetComponent<Contract>().SaveScores();
+        //else
+        //    Debug.Log("Couldn't find contract");
+
+        GameObject root = GameObject.Find("ContractRoot");
+        if (root) {
+            Contract[] contracts = root.GetComponentsInChildren<Contract>();
+            List<Contract.LevelData> data = new List<Contract.LevelData>();
+            foreach (Contract contract in contracts)
+                foreach (Level.LevelInfo level in contract.levelList)
+                    data.Add(new Contract.LevelData(level.levelScene, level.highscore));
+
+            SerializationManager.Save("levelInfo", data);
+        }
 
         Application.Quit();
     }
