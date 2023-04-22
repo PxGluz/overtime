@@ -108,6 +108,8 @@ public class WeaponManager : MonoBehaviour
                         weapon.isUnlocked = weaponData.isUnlocked;
             }
         }
+
+        LoadAllGuns();
     }
 
     public void ChangeWeapon(string name, int quantity = 1, bool dropCurrentWeapon = true, Transform interactableObject = null)

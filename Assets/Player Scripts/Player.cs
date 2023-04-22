@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     public AudioManager audioManager;
     public SettingsManager settingsManager;
     public Interact interact;
-    public PrefabHolder prefabHolder;
+    //public PrefabHolder prefabHolder;
     public ScoringSystem scoringSystem;
     public ParticleManager particleManager;
     public CrossHairLogic crossHairLogic;

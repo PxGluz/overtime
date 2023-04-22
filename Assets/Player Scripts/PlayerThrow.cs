@@ -111,10 +111,10 @@ public class PlayerThrow : MonoBehaviour
         ThrownProjectile thrownProjectile = projectile.GetComponent<ThrownProjectile>();
         if (thrownProjectile != null)
         {
+            thrownProjectile.PickUpSetActive(false);
             thrownProjectile.damage = Player.m.weaponManager.currentWeapon.throwDamage;
             thrownProjectile.myDamageType = "Ranged";
             thrownProjectile.myPickUp = Player.m.weaponManager.currentWeapon.WeaponPrefab;
-            thrownProjectile.PickUpSetActive(false);
         }
 
         RotateWhenThrown rotateWhenThrown = projectile.GetComponent<RotateWhenThrown>();
