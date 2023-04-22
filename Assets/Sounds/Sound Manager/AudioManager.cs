@@ -148,21 +148,6 @@ public class AudioManager : MonoBehaviour
         //s.source.PlayOneShot(s.source.clip);
     }
 
-    public IEnumerator FadeOut(string name, float FadeTime)
-    {
-        AudioSource audioSource = listOfAllSounds.Find(sound => sound.name == name).source;
-        float startVolume = audioSource.volume;
-
-        while (audioSource.volume > 0)
-        {
-            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
-
-            yield return null;
-        }
-
-        audioSource.Stop();
-        audioSource.volume = startVolume;
-    }
 
     // Dialogue system from here:
     public AudioMixerGroup DialogueMixerGroup;
@@ -179,6 +164,7 @@ public class AudioManager : MonoBehaviour
     public class DialogueLine
     {
         public string lineText;
+        public int ID;
         public AudioClip clip;
         [HideInInspector]
         public AudioSource source;
@@ -219,7 +205,7 @@ public class AudioManager : MonoBehaviour
         return null;
     }
 
-    public void PlayRandomFromDialogueGroup(string groupName)
+    public void PlayFromDialogueGroupByID(string groupName, int givenID)
     {
         List<DialogueLine> listToReturn = dialogueLineGroups.Find(group => group.GroupName == groupName).linesList;
 
@@ -229,6 +215,14 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
+        listToReturn.Find(sound => sound.ID == givenID).source.Play();
+
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+            PlayFromDialogueGroupByID("tutorial",1);
     }
 
 

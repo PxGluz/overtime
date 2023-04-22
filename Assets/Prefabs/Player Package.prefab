@@ -15485,16 +15485,19 @@ MonoBehaviour:
   - GroupName: tutorial
     linesList:
     - lineText: 
+      ID: 0
       clip: {fileID: 0}
       source: {fileID: 0}
       volume: 1
       pitch: 1
     - lineText: 
+      ID: 0
       clip: {fileID: 0}
       source: {fileID: 0}
       volume: 1
       pitch: 1
     - lineText: 
+      ID: 0
       clip: {fileID: 0}
       source: {fileID: 0}
       volume: 1
