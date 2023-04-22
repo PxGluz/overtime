@@ -89,6 +89,8 @@ MonoBehaviour:
   - {fileID: 592713266319315015}
   - {fileID: -8379537055355248544}
   - {fileID: -2402515347045723253}
+  - {fileID: 1821697017674250551}
+  - {fileID: 2258282819385707384}
 --- !u!114 &592713266319315015
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -112,11 +114,11 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0.5
   scatter:
-    m_OverrideState: 0
-    m_Value: 0.7
+    m_OverrideState: 1
+    m_Value: 0.5
   clamp:
     m_OverrideState: 0
-    m_Value: 65472
+    m_Value: 65458.14
   tint:
     m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -136,3 +138,59 @@ MonoBehaviour:
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 0
+--- !u!114 &1821697017674250551
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558a8e2b6826cf840aae193990ba9f2e, type: 3}
+  m_Name: ShadowsMidtonesHighlights
+  m_EditorClassIdentifier: 
+  active: 0
+  shadows:
+    m_OverrideState: 1
+    m_Value: {x: 0.62409735, y: 0.71451825, z: 1, w: 0.175}
+  midtones:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 0.6763095, z: 0.5488075, w: 0}
+  highlights:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 0.7786485, z: 0.7736226, w: 0}
+  shadowsStart:
+    m_OverrideState: 0
+    m_Value: 0
+  shadowsEnd:
+    m_OverrideState: 0
+    m_Value: 0.3
+  highlightsStart:
+    m_OverrideState: 0
+    m_Value: 0.55
+  highlightsEnd:
+    m_OverrideState: 0
+    m_Value: 1
+--- !u!114 &2258282819385707384
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5485954d14dfb9a4c8ead8edb0ded5b1, type: 3}
+  m_Name: LiftGammaGain
+  m_EditorClassIdentifier: 
+  active: 1
+  lift:
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 0.93575525, z: 0.9732229, w: -0.075}
+  gamma:
+    m_OverrideState: 0
+    m_Value: {x: 0.98407304, y: 0.97829866, z: 1, w: 0}
+  gain:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 0.9176182, z: 0.9540929, w: 0}
