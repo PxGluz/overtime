@@ -25,11 +25,11 @@ public class Player : MonoBehaviour
     public AudioManager audioManager;
     public SettingsManager settingsManager;
     public Interact interact;
-    //public PrefabHolder prefabHolder;
     public ScoringSystem scoringSystem;
     public ParticleManager particleManager;
     public CrossHairLogic crossHairLogic;
     public PlayerHealthBar playerHealthBar;
+    public TeleportCooldown teleportCooldown;
 
     [Header("Other References:")]
     public Camera MainCamera;
@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
     public float smoothTime;
     public bool canPressEscape;
     public BounceShake.Params takeDamageShakeParams;
+    public BounceShake.Params killEnemyShakeParams;
 
     [Header("PostProcessing")] 
     private float vigTarget = 0;
@@ -217,6 +218,41 @@ public class Player : MonoBehaviour
             mainMenu.PressedEscape();
         }
         
+    }
+
+    public LayerMask AnnouceHitLayer;
+    public float EnemyAnnoucedByWeaponRange;
+    public void AnnounceEnemy(Vector3 sourcePosition, float announceRange)
+    {
+        // Announce to all other enemies in range.
+        Collider[] enemies = Physics.OverlapSphere(sourcePosition, announceRange, enemyLayer);
+
+        foreach (Collider enemy in enemies)
+        {
+            EnemyMovement enemyMovement = enemy.gameObject.GetComponentInParent<EnemyMovement>();
+            if (enemyMovement == null)
+                continue;
+            if (enemyMovement.enabled == false)
+                continue;
+            if (enemyMovement.isChasingPlayer)
+                continue;
+
+
+            Vector3 dir = sourcePosition- enemyMovement.transform.position;
+
+            if (Mathf.Abs(Vector3.Angle(enemyMovement.transform.forward, Vector3.Normalize(dir))) > 180f * 0.5f)
+                continue;
+
+            Physics.Raycast(sourcePosition, Vector3.Normalize(-dir), out RaycastHit hitInfo, announceRange, AnnouceHitLayer);
+            Debug.DrawRay(sourcePosition, Vector3.Normalize(-dir), Color.red);
+     
+            if (hitInfo.transform != null && LayerMask.LayerToName(hitInfo.transform.gameObject.layer) != "Enemy")
+            {
+                continue;
+            }
+
+            enemyMovement.StartChasePlayer();
+        }
     }
 
     void OnDrawGizmosSelected()

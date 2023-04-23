@@ -8,24 +8,44 @@ public class PlayerTeleport : MonoBehaviour
     
     public GameObject teleportProjectilePrefab;
 
-    public KeyCode teleportKey;
-
-    public float teleportCooldown = 2f;
-    public bool readyToTeleport = true;
+    public bool readyToTeleport;
 
     public float throwForce, throwUpwardForce;
 
+    public float cooldown = 2f;
+    public float teleportTimer = 0f;
+
+    private void Start()
+    {
+        teleportTimer = cooldown + 0.1f;
+        readyToTeleport = true;
+        Player.m.teleportCooldown.ActivateSliders(false);
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(teleportKey) && readyToTeleport)
+
+        if (Input.GetMouseButtonUp(2) && readyToTeleport)
         {
             ShootTeleportProjectile();
+        }
+
+        if (teleportTimer <= cooldown)
+        {
+            teleportTimer += Time.deltaTime;
+            Player.m.teleportCooldown.ChargeSliders(0, cooldown, teleportTimer);
+        }
+        else if (!readyToTeleport)
+        {
+            readyToTeleport = true;
+            Player.m.teleportCooldown.ActivateSliders(false);
         }
     }
 
     private void ShootTeleportProjectile()
     {
         readyToTeleport = false;
+        teleportTimer = 0f;
 
         // Find the exact hit position using raycast
         Ray ray = Player.m.MainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); // Just a ray through the middle of your camera
@@ -55,12 +75,14 @@ public class PlayerTeleport : MonoBehaviour
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
         
-        Invoke(nameof(ResetThrow), teleportCooldown);
+        //Invoke(nameof(ResetThrow), teleportCooldown);
     }
 
+    /*
     private void ResetThrow()
     {
         readyToTeleport = true;
     }
+    */
 
 }

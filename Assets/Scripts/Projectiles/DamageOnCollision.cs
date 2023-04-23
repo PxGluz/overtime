@@ -18,6 +18,11 @@ public class DamageOnCollision : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    private void Update()
+    {
+        Player.m.AnnounceEnemy(transform.position, Player.m.EnemyAnnoucedByWeaponRange);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (thrownProjectile == null)

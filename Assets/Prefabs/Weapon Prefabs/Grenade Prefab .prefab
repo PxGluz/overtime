@@ -453,7 +453,7 @@ MonoBehaviour:
   radius: 6
   damage: 1000
   pushForce: 50
-  explosionDelay: 2
+  explosionDelay: 1
 --- !u!114 &8856330997727221193
 MonoBehaviour:
   m_ObjectHideFlags: 0

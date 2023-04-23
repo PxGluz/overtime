@@ -13,6 +13,11 @@ public class BulletCollision : MonoBehaviour
         Invoke(nameof(Expire), 10f);
     }
 
+    private void Update()
+    {
+        Player.m.AnnounceEnemy(transform.position, Player.m.EnemyAnnoucedByWeaponRange);
+    }
+
     private void FixedUpdate()
     {
         Debug.DrawRay(transform.position, transform.forward * 2f, Color.yellow);

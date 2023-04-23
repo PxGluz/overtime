@@ -1,6 +1,6 @@
+using CameraShake;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 
@@ -178,6 +178,7 @@ public class EnemyMaster : MonoBehaviour
         }
         isDead = true;
 
+        CameraShaker.Shake(new BounceShake(Player.m.killEnemyShakeParams, Player.m.transform.position));
 
         soundManager.Stop("enemyFootSteps");
 
@@ -226,7 +227,7 @@ public class EnemyMaster : MonoBehaviour
         myWeaponClass.gunTimeBetweenShooting *= 4;
         //myWeaponClass.gunMagazineSize = Mathf.FloorToInt((float)myWeaponClass.gunMagazineSize * 60 / 100);
         myWeaponClass.gunSpread += 0.05f;
-        myWeaponClass.gunShootForce *= 0.7f;
+        myWeaponClass.gunShootForce *= 0.75f;
     }
 
     public void IncapacitateEnemy()

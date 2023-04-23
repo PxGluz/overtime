@@ -23,6 +23,8 @@ public class EnemyMovement : MonoBehaviour
     public string currentMovementAnimation;
 
     [Header("Ranges: ")]
+    public float runSpeed;
+    public float patrolSpeed;
     public float announceRange;
     public float PreferedDistanceToPlayer;
     public float chaseDuration = 5f;
@@ -81,9 +83,14 @@ public class EnemyMovement : MonoBehaviour
             agent.SetDestination(transform.position);
             return;
         }
+        
+        agent.speed = patrolSpeed;
+        enemy.animator.SetFloat("RunAnimSpeed", 1);
 
         if (isChasingPlayer)
-        { 
+        {
+            agent.speed = runSpeed;
+            enemy.animator.SetFloat("RunAnimSpeed", 1.2f);
             //create empty path
             NavMeshPath navMeshPath = new NavMeshPath();
             // check if navMeshAgent can reach player

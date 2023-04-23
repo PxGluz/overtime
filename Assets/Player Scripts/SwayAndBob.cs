@@ -57,7 +57,7 @@ public class SwayAndBob : MonoBehaviour
         walkInput = walkInput.normalized;
 
         lookInput.x = Input.GetAxis("Mouse X");
-        lookInput.y = Input.GetAxis("Mouse Y");
+        lookInput.y = -Input.GetAxis("Mouse Y");
     }
 
 
@@ -84,6 +84,7 @@ public class SwayAndBob : MonoBehaviour
         transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(swayEulerRot) * Quaternion.Euler(bobEulerRotation), Time.deltaTime * smoothRot);
     }
 
+    /*
     void BobOffset()
     {
         //speedCurve += Time.deltaTime * (Player.m.playerMovement.isGrounded? (Input.GetAxis("Horizontal") + Input.GetAxis("Vertical")) * bobExaggeration : 1f) + 0.01f;
@@ -99,5 +100,6 @@ public class SwayAndBob : MonoBehaviour
         bobEulerRotation.y = (walkInput != Vector2.zero ? multiplier.y * curveCos : 0);
         bobEulerRotation.z = (walkInput != Vector2.zero ? multiplier.z * curveCos * walkInput.x : 0);
     }
+    */
 
 }
