@@ -13607,6 +13607,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7545448514449810091, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: SoundTypeLists.Array.data[1].soundList.Array.data[9].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0841b45de90341247ad663f023854529, type: 3}
     - target: {fileID: 8071519469513764254, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
