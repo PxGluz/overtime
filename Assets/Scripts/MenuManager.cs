@@ -35,10 +35,8 @@ public class MenuManager : MonoBehaviour
 
     public void SetScore(float cScore, float hScore)
     {
-        print("here");
         if (WinScreen.activeInHierarchy)
             return;
-        print("passed");
         currentScore.text += cScore;
         highscore.text += hScore;
     }
@@ -65,7 +63,6 @@ public class MenuManager : MonoBehaviour
 
     public void NextLevel()
     {
-        print("going to " + PlanningInfo.instance.GetNextScene());
         PlanningInfo planningInfo = GameObject.Find("PlanningInfo").GetComponent<PlanningInfo>();
         planningInfo.KeepLastWeapon();
         SceneManager.LoadScene(PlanningInfo.instance.GetNextScene());
