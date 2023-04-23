@@ -39,8 +39,13 @@ public class LevelConstructor : MonoBehaviour
                     if (currentChild.position.y - currentChild.lossyScale.x / 2 < minX.transform.position.y) minX = currentChild.gameObject;
                     if (currentChild.position.z + currentChild.lossyScale.z / 2 > maxZ.transform.position.z) maxZ = currentChild.gameObject;
                     if (currentChild.position.z - currentChild.lossyScale.z / 2 < minZ.transform.position.z) minZ = currentChild.gameObject;
-                    if (currentChild.TryGetComponent(out Renderer rend))
-                        rend.material = layoutMaterial;
+                    if (currentChild.TryGetComponent(out Renderer meshRend))
+                    {
+                        Material[] tempMats = new Material[meshRend.materials.Length];
+                        for (int i = 0; i < tempMats.Length; i++)
+                            tempMats[i] = layoutMaterial;
+                        meshRend.materials = tempMats;
+                    }
                     if (collidersOff && currentChild.TryGetComponent(out Collider col))
                         Destroy(col);
                 }

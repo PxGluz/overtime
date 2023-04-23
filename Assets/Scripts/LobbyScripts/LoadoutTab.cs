@@ -54,6 +54,8 @@ public class LoadoutTab : MonoBehaviour
             WeaponManager.Weapon[] weaponList = Player.m.weaponManager.WeaponsList;
             for (int i = 1; i < weaponList.Length; i++)
             {
+                if (weaponList[i].isDebug)
+                    continue;
                 LoadoutChoice choice = new LoadoutChoice();
                 foreach (Transform child in weaponList[i].WeaponModelOnPlayer.transform)
                     if (child.name == "AnimationPoint")

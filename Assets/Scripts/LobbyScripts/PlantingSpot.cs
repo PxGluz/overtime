@@ -40,6 +40,8 @@ public class PlantingSpot : MonoBehaviour
         WeaponManager.Weapon[] weaponList = Player.m.weaponManager.WeaponsList;
         for (int i = 1; i < weaponList.Length; i++)
         {
+            if (weaponList[i].isDebug)
+                continue;
             LoadoutTab.LoadoutChoice choice = new LoadoutTab.LoadoutChoice();
             foreach (Transform child in weaponList[i].WeaponModelOnPlayer.transform)
                 if (child.name == "AnimationPoint")

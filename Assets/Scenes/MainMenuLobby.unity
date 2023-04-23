@@ -1718,6 +1718,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &458161241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1989,6 +1995,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &491146265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4078,6 +4090,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &1113789963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4276,6 +4294,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!65 &1132083225
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4757,6 +4781,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &1215352181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5158,6 +5188,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &1252547254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5347,6 +5383,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 151819919703604831, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 151819919703604831, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2232755718273037802, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2232755718273037802, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3982301615608917476, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -5394,6 +5446,22 @@ PrefabInstance:
     - target: {fileID: 3982301615608917483, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
       propertyPath: m_Name
       value: Player Package
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865484552014406383, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865484552014406383, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071519469513764254, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071519469513764254, guid: bfa6c63336e06614dbbe187c9ebdbf79, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6369,10 +6437,28 @@ MonoBehaviour:
   levelList:
   - script: {fileID: 0}
     isLocked: 0
-    levelName: Demo Level
+    levelName: Level1
     highscore: 0
-    levelScene: Demo Scene
-    levelLayout: {fileID: 1875067043126417977, guid: a2d563d71326f3e4e946a82863965a49, type: 3}
+    levelScene: Level1
+    levelLayout: {fileID: 7579594732658734828, guid: 8b9bad8398669e046910c49f8166b734, type: 3}
+  - script: {fileID: 0}
+    isLocked: 0
+    levelName: Level2
+    highscore: 0
+    levelScene: Level2
+    levelLayout: {fileID: 5939096929976550785, guid: 23505cd74e3522146be44e6667bf7c2d, type: 3}
+  - script: {fileID: 0}
+    isLocked: 0
+    levelName: Level2
+    highscore: 0
+    levelScene: Level2
+    levelLayout: {fileID: 5119943754389971092, guid: 2493b3b257f61e9448459b1e305e8033, type: 3}
+  - script: {fileID: 0}
+    isLocked: 0
+    levelName: Level2
+    highscore: 0
+    levelScene: Level2
+    levelLayout: {fileID: 3767130507587135956, guid: f445e5840c022ae47b5e3eb3b52fbdca, type: 3}
   difficulty: {fileID: 0}
   selectedLevel: []
 --- !u!1 &1435583740
@@ -6869,6 +6955,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &1507153311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7395,6 +7487,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &1713292125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7855,6 +7953,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &1817590321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9160,6 +9264,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &1469772833503539627
 MonoBehaviour:
   m_ObjectHideFlags: 0

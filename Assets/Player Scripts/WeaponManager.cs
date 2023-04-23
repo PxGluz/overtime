@@ -54,6 +54,7 @@ public class WeaponManager : MonoBehaviour
 
         [Header("Loadout Related")] 
         public bool isUnlocked;
+        public bool isDebug;
     }
 
     [System.Serializable]
