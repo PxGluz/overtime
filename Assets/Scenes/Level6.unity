@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: e4abf35a8a901f3448f2e1f7b0398b50
+  m_OcclusionCullingData: {fileID: 36300000, guid: 556148652e6307545821cfaceeed3999, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 666075beab7e6be459b0c8352e8e2cbf, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.073997475, g: 0.07069679, b: 0.06985363, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: f9623f4882251a6438bae441bbc8e054, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -18141,6 +18141,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e19429fe5e43dc94784f6ebf13a1115d, type: 3}
+--- !u!1001 &939675194
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1008136839973068538, guid: 35029d8796a1e084eac5b28213d237ae, type: 3}
+      propertyPath: m_Name
+      value: Music System
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008136839973068543, guid: 35029d8796a1e084eac5b28213d237ae, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008136839973068543, guid: 35029d8796a1e084eac5b28213d237ae, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1384.612
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008136839973068543, guid: 35029d8796a1e084eac5b28213d237ae, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008136839973068543, guid: 35029d8796a1e084eac5b28213d237ae, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -581.10425
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008136839973068543, guid: 35029d8796a1e084eac5b28213d237ae, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008136839973068543, guid: 35029d8796a1e084eac5b28213d237ae, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008136839973068543, guid: 35029d8796a1e084eac5b28213d237ae, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008136839973068543, guid: 35029d8796a1e084eac5b28213d237ae, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008136839973068543, guid: 35029d8796a1e084eac5b28213d237ae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008136839973068543, guid: 35029d8796a1e084eac5b28213d237ae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008136839973068543, guid: 35029d8796a1e084eac5b28213d237ae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 35029d8796a1e084eac5b28213d237ae, type: 3}
 --- !u!1001 &950982546
 PrefabInstance:
   m_ObjectHideFlags: 0

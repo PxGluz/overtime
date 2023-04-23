@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3175721756568309228}
   - component: {fileID: 1998953413457789513}
   - component: {fileID: 4348580307765835395}
+  - component: {fileID: 6612135336508085509}
   m_Layer: 0
   m_Name: spotlight
   m_TagString: Untagged
@@ -27,12 +28,12 @@ Transform:
   m_GameObject: {fileID: 2835507104587683670}
   m_LocalRotation: {x: -0.7060042, y: -0.70620126, z: 0.039471813, w: -0.03577453}
   m_LocalPosition: {x: -0.97000027, y: -0.79999995, z: 0.9189999}
-  m_LocalScale: {x: 65.69999, y: 64.878746, z: 65.69998}
+  m_LocalScale: {x: 294.1, y: 920.7, z: 294.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8550272190979308045}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 6.1, y: -179.7, z: 90}
 --- !u!33 &1998953413457789513
 MeshFilter:
@@ -86,6 +87,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6612135336508085509
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2835507104587683670}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8603213276896033596, guid: 84cf018faa73b6542a526f627ca75caa, type: 3}
 --- !u!1 &8550272190979308044
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,14 +134,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8550272190979308044}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0, y: -0, z: 0.0001}
+  m_LocalRotation: {x: 0, y: 0.9886255, z: -0, w: -0.15039805}
+  m_LocalPosition: {x: 0.00118, y: -0.00002, z: -0.00456}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3175721756568309228}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 197.3, z: 0}
 --- !u!108 &8550272190979308035
 Light:
   m_ObjectHideFlags: 0
@@ -130,9 +153,9 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 0.9572856, b: 0, a: 1}
-  m_Intensity: 10
-  m_Range: 58
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 264.5
+  m_Range: 301.2
   m_SpotAngle: 90.68982
   m_InnerSpotAngle: 37.25338
   m_CookieSize: 10

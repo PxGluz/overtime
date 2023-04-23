@@ -52,7 +52,6 @@ public class AudioManager : MonoBehaviour
 
         SetDialogueAudioSettings();
 
-        Play("Gremory");
     }
 
     // This function is called by the "GiveMeSounds" script on Start to create it's audio sources

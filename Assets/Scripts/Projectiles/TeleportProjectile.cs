@@ -35,6 +35,8 @@ public class TeleportProjectile : MonoBehaviour
         {
             hasHit = true;
 
+            AudioManager.AM.Play("teleportLand");
+
             Physics.Raycast(transform.position, Vector3.down, out downHitRaycast, Mathf.Infinity, teleportProjectileCollisionLayer);
 
             Physics.Raycast(transform.position, Vector3.up, out upHitRaycast, Mathf.Infinity, teleportProjectileCollisionLayer);

@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
         scoringSystem.AddScore(100,"minus");
         print("The player took " + damage + " damage");
 
-        currentHealth -= damage > 34 ? 34 : damage;
+        currentHealth -= damage;
         
         playerHealthBar.UpdateHealthBar(currentHealth);
 
