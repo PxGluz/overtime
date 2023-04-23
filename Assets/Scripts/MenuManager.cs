@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +9,7 @@ public class MenuManager : MonoBehaviour
     
     public GameObject LoseScreen;
     public GameObject WinScreen;
-
+    public TextMeshProUGUI currentScore, highscore;
 
     /// <summary> Available menus: WinMenu, LoseMenu </summary>
     public void OpenMenu(string name)
@@ -32,6 +33,16 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    public void SetScore(float cScore, float hScore)
+    {
+        print("here");
+        if (WinScreen.activeInHierarchy)
+            return;
+        print("passed");
+        currentScore.text += cScore;
+        highscore.text += hScore;
+    }
+    
     public void CloseAllMenus() 
     {
         Player.m.playerCam.LockCursor();

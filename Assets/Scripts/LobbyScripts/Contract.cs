@@ -13,11 +13,13 @@ public class Contract : MonoBehaviour
     {
         public string levelName;
         public float highscore;
+        public bool isLocked;
 
-        public LevelData(string levelName, float highscore)
+        public LevelData(string levelName, float highscore, bool isLocked)
         {
             this.levelName = levelName;
             this.highscore = highscore;
+            this.isLocked = isLocked;
         }
     }
     private Vector3 destination;
@@ -87,7 +89,10 @@ public class Contract : MonoBehaviour
             {
                 foreach (Level.LevelInfo level in levelList)
                     if (level.levelScene.Equals(levelData.levelName))
+                    {
                         level.highscore = levelData.highscore;
+                        level.isLocked = levelData.isLocked;
+                    }
             }
         }
         if (loadoutTabsRoot == null)

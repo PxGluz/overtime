@@ -137,11 +137,19 @@ public class Player : MonoBehaviour
         if (data != null)
         {
             List<Contract.LevelData> levelDatas = data as List<Contract.LevelData>;
-            foreach (Contract.LevelData levelData in levelDatas)
-                if (levelData.levelName == SceneManager.GetActiveScene().name)
-                    levelData.highscore = Mathf.Max(levelData.highscore, scoringSystem.scoreValue);
+            for (int i = 0; i < levelDatas.Count; i++)
+            {
+                if (levelDatas[i].levelName == SceneManager.GetActiveScene().name)
+                {
+                    levelDatas[i].isLocked = false;
+                    levelDatas[i].highscore = Mathf.Max(levelDatas[i].highscore, scoringSystem.scoreValue);
+                    menuManager.SetScore(scoringSystem.scoreValue, levelDatas[i].highscore);
+                }
+            }
             SerializationManager.Save("levelInfo", levelDatas);
         }
+        else
+            menuManager.SetScore(scoringSystem.scoreValue, scoringSystem.scoreValue);
         scoringSystem.combo.transform.parent.gameObject.SetActive(false);
         gameObject.SetActive(false);
         playerCam.enabled = false;
@@ -155,7 +163,6 @@ public class Player : MonoBehaviour
         }
 
         menuManager.OpenMenu("WinMenu");
-        print("Won");
     }
 
     public void SnapEffects(bool toZero = false, string vigType="good")

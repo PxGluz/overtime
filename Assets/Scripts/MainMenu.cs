@@ -75,7 +75,7 @@ public class MainMenu : MonoBehaviour
                 List<Contract.LevelData> levelData = new List<Contract.LevelData>();
                 foreach (Contract contract in contracts)
                     foreach (Level.LevelInfo level in contract.levelList)
-                        levelData.Add(new Contract.LevelData(level.levelScene, level.highscore));
+                        levelData.Add(new Contract.LevelData(level.levelScene, level.highscore, level.isLocked));
 
                 SerializationManager.Save("levelInfo", levelData);
             }
@@ -140,7 +140,7 @@ public class MainMenu : MonoBehaviour
             List<Contract.LevelData> data = new List<Contract.LevelData>();
             foreach (Contract contract in contracts)
                 foreach (Level.LevelInfo level in contract.levelList)
-                    data.Add(new Contract.LevelData(level.levelScene, level.highscore));
+                    data.Add(new Contract.LevelData(level.levelScene, level.highscore, level.isLocked));
 
             SerializationManager.Save("levelInfo", data);
         }

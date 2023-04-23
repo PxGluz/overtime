@@ -6449,15 +6449,15 @@ MonoBehaviour:
     levelLayout: {fileID: 5939096929976550785, guid: 23505cd74e3522146be44e6667bf7c2d, type: 3}
   - script: {fileID: 0}
     isLocked: 0
-    levelName: Level2
+    levelName: Level3
     highscore: 0
-    levelScene: Level2
+    levelScene: Level3
     levelLayout: {fileID: 5119943754389971092, guid: 2493b3b257f61e9448459b1e305e8033, type: 3}
   - script: {fileID: 0}
     isLocked: 0
-    levelName: Level2
+    levelName: Level4
     highscore: 0
-    levelScene: Level2
+    levelScene: Level4
     levelLayout: {fileID: 3767130507587135956, guid: f445e5840c022ae47b5e3eb3b52fbdca, type: 3}
   difficulty: {fileID: 0}
   selectedLevel: []
