@@ -138,7 +138,7 @@ public class Contract : MonoBehaviour
                     empty.gameObject.AddComponent(typeof(MeshCollider));
                 else
                     canPlan = false;
-                empty.gameObject.AddComponent(typeof(Outline));
+                //empty.gameObject.AddComponent(typeof(Outline));
                 Level lv = empty.gameObject.AddComponent(typeof(Level)) as Level;
                 levelList[level.GetSiblingIndex()].script = lv;
                 lv.levelInfo = levelList[level.GetSiblingIndex()];

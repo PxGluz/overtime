@@ -3944,15 +3944,15 @@ MonoBehaviour:
     DamageSphereRadius: 0
     meleeAttackSpeed: 0
     shootPoint: {fileID: 1910153133}
-    bulletDamage: 20
+    bulletDamage: 40
     ammoBar: {fileID: 780364309}
     gunShootForce: 80
     gunUpwardForce: 0
     gunTimeBetweenShooting: 0.8
     gunSpread: 0.15
     gunReloadTime: 0.5
-    gunMagazineSize: 50
-    gunBulletsPerTap: 5
+    gunMagazineSize: 12
+    gunBulletsPerTap: 3
     gunTimeBetweenShots: 0.08
     gunAllowButtonHold: 1
     isUnlocked: 1
@@ -15756,16 +15756,7 @@ MonoBehaviour:
   - groupName: Music
     MixerGroup: {fileID: -2666816003108748937, guid: d390e54cd3745a74f9ce824e8bd8bbaf, type: 2}
     soundList:
-    - name: Olimpiada
-      clip: {fileID: 8300000, guid: d638b00345ccc4746948fae8795da69a, type: 3}
-      source: {fileID: 0}
-      volume: 1
-      pitch: 1
-      loop: 1
-      is3DSound: 0
-      soundRange: 0
-      useLinearVolumeRollOff: 0
-    - name: Gremory
+    - name: BackGroundMusic
       clip: {fileID: 8300000, guid: e23a6a2b7411d4048a7f884c82e0e7f4, type: 3}
       source: {fileID: 0}
       volume: 0.01
