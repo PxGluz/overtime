@@ -68476,37 +68476,37 @@ MonoBehaviour:
   levelList:
   - script: {fileID: 0}
     isLocked: 0
-    levelName: Level1
+    levelName: Level 1
     highscore: 0
     levelScene: Level1
     levelLayout: {fileID: 7579594732658734828, guid: 8b9bad8398669e046910c49f8166b734, type: 3}
   - script: {fileID: 0}
-    isLocked: 1
-    levelName: Level2
+    isLocked: 0
+    levelName: Level 2
     highscore: 0
     levelScene: Level2
     levelLayout: {fileID: 5939096929976550785, guid: 23505cd74e3522146be44e6667bf7c2d, type: 3}
   - script: {fileID: 0}
-    isLocked: 1
-    levelName: Level3
+    isLocked: 0
+    levelName: Level 3
     highscore: 0
     levelScene: Level3
     levelLayout: {fileID: 5119943754389971092, guid: 2493b3b257f61e9448459b1e305e8033, type: 3}
   - script: {fileID: 0}
-    isLocked: 1
-    levelName: Level4
+    isLocked: 0
+    levelName: Level 4
     highscore: 0
     levelScene: Level4
     levelLayout: {fileID: 3767130507587135956, guid: f445e5840c022ae47b5e3eb3b52fbdca, type: 3}
   - script: {fileID: 0}
-    isLocked: 1
-    levelName: Level5
+    isLocked: 0
+    levelName: Level 5
     highscore: 0
     levelScene: Level5
     levelLayout: {fileID: 8821013550403655631, guid: 29f5c5c618530ce43af8a3c678d7552f, type: 3}
   - script: {fileID: 0}
-    isLocked: 1
-    levelName: Level6
+    isLocked: 0
+    levelName: Level 6
     highscore: 0
     levelScene: Level6
     levelLayout: {fileID: 4349358253604137091, guid: 152ca290218b20941be348f9c363757e, type: 3}
