@@ -66,7 +66,7 @@ public class AudioManager : MonoBehaviour
         newSound.name = s.name;
         newSound.clip = s.clip;
         newSound.volume = s.volume;
-        newSound.pitch = s.pitch + UnityEngine.Random.Range(-0.15f,0.15f);
+        newSound.pitch = s.pitch;
         newSound.loop = s.loop;
         newSound.is3DSound= s.is3DSound;
         newSound.soundRange= s.soundRange;
