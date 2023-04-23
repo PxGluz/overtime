@@ -34,7 +34,8 @@ public class Contract : MonoBehaviour
     [HideInInspector]public Material layoutMaterial;
     [HideInInspector]public PlanningManager planningManager;
     [HideInInspector]public Transform loadoutTabsRoot;
-
+    public Material normalMat, highlightedMat;
+    
     [Header("Animation Related")]
     public float animationSpeed;
     [HideInInspector]public bool closing;
@@ -140,6 +141,9 @@ public class Contract : MonoBehaviour
                     canPlan = false;
                 //empty.gameObject.AddComponent(typeof(Outline));
                 Level lv = empty.gameObject.AddComponent(typeof(Level)) as Level;
+                lv.layoutParent = empty;
+                lv.normalMat = normalMat;
+                lv.highlightedMat = highlightedMat;
                 levelList[level.GetSiblingIndex()].script = lv;
                 lv.levelInfo = levelList[level.GetSiblingIndex()];
                 lv.contract = this;
@@ -147,6 +151,7 @@ public class Contract : MonoBehaviour
                 lv.enabled = false;
                 Interactable inter = empty.gameObject.AddComponent(typeof(Interactable)) as Interactable;
                 inter.scriptToStart = lv;
+                inter.isLevel = true;
                 empty.transform.SetParent(level);
             }
         }

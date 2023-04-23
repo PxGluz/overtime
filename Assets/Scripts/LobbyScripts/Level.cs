@@ -20,8 +20,9 @@ public class Level : MonoBehaviour
     [Header("Static References")]
     [HideInInspector]public Transform details;
     public Contract contract;
-
+    public Material normalMat, highlightedMat;
     
+    [HideInInspector]public GameObject layoutParent;
     [HideInInspector]public bool isClosed, deselecting;
     [HideInInspector]public LevelInfo levelInfo;
 
@@ -33,7 +34,20 @@ public class Level : MonoBehaviour
         destination = new Vector3(1f, 0f, 1f);
     }
 
-    // TODO: still not wokring
+    public void ChangeHighlight(Material newMat)
+    {
+        foreach (Transform piece in layoutParent.transform)
+        {
+            if (piece.TryGetComponent(out MeshRenderer meshRend))
+            {
+                Material[] tempMats = new Material[meshRend.materials.Length];
+                for (int i = 0; i < tempMats.Length; i++)
+                    tempMats[i] = newMat;
+                meshRend.materials = tempMats;
+            }
+        }
+    }
+    
     void Update()
     {
         details.localScale = Vector3.Lerp(details.localScale, destination, contract.animationSpeed * 2);

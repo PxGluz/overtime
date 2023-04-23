@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.886
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.065561764, g: 0.06263736, b: 0.06189032, a: 0.886}
+  m_IndirectSpecularColor: {r: 0.06555367, g: 0.062629744, b: 0.061883777, a: 0.886}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21104,6 +21104,7 @@ MonoBehaviour:
   itemName: 
   isWeaponPickUp: 0
   isChoice: 1
+  isLevel: 0
   quantity: 0
   TriggerFunction: 0
   myAttackPoint: {fileID: 0}
@@ -22780,6 +22781,7 @@ MonoBehaviour:
   itemName: 
   isWeaponPickUp: 0
   isChoice: 0
+  isLevel: 0
   quantity: 0
   TriggerFunction: 0
   myAttackPoint: {fileID: 0}
@@ -52765,6 +52767,7 @@ MonoBehaviour:
   itemName: 
   isWeaponPickUp: 0
   isChoice: 0
+  isLevel: 0
   quantity: 0
   TriggerFunction: 0
   myAttackPoint: {fileID: 0}
@@ -53789,6 +53792,7 @@ MonoBehaviour:
   itemName: 
   isWeaponPickUp: 0
   isChoice: 0
+  isLevel: 0
   quantity: 0
   TriggerFunction: 0
   myAttackPoint: {fileID: 0}
@@ -57913,6 +57917,7 @@ MonoBehaviour:
   itemName: 
   isWeaponPickUp: 0
   isChoice: 0
+  isLevel: 0
   quantity: 0
   TriggerFunction: 0
   myAttackPoint: {fileID: 0}
@@ -60088,6 +60093,7 @@ MonoBehaviour:
   itemName: 
   isWeaponPickUp: 0
   isChoice: 0
+  isLevel: 0
   quantity: 0
   TriggerFunction: 0
   myAttackPoint: {fileID: 0}
@@ -68207,6 +68213,8 @@ MonoBehaviour:
   layoutMaterial: {fileID: 2100000, guid: 89cfd5b9257cb514c9192ba08751fdf2, type: 2}
   planningManager: {fileID: 0}
   loadoutTabsRoot: {fileID: 1744379543}
+  normalMat: {fileID: 2100000, guid: 89cfd5b9257cb514c9192ba08751fdf2, type: 2}
+  highlightedMat: {fileID: 2100000, guid: a220164273daaf240b933797ad0337f2, type: 2}
   animationSpeed: 0.05
   closing: 0
   levelList:
@@ -68217,31 +68225,31 @@ MonoBehaviour:
     levelScene: Level1
     levelLayout: {fileID: 7579594732658734828, guid: 8b9bad8398669e046910c49f8166b734, type: 3}
   - script: {fileID: 0}
-    isLocked: 0
+    isLocked: 1
     levelName: Level2
     highscore: 0
     levelScene: Level2
     levelLayout: {fileID: 5939096929976550785, guid: 23505cd74e3522146be44e6667bf7c2d, type: 3}
   - script: {fileID: 0}
-    isLocked: 0
+    isLocked: 1
     levelName: Level3
     highscore: 0
     levelScene: Level3
     levelLayout: {fileID: 5119943754389971092, guid: 2493b3b257f61e9448459b1e305e8033, type: 3}
   - script: {fileID: 0}
-    isLocked: 0
+    isLocked: 1
     levelName: Level4
     highscore: 0
     levelScene: Level4
     levelLayout: {fileID: 3767130507587135956, guid: f445e5840c022ae47b5e3eb3b52fbdca, type: 3}
   - script: {fileID: 0}
-    isLocked: 0
+    isLocked: 1
     levelName: Level5
     highscore: 0
     levelScene: Level5
     levelLayout: {fileID: 8821013550403655631, guid: 29f5c5c618530ce43af8a3c678d7552f, type: 3}
   - script: {fileID: 0}
-    isLocked: 0
+    isLocked: 1
     levelName: Level6
     highscore: 0
     levelScene: Level6
@@ -72464,6 +72472,7 @@ MonoBehaviour:
   itemName: 
   isWeaponPickUp: 0
   isChoice: 1
+  isLevel: 0
   quantity: 0
   TriggerFunction: 0
   myAttackPoint: {fileID: 0}
@@ -81058,6 +81067,7 @@ MonoBehaviour:
   itemName: 
   isWeaponPickUp: 0
   isChoice: 0
+  isLevel: 0
   quantity: 0
   TriggerFunction: 0
   myAttackPoint: {fileID: 0}
@@ -85702,6 +85712,7 @@ MonoBehaviour:
   itemName: 
   isWeaponPickUp: 0
   isChoice: 0
+  isLevel: 0
   quantity: 0
   TriggerFunction: 0
   myAttackPoint: {fileID: 0}
@@ -99169,6 +99180,7 @@ MonoBehaviour:
   itemName: 
   isWeaponPickUp: 0
   isChoice: 0
+  isLevel: 0
   quantity: 0
   TriggerFunction: 0
   myAttackPoint: {fileID: 0}

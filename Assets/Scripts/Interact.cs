@@ -46,7 +46,11 @@ public class Interact : MonoBehaviour
 
                 itemBeingPickedUp = hitItem;
 
-                if (itemBeingPickedUp.myOutline != null)
+                if (itemBeingPickedUp.isLevel)
+                {
+                    itemBeingPickedUp.GetComponent<Level>().ChangeHighlight(itemBeingPickedUp.GetComponent<Level>().highlightedMat);
+                }
+                else if (itemBeingPickedUp.myOutline != null)
                 {
                     itemBeingPickedUp.myOutline.OutlineColor = new Color(itemBeingPickedUp.myOutline.OutlineColor.r, itemBeingPickedUp.myOutline.OutlineColor.g, itemBeingPickedUp.myOutline.OutlineColor.b, 1);
                     if (itemBeingPickedUp.isWeaponPickUp)
@@ -64,7 +68,11 @@ public class Interact : MonoBehaviour
         if (itemBeingPickedUp == null)
             return;
 
-        if (itemBeingPickedUp.myOutline != null)
+        if (itemBeingPickedUp.isLevel)
+        {
+            itemBeingPickedUp.GetComponent<Level>().ChangeHighlight(itemBeingPickedUp.GetComponent<Level>().normalMat);
+        }
+        else if (itemBeingPickedUp.myOutline != null)
         {
             itemBeingPickedUp.myOutline.OutlineColor = new Color(itemBeingPickedUp.myOutline.OutlineColor.r, itemBeingPickedUp.myOutline.OutlineColor.g, itemBeingPickedUp.myOutline.OutlineColor.b, 0);
             if (itemBeingPickedUp.isWeaponPickUp)
