@@ -25044,7 +25044,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00000047683716, y: -0.49}
+  m_AnchoredPosition: {x: -0.00000047683716, y: -0.43}
   m_SizeDelta: {x: 3.59, y: 2.6698}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2128972874
@@ -25067,7 +25067,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Use E to pick-up the gun
+  m_text: 'Press or Hold E to pick-up the gun
+
+    Remaining ammo is displayed on
+    guns'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 228ca8f4db79aa54b9dcc6dc796c303f, type: 2}
   m_sharedMaterial: {fileID: -1272689788896497705, guid: 228ca8f4db79aa54b9dcc6dc796c303f, type: 2}
@@ -25094,8 +25097,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.4
-  m_fontSizeBase: 0.4
+  m_fontSize: 0.3
+  m_fontSizeBase: 0.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

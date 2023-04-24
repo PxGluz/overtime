@@ -3949,7 +3949,7 @@ MonoBehaviour:
     gunShootForce: 80
     gunUpwardForce: 0
     gunTimeBetweenShooting: 0.8
-    gunSpread: 0.15
+    gunSpread: 0.1
     gunReloadTime: 0.5
     gunMagazineSize: 12
     gunBulletsPerTap: 3
@@ -13302,7 +13302,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157149139719264051}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -15993,7 +15993,7 @@ Transform:
   - {fileID: 1729107591977782504}
   - {fileID: 3114260299712832990}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3982301615698761916
 GameObject:
@@ -18660,7 +18660,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b9abab9453f5c4a4393fb396159a0363, type: 2}
+  - {fileID: 2100000, guid: c29e3c5f8e725d941a9b36830cb0c476, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

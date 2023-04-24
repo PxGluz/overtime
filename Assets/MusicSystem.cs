@@ -31,7 +31,7 @@ public class MusicSystem : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         soundMaster = GetComponent<NeedSounds>();
-        soundMaster.Play("BackGroundMusic");
+        soundMaster.StandardPlay("BackGroundMusic");
         //functionality here
     }
 }
