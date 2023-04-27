@@ -18,23 +18,25 @@ public class BulletCollision : MonoBehaviour
         Player.m.AnnounceEnemy(transform.position, Player.m.EnemyAnnoucedByWeaponRange);
     }
 
+    private Vector3 lastPos;
     private void FixedUpdate()
     {
-        Debug.DrawRay(transform.position, transform.forward * 2f, Color.yellow);
+        Debug.DrawRay(lastPos, transform.forward * Vector3.Distance(lastPos,transform.position), Color.yellow);
 
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 2f))
+        if (Physics.Raycast(lastPos, transform.forward, out hit, Vector3.Distance(lastPos, transform.position)))
         {
-            if (Player.m.PointDebug != null)
-                Player.m.PointDebug.transform.position =  hit.point;
 
             HandleLayerLogic(hit);
         }
+        lastPos = transform.position;
     }
 
     public void HandleLayerLogic(RaycastHit hit)
     {
+        if (LayerMask.LayerToName(hit.collider.gameObject.gameObject.layer) == "Player")
+            return;
 
         DestroyWhenShot destroyWhenShot = hit.collider.gameObject.GetComponent<DestroyWhenShot>();
         if (destroyWhenShot != null)
@@ -68,11 +70,11 @@ public class BulletCollision : MonoBehaviour
                 break;
 
         }
+        print(LayerMask.LayerToName(hit.collider.gameObject.layer));
+        print(hit.collider.gameObject.name);
 
-        if (LayerMask.LayerToName(hit.collider.gameObject.gameObject.layer) != "Player")
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
+        
     }
 
     private void Expire()
