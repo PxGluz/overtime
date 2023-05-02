@@ -1,6 +1,4 @@
 using CameraShake;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -55,14 +53,14 @@ public class Player : MonoBehaviour
     public BounceShake.Params takeDamageShakeParams;
     public BounceShake.Params killEnemyShakeParams;
 
-    [Header("PostProcessing")] 
+    [Header("PostProcessing")]
     private float vigTarget = 0;
     public float vigIntensity;
     private float bloomTarget = 0;
     public float bloomIntensity;
     private float lensTarget = 0;
     public float lensIntensity;
-    
+
     [Header("Stats:")]
     public float MaxHealth;
     public float currentHealth;
@@ -99,11 +97,11 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damage)
     {
         CameraShaker.Shake(new BounceShake(takeDamageShakeParams, transform.position));
-        scoringSystem.AddScore(100,"minus");
+        scoringSystem.AddScore(100, "minus");
         print("The player took " + damage + " damage");
 
         currentHealth -= damage;
-        
+
         playerHealthBar.UpdateHealthBar(currentHealth);
 
 
@@ -121,8 +119,8 @@ public class Player : MonoBehaviour
 
 
         Transform[] cameraChildren = playerCam.gameObject.GetComponentsInChildren<Transform>();
-       
-        for (int i = 1; i < cameraChildren.Length; i++) 
+
+        for (int i = 1; i < cameraChildren.Length; i++)
         {
             cameraChildren[i].gameObject.SetActive(false);
         }
@@ -130,7 +128,7 @@ public class Player : MonoBehaviour
         menuManager.OpenMenu("LoseMenu");
         print("The player has died");
     }
-    
+
     public void YouWin()
     {
         object data = SerializationManager.Load("levelInfo");
@@ -156,8 +154,8 @@ public class Player : MonoBehaviour
 
 
         Transform[] cameraChildren = playerCam.gameObject.GetComponentsInChildren<Transform>();
-       
-        for (int i = 1; i < cameraChildren.Length; i++) 
+
+        for (int i = 1; i < cameraChildren.Length; i++)
         {
             cameraChildren[i].gameObject.SetActive(false);
         }
@@ -165,7 +163,7 @@ public class Player : MonoBehaviour
         menuManager.OpenMenu("WinMenu");
     }
 
-    public void SnapEffects(bool toZero = false, string vigType="good")
+    public void SnapEffects(bool toZero = false, string vigType = "good")
     {
         if (vigType == "minus")
         {
@@ -174,7 +172,7 @@ public class Player : MonoBehaviour
         }
         else
             if (volume.TryGet(out Vignette vig))
-                vig.color.value = Color.cyan;
+            vig.color.value = Color.cyan;
         if (volume)
         {
             if (volume.TryGet(out Vignette vig))
@@ -185,7 +183,7 @@ public class Player : MonoBehaviour
                 lnsD.intensity.value = toZero ? 0 : lensIntensity;
         }
     }
-    
+
     public void Slowing()
     {
         if (volume.TryGet(out Vignette vig))
@@ -201,7 +199,7 @@ public class Player : MonoBehaviour
         bloomTarget = 0.5f;
         lensTarget = 0;
     }
-    
+
     void SlowTimeLogic()
     {
         if (volume)
@@ -214,7 +212,7 @@ public class Player : MonoBehaviour
                 lnsD.intensity.value = Mathf.SmoothDamp(lnsD.intensity.value, lensTarget, ref ref4, smoothTime);
         }
     }
-    
+
 
     private void Update()
     {
@@ -224,7 +222,7 @@ public class Player : MonoBehaviour
             canPressEscape = false;
             mainMenu.PressedEscape();
         }
-        
+
     }
 
     public LayerMask AnnouceHitLayer;
@@ -245,14 +243,14 @@ public class Player : MonoBehaviour
                 continue;
 
 
-            Vector3 dir = sourcePosition- enemyMovement.transform.position;
+            Vector3 dir = sourcePosition - enemyMovement.transform.position;
 
             if (Mathf.Abs(Vector3.Angle(enemyMovement.transform.forward, Vector3.Normalize(dir))) > 180f * 0.5f)
                 continue;
 
             Physics.Raycast(sourcePosition, Vector3.Normalize(-dir), out RaycastHit hitInfo, announceRange, AnnouceHitLayer);
             Debug.DrawRay(sourcePosition, Vector3.Normalize(-dir), Color.red);
-     
+
             if (hitInfo.transform != null && LayerMask.LayerToName(hitInfo.transform.gameObject.layer) != "Enemy")
             {
                 continue;

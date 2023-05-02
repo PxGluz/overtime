@@ -1,13 +1,12 @@
-﻿using UnityEngine.Audio;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 
 public class AudioManager : MonoBehaviour
-{	
-	public static AudioManager AM;
+{
+    public static AudioManager AM;
 
     public AudioMixer audioMixer;
 
@@ -37,15 +36,15 @@ public class AudioManager : MonoBehaviour
 
         foreach (var listWithGroup in SoundTypeLists)
         {
-            foreach(var sound in listWithGroup.soundList)
+            foreach (var sound in listWithGroup.soundList)
             {
                 if (sound.name == "")
                     continue;
 
                 listOfAllSounds.Add(sound);
-                
+
                 sound.source = gameObject.AddComponent<AudioSource>();
-                
+
                 SetTheAudioSettings(sound);
             }
         }
@@ -68,8 +67,8 @@ public class AudioManager : MonoBehaviour
         newSound.volume = s.volume;
         newSound.pitch = s.pitch;
         newSound.loop = s.loop;
-        newSound.is3DSound= s.is3DSound;
-        newSound.soundRange= s.soundRange;
+        newSound.is3DSound = s.is3DSound;
+        newSound.soundRange = s.soundRange;
         newSound.useLinearVolumeRollOff = s.useLinearVolumeRollOff;
 
         newSound.source = target.AddComponent<AudioSource>();
@@ -221,7 +220,7 @@ public class AudioManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.O))
-            PlayFromDialogueGroupByID("tutorial",1);
+            PlayFromDialogueGroupByID("tutorial", 1);
     }
 
 

@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerTeleport : MonoBehaviour
 {
     public Transform shootOriginPoint;
-    
+
     public GameObject teleportProjectilePrefab;
 
     public bool readyToTeleport;
@@ -74,7 +72,7 @@ public class PlayerTeleport : MonoBehaviour
         Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwUpwardForce;
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
-        
+
         //Invoke(nameof(ResetThrow), teleportCooldown);
     }
 

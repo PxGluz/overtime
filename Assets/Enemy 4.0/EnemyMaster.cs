@@ -1,5 +1,4 @@
 using CameraShake;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,9 +52,9 @@ public class EnemyMaster : MonoBehaviour
         if (currentHealth == 0f)
             currentHealth = maxHealth;
 
-        if (myWeapon == "" )
+        if (myWeapon == "")
             myWeapon = "Knife";
-       
+
         myWeaponClass = Player.m.weaponManager.GetWeaponByName(myWeapon);
         NerfEnemyWeapons();
         enemyType = myWeaponClass.attackType.ToString();
@@ -128,7 +127,7 @@ public class EnemyMaster : MonoBehaviour
             isStunned = false;
     }
 
-    public void TakeDamage(float damage, GameObject bodyPart=null, Vector3 direction=new Vector3(), Vector3 contactPoint = new Vector3(), bool isHeadShot = false)
+    public void TakeDamage(float damage, GameObject bodyPart = null, Vector3 direction = new Vector3(), Vector3 contactPoint = new Vector3(), bool isHeadShot = false)
     {
         Player.m.particleManager.CreateParticle(contactPoint, direction, "bulletHit");
 
@@ -148,7 +147,7 @@ public class EnemyMaster : MonoBehaviour
             print("HEADSHOT");
         }
 
-        enemyHealthBar.UpdateHealthBar( Mathf.Max(0, currentHealth - damage));
+        enemyHealthBar.UpdateHealthBar(Mathf.Max(0, currentHealth - damage));
         enemyHealthBar.activateHealthSliders(true);
 
         currentHealth = Mathf.Max(0, currentHealth - damage);
@@ -157,8 +156,8 @@ public class EnemyMaster : MonoBehaviour
 
         if (enemyMovement != null)
             enemyMovement.Announce(false);
-        
-        if (currentHealth <= 0) 
+
+        if (currentHealth <= 0)
         {
             Die(bodyPart, direction, isHeadShot);
         }
@@ -170,11 +169,11 @@ public class EnemyMaster : MonoBehaviour
         }
     }
 
-    public void Die(GameObject bodyPart=null, Vector3 direction=new Vector3(),bool isHeadShot = false)
+    public void Die(GameObject bodyPart = null, Vector3 direction = new Vector3(), bool isHeadShot = false)
     {
         if (!isDead)
         {
-            Player.m.scoringSystem.AddScore(isHeadShot ? 100: 50, "good");
+            Player.m.scoringSystem.AddScore(isHeadShot ? 100 : 50, "good");
         }
         isDead = true;
 
@@ -241,7 +240,7 @@ public class EnemyMaster : MonoBehaviour
     public void IncapacitateEnemy()
     {
         soundManager.Stop("enemyFootSteps");
-        
+
         //Destroy Enemy Scripts:
         if (enemyMovement != null)
         {
@@ -284,12 +283,12 @@ public class EnemyMaster : MonoBehaviour
                 location = enemyMelee.KnifePosition;
                 break;
         }
-        
+
         weaponInHand = Instantiate(myWeaponClass.WeaponPrefab, location.position, location.rotation);
         weaponInHand.transform.parent = location.transform;
 
-        Invoke(nameof(SetWeaponInHandToPosition),0.1f);
-        
+        Invoke(nameof(SetWeaponInHandToPosition), 0.1f);
+
         // Delete all scripts on the prefab
         foreach (var comp in weaponInHand.GetComponents<Component>())
         {
@@ -311,7 +310,7 @@ public class EnemyMaster : MonoBehaviour
             child.gameObject.layer = LayerMask.NameToLayer("Enemy");
 
         Collider[] weaponColliders = weaponInHand.GetComponentsInChildren<Collider>(includeInactive: true);
-        foreach(Collider coll in weaponColliders)
+        foreach (Collider coll in weaponColliders)
         {
             Destroy(coll);
         }

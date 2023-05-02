@@ -1,4 +1,3 @@
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 
@@ -43,7 +42,7 @@ public class DamageOnCollision : MonoBehaviour
         if (enemy != null)
         {
             if (collision.gameObject.name == "spine.006")
-                enemy.TakeDamage(thrownProjectile.damage, collision.gameObject, transform.forward * 30f, contactPoint:collision.contacts[0].point,true);
+                enemy.TakeDamage(thrownProjectile.damage, collision.gameObject, transform.forward * 30f, contactPoint: collision.contacts[0].point, true);
             else
                 enemy.TakeDamage(thrownProjectile.damage, collision.gameObject, transform.forward * 30f, contactPoint: collision.contacts[0].point);
 
@@ -58,7 +57,7 @@ public class DamageOnCollision : MonoBehaviour
         if (destroyWhenShot != null)
             destroyWhenShot.ReceiveHit();
 
-        if ( Player.m.weaponManager.GetWeaponType(interact.itemName) == "melee" )
+        if (Player.m.weaponManager.GetWeaponType(interact.itemName) == "melee")
         {
             Rigidbody collisionRigidBody = collision.gameObject.GetComponent<Rigidbody>();
 

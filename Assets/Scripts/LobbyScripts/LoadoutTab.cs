@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class LoadoutTab : MonoBehaviour
@@ -13,10 +11,10 @@ public class LoadoutTab : MonoBehaviour
         public string choiceName;
         public bool isUnlocked;
     }
-    
-    [HideInInspector]public List<LoadoutChoice> loadoutChoice = new List<LoadoutChoice>();
-    [HideInInspector]public int selectedChoice = 0;
-    [HideInInspector]public ListDisplay listDisplay;
+
+    [HideInInspector] public List<LoadoutChoice> loadoutChoice = new List<LoadoutChoice>();
+    [HideInInspector] public int selectedChoice = 0;
+    [HideInInspector] public ListDisplay listDisplay;
 
     private Vector3 destination;
     private bool checker = true;
@@ -64,7 +62,7 @@ public class LoadoutTab : MonoBehaviour
                 choice.isUnlocked = weaponList[i].isUnlocked;
                 loadoutChoice.Add(choice);
             }
-            listDisplay.ResetList(loadoutChoice, lTab:this);
+            listDisplay.ResetList(loadoutChoice, lTab: this);
             enabled = false;
             checker = true;
         }

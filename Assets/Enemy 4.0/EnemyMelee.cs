@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -79,7 +78,7 @@ public class EnemyMelee : MonoBehaviour
                         thisAttackHasHitThePlayer = true;
                         Player.m.TakeDamage(enemy.myWeaponClass.meleeDamage);
                     }
-                break;
+                    break;
             }
         }
     }
@@ -101,10 +100,10 @@ public class EnemyMelee : MonoBehaviour
         }
     }
 
-    
+
     void OnDrawGizmosSelected()
     {
-        for (int i = 0; i < meleeDamagePoints.Count;i++)
+        for (int i = 0; i < meleeDamagePoints.Count; i++)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(meleeDamagePoints[i].DamageSphereOrigin.position, meleeDamagePoints[i].DamageSphereRange);
@@ -113,5 +112,5 @@ public class EnemyMelee : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(enemy.EnemyCenter.position, DistanceToStartPunch);
     }
-    
+
 }

@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,7 +21,7 @@ public class CrossHairLogic : MonoBehaviour
 
     private void Start()
     {
-        XImage.color = new Color(XImage.color.r, XImage.color.g, XImage.color.b,0);
+        XImage.color = new Color(XImage.color.r, XImage.color.g, XImage.color.b, 0);
 
         restingSize = crossHair.sizeDelta.x;
         currentSize = restingSize;
@@ -93,7 +91,7 @@ public class CrossHairLogic : MonoBehaviour
 
             currentSize = Mathf.Lerp(currentSize, restingSize * sizeMultiplier, time / reachMaxSizeSpeed);
 
-            crossHair.sizeDelta = new Vector2(currentSize,currentSize); 
+            crossHair.sizeDelta = new Vector2(currentSize, currentSize);
 
             yield return 0;
 
@@ -112,5 +110,5 @@ public class CrossHairLogic : MonoBehaviour
 
         } while (time < reachRestingSizeSpeed);
     }
-    
+
 }

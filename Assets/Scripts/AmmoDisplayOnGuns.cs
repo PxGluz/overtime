@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class AmmoDisplayOnGuns : MonoBehaviour
 {
-    [SerializeField]private GameObject ammo;
+    [SerializeField] private GameObject ammo;
     void Start()
     {
         Interactable inter = GetComponent<Interactable>();

@@ -9,7 +9,7 @@ public class HoldHighlight : MonoBehaviour
     private float destinationColor = 0, refFloat;
     [SerializeField] private float smoothTime;
     private Interact interact = null;
-        
+
     void Start()
     {
         if (gameObject.TryGetComponent(out Interactable inter))

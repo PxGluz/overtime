@@ -1,5 +1,4 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
 
 
@@ -42,7 +41,8 @@ public class EnemyRanged : MonoBehaviour
 
         if (enemy.enemyMovement.canSeePlayer)
         {
-            if (!isRaisingArms && !enemy.animator.GetBool("isAiming")) {
+            if (!isRaisingArms && !enemy.animator.GetBool("isAiming"))
+            {
                 isRaisingArms = true;
                 Invoke(nameof(RaiseArmsUp), gunDrawTime);
                 enemy.animator.SetBool("isAiming", true);
@@ -54,11 +54,11 @@ public class EnemyRanged : MonoBehaviour
         if (isRaisingArms)
             return;
 
-        if ( readyToShoot && !reloading && bulletsleft <= 0)
+        if (readyToShoot && !reloading && bulletsleft <= 0)
             StartCoroutine(Reload(reloadCooldown));
 
         // Shooting
-        if ( enemy.enemyMovement.canSeePlayer && readyToShoot && !reloading && bulletsleft > 0)
+        if (enemy.enemyMovement.canSeePlayer && readyToShoot && !reloading && bulletsleft > 0)
         {
             bulletsShot = 0;
             enemy.StunEnemy(enemy.myWeaponClass.gunBulletsPerTap * enemy.myWeaponClass.gunTimeBetweenShots + 0.5f);
@@ -137,14 +137,14 @@ public class EnemyRanged : MonoBehaviour
         reloading = true;
 
         enemyAmmoReloadDisplay.SliderSetActive(true);
-        
+
         float time = 0.0f;
 
         do
         {
             time += Time.deltaTime;
 
-            enemyAmmoReloadDisplay.UpdateSliderValue(time/duration);
+            enemyAmmoReloadDisplay.UpdateSliderValue(time / duration);
 
             yield return 0;
 

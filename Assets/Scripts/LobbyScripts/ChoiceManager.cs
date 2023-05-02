@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ChoiceManager : MonoBehaviour
@@ -38,7 +34,7 @@ public class ChoiceManager : MonoBehaviour
                 Debug.LogError(child.name + " does not have Interactable.cs and should not be under a choice manager!");
         }
     }
-    
+
     private void Start()
     {
         UpdateChoice();

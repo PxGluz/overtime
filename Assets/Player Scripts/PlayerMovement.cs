@@ -1,6 +1,5 @@
 using CameraShake;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -26,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private bool readyToJump = true;
     public float gravityForce = 10f;
     private bool isAscending = false;
-    private bool isDescending = false; 
+    private bool isDescending = false;
     public BounceShake.Params fallShakeParams;
 
     [Header("Ground Check")]
@@ -47,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     public float slideCooldwon = 2;
     public bool CanSlide = true;
     private IEnumerator SlideCoroutine;
-    
+
     [Header("Camera FOV: ")]
     public float SlideFOVIncrease = 20;
     public float SlideFOVAnimationDuration = 0.2f;
@@ -71,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // ground check: Sphere check approach
         isGrounded = Physics.CheckSphere(GroundCheckSource.position, GroundCheckRadius, Player.m.groundLayer);
-        
+
         // Checks if the player has enough space above it's head to exit crouching
         Player.m.crouchLogic.hasSpaceAboveHead = !Physics.CheckSphere(Player.m.crouchLogic.CeilingCheck1.position, Player.m.crouchLogic.CeilingCheckRadius, Player.m.groundLayer)
                                               && !Physics.CheckSphere(Player.m.crouchLogic.CeilingCheck2.position, Player.m.crouchLogic.CeilingCheckRadius, Player.m.groundLayer);
@@ -86,10 +85,10 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = 0;
 
         // handle jump phases
-        if ( isAscending && rb.velocity.y < 0)
+        if (isAscending && rb.velocity.y < 0)
         {
             isAscending = false;
-            isDescending= true;
+            isDescending = true;
         }
 
         // set the current player speed based on their move type
@@ -119,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Player.m.MoveType == "slide" )
+        if (Player.m.MoveType == "slide")
         {
             return;
         }
@@ -154,7 +153,8 @@ public class PlayerMovement : MonoBehaviour
 
             return;
 
-        }else if (Player.m.crouchLogic.hasEnteredCrouch)
+        }
+        else if (Player.m.crouchLogic.hasEnteredCrouch)
         {
             if (Player.m.crouchLogic.hasSpaceAboveHead)
                 Player.m.crouchLogic.exitCrouch();
@@ -179,9 +179,9 @@ public class PlayerMovement : MonoBehaviour
         // when to jump
         if (Input.GetKey(jumpKey) && readyToJump && isGrounded)
         {
-            isAscending = true; 
+            isAscending = true;
             isDescending = false;
-            
+
             readyToJump = false;
 
             Jump();
@@ -191,15 +191,15 @@ public class PlayerMovement : MonoBehaviour
 
 
         // This is to change the run Camera FOV
-        if ( actionLastFrame == "run" && Player.m.MoveType != actionLastFrame)
+        if (actionLastFrame == "run" && Player.m.MoveType != actionLastFrame)
         {
             if (ChangeFOVCoroutine != null)
                 StopCoroutine(ChangeFOVCoroutine);
 
-            ChangeFOVCoroutine = ChangeFOVinSlide(OriginalFOV , 0.2f);
+            ChangeFOVCoroutine = ChangeFOVinSlide(OriginalFOV, 0.2f);
             StartCoroutine(ChangeFOVCoroutine);
         }
-        if ( actionLastFrame != "run" && Player.m.MoveType == "run")
+        if (actionLastFrame != "run" && Player.m.MoveType == "run")
         {
             if (ChangeFOVCoroutine != null)
                 StopCoroutine(ChangeFOVCoroutine);
@@ -219,11 +219,11 @@ public class PlayerMovement : MonoBehaviour
 
         //calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-    
+
         // on ground
         if (isGrounded)
             rb.AddForce(moveDirection.normalized * currentSpeed * 10f, ForceMode.Force);
-        
+
         // in air
         else if (!isGrounded)
             rb.AddForce(moveDirection.normalized * currentSpeed * 10f * airMultiplier, ForceMode.Force);
@@ -231,7 +231,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SpeedControl()
     {
-        Vector3 flatVel = new Vector3(rb.velocity.x,0f,rb.velocity.z);
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         // limit velocity if needed
         if (flatVel.magnitude > currentSpeed)
@@ -276,7 +276,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator SlideAction(float speed, float duration)
     {
-        
+
         float time = 0.0f;
 
         Player.m.crouchLogic.enterCrouch();
@@ -299,14 +299,14 @@ public class PlayerMovement : MonoBehaviour
             time += Time.deltaTime;
 
             rb.AddForce(moveDirection.normalized * speed * 10f * Time.timeScale, ForceMode.Force);
-            
+
             yield return 0;
 
         } while (time < duration);
 
         if (Player.m.crouchLogic.hasSpaceAboveHead)
             Player.m.crouchLogic.exitCrouch();
-        else 
+        else
             Player.m.MoveType = "crouch";
         if (ChangeFOVCoroutine != null)
             StopCoroutine(ChangeFOVCoroutine);

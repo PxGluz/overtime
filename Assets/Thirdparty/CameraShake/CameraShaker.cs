@@ -17,14 +17,14 @@ namespace CameraShake
         [Tooltip("Transform which will be affected by the shakes.\n\nCameraShaker will set this transform's local position and rotation.")]
         [SerializeField]
         Transform cameraTransform;
-        
+
 
         [Tooltip("Scales the strength of all shakes.")]
         [Range(0, 1)]
         [SerializeField]
         public float StrengthMultiplier = 1;
 
-        
+
         public CameraShakePresets ShakePresets;
 
 

@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.ProBuilder.Shapes;
 
 public class RotateWhenThrown : MonoBehaviour
 {
-   // Rigidbody rb;
+    // Rigidbody rb;
     public float rotationsPerMinute;
 
     void Start()
@@ -17,7 +14,7 @@ public class RotateWhenThrown : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.Rotate( 6.0f * rotationsPerMinute * Time.deltaTime, 0 , 0);
+        transform.Rotate(6.0f * rotationsPerMinute * Time.deltaTime, 0, 0);
         //rb.AddTorque(transform.right * rotationForce, ForceMode.Acceleration);
     }
 

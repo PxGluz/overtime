@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class TimeGrenade : MonoBehaviour
 {
@@ -31,17 +29,19 @@ public class TimeGrenade : MonoBehaviour
 
     }
 
-    public IEnumerator Explode() {
+    public IEnumerator Explode()
+    {
 
         GameObject sphereEffect = Instantiate(SphereEffect, transform.position, Quaternion.identity);
         sphereEffect.transform.localScale = new Vector3(0, 0, 0);
         Vector3 previousPosition = sphereEffect.transform.localScale;
-        
+
         float timer = 0.0f;
 
-        do {
+        do
+        {
             timer += Time.deltaTime;
-            
+
             sphereEffect.transform.localScale = Vector3.Lerp(previousPosition, new Vector3(FinalRadius * 2, FinalRadius * 2, FinalRadius * 2), timer / explosionDuration);
             currentRadius = sphereEffect.transform.localScale.x / 2;
 
@@ -67,7 +67,7 @@ public class TimeGrenade : MonoBehaviour
 
             yield return 0;
 
-        }while (timer < explosionDuration);
+        } while (timer < explosionDuration);
 
     }
 

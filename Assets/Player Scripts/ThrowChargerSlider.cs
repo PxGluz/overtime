@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,10 +10,10 @@ public class ThrowChargerSlider : MonoBehaviour
     public void ActivateSliders(bool state)
     {
         ChargeSliderParent.SetActive(state);
-        
+
         sliderRight.value = 0;
         sliderLeft.value = 0;
-        
+
     }
 
     public void ChargeSliders(float minThrowForce, float maxThrowForce, float currentThrowForce)
@@ -24,7 +22,7 @@ public class ThrowChargerSlider : MonoBehaviour
         {
             ActivateSliders(true);
             print("muie");
-        }  
+        }
 
         maxThrowForce -= minThrowForce;
         currentThrowForce -= minThrowForce;

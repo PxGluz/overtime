@@ -1,23 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ListDisplay : MonoBehaviour
 {
     [Header("Static References")]
-    [HideInInspector]public GameObject buttonsEmpty, modelsEmpty, textsEmpty;
-    [HideInInspector]public GameObject selectButtonPrefab, textPrefab;
-    [HideInInspector]public Material hologramMaterial;
-    [HideInInspector]public bool forceClose;
+    [HideInInspector] public GameObject buttonsEmpty, modelsEmpty, textsEmpty;
+    [HideInInspector] public GameObject selectButtonPrefab, textPrefab;
+    [HideInInspector] public Material hologramMaterial;
+    [HideInInspector] public bool forceClose;
 
     public float rotationSpeed;
     public float closeSpeed;
 
-    [HideInInspector]public int currentIndex = -1;
-    [HideInInspector]public LoadoutTab openTab = null;
-    [HideInInspector]public PlantingSpot planningTab = null;
+    [HideInInspector] public int currentIndex = -1;
+    [HideInInspector] public LoadoutTab openTab = null;
+    [HideInInspector] public PlantingSpot planningTab = null;
     private Vector3 destination;
 
     public void ForceUpdateChoice()
@@ -31,8 +30,8 @@ public class ListDisplay : MonoBehaviour
                 planningTab.UpdateChoice(currentIndex);
         }
     }
-    
-    public void ResetList(List<LoadoutTab.LoadoutChoice> choicesList, LoadoutTab lTab=null, PlantingSpot pSpot=null)
+
+    public void ResetList(List<LoadoutTab.LoadoutChoice> choicesList, LoadoutTab lTab = null, PlantingSpot pSpot = null)
     {
         if (currentIndex != -1)
             ForceUpdateChoice();
@@ -95,12 +94,12 @@ public class ListDisplay : MonoBehaviour
     {
         yield return 0;
         int margin = openTab ? openTab.selectedChoice : planningTab.selectedChoice;
-        for(int i = 0; i <= margin; i++)
+        for (int i = 0; i <= margin; i++)
             MoveRight();
         buttonsEmpty.GetComponent<ChoiceManager>().UpdateChoice();
         buttonsEmpty.GetComponent<ChoiceManager>().ChangeChoice(margin);
     }
-    
+
     public void MoveLeft()
     {
         if (currentIndex == 0)
@@ -129,8 +128,8 @@ public class ListDisplay : MonoBehaviour
                 child.gameObject.SetActive(true);
         }
     }
-    
-    
+
+
     public void MoveRight()
     {
         if (currentIndex == buttonsEmpty.transform.childCount - 1)
@@ -165,7 +164,7 @@ public class ListDisplay : MonoBehaviour
             }
         }
     }
-    
+
     void Update()
     {
         transform.localScale = Vector3.Lerp(transform.localScale, destination, closeSpeed);

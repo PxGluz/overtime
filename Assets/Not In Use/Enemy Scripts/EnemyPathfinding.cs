@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyPathfinding : MonoBehaviour
-{   
+{
     public NavMeshAgent agent;
     public VisionCone visionCone;
     public LayerMask groundLayer, playerLayer, enemyLayer;
@@ -54,7 +52,8 @@ public class EnemyPathfinding : MonoBehaviour
 
     private void Start()
     {
-        if (enemyType == EnemyType.Ranged) {
+        if (enemyType == EnemyType.Ranged)
+        {
             attackRange = visionCone.visionDistance;
             enemyShooting = gameObject.GetComponent<EnemyShooting>();
         }
@@ -70,17 +69,23 @@ public class EnemyPathfinding : MonoBehaviour
         canSeePlayer = visionCone.IsInView(Player.m.playerObject) || Physics.CheckSphere(gameObject.transform.position, proximityRange, playerLayer);
         canAttackPlayer = Physics.CheckSphere(gameObject.transform.position, attackRange, playerLayer);
 
-        if (!canSeePlayer) {
+        if (!canSeePlayer)
+        {
             // If the enemy can't see the player and he forgot the player, he patrols. If another enemy announced the player to this enemy, start chasing.
-            if (gotAnnounced) {
+            if (gotAnnounced)
+            {
                 Chase(announcedPosition, false);
-            } else {
+            }
+            else
+            {
                 if (rememberPlayer)
                     Chase(Player.m.gameObject.transform.position, true);
                 else
                     Patrol();
             }
-        } else {
+        }
+        else
+        {
             // If the enemy saw the player, announce it to others and start chasing or attacking. Also discard previous announcements.
             gotAnnounced = false;
             rememberPlayer = true;
@@ -92,9 +97,12 @@ public class EnemyPathfinding : MonoBehaviour
                 Attack();
         }
 
-        if (remainingTime > 0f) {
+        if (remainingTime > 0f)
+        {
             remainingTime -= Time.deltaTime;
-        } else {
+        }
+        else
+        {
             rememberPlayer = false;
         }
 
@@ -102,7 +110,7 @@ public class EnemyPathfinding : MonoBehaviour
         {
             stopAnimation = false;
             //animator.SetLayerWeight(1, 0);
-           // animator.Play("Default", 1);
+            // animator.Play("Default", 1);
         }
     }
 
@@ -185,9 +193,12 @@ public class EnemyPathfinding : MonoBehaviour
             //animator.SetLayerWeight(1, 1);
             //animator.Play(attack, 1);
             alreadyAttacked = true;
-            if (enemyType == EnemyType.Ranged) {
+            if (enemyType == EnemyType.Ranged)
+            {
                 enemyShooting.Shoot(Player.m.transform, damage);
-            } else {
+            }
+            else
+            {
                 Player.m.TakeDamage(damage);
             }
 

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,7 +24,7 @@ public class DamageWhileFalling : MonoBehaviour
         EnemyMaster enemy = collision.gameObject.GetComponentInParent<EnemyMaster>();
         if (enemy != null)
         {
-            enemy.TakeDamage(damage, contactPoint:collision.contacts[0].point);
+            enemy.TakeDamage(damage, contactPoint: collision.contacts[0].point);
         }
 
         print(collision.gameObject + "  " + Player.m.gameObject);

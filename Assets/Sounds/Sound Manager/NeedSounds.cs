@@ -34,7 +34,8 @@ public class NeedSounds : MonoBehaviour
         MySounds s = Array.Find(mySounds, sound => sound.name == name);
 
 
-        if (s == null || s.source == null) {
+        if (s == null || s.source == null)
+        {
             print("Didn't find the sound: " + name);
             return;
         }

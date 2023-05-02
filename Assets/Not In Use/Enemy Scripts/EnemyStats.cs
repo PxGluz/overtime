@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
@@ -34,7 +32,7 @@ public class EnemyStats : MonoBehaviour
         pathfinding.announcedPosition = Player.m.transform.position;
         pathfinding.gotAnnounced = true;
 
-        Instantiate(blood,transform.position, Quaternion.identity);
+        Instantiate(blood, transform.position, Quaternion.identity);
 
         if (armored)
             damage /= 2;

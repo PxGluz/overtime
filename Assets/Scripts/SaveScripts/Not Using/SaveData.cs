@@ -1,7 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Runtime.Serialization;
+using UnityEngine;
 
 [DataContract]
 public class SaveData
@@ -29,7 +28,7 @@ public class SaveData
     public List<WeaponInfo> weaponInfos = new List<WeaponInfo>();
 
     // Settings info
-    public struct SettingsInfo 
+    public struct SettingsInfo
     {
         public float masterVolume;
         public FullScreenMode fullScreenMode;

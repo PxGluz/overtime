@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -52,7 +51,7 @@ public class WeaponManager : MonoBehaviour
         public float gunTimeBetweenShots = 0.05f;
         public bool gunAllowButtonHold;
 
-        [Header("Loadout Related")] 
+        [Header("Loadout Related")]
         public bool isUnlocked;
         public bool isDebug;
     }
@@ -235,7 +234,7 @@ public class WeaponManager : MonoBehaviour
         {
             weaponIsInPlace = true;
         }
-        else 
+        else
         {
             time += Time.deltaTime;
 

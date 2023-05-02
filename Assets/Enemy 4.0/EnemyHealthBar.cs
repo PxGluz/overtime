@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,8 +35,10 @@ public class EnemyHealthBar : MonoBehaviour
         HealthBarSlider.value = healthAfterTakingDamage;
 
         if (healthBarTransition && ChangeHealthBackGroundRef != null)
+        {
             StopCoroutine(ChangeHealthBackGroundRef);
-        
+        }
+
         ChangeHealthBackGroundRef = ChangeHealthBackGround(HealthBarBackGroundSlider.value, healthAfterTakingDamage);
         StartCoroutine(ChangeHealthBackGroundRef);
     }

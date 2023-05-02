@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelConstructor : MonoBehaviour
@@ -19,7 +16,7 @@ public class LevelConstructor : MonoBehaviour
             levelList.Add(level);
         }
         GameObject minZ = startingPoint, maxZ = startingPoint, minX = startingPoint, maxX = startingPoint;
-        
+
         GameObject prevLevel = startingPoint;
         foreach (Level.LevelInfo currentLevel in levelList)
         {
@@ -51,16 +48,16 @@ public class LevelConstructor : MonoBehaviour
                 }
             }
         }
-        float dimX = Mathf.Abs((minX.transform.position.y - minX.transform.lossyScale.x) - (maxX.transform.position.y + maxX.transform.lossyScale.x)), 
+        float dimX = Mathf.Abs((minX.transform.position.y - minX.transform.lossyScale.x) - (maxX.transform.position.y + maxX.transform.lossyScale.x)),
               dimZ = Mathf.Abs((minZ.transform.position.z - minZ.transform.lossyScale.z) - (maxZ.transform.position.z + maxZ.transform.lossyScale.z));
         float resizeCoef = dimX > dimZ ? sizeX / dimX : sizeZ / dimZ;
-        
-        
-        
-        startingPoint.transform.localScale = new Vector3(resizeCoef, startingPoint.transform.localScale.y ,resizeCoef);
-        Vector3 differential = 
-        new Vector3(startingPoint.transform.position.x, startingPoint.transform.position.y + sizeX / 2, startingPoint.transform.position.z - sizeZ / 2) - 
-        new Vector3(startingPoint.transform.position.x, ((maxX.transform.position + minX.transform.position)/2).y, ((maxZ.transform.position + minZ.transform.position)/2).z);
+
+
+
+        startingPoint.transform.localScale = new Vector3(resizeCoef, startingPoint.transform.localScale.y, resizeCoef);
+        Vector3 differential =
+        new Vector3(startingPoint.transform.position.x, startingPoint.transform.position.y + sizeX / 2, startingPoint.transform.position.z - sizeZ / 2) -
+        new Vector3(startingPoint.transform.position.x, ((maxX.transform.position + minX.transform.position) / 2).y, ((maxZ.transform.position + minZ.transform.position) / 2).z);
         startingPoint.transform.position += differential;
     }
 
