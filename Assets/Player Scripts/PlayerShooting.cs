@@ -44,7 +44,6 @@ public class PlayerShooting : MonoBehaviour
         MyInput();
 
     }
-    public GameObject cacatDebug;
 
     private void MyInput()
     {
@@ -96,9 +95,6 @@ public class PlayerShooting : MonoBehaviour
         Vector3 spreadPoint = targetPoint
             + Player.m.playerCam.transform.right * spreadRight * (targetPoint - weaponM.currentWeapon.shootPoint.position).magnitude
             + Player.m.playerCam.transform.up * spreadUp * (targetPoint - weaponM.currentWeapon.shootPoint.position).magnitude;
-
-        if (cacatDebug != null)
-            cacatDebug.transform.position = spreadPoint;
 
         // Calculate direction as before.
         Vector3 directionWithSpread = (spreadPoint - weaponM.currentWeapon.shootPoint.position).normalized;
