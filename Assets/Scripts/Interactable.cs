@@ -1,4 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SubsystemsImplementation;
 
 public class Interactable : MonoBehaviour
 {
@@ -7,11 +10,11 @@ public class Interactable : MonoBehaviour
     public bool isChoice, isLevel = false;
     public int quantity;
     public bool TriggerFunction = false;
-
+    
     public Transform myAttackPoint;
     public MonoBehaviour scriptToStart;
-
-    [HideInInspector] public Outline myOutline;
+    
+    [HideInInspector]public Outline myOutline;
 
     public void Start()
     {

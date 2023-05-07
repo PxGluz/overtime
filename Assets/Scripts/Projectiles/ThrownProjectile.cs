@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ThrownProjectile : MonoBehaviour
@@ -71,7 +73,7 @@ public class ThrownProjectile : MonoBehaviour
         else
             gameObject.layer = LayerMask.NameToLayer("NoPlayerCollision");
 
-
+        
         foreach (Transform child in AllChildren)
             child.gameObject.layer = value ? LayerMask.NameToLayer("Interactable") : LayerMask.NameToLayer("NoPlayerCollision");
 

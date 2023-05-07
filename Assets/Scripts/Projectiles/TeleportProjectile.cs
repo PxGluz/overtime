@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -23,7 +24,7 @@ public class TeleportProjectile : MonoBehaviour
             float newScale = this.transform.localScale.x - Time.deltaTime * 0.7f;
             this.transform.localScale = new Vector3(newScale, newScale, newScale);
 
-            if (transform.localScale.x <= 0)
+            if (transform.localScale.x <= 0) 
                 Destroy(gameObject);
         }
     }

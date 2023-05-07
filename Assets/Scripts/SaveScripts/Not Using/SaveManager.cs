@@ -1,8 +1,10 @@
-using System.IO;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Xml.Linq;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.Serialization;
+using System.IO;
+using System.Xml.Linq;
+using System.Text;
 
 public class SaveManager : MonoBehaviour
 {
@@ -90,7 +92,7 @@ public class SaveManager : MonoBehaviour
             // Deserialize the file.
             file.CopyTo(memoryStream);
             memoryStream.Seek(0, SeekOrigin.Begin);
-            SaveData saveData = (SaveData)serializer.ReadObject(memoryStream);
+            SaveData saveData = (SaveData) serializer.ReadObject(memoryStream);
             Debug.Log(saveData.settingsInfo.masterVolume);
 
             // Update game.

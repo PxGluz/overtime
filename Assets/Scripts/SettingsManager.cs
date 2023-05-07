@@ -1,8 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using TMPro;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -87,7 +88,7 @@ public class SettingsManager : MonoBehaviour
         int offset = 0;
         foreach (VolumeComponent component in Player.m.volume.components)
         {
-            GameObject toggle = Instantiate(togglePrefab, startPosition.transform.position + new Vector3(/*300*/0, /*280 */-40 * offset, 0), new Quaternion(), menu.transform);
+            GameObject toggle = Instantiate(togglePrefab, startPosition.transform.position + new Vector3(/*300*/0, /*280 */- 40 * offset, 0), new Quaternion(), menu.transform);
             toggle.GetComponentInChildren<TextMeshProUGUI>().text = component.name;
             toggle.SetActive(false);
             Toggle currentToggle = toggle.GetComponent<Toggle>();
@@ -110,7 +111,7 @@ public class SettingsManager : MonoBehaviour
         Screen.SetResolution(width, height, fullScreenMode);
     }
 
-    public void SetSubtitles(bool subtitles)
+    public void SetSubtitles (bool subtitles)
     {
         this.subtitles = subtitles;
     }

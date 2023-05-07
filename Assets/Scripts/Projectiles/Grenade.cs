@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Grenade : MonoBehaviour
@@ -23,7 +25,7 @@ public class Grenade : MonoBehaviour
 
     private void Explode()
     {
-        ExplosionManager.instance.Explode(gameObject.transform.position, radius, damage, pushForce);
+        ExplosionManager.instance.Explode(gameObject.transform.position,radius,damage,pushForce);
         Destroy(gameObject);
     }
 

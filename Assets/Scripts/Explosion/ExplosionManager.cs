@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,10 +40,10 @@ public class ExplosionManager : MonoBehaviour
     // pushForce - amount of force the target receives at the center of the explosion
     public void Explode(Vector3 position, float pushRadius, float damage, float pushForce)
     {
-        //float trueDamage;
+        float trueDamage;
         ParticleSystem particleExplosion = Instantiate(ExplosionEffect, position, Quaternion.identity).GetComponent<ParticleSystem>();
         var main = particleExplosion.main;
-        main.startLifetime = pushRadius / particleExplosion.main.startSpeed.constant + 0.2f;
+        main.startLifetime = pushRadius / particleExplosion.main.startSpeed.constant + 0.2f; 
 
         Collider[] hits = Physics.OverlapSphere(position, pushRadius, objectsAffectedByExplosions);
 
@@ -69,7 +70,7 @@ public class ExplosionManager : MonoBehaviour
                         break;
                     enemiesHitByExplosion.Add(enemyStats);
                     enemyStats.TakeDamage(damage);
-
+                    
                     break;
                 case "Player":
                     // The amount of damage the player takes is proportional to the distance from the center of explosion.
@@ -93,5 +94,6 @@ public class ExplosionManager : MonoBehaviour
         PlaySoundThenDestroy playSoundScript = Instantiate(SoundPlayer, position, Quaternion.identity).GetComponent<PlaySoundThenDestroy>();
         playSoundScript.SoundToPlay = explosionSoundName;
     }
+
 
 }

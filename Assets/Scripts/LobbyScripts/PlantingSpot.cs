@@ -1,15 +1,17 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlantingSpot : MonoBehaviour
 {
-    [HideInInspector] public List<LoadoutTab.LoadoutChoice> loadoutChoice = new List<LoadoutTab.LoadoutChoice>();
-    [HideInInspector] public int selectedChoice = 0;
+    [HideInInspector]public List<LoadoutTab.LoadoutChoice> loadoutChoice = new List<LoadoutTab.LoadoutChoice>();
+    [HideInInspector]public int selectedChoice = 0;
     [HideInInspector] public ListDisplay listDisplay;
     [HideInInspector] public PlantingSpotLogic pLogic;
     [HideInInspector] public bool toggle;
 
-    private Vector3 offset = new(0, 1, 0);
+    private Vector3 offset = new (0, 1, 0);
     private bool checker = true;
 
     public void UpdateChoice(int newChoice)
@@ -25,7 +27,7 @@ public class PlantingSpot : MonoBehaviour
             }
         }
     }
-
+    
     void Start()
     {
         loadoutChoice = new List<LoadoutTab.LoadoutChoice>();
@@ -71,7 +73,7 @@ public class PlantingSpot : MonoBehaviour
                 listDisplay.gameObject.SetActive(true);
                 listDisplay.forceClose = false;
                 listDisplay.transform.position = transform.position + offset;
-                listDisplay.ResetList(loadoutChoice, pSpot: this);
+                listDisplay.ResetList(loadoutChoice, pSpot:this);
                 enabled = false;
             }
             else

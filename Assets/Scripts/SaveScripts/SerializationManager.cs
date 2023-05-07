@@ -1,6 +1,8 @@
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class SerializationManager
 {
@@ -9,8 +11,7 @@ public class SerializationManager
         BinaryFormatter formatter = GetBinaryFormatter();
 
         string directoryPath = Application.persistentDataPath + "/saves";
-        if (!Directory.Exists(directoryPath))
-        {
+        if (!Directory.Exists(directoryPath)) {
             Directory.CreateDirectory(directoryPath);
         }
 

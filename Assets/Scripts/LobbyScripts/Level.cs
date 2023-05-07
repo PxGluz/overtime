@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,16 +18,16 @@ public class Level : MonoBehaviour
     }
 
     [Header("Static References")]
-    [HideInInspector] public Transform details;
+    [HideInInspector]public Transform details;
     public Contract contract;
     public Material normalMat, highlightedMat;
-
-    [HideInInspector] public GameObject layoutParent;
-    [HideInInspector] public bool isClosed, deselecting;
-    [HideInInspector] public LevelInfo levelInfo;
+    
+    [HideInInspector]public GameObject layoutParent;
+    [HideInInspector]public bool isClosed, deselecting;
+    [HideInInspector]public LevelInfo levelInfo;
 
     private Vector3 destination;
-
+    
     void Start()
     {
         levelInfo.script = this;
@@ -46,7 +47,7 @@ public class Level : MonoBehaviour
             }
         }
     }
-
+    
     void Update()
     {
         details.localScale = Vector3.Lerp(details.localScale, destination, contract.animationSpeed * 2);

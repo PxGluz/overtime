@@ -1,4 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.EventSystems;
 
 public class PlayerShooting : MonoBehaviour
@@ -26,7 +29,7 @@ public class PlayerShooting : MonoBehaviour
     private void Start()
     {
         weaponM = Player.m.weaponManager;
-        readyToShoot = true;
+        readyToShoot= true;
     }
 
     private void Update()
@@ -83,13 +86,13 @@ public class PlayerShooting : MonoBehaviour
         // check if ray hits something
         Vector3 targetPoint;
         if (Physics.Raycast(ray, out hit))
-            targetPoint = hit.point;
+             targetPoint = hit.point;
         else
             targetPoint = ray.GetPoint(75);
 
         // Calculate direction from attackPoint to targetPoint  
         float spreadUp = Random.Range(-1f, 1f) * weaponM.currentWeapon.gunSpread / 10;
-        float spreadRight = Random.Range(-1f, 1f) * weaponM.currentWeapon.gunSpread / 10;
+        float spreadRight = Random.Range(-1f, 1f) * weaponM.currentWeapon.gunSpread /10;
 
         // Find random point in the same plane as the targetPoint.
         Vector3 spreadPoint = targetPoint
@@ -108,7 +111,7 @@ public class PlayerShooting : MonoBehaviour
         // Add force to bullet
         Rigidbody bulletRB = currentBullet.GetComponent<Rigidbody>();
         bulletRB.AddForce(directionWithSpread.normalized * weaponM.currentWeapon.gunShootForce, ForceMode.Impulse);
-
+        
 
         // Set bullet damage
         BulletCollision bulletCollision = currentBullet.GetComponent<BulletCollision>();
@@ -127,7 +130,7 @@ public class PlayerShooting : MonoBehaviour
         if (allowInvoke)
         {
             Invoke("ResetShot", weaponM.currentWeapon.gunTimeBetweenShooting);
-            allowInvoke = false;
+            allowInvoke = false; 
         }
 
         // if more than one bulletsPerTap make sure to repeat shoot function

@@ -12,7 +12,7 @@ public class PlanningInfo : MonoBehaviour
     public Queue<Level.LevelInfo> remainingLevels = new Queue<Level.LevelInfo>();
 
     public static PlanningInfo instance;
-
+    
     private void OnLevelLoad(Scene scene, LoadSceneMode mode)
     {
         StartCoroutine(OnLevelLoadCoroutine());
@@ -23,12 +23,12 @@ public class PlanningInfo : MonoBehaviour
         Player.m.scoringSystem.combo.gameObject.transform.parent.gameObject.SetActive(false);
         yield return 0;
         if (SceneManager.GetActiveScene().buildIndex == 1)
-            yield break;
+            yield break;     
         Player.m.scoringSystem.combo.gameObject.transform.parent.gameObject.SetActive(true);
         Player.m.scoringSystem.enabled = true;
         //TODO: set difficulty of level
         if (loadoutChoices.Count > 0)
-            Player.m.weaponManager.ChangeWeapon(Player.m.weaponManager.WeaponsList[loadoutChoices[0]].name, quantity: Player.m.weaponManager.WeaponsList[loadoutChoices[0]].gunMagazineSize);
+            Player.m.weaponManager.ChangeWeapon(Player.m.weaponManager.WeaponsList[loadoutChoices[0]].name, quantity:Player.m.weaponManager.WeaponsList[loadoutChoices[0]].gunMagazineSize);
         if (plantingSpot.Count > 0 && plantingSpot[0] != -1)
         {
             GameObject pSpot = GameObject.Find("PSpots");
@@ -50,7 +50,7 @@ public class PlanningInfo : MonoBehaviour
         }
     }
 
-    public void UpdatePlanning(List<int> plant, List<int> load, int diff, Queue<Level.LevelInfo> remLevels)
+    public void UpdatePlanning(List<int> plant,List<int> load, int diff, Queue<Level.LevelInfo> remLevels)
     {
         plantingSpot = plant;
         loadoutChoices = load;
@@ -68,7 +68,7 @@ public class PlanningInfo : MonoBehaviour
     {
         return remainingLevels.Count > 0 ? remainingLevels.Dequeue().levelScene : "MainMenuLobby";
     }
-
+    
     void Awake()
     {
         instance = this;

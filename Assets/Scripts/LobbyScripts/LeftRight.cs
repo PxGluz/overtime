@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LeftRight : MonoBehaviour
@@ -13,7 +15,7 @@ public class LeftRight : MonoBehaviour
             checker = false;
         if (!checker)
         {
-            if (left)
+            if(left)
                 listDisplay.MoveLeft();
             else
                 listDisplay.MoveRight();

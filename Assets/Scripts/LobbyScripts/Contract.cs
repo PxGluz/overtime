@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Contract : MonoBehaviour
@@ -22,22 +25,22 @@ public class Contract : MonoBehaviour
     private Vector3 destination;
     private List<Collider> collidersList = new List<Collider>();
     private bool canPlan = true;
-
+    
     [Header("Static References")]
-    [HideInInspector] public Transform hologram, details;
-    [HideInInspector] public Collider graphics;
-    [HideInInspector] public TextMeshProUGUI levelName, levelScore;
-    [HideInInspector] public GameObject levelLayout, layoutCenter;
-    [HideInInspector] public Material layoutMaterial;
-    [HideInInspector] public PlanningManager planningManager;
-    [HideInInspector] public Transform loadoutTabsRoot;
+    [HideInInspector]public Transform hologram, details;
+    [HideInInspector]public Collider graphics;
+    [HideInInspector]public TextMeshProUGUI levelName, levelScore;
+    [HideInInspector]public GameObject levelLayout, layoutCenter;
+    [HideInInspector]public Material layoutMaterial;
+    [HideInInspector]public PlanningManager planningManager;
+    [HideInInspector]public Transform loadoutTabsRoot;
     public Material normalMat, highlightedMat;
-
+    
     [Header("Animation Related")]
     public float animationSpeed;
-    [HideInInspector] public bool closing;
+    [HideInInspector]public bool closing;
 
-    [Header("Levels")]
+    [Header("Levels")] 
     public List<Level.LevelInfo> levelList;
 
     [Header("Important for loading correct level")]
@@ -96,16 +99,16 @@ public class Contract : MonoBehaviour
         if (loadoutTabsRoot == null)
             Debug.LogWarning("loadoutTabsRoot not set: GetLoadoutChoices will not work");
         selectedLevel = new List<Level.LevelInfo>();
-
+        
         // Creating level layout
         LevelConstructor.ConstructLevel(
-            levelLayout,
-            2 * Mathf.Abs(layoutCenter.transform.position.y - levelLayout.transform.position.y),
+            levelLayout,  
+            2 * Mathf.Abs(layoutCenter.transform.position.y - levelLayout.transform.position.y), 
             2 * Mathf.Abs(layoutCenter.transform.position.z - levelLayout.transform.position.z),
-            layoutMaterial,
+            layoutMaterial, 
             levelList
             );
-
+        
         foreach (Transform level in levelLayout.transform)
         {
             if (level != layoutCenter.transform)
@@ -154,7 +157,7 @@ public class Contract : MonoBehaviour
         }
         enabled = false;
         yield return 0;
-
+        
         // Getting all colliders
         Queue<Transform> childList = new Queue<Transform>();
         childList.Enqueue(hologram);
@@ -184,9 +187,9 @@ public class Contract : MonoBehaviour
         }
         else
             planningManager.ResetLayout();
-
+        
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -203,10 +206,10 @@ public class Contract : MonoBehaviour
                 contract.closing = true;
             closing = false;
             levelLayout.SetActive(true);
-
+            
             graphics.enabled = false;
         }
-
+        
         /*if (Vector3.Distance(Player.m.transform.position, transform.position) > 10f)
         {
             closing = true;

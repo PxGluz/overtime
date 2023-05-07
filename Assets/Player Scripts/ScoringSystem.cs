@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -15,15 +16,15 @@ public class ScoringSystem : MonoBehaviour
 
     public float animationSpeed, comboSmoothTime;
     public float rotationAngle, instantiateOffset;
-
+    
     [HideInInspector] public int scoreValue = 0, comboValue = 1;
 
     private Vector3 ref1;
-
+    
     public void AddScore(int addedScore, string pointType)
     {
         if (pointType != "bad")
-            Player.m.SnapEffects(vigType: pointType);
+            Player.m.SnapEffects(vigType:pointType);
         float calculatedCombo = comboValue + Mathf.Floor(comboBar.transform.localScale.x * 10f) / 10f;
         score.transform.localScale = Vector3.one * 2;
         score.transform.eulerAngles = Vector3.forward * Random.Range(-rotationAngle, rotationAngle);
@@ -39,7 +40,7 @@ public class ScoringSystem : MonoBehaviour
             case "good":
                 currentPointText.color = goodPoints;
                 currentPointText.text = "+";
-                addedScore = (int)(addedScore * calculatedCombo);
+                addedScore = (int) (addedScore * calculatedCombo);
                 scoreValue += addedScore;
                 comboValue++;
                 score.color = scoringColor;
@@ -49,7 +50,7 @@ public class ScoringSystem : MonoBehaviour
             case "bad":
                 currentPointText.color = badPoints;
                 currentPointText.text = "+";
-                addedScore = (int)(addedScore * calculatedCombo);
+                addedScore = (int) (addedScore * calculatedCombo);
                 scoreValue += addedScore;
                 comboValue++;
                 score.color = scoringColor;
@@ -69,7 +70,7 @@ public class ScoringSystem : MonoBehaviour
         }
         currentPointText.text += addedScore;
     }
-
+    
     private void Start()
     {
         comboValue = 1;

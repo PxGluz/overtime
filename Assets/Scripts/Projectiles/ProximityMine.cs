@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ProximityMine : MonoBehaviour
@@ -20,7 +22,7 @@ public class ProximityMine : MonoBehaviour
         coll = GetComponent<CapsuleCollider>();
         thrownProjectile = GetComponent<ThrownProjectile>();
 
-        lightSource.enabled = false;
+        lightSource.enabled= false;
     }
 
 
@@ -43,9 +45,9 @@ public class ProximityMine : MonoBehaviour
                             Destroy(gameObject);
                             return;
                         }
-                        break;
+                    break;
                 }
-
+               
 
             }
         }

@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -19,7 +21,7 @@ public class Interact : MonoBehaviour
             if (Input.GetKey(interactKey))
                 UseInteractable();
         }
-
+       
     }
 
     private void SelectItemBeingPickedUpFromRay()
@@ -89,7 +91,7 @@ public class Interact : MonoBehaviour
 
         if (itemBeingPickedUp.isWeaponPickUp && Player.m.weaponManager.weaponIsInPlace)
         {
-            Player.m.weaponManager.ChangeWeapon(itemBeingPickedUp.itemName, itemBeingPickedUp.quantity, interactableObject: itemBeingPickedUp.transform);
+            Player.m.weaponManager.ChangeWeapon(itemBeingPickedUp.itemName,  itemBeingPickedUp.quantity, interactableObject:itemBeingPickedUp.transform);
 
             Destroy(itemBeingPickedUp.gameObject);
 

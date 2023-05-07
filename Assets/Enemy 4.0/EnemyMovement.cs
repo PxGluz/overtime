@@ -1,7 +1,11 @@
 using System;
 using System.Collections;
+using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -40,7 +44,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
-        myColliders = gameObject.GetComponentsInChildren<Collider>();
+        myColliders = gameObject.GetComponentsInChildren<Collider>() ;
 
         if (patrolPoints.Length == 0)
             enablePatrol = false;
@@ -79,7 +83,7 @@ public class EnemyMovement : MonoBehaviour
             agent.SetDestination(transform.position);
             return;
         }
-
+        
         agent.speed = patrolSpeed;
         enemy.animator.SetFloat("RunAnimSpeed", 1);
 
@@ -90,9 +94,9 @@ public class EnemyMovement : MonoBehaviour
             //create empty path
             NavMeshPath navMeshPath = new NavMeshPath();
             // check if navMeshAgent can reach player
-
+            
             RaycastHit hit;
-            Physics.Raycast(Player.m.transform.position, Player.m.transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, Player.m.groundLayer);
+            Physics.Raycast(Player.m.transform.position, Player.m.transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity,Player.m.groundLayer);
 
             if (agent.CalculatePath(hit.point, navMeshPath) && navMeshPath.status == NavMeshPathStatus.PathComplete)
             {
@@ -127,8 +131,8 @@ public class EnemyMovement : MonoBehaviour
             // Check if the enemy reached the destination.
             if (Vector3.Distance(enemy.EnemyCenter.position, patrolPoints[currentPatrolPoint].position) <= 2f)
                 currentPatrolPoint = (currentPatrolPoint + 1) % patrolPoints.Length;
-
-            agent.SetDestination(patrolPoints[currentPatrolPoint].position);
+            
+            agent.SetDestination(patrolPoints[currentPatrolPoint].position);   
         }
         else
             agent.SetDestination(transform.position);
@@ -175,8 +179,8 @@ public class EnemyMovement : MonoBehaviour
             time += Time.deltaTime;
 
             if (canSeePlayer)
-                time = 0.0f;
-
+                time = 0.0f;   
+            
             Announce();
 
             yield return 0;
@@ -185,7 +189,7 @@ public class EnemyMovement : MonoBehaviour
 
         isChasingPlayer = false;
 
-        print(this.name + " stoppedChasingPlayer");
+        print (this.name+ " stoppedChasingPlayer");
     }
 
     public void Announce(bool INeedToSeePlayerToAnnounce = true)
@@ -205,7 +209,7 @@ public class EnemyMovement : MonoBehaviour
             if (enemyMovement.enabled == false)
                 continue;
 
-            if (!enemyMovement.isChasingPlayer)
+            if (!enemyMovement.isChasingPlayer )
             {
                 if (INeedToSeePlayerToAnnounce)
                 {
@@ -227,14 +231,14 @@ public class EnemyMovement : MonoBehaviour
     private bool canTransition = true;
     private void TransitionEnded() { canTransition = true; }
 
-    private void RotateAtTarget(Transform objectToRotate, Transform target, float speed)
+    private void RotateAtTarget(Transform objectToRotate, Transform target,float speed)
     {
         Vector3 relativePos = target.position - objectToRotate.position;
-        Quaternion rotation = new Quaternion(0, Quaternion.LookRotation(relativePos).y, 0, Quaternion.LookRotation(relativePos).w);
+        Quaternion rotation = new Quaternion(0, Quaternion.LookRotation(relativePos).y,0, Quaternion.LookRotation(relativePos).w);
 
-        Quaternion current = new Quaternion(0, objectToRotate.localRotation.y, 0, objectToRotate.localRotation.w);
+        Quaternion current = new Quaternion (0,objectToRotate.localRotation.y,0, objectToRotate.localRotation.w);
 
-        objectToRotate.localRotation = Quaternion.Slerp(current, rotation, Time.deltaTime * speed);
+        objectToRotate.localRotation = Quaternion.Slerp(current, rotation, Time.deltaTime* speed);
     }
 
     private void OnDrawGizmosSelected()

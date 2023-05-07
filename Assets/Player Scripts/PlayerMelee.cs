@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -68,7 +70,7 @@ public class PlayerMelee : MonoBehaviour
                 if (enemy != null)
                 {
                     ThisAttackHasDealtDamge = true;
-
+                        
                     float dist = Vector3.Distance(obj.gameObject.transform.position, origin.position);
                     if (dist < distanceToClosestEnemy || closestEnemy == null)
                     {
@@ -91,12 +93,12 @@ public class PlayerMelee : MonoBehaviour
     }
 
 
-    private void stopAttacking() { isMeleeAttacking = false; Invoke("resetCanAttack", Player.m.weaponManager.currentWeapon.meleeAttackSpeed); }
+    private void stopAttacking(){ isMeleeAttacking = false; Invoke("resetCanAttack", Player.m.weaponManager.currentWeapon.meleeAttackSpeed); }
     private void resetCanAttack() { canAttack = true; }
 
     public Transform TestMeleeSpherePoint;
     public float TestMeleeSphereRadius;
-
+    
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

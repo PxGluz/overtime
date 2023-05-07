@@ -1,10 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-
+    
     public GameObject LoseScreen;
     public GameObject WinScreen;
     public TextMeshProUGUI currentScore, highscore;
@@ -15,7 +17,7 @@ public class MenuManager : MonoBehaviour
         CloseAllMenus();
         Player.m.playerCam.UnLockCursor();
 
-        switch (name)
+        switch(name)
         {
             case "WinMenu":
                 WinScreen.SetActive(true);
@@ -38,8 +40,8 @@ public class MenuManager : MonoBehaviour
         currentScore.text += cScore;
         highscore.text += hScore;
     }
-
-    public void CloseAllMenus()
+    
+    public void CloseAllMenus() 
     {
         Player.m.playerCam.LockCursor();
 
@@ -73,7 +75,7 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
 
-
+    
     public void Update()
     {
         /*if (Input.GetKeyDown(KeyCode.N))
@@ -88,7 +90,7 @@ public class MenuManager : MonoBehaviour
             CloseAllMenus();
         }*/
     }
-
+    
 
 
 }

@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletCollision : MonoBehaviour
@@ -19,7 +21,7 @@ public class BulletCollision : MonoBehaviour
     private Vector3 lastPos;
     private void FixedUpdate()
     {
-        Debug.DrawRay(lastPos, transform.forward * Vector3.Distance(lastPos, transform.position), Color.yellow);
+        Debug.DrawRay(lastPos, transform.forward * Vector3.Distance(lastPos,transform.position), Color.yellow);
 
         RaycastHit hit;
 
@@ -53,7 +55,7 @@ public class BulletCollision : MonoBehaviour
                     {
                         enemy.TakeDamage(bulletDamage, hit.collider.gameObject, transform.forward * 25f, hit.point, true);
                     }
-                    else
+                    else 
                     {
                         enemy.TakeDamage(bulletDamage, hit.collider.gameObject, transform.forward * 25f, hit.point);
                     }
@@ -62,7 +64,7 @@ public class BulletCollision : MonoBehaviour
 
             case "Explosive":
                 hit.collider.gameObject.GetComponent<ExplosiveBarrel>().ReceiveHit();
-                break;
+            break;
             default:
                 Player.m.particleManager.CreateParticle(hit.point, -transform.forward);
                 break;
@@ -72,7 +74,7 @@ public class BulletCollision : MonoBehaviour
         print(hit.collider.gameObject.name);
 
         Destroy(gameObject);
-
+        
     }
 
     private void Expire()

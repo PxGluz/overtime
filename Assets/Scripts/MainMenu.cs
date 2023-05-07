@@ -1,10 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.Rendering;
+using System.Collections;
 
 public class MainMenu : MonoBehaviour
 {
@@ -62,7 +62,7 @@ public class MainMenu : MonoBehaviour
     private Transform playerCam;
     private int optionLevel = 0;
     private Coroutine displayCoroutine = null;
-
+    
     private void StartGame()
     {
         object data = SerializationManager.Load("levelInfo");
@@ -80,7 +80,7 @@ public class MainMenu : MonoBehaviour
                 SerializationManager.Save("levelInfo", levelData);
             }
         }
-
+               
         foreach (KeyValuePair<string, Button> button in dictionaryButtons)
         {
             button.Value.interactable = false;
@@ -106,7 +106,7 @@ public class MainMenu : MonoBehaviour
         dictionaryButtons["generalSettings"].gameObject.SetActive(active);
         dictionaryButtons["graphicsSettings"].gameObject.SetActive(active);
     }
-
+    
     private void Options()
     {
         SetSettings(true);
@@ -123,7 +123,7 @@ public class MainMenu : MonoBehaviour
         dictionaryButtons["backToMenu"].gameObject.SetActive(false);
         optionLevel++;
     }
-
+    
     private void QuitGame()
     {
         Player.m.weaponManager.SaveWeapons();
@@ -135,8 +135,7 @@ public class MainMenu : MonoBehaviour
         //    Debug.Log("Couldn't find contract");
 
         GameObject root = GameObject.Find("ContractRoot");
-        if (root)
-        {
+        if (root) {
             Contract[] contracts = root.GetComponentsInChildren<Contract>();
             List<Contract.LevelData> data = new List<Contract.LevelData>();
             foreach (Contract contract in contracts)
@@ -153,8 +152,7 @@ public class MainMenu : MonoBehaviour
     {
         if (optionLevel == 1)
         {
-            if (firstIteration)
-            {
+            if (firstIteration) {
                 dictionaryButtons["startGame"].gameObject.SetActive(true);
                 dictionaryButtons["quitGame"].gameObject.SetActive(true);
             }
@@ -167,13 +165,12 @@ public class MainMenu : MonoBehaviour
                     dictionaryButtons["quitGame"].gameObject.SetActive(true);
             }
             dictionaryButtons["options"].gameObject.SetActive(true);
-
+            
             SetSettings(false);
             dictionaryButtons["back"].gameObject.SetActive(false);
             optionLevel--;
             SerializationManager.Save("settingsFile", Player.m.settingsManager.SettingsToData());
-        }
-        else if (optionLevel == 2)
+        } else if (optionLevel == 2)
         {
             foreach (KeyValuePair<string, Slider> slider in dictionarySliders)
                 slider.Value.gameObject.SetActive(false);
@@ -295,7 +292,7 @@ public class MainMenu : MonoBehaviour
         dictionaryButtons["quitGame"].gameObject.SetActive(true);
         dictionaryButtons["backToMenu"].gameObject.SetActive(false);
     }
-
+    
     private void Awake()
     {
         foreach (NamedButton button in buttons)
@@ -334,8 +331,7 @@ public class MainMenu : MonoBehaviour
                 playerUIComponent.color = new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 0);
             playerFist.position -= Vector3.up * 0.3f;
             Time.timeScale = 0;
-        }
-        else
+        } else
         {
             foreach (MaskableGraphic menuItem in menuItems)
                 menuItem.color = new Color(menuItem.color.r, menuItem.color.g, menuItem.color.b, 0);
@@ -388,7 +384,7 @@ public class MainMenu : MonoBehaviour
             }
             else
                 playerCam.Rotate(Vector3.up * rotationSpeed);
-        }
+        } 
         else
         {
             if (startedTransition)
@@ -446,12 +442,10 @@ public class MainMenu : MonoBehaviour
             foreach (MaskableGraphic playerUIComponent in playerUI)
                 if (playerUIComponent.gameObject.name.Equals("Center Point")
                     || playerUIComponent.gameObject.name.Equals("Right")
-                    || playerUIComponent.gameObject.name.Equals("Left"))
-                {
+                    || playerUIComponent.gameObject.name.Equals("Left")) {
                     playerUIComponent.color = new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 0);
                 }
-                else
-                {
+                else {
                     playerUIComponent.color = Color.Lerp(playerUIComponent.color,
                         new Color(playerUIComponent.color.r, playerUIComponent.color.g, playerUIComponent.color.b, 0),
                         menuFadeSpeed);

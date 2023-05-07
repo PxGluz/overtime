@@ -1,5 +1,8 @@
+using CameraShake;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder;
 
 public class PlayerThrow : MonoBehaviour
 {
@@ -52,7 +55,7 @@ public class PlayerThrow : MonoBehaviour
             if (throwForce > maxThrowForce)
                 throwForce = maxThrowForce;
 
-            throwChargerSlider.ChargeSliders(minThrowForce, maxThrowForce, throwForce);
+            throwChargerSlider.ChargeSliders(minThrowForce,maxThrowForce,throwForce);
         }
         if (Input.GetKeyUp(throwKey) && readyToThrow)
         {
@@ -74,7 +77,7 @@ public class PlayerThrow : MonoBehaviour
         Player.m.crossHairLogic.ActivateCrossHairEffect();
 
         readyToThrow = false;
-
+        
         // Find the exact hit position using raycast
         Ray ray = Player.m.MainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); // Just a ray through the middle of your camera
         RaycastHit hit;
@@ -125,7 +128,7 @@ public class PlayerThrow : MonoBehaviour
         // implement throwCooldown
         Invoke(nameof(ResetThrow), ThrowCooldown);
     }
-    private IEnumerator PlaySoundAfterDelay(GameObject projectile) { yield return new WaitForEndOfFrame(); projectile.GetComponent<NeedSounds>().Play("throw"); }
+    private IEnumerator PlaySoundAfterDelay(GameObject projectile) {yield return new WaitForEndOfFrame(); projectile.GetComponent<NeedSounds>().Play("throw"); }
     public void DropWeapon()
     {
         throwChargerSlider.ActivateSliders(false);
@@ -138,7 +141,7 @@ public class PlayerThrow : MonoBehaviour
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
 
         // add force
-        Vector3 forceToAdd = Player.m.MainCamera.transform.forward * dropForce + transform.up;
+        Vector3 forceToAdd = Player.m.MainCamera.transform.forward * dropForce + transform.up ;
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
         //projectileRb.velocity += Player.m.playerMovement.rb.velocity;

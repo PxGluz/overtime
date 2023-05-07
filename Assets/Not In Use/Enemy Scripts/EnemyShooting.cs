@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyShooting : MonoBehaviour
@@ -18,7 +20,7 @@ public class EnemyShooting : MonoBehaviour
     public GameObject weaponPlace;
     public GameObject bulletPlace;
 
-    private void Start()
+    private void Start() 
     {
         GameObject newWeapon = Instantiate(weapon, weaponPlace.transform.position, new Quaternion());
         newWeapon.transform.LookAt(weaponPlace.transform.position - weaponPlace.transform.forward);
@@ -29,18 +31,15 @@ public class EnemyShooting : MonoBehaviour
     public void Shoot(Transform target, float damage)
     {
         // If the enemy has no bullets left, he reloads and misses a shooting oportunity.
-        if (currentBullets == 0)
-        {
+        if (currentBullets == 0) {
             currentBullets = bullets;
             Debug.Log($"{gameObject.name} has reloaded");
-        }
-        else
-        {
+        } else {
             GameObject newBullet = Instantiate(bullet, bulletPlace.transform.position, new Quaternion());
 
             EnemyBullet enemyBullet = newBullet.GetComponent<EnemyBullet>();
             enemyBullet.bulletDamage = damage;
-
+            
             newBullet.transform.LookAt(target);
             Rigidbody bulletRB = newBullet.GetComponent<Rigidbody>();
             Vector3 direction = Vector3.Normalize(target.position - bulletPlace.transform.position);

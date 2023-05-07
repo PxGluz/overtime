@@ -1,5 +1,7 @@
-using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BulletPickUp : MonoBehaviour
 {
@@ -41,7 +43,7 @@ public class BulletPickUp : MonoBehaviour
                 nrOfBullets--;
                 BulletCountText.text = nrOfBullets.ToString();
 
-                Player.m.playerShooting.bulletsleft += Mathf.Max(1, Player.m.weaponManager.currentWeapon.gunBulletsPerTap);
+                Player.m.playerShooting.bulletsleft += Mathf.Max(1 , Player.m.weaponManager.currentWeapon.gunBulletsPerTap);
                 Mathf.Clamp(Player.m.playerShooting.bulletsleft, 0, Player.m.weaponManager.currentWeapon.gunMagazineSize);
 
                 Player.m.playerShooting.UpdateGunAmmoDisplay();
@@ -51,7 +53,7 @@ public class BulletPickUp : MonoBehaviour
                     Destroy(this.gameObject);
                     break;
                 }
-            }
+            }        
         }
 
     }
