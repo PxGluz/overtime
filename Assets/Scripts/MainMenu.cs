@@ -65,10 +65,10 @@ public class MainMenu : MonoBehaviour
     
     private void StartGame()
     {
-        object data = SerializationManager.Load("levelInfo");
+        object data = SerializationManager.Load("lvls");
         if (data == null)
         {
-            GameObject root = GameObject.Find("ContractRoot");
+            GameObject root = GameObject.Find("ContractsRoot");
             if (root)
             {
                 Contract[] contracts = root.GetComponentsInChildren<Contract>();
@@ -77,7 +77,7 @@ public class MainMenu : MonoBehaviour
                     foreach (Level.LevelInfo level in contract.levelList)
                         levelData.Add(new Contract.LevelData(level.levelScene, level.highscore, level.isLocked));
 
-                SerializationManager.Save("levelInfo", levelData);
+                SerializationManager.Save("lvls", levelData);
             }
         }
                
@@ -142,7 +142,7 @@ public class MainMenu : MonoBehaviour
                 foreach (Level.LevelInfo level in contract.levelList)
                     data.Add(new Contract.LevelData(level.levelScene, level.highscore, level.isLocked));
 
-            SerializationManager.Save("levelInfo", data);
+            SerializationManager.Save("lvls", data);
         }
 
         Application.Quit();

@@ -82,7 +82,7 @@ public class Contract : MonoBehaviour
 
     private IEnumerator Start()
     {
-        object data = SerializationManager.Load("levels");
+        object data = SerializationManager.Load("lvls");
         if (data != null)
         {
             List<LevelData> levelDatas = data as List<LevelData>;

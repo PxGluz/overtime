@@ -133,7 +133,7 @@ public class Player : MonoBehaviour
     
     public void YouWin()
     {
-        object data = SerializationManager.Load("levelInfo");
+        object data = SerializationManager.Load("lvls");
         if (data != null)
         {
             List<Contract.LevelData> levelDatas = data as List<Contract.LevelData>;
@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
                     menuManager.SetScore(scoringSystem.scoreValue, levelDatas[i].highscore);
                 }
             }
-            SerializationManager.Save("levelInfo", levelDatas);
+            SerializationManager.Save("lvls", levelDatas);
         }
         else
             menuManager.SetScore(scoringSystem.scoreValue, scoringSystem.scoreValue);
